@@ -6,26 +6,24 @@
     
 
     
-    <title>Day5:不可貌相的JS變數型別：如何練成一個物件 | F2E 星球通訊</title>
+    <title>Day13:能力封裝–函式 | F2E 星球通訊</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="JavaScript, 2021iT邦鐵人賽, 變數" />
+    <meta name="keywords" content="JavaScript, 2021iT邦鐵人賽" />
     
-    <meta name="description" content="前面提到除了string、number、boolean、null和undefined等5種基本型別之外，其他的值都是物件型別。 那什麼是物件呢？ 物件是0到多種屬性的集合，而所謂的屬性是一組鍵(key)與值(value)的配對關聯。值的內容可以是字串、數字等基本型別，也可以是另一個物件，或是一個函數。 如何建立一個自定義的物件？現在最常見的方法就是使用**「物件實字」(Object literal">
+    <meta name="description" content="函式的作用在於將一段或多段函式包裝在一起，方便反覆使用，一目了然也方便維護。當需要重複執行一次計算或重複做一件事的時候，就會需要用到函式。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Day5:不可貌相的JS變數型別：如何練成一個物件">
-<meta property="og:url" content="https://popeye-ux.github.io/2021/09/05/21-day5-object/index.html">
+<meta property="og:title" content="Day13:能力封裝–函式">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/09/13/21-day13-function/index.html">
 <meta property="og:site_name" content="F2E 星球通訊">
-<meta property="og:description" content="前面提到除了string、number、boolean、null和undefined等5種基本型別之外，其他的值都是物件型別。 那什麼是物件呢？ 物件是0到多種屬性的集合，而所謂的屬性是一組鍵(key)與值(value)的配對關聯。值的內容可以是字串、數字等基本型別，也可以是另一個物件，或是一個函數。 如何建立一個自定義的物件？現在最常見的方法就是使用**「物件實字」(Object literal">
+<meta property="og:description" content="函式的作用在於將一段或多段函式包裝在一起，方便反覆使用，一目了然也方便維護。當需要重複執行一次計算或重複做一件事的時候，就會需要用到函式。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.imgur.com/IddLj20.jpg">
-<meta property="article:published_time" content="2021-09-05T02:55:58.000Z">
-<meta property="article:modified_time" content="2022-04-14T02:59:12.778Z">
+<meta property="article:published_time" content="2021-09-13T08:48:10.000Z">
+<meta property="article:modified_time" content="2022-04-14T08:49:31.250Z">
 <meta property="article:author" content="POPEYE">
-<meta property="article:tag" content="JavaScript, 2021iT邦鐵人賽, 變數">
+<meta property="article:tag" content="JavaScript, 2021iT邦鐵人賽">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/IddLj20.jpg">
     
 
     
@@ -157,14 +155,14 @@
 </div>
  -->
                         <div class="main-body-content">
-                            <article id="post-21-day5-object" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-21-day13-function" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Day5:不可貌相的JS變數型別：如何練成一個物件
+        Day13:能力封裝–函式
         </h1>
     
 
@@ -175,16 +173,16 @@
                 
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2021/09/05/21-day5-object/" class="article-date">
-       <time datetime="2021-09-05T02:55:58.000Z" itemprop="datePublished">2021-09-05</time>
+    <a href="/2021/09/13/21-day13-function/" class="article-date">
+       <time datetime="2021-09-13T08:48:10.000Z" itemprop="datePublished">2021-09-13</time>
     </a>
   </div>
 
 
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
-  <a href="/2021/09/05/21-day5-object/" class="article-date">
-     <time datetime="2022-04-14T02:59:12.778Z" itemprop="dateModified">2022-04-14</time>
+  <a href="/2021/09/13/21-day13-function/" class="article-date">
+     <time datetime="2022-04-14T08:49:31.250Z" itemprop="dateModified">2022-04-14</time>
   </a>
 </div>
 
@@ -194,7 +192,7 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-%E8%AE%8A%E6%95%B8/" rel="tag">JavaScript, 2021iT邦鐵人賽, 變數</a>
+        <a class="tag-link-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag">JavaScript, 2021iT邦鐵人賽</a>
     </div>
 
                 
@@ -211,20 +209,56 @@
 
             
 
-            <p><img src="https://i.imgur.com/IddLj20.jpg"><br>前面提到除了string、number、boolean、null和undefined等5種基本型別之外，其他的值都是<strong>物件型別</strong>。</p>
-<p>那什麼是物件呢？</p>
-<p><strong>物件是0到多種屬性的集合，而所謂的屬性是一組鍵(key)與值(value)的配對關聯。值的內容可以是字串、數字等基本型別，也可以是另一個物件，或是一個函數。</strong></p>
-<h2 id="如何建立一個自定義的物件？"><a href="#如何建立一個自定義的物件？" class="headerlink" title="如何建立一個自定義的物件？"></a>如何建立一個自定義的物件？</h2><p>現在最常見的方法就是使用**「物件實字」(Object literal)**的方法，用一個大括號{}建立一個物件，同時在大括號中直接建立屬性及方法。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用「物件實字」建立一個郭靖(guoJing)的物件</span></span><br><span class="line"><span class="keyword">var</span> guoJing = &#123;</span><br><span class="line">	<span class="attr">name</span>: <span class="string">&#x27;郭靖&#x27;</span>,</span><br><span class="line">	<span class="attr">gender</span>: <span class="string">&#x27;male&#x27;</span>,</span><br><span class="line">	<span class="attr">skill</span>: <span class="string">&#x27;降龍十八掌&#x27;</span>,</span><br><span class="line">	<span class="attr">useSkill</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">		<span class="title function_">alert</span>(<span class="string">&#x27;降龍十八掌之亢龍有悔&#x27;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>函式的作用在於將一段或多段函式包裝在一起，方便反覆使用，一目了然也方便維護。當需要重複執行一次計算或重複做一件事的時候，就會需要用到函式。</p>
+<span id="more"></span>
+<p>像這樣就是一個函式：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">firstFun</span> () &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;桃花島的五行八卦陣&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>而在早期要建立一個物件，會使用new 關鍵字來建立一個物件實體，再用「物件.屬性」的方式替這個物件新增屬性及方法。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用「new」關鍵字建立一個郭靖(guoJing)的物件</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">guoJing.<span class="property">name</span> = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line">guoJing.<span class="property">gender</span>= <span class="string">&#x27;male&#x27;</span>;</span><br><span class="line">guoJing.<span class="property">skill</span>= <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line">guoJing.<span class="property">useSkill</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">		<span class="title function_">alert</span>(<span class="string">&#x27;降龍十八掌之亢龍有悔&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函式執行前要先被定義，但是定義好的函式不會自動執行，要在程式中呼喊愛情，啊！不對！是呼叫函式，函式才會動起來！</p>
+<p>最常見的函式宣告方式有以下三種：</p>
+<ul>
+<li>函式宣告(Function Declaration)</li>
+<li>函式表達式(Function Expression)</li>
+<li>透過new Function關鍵字建立函式</li>
+</ul>
+<h2 id="函式宣告-Function-Declaration"><a href="#函式宣告-Function-Declaration" class="headerlink" title="函式宣告(Function Declaration)"></a>函式宣告(Function Declaration)</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> 函式名稱 (參數<span class="number">1</span>, 參數<span class="number">2.</span>..)&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>至於如何新增與刪除屬性，可以用下面這種方式：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個郭靖(guoJing)的物件,裡面不放任何屬性</span></span><br><span class="line"><span class="keyword">var</span> guoJing = &#123;&#125;</span><br><span class="line"><span class="comment">//建立name的屬性</span></span><br><span class="line">guoJing.<span class="property">name</span> = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line"><span class="comment">//建立skill的屬性</span></span><br><span class="line">guoJing.<span class="property">skill</span>= <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//刪除 guoJing.skill 這個屬性</span></span><br><span class="line"><span class="keyword">delete</span> guoJing.<span class="property">skill</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(guoJing.<span class="property">skill</span>)  <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>用function開頭，後面接著函式名稱。</li>
+<li>()小括號中放的式參數，參數可以不只一個，每個參數中間以逗號 「,」隔開。</li>
+<li>{}大括號中放的是執行的程式內容。</li>
+</ul>
+<p>我們已可以把參數帶入function中使用：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">firstFun</span> (name) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>( name + <span class="string">&#x27;闖入桃花島的五行八卦陣&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">firstFun</span>(<span class="string">&#x27;郭靖&#x27;</span>)  <span class="comment">//郭靖闖入桃花島的五行八卦陣</span></span><br></pre></td></tr></table></figure>
 
-<p>前面提到用物件實字的方式建立物件，這也是JSON格式的核心語法，JavaScript透過JSON來撈取外部的資料到程式內部使用。</p>
-<p>物件就像是樂高，可以自由拼裝想要形狀與組件，自己養成一個天下武功第一的大俠。</p>
+<h2 id="函式表達式-Function-Expression"><a href="#函式表達式-Function-Expression" class="headerlink" title="函式表達式(Function Expression)"></a>函式表達式(Function Expression)</h2><p>函式表達式長這個樣子：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 變數名稱 = <span class="keyword">function</span> 函式名稱()&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函式表達式清楚地展示了如何將一個函式儲存在一個變數中，從而透過變數我們可以反覆地叫用函式。函式的名稱只有在「自己函式的區塊內」有效，離開這個函式的範圍，函式的名稱就失去了效用。</p>
+<p>透過「變數名稱()」就可以呼叫函式，所以「函式名稱」不是一定要的，這種沒有名字的函式在JavaScript是允許的，通常被稱為「匿名函式」。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 變數名稱 = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> firstFun = <span class="keyword">function</span>  (<span class="params">name</span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>( name + <span class="string">&#x27;闖入桃花島的五行八卦陣&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">firstFun</span>(<span class="string">&#x27;郭靖&#x27;</span>)  <span class="comment">//郭靖闖入桃花島的五行八卦陣</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="透過new-Function關鍵字建立函式"><a href="#透過new-Function關鍵字建立函式" class="headerlink" title="透過new Function關鍵字建立函式"></a>透過new Function關鍵字建立函式</h2><p>第三種則是透過 new關鍵字 + Function的方式來建立函式物件。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 變數名稱 = <span class="keyword">new</span> <span class="title class_">Fnction</span> (<span class="string">&#x27;參數&#x27;</span>,<span class="string">&#x27;do something&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>因為這種方式，每次執行都要解析字串，效能甚差，實務上很少使用。</p>
+<h2 id="return"><a href="#return" class="headerlink" title="return"></a>return</h2><p>對一個新手而言，剛遇到這個return實在是丈二金剛摸不著腦？return到底是要轉到哪裡去？</p>
+<p>後來搞懂了，原來函式執行後，return會中止程式執行並回傳一個值(value)，如果沒有值可以回傳，則會會傳undefined。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funNoReturn = <span class="keyword">function</span> <span class="title function_">square</span>(<span class="params">num</span>)&#123;</span><br><span class="line">	num * num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">funNoReturn</span>(<span class="number">2</span>);</span><br><span class="line"><span class="comment">//undefined  沒有回傳值，所以undefined</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funReturn = <span class="keyword">function</span> <span class="title function_">square</span>(<span class="params">num</span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> num * num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">funReturn</span>(<span class="number">2</span>);</span><br><span class="line"><span class="comment">//4  加上retrurn之後，就有回傳值了</span></span><br></pre></td></tr></table></figure>
+
+<p>回傳值是函式輸出的值，可以帶入其他的程式碼中繼續運算。函式可以接受多個參數，但是只能回傳一個值，如果沒有告訴函是要回傳什麼，就會回傳undefined。</p>
+<p>也可以把函式呼叫當作值來使用：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funReturn = <span class="keyword">function</span> <span class="title function_">square</span>(<span class="params">num</span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> num * num;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">funReturn</span>(<span class="number">2</span>) + <span class="title function_">funReturn</span>(<span class="number">3</span>);</span><br><span class="line"><span class="comment">//13</span></span><br></pre></td></tr></table></figure>
+
+<p>我們也可以利用return來結束函示執行，如果函式的任意一個參數無效，就提前跳出函式。無效指的是，參數不符合函式所定義的條件。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fun = <span class="keyword">function</span> (<span class="params">num</span>)&#123;</span><br><span class="line">	<span class="keyword">if</span>(num &gt; <span class="number">5</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> num * num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">fun</span>(<span class="number">6</span>);  <span class="comment">//undefined</span></span><br><span class="line"><span class="title function_">fun</span>(<span class="number">2</span>);  <span class="comment">//&quot;4&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>fun(6)因為num &gt;5，參數符合if條件 ，就執行{}內程式碼，return跳出了函式，回傳undefined。</p>
+<p>fun(2)因為num&lt;5，參數不符合if條件，所以繼續往下執行return num * num，回傳值為4。</p>
 
         </div>
         <footer class="article-footer">
@@ -232,7 +266,7 @@
 
 
 
-    <a data-url="https://popeye-ux.github.io/2021/09/05/21-day5-object/" data-id="cl1yew0hg0000a8oe3oypd7my" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://popeye-ux.github.io/2021/09/13/21-day13-function/" data-id="cl1ysi59b0000okoe1t11e4xi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -302,19 +336,16 @@
             "@type": "Person",
             "name": "POPEYE"
         },
-        "headline": "Day5:不可貌相的JS變數型別：如何練成一個物件",
-        "image": "https://popeye-ux.github.iohttps://i.imgur.com/IddLj20.jpg",
-        "keywords": "JavaScript, 2021iT邦鐵人賽, 變數",
+        "headline": "Day13:能力封裝–函式",
+        "image": "https://popeye-ux.github.io",
+        "keywords": "JavaScript, 2021iT邦鐵人賽",
         "genre": "JavaScript",
-        "datePublished": "2021-09-05",
-        "dateCreated": "2021-09-05",
+        "datePublished": "2021-09-13",
+        "dateCreated": "2021-09-13",
         "dateModified": "2022-04-14",
-        "url": "https://popeye-ux.github.io/2021/09/05/21-day5-object/",
-        "description": "前面提到除了string、number、boolean、null和undefined等5種基本型別之外，其他的值都是物件型別。
-那什麼是物件呢？
-物件是0到多種屬性的集合，而所謂的屬性是一組鍵(key)與值(value)的配對關聯。值的內容可以是字串、數字等基本型別，也可以是另一個物件，或是一個函數。
-如何建立一個自定義的物件？現在最常見的方法就是使用**「物件實字」(Object literal",
-        "wordCount": 155
+        "url": "https://popeye-ux.github.io/2021/09/13/21-day13-function/",
+        "description": "函式的作用在於將一段或多段函式包裝在一起，方便反覆使用，一目了然也方便維護。當需要重複執行一次計算或重複做一件事的時候，就會需要用到函式。",
+        "wordCount": 347
     }
 </script>
 
@@ -379,20 +410,20 @@
         
 <nav id="article-nav">
     
-        <a href="/2021/09/06/21-day6-array/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2021/09/14/21-day14-return/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">下一篇</strong>
         <p class="article-nav-title">
         
-            Day6:長幼有序的好孩子：陣列
+            Day14:return的妙傳得分
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/2021/09/04/21-day4-variableType/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2021/09/12/21-day12-loop/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">Day4:不可貌相的JS變數型別：基本型別</p>
+        <p class="article-nav-title">Day12:忙得團團轉的迴圈</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -605,7 +636,7 @@
     var disqus_shortname = 'popeye-ux-1';
     
     
-    var disqus_url = 'https://popeye-ux.github.io/2021/09/05/21-day5-object/';
+    var disqus_url = 'https://popeye-ux.github.io/2021/09/13/21-day13-function/';
     
     (function() {
     var dsq = document.createElement('script');
