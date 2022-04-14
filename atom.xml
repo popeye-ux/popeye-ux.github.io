@@ -6,7 +6,7 @@
   <link href="https://popeye-ux.github.io/atom.xml" rel="self"/>
   
   <link href="https://popeye-ux.github.io/"/>
-  <updated>2022-04-14T09:35:12.705Z</updated>
+  <updated>2022-04-14T17:30:30.842Z</updated>
   <id>https://popeye-ux.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>21-day17-arrowFunction</title>
+    <link href="https://popeye-ux.github.io/2022/04/15/21-day17-arrowFunction/"/>
+    <id>https://popeye-ux.github.io/2022/04/15/21-day17-arrowFunction/</id>
+    <published>2022-04-14T17:29:49.000Z</published>
+    <updated>2022-04-14T17:30:30.842Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://i.imgur.com/qiHWxHS.jpg"><br>箭頭函式可以讓函式的寫法變得十分精簡！</p><span id="more"></span><p>一般我們見到的函式長成這個樣子：</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fight = <span class="keyword">function</span>(<span class="params">nameA, nameB</span>) &#123;</span><br><span class="line"><span class="keyword">return</span> nameA + <span class="string">&#x27;打敗&#x27;</span> + nameB;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fight</span>(<span class="string">&#x27;洪七公&#x27;</span>,<span class="string">&#x27;歐陽鋒&#x27;</span>);  <span class="comment">//洪七公打歐陽鋒</span></span><br></pre></td></tr></table></figure><p>但是從ES6之後，增加了一種「箭頭函式表達式」(Arrow Function expression)，可以使用它來簡化函式的表達，讓我們一步一步還簡化：</p><p>把function刪除，在()小括號後面加上&#x3D; &gt;，其他保持原樣。</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title function_">fight</span> = (<span class="params">nameA, nameB</span>) =&gt; &#123;</span><br><span class="line"><span class="keyword">return</span> nameA + <span class="string">&#x27;打敗&#x27;</span> + nameB;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fight</span>(<span class="string">&#x27;洪七公&#x27;</span>,<span class="string">&#x27;歐陽鋒&#x27;</span>);  <span class="comment">//洪七公打歐陽鋒</span></span><br></pre></td></tr></table></figure><p>跟著進一步簡化，把{}拿掉，也把return省略掉：</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title function_">fight</span> = (<span class="params">nameA, nameB</span>) =&gt;  nameA + <span class="string">&#x27;打敗&#x27;</span> + nameB;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fight</span>(<span class="string">&#x27;洪七公&#x27;</span>,<span class="string">&#x27;歐陽鋒&#x27;</span>);  <span class="comment">//洪七公打歐陽鋒</span></span><br></pre></td></tr></table></figure><p>當函式只有一個參數的時候，小括號()可以省略：</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title function_">fight</span> = nameA =&gt; <span class="variable language_">console</span>.<span class="title function_">log</span>(nameA + <span class="string">&#x27;武功天下第一&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">fight</span>(<span class="string">&#x27;洪七公&#x27;</span>);  <span class="comment">//洪七公武功天下第一</span></span><br></pre></td></tr></table></figure><p>但是沒有參數時，小括號()是不能省略的：</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title function_">fight</span> = (<span class="params"></span>) =&gt; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;洪七公武功天下第一&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">fight</span>();  <span class="comment">//洪七公武功天下第一</span></span><br></pre></td></tr></table></figure><p>箭頭函式的精簡寫法在乍看之下讓人一頭霧水，但是拆解之後，卻是簡單又一目了然，這種寫法應該很多人會喜歡用。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/qiHWxHS.jpg&quot;&gt;&lt;br&gt;箭頭函式可以讓函式的寫法變得十分精簡！&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JavaScript" scheme="https://popeye-ux.github.io/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript, 2021iT邦鐵人賽" scheme="https://popeye-ux.github.io/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>21-day16-globalAndScope</title>
+    <link href="https://popeye-ux.github.io/2021/09/16/21-day16-globalAndScope/"/>
+    <id>https://popeye-ux.github.io/2021/09/16/21-day16-globalAndScope/</id>
+    <published>2021-09-15T17:27:45.000Z</published>
+    <updated>2022-04-14T17:28:58.915Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://i.imgur.com/ZksQg3V.jpg"><br>JavaScript的變數依使用的切分範圍（作用域）可以分為兩種：</p><span id="more"></span><ul><li>區域變數</li><li>全域變數</li></ul><p>前面提到透過var宣告的變數，最小的切分範圍為function，在函式內宣告的變數只能在函式內部使用，無法由外層叫用，其他的函式也不能使用，當函式執行完之後，變數就由記憶體中清除。這就是「區域變數」。</p><p>而在外層用var宣告的變數則為「全域變數」，即使寫在function裡面，沒用var宣告的變數都是「全域變數」。就如同前面有提到的，function內可以去捉外層的變數來用，而外層無法捉到function內的變數來用，也就是說「全域變數」是大家公用的。而「區域變數」則只能在function內使用。</p><p>舉個簡單的例子，公園裡的盪鞦韆，大家都可以去玩，這就是「全域變數」；但是你家院子裡的盪鞦韆，外面的人沒辦法進來玩，就是「區域變數」。</p><p>而其實「全域變數」指的是「全域物件」的屬性，以瀏覽器來說，「全域物件」就是window物件，window物件的部分在提到BOM的時候會再詳細解釋，我們先知道就好。</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> man = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">man</span>);  <span class="comment">//郭靖</span></span><br></pre></td></tr></table></figure><p>「var man &#x3D; ‘郭靖’」變成window物件的屬性了。</p><p>而使用var宣告的全域變數，無法使用delete關鍵字刪除。</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> man = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">man</span>);</span><br><span class="line"><span class="keyword">delete</span> <span class="variable language_">window</span>.<span class="property">man</span> <span class="comment">//false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">man</span>); <span class="comment">// 郭靖</span></span><br></pre></td></tr></table></figure><p>但是透過window宣告的全域變數，卻可以使用delete刪除。</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">man</span> = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">man</span>);</span><br><span class="line"><span class="keyword">delete</span> <span class="variable language_">window</span>.<span class="property">man</span> <span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">man</span>); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure><p>這一點是需要特別注意的。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/ZksQg3V.jpg&quot;&gt;&lt;br&gt;JavaScript的變數依使用的切分範圍（作用域）可以分為兩種：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JavaScript" scheme="https://popeye-ux.github.io/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript, 2021iT邦鐵人賽" scheme="https://popeye-ux.github.io/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>Day15:變數的地盤—作用域(scoop)與提升(Hoisting)</title>
