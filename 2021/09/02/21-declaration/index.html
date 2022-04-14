@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>Day1:起手式—變數宣告 | F2E 星球通訊</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="JavaScript, 2021iT邦鐵人賽" />
+    
+    <meta name="description" content="剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」 哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。 簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。 先讓我們不專業的方式來理解一下： 12345678&#x2F;&#x2F;假設我們建立一個名為郭靖(guoJing)的變數，給他 &amp;#x27;降龍十八掌&amp;#x27;的值var guo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day1:起手式—變數宣告">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/09/02/21-declaration/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」 哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。 簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。 先讓我們不專業的方式來理解一下： 12345678&#x2F;&#x2F;假設我們建立一個名為郭靖(guoJing)的變數，給他 &amp;#x27;降龍十八掌&amp;#x27;的值var guo">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/r4GPepv.jpg">
+<meta property="article:published_time" content="2021-09-02T02:19:13.000Z">
+<meta property="article:modified_time" content="2022-04-14T02:30:00.895Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript, 2021iT邦鐵人賽">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/r4GPepv.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="F2E 星球通訊" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/">JavaScript</a></li></ul>
+                                
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="輸入關鍵字..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '頁面',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <!-- <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/JavaScript/">JavaScript</a>
+    </h1>
+</div>
+ -->
+                        <div class="main-body-content">
+                            <article id="post-21-declaration" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Day1:起手式—變數宣告
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2021/09/02/21-declaration/" class="article-date">
+       <time datetime="2021-09-02T02:19:13.000Z" itemprop="datePublished">2021-09-02</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2021/09/02/21-declaration/" class="article-date">
+     <time datetime="2022-04-14T02:30:00.895Z" itemprop="dateModified">2022-04-14</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag">JavaScript, 2021iT邦鐵人賽</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <p><img src="https://i.imgur.com/r4GPepv.jpg"></p>
+<p>剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」</p>
+<p>哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。</p>
+<p>簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。</p>
+<p>先讓我們不專業的方式來理解一下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假設我們建立一個名為郭靖(guoJing)的變數，給他 &#x27;降龍十八掌&#x27;的值</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個名為黃蓉(huangRong)的變數，給她&#x27;打狗棒法&#x27;的值</span></span><br><span class="line"><span class="keyword">var</span> huangRong = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個名為歐陽鋒(ouyangFeng)的變數，給他&#x27;蛤蟆功&#x27;的值</span></span><br><span class="line"><span class="keyword">var</span> ouyangFeng = <span class="string">&#x27;蛤蟆功&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>我們把武功裝在名為郭靖(guoJing)、黃蓉(huangRong)與歐陽鋒(ouyangFeng)的三個變數裡面，就可以讓他們在電腦中華山論劍，用功夫決鬥，你裝什麼功夫在變數裡面，他們就用什麼功夫決鬥。</p>
+<p>建立變數包含2個動作：</p>
+<ul>
+<li>宣告：就是給變數一個名稱。</li>
+<li>初始化：給變數一個初始值。</li>
+</ul>
+<p><img src="https://i.imgur.com/8iGUT2V.jpg"></p>
+<p>我們可以先宣告變數，同時賦予初始值，也可以之後再給初始值。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//宣告變數郭靖(guoJing)，同時賦予初始值</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//先宣告黃蓉(huangRong)，之後再賦值</span></span><br><span class="line"><span class="keyword">var</span> huangRong;</span><br><span class="line">huangRong = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>也可以這樣，建立多個變數，之間用逗點 ( , )隔開，之後再給他們值。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">var</span> guoJing, huangRong, ouyangFeng;</span><br><span class="line">guoJing = <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line">huangRong = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line">ouyangFeng = <span class="string">&#x27;蛤蟆功&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>再來談談變數的規則：</p>
+<ul>
+<li>變數的第一個字母必須為英文字母、底線_、錢字符號$，不可以使用數字。</li>
+<li>變數名稱不可以是JavaScript的保留字（Reserved Words）或關鍵字（keywords）。</li>
+<li>JavaScript有區分大小寫，變數monkey與變數Monkey會被認為是不同的變數。</li>
+<li>JavaScript支援Unicode，所以變數名稱可以用中文命名，避免其他語言系統開啟會變亂碼，所以不建議使用，還是讓郭靖與黃蓉講英文吧。</li>
+</ul>
+<p>如果變數未經宣告就要使用的話，會出現ReferenceError的狀況。</p>
+<p>宣告變數就是JavaScript的起手式，理解了這些，我們就可以進一步去理解變數的型別與應用。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://popeye-ux.github.io/2021/09/02/21-declaration/" data-id="cl1ydljxw00007ooe8lxh3iof" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "POPEYE"
+        },
+        "headline": "Day1:起手式—變數宣告",
+        "image": "https://popeye-ux.github.iohttps://i.imgur.com/r4GPepv.jpg",
+        "keywords": "JavaScript, 2021iT邦鐵人賽",
+        "genre": "JavaScript",
+        "datePublished": "2021-09-02",
+        "dateCreated": "2021-09-02",
+        "dateModified": "2022-04-14",
+        "url": "https://popeye-ux.github.io/2021/09/02/21-declaration/",
+        "description": "
+剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」
+哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。
+簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。
+先讓我們不專業的方式來理解一下：
+12345678//假設我們建立一個名為郭靖(guoJing)的變數，給他 &#x27;降龍十八掌&#x27;的值var guo",
+        "wordCount": 101
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>追蹤 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2021/09/03/21-day3-varLetConst/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            變數宣告var、let、const的區別
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2021/09/01/21-foreword/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Day0:為什麼踏入前端這個領域?</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/12/21-day12-loop/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/xvPDhIg.jpg)" alt="Day12:忙得團團轉的迴圈" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/09/12/21-day12-loop/" class="title">Day12:忙得團團轉的迴圈</a></p>
+                            <p class="item-date"><time datetime="2021-09-12T05:05:07.000Z" itemprop="datePublished">2021-09-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/11/21-day11-ifElse/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/kxGvksU.jpg)" alt="Day11:「如果肚子餓了，就吃香蕉」--流程判斷邏輯" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/09/11/21-day11-ifElse/" class="title">Day11:「如果肚子餓了，就吃香蕉」--流程判斷邏輯</a></p>
+                            <p class="item-date"><time datetime="2021-09-11T04:58:32.000Z" itemprop="datePublished">2021-09-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/10/21-day10-logical/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/TUNTQsf.jpg)" alt="To be or Not To be？邏輯運算子" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/09/10/21-day10-logical/" class="title">To be or Not To be？邏輯運算子</a></p>
+                            <p class="item-date"><time datetime="2021-09-10T03:56:26.000Z" itemprop="datePublished">2021-09-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/09/21-day9-operator/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/d3fn57g.jpg)" alt="千算萬算的運算子" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/09/09/21-day9-operator/" class="title">千算萬算的運算子</a></p>
+                            <p class="item-date"><time datetime="2021-09-09T03:53:47.000Z" itemprop="datePublished">2021-09-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/08/21-day8-expression/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/BmCsRzn.jpg)" alt="人算不如天算的運算式" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/09/08/21-day8-expression/" class="title">人算不如天算的運算式</a></p>
+                            <p class="item-date"><time datetime="2021-09-08T03:49:27.000Z" itemprop="datePublished">2021-09-08</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分類</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">所有文章</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                <!-- 
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">標籤</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag">JavaScript, 2021iT邦鐵人賽</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-array/" rel="tag">JavaScript, 2021iT邦鐵人賽, array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-%E8%AE%8A%E6%95%B8/" rel="tag">JavaScript, 2021iT邦鐵人賽, 變數</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+ -->
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">標籤雲</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/" style="font-size: 20px;">JavaScript, 2021iT邦鐵人賽</a> <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-array/" style="font-size: 10px;">JavaScript, 2021iT邦鐵人賽, array</a> <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-%E8%AE%8A%E6%95%B8/" style="font-size: 15px;">JavaScript, 2021iT邦鐵人賽, 變數</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <!-- <h3 class="widget-title">連結</h3> -->
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2022 POPEYE</p>
+                
+                <!-- <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p> -->
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://popeye-ux.github.io/2021/09/02/21-declaration/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>
