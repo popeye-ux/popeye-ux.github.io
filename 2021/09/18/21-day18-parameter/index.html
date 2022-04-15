@@ -6,26 +6,26 @@
     
 
     
-    <title>Day1:起手式—變數宣告 | F2E 星球通訊</title>
+    <title>Day18:期間限定：函式的參數 | F2E 星球通訊</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="keywords" content="JavaScript, 2021iT邦鐵人賽" />
     
-    <meta name="description" content="剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」 哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。 簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。 先讓我們不專業的方式來理解一下： 12345678&#x2F;&#x2F;假設我們建立一個名為郭靖(guoJing)的變數，給他 &amp;#x27;降龍十八掌&amp;#x27;的值var guo">
+    <meta name="description" content="函式會將參數傳入函式裡面，讓它們成為函式裡的變數，讓程式碼去做運算。參數只能在函式裡刷存在感（期間限定?），一旦函式執行完畢，就會被消失。(Mission Impossible音樂響起……)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Day1:起手式—變數宣告">
-<meta property="og:url" content="https://popeye-ux.github.io/2021/09/02/21-declaration/index.html">
+<meta property="og:title" content="Day18:期間限定：函式的參數">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/09/18/21-day18-parameter/index.html">
 <meta property="og:site_name" content="F2E 星球通訊">
-<meta property="og:description" content="剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」 哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。 簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。 先讓我們不專業的方式來理解一下： 12345678&#x2F;&#x2F;假設我們建立一個名為郭靖(guoJing)的變數，給他 &amp;#x27;降龍十八掌&amp;#x27;的值var guo">
+<meta property="og:description" content="函式會將參數傳入函式裡面，讓它們成為函式裡的變數，讓程式碼去做運算。參數只能在函式裡刷存在感（期間限定?），一旦函式執行完畢，就會被消失。(Mission Impossible音樂響起……)">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.imgur.com/r4GPepv.jpg">
-<meta property="article:published_time" content="2021-09-02T02:19:13.000Z">
-<meta property="article:modified_time" content="2022-04-14T02:30:00.895Z">
+<meta property="og:image" content="https://i.imgur.com/f2hdazq.jpg">
+<meta property="article:published_time" content="2021-09-18T00:26:52.000Z">
+<meta property="article:modified_time" content="2022-04-15T00:28:16.649Z">
 <meta property="article:author" content="POPEYE">
 <meta property="article:tag" content="JavaScript, 2021iT邦鐵人賽">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/r4GPepv.jpg">
+<meta name="twitter:image" content="https://i.imgur.com/f2hdazq.jpg">
     
 
     
@@ -157,14 +157,14 @@
 </div>
  -->
                         <div class="main-body-content">
-                            <article id="post-21-declaration" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-21-day18-parameter" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Day1:起手式—變數宣告
+        Day18:期間限定：函式的參數
         </h1>
     
 
@@ -175,16 +175,16 @@
                 
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2021/09/02/21-declaration/" class="article-date">
-       <time datetime="2021-09-02T02:19:13.000Z" itemprop="datePublished">2021-09-02</time>
+    <a href="/2021/09/18/21-day18-parameter/" class="article-date">
+       <time datetime="2021-09-18T00:26:52.000Z" itemprop="datePublished">2021-09-18</time>
     </a>
   </div>
 
 
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
-  <a href="/2021/09/02/21-declaration/" class="article-date">
-     <time datetime="2022-04-14T02:30:00.895Z" itemprop="dateModified">2022-04-14</time>
+  <a href="/2021/09/18/21-day18-parameter/" class="article-date">
+     <time datetime="2022-04-15T00:28:16.649Z" itemprop="dateModified">2022-04-15</time>
   </a>
 </div>
 
@@ -211,35 +211,26 @@
 
             
 
-            <p><img src="https://i.imgur.com/r4GPepv.jpg"></p>
-<p>剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」</p>
-<p>哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。</p>
-<p>簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。</p>
-<p>先讓我們不專業的方式來理解一下：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假設我們建立一個名為郭靖(guoJing)的變數，給他 &#x27;降龍十八掌&#x27;的值</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個名為黃蓉(huangRong)的變數，給她&#x27;打狗棒法&#x27;的值</span></span><br><span class="line"><span class="keyword">var</span> huangRong = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個名為歐陽鋒(ouyangFeng)的變數，給他&#x27;蛤蟆功&#x27;的值</span></span><br><span class="line"><span class="keyword">var</span> ouyangFeng = <span class="string">&#x27;蛤蟆功&#x27;</span>;</span><br></pre></td></tr></table></figure>
+            <p><img src="https://i.imgur.com/f2hdazq.jpg"><br>函式會將參數傳入函式裡面，讓它們成為函式裡的變數，讓程式碼去做運算。參數只能在函式裡刷存在感（期間限定?），一旦函式執行完畢，就會被消失。(Mission Impossible音樂響起……)</p>
+<span id="more"></span>
 
-<p>我們把武功裝在名為郭靖(guoJing)、黃蓉(huangRong)與歐陽鋒(ouyangFeng)的三個變數裡面，就可以讓他們在電腦中華山論劍，用功夫決鬥，你裝什麼功夫在變數裡面，他們就用什麼功夫決鬥。</p>
-<p>建立變數包含2個動作：</p>
-<ul>
-<li>宣告：就是給變數一個名稱。</li>
-<li>初始化：給變數一個初始值。</li>
-</ul>
-<p><img src="https://i.imgur.com/8iGUT2V.jpg"></p>
-<p>我們可以先宣告變數，同時賦予初始值，也可以之後再給初始值。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//宣告變數郭靖(guoJing)，同時賦予初始值</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//先宣告黃蓉(huangRong)，之後再賦值</span></span><br><span class="line"><span class="keyword">var</span> huangRong;</span><br><span class="line">huangRong = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="arguments物件"><a href="#arguments物件" class="headerlink" title="arguments物件"></a>arguments物件</h3><p>一般的函式長成這個樣子：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> multiply = <span class="keyword">function</span> <span class="title function_">funA</span>(<span class="params">numA, numB</span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> numA + numB;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//呼叫multiply()函式</span></span><br><span class="line"><span class="title function_">multiply</span>(<span class="number">1</span>,<span class="number">2</span>)  <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
 
-<p>也可以這樣，建立多個變數，之間用逗點 ( , )隔開，之後再給他們值。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">var</span> guoJing, huangRong, ouyangFeng;</span><br><span class="line">guoJing = <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line">huangRong = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line">ouyangFeng = <span class="string">&#x27;蛤蟆功&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>plus(1,2)，小括號中的1跟2就是參數，傳到multiply這個函式，numA就是1，numB就是2，傳出來的值就是2。</p>
+<p>JavaScript呼叫函式的時候，不會對函式的數量做檢查，超過函式小括號裡面函式數量的參數，沒有配對到的就會被以undefined定義。如果呼叫函式的時候，參數數量少於函式小括號裡面定義的數量，也會以undefined表示。</p>
+<p>如果擔心呼叫函式的時候，傳入函式的參數少於函式定義的參數數量，沒有配對到的參數會變成undefined，也可以幫參數指定預設值。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> plus = <span class="keyword">function</span> <span class="title function_">funA</span>(<span class="params">numA = <span class="number">0</span>, numB = <span class="number">0</span></span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> numA + numB;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//呼叫plus()函式</span></span><br><span class="line"><span class="title function_">plus</span>(<span class="number">5</span>)  <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
 
-<p>再來談談變數的規則：</p>
-<ul>
-<li>變數的第一個字母必須為英文字母、底線_、錢字符號$，不可以使用數字。</li>
-<li>變數名稱不可以是JavaScript的保留字（Reserved Words）或關鍵字（keywords）。</li>
-<li>JavaScript有區分大小寫，變數monkey與變數Monkey會被認為是不同的變數。</li>
-<li>JavaScript支援Unicode，所以變數名稱可以用中文命名，避免其他語言系統開啟會變亂碼，所以不建議使用，還是讓郭靖與黃蓉講英文吧。</li>
-</ul>
-<p>如果變數未經宣告就要使用的話，會出現ReferenceError的狀況。</p>
-<p>宣告變數就是JavaScript的起手式，理解了這些，我們就可以進一步去理解變數的型別與應用。</p>
+<p>當函式被呼叫的時候，會生成一個arguments物件，裡面的放的就是呼叫函式的時候，小括號裡面放的「參數」。</p>
+<p>argruments物件並非陣列，它是<strong>帶有「索引」特性</strong>的物件，擁有length屬性，而且只能在函式裡面使用。這意味著：就算我們呼叫函式時帶入的變數數量超過原本函式設定的數量，也可以利用迴圈把超過預設數量的變數撈出來運算，還可以透過使用arguments物件讓函式能夠呼叫數量不定的引數</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> plus = <span class="keyword">function</span> (<span class="params">numA,numB</span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> num = <span class="number">0</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>.<span class="property">length</span>);   </span><br><span class="line">	<span class="keyword">for</span>( <span class="keyword">var</span> i = <span class="number">0</span>;  <span class="variable language_">arguments</span>.<span class="property">length</span> &gt; i; i++ )&#123;</span><br><span class="line">		num += <span class="variable language_">arguments</span>[i];</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//呼叫plus()函式</span></span><br><span class="line"><span class="title function_">plus</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)  </span><br><span class="line"><span class="comment">//console.log(arguments.length)會跑出6</span></span><br><span class="line"><span class="comment">//然後參數相加的部分會跑出21</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="其餘參數-…args"><a href="#其餘參數-…args" class="headerlink" title="其餘參數(…args)"></a>其餘參數(…args)</h3><p>前面提到的箭頭函式，並沒有arguments物件可以使用，但是ES6提供了「其餘參數」(rest parameter)讓箭頭函式來使用。</p>
+<p>只要在函式的小括號中以…三個點開頭，後面接上參數名稱，就變成了「其餘參數」(rest parameter)，所有參數都存在裡面。而且「其餘參數」是一個陣列，所有陣列的方法它都可以使用。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">plus</span> = (<span class="params">...args</span>) =&gt; &#123;</span><br><span class="line">	<span class="keyword">var</span> num = <span class="number">0</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args.<span class="property">length</span>);   </span><br><span class="line">	<span class="keyword">for</span>( <span class="keyword">var</span> i = <span class="number">0</span>;  args.<span class="property">length</span> &gt; i; i++ )&#123;</span><br><span class="line">		num += args[i];</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//呼叫plus()函式</span></span><br><span class="line"><span class="title function_">plus</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)</span><br><span class="line"><span class="comment">//console.log(args.length)會跑出6</span></span><br><span class="line"><span class="comment">//然後參數相加的部分會跑出21</span></span><br></pre></td></tr></table></figure>
+
+<p>arguments物件與 …args其餘參數都讓函式在取用參數的時候，不用拘泥於原本定義的參數數量，讓參數的使用有更大的彈性與擴充性。</p>
 
         </div>
         <footer class="article-footer">
@@ -247,7 +238,7 @@
 
 
 
-    <a data-url="https://popeye-ux.github.io/2021/09/02/21-declaration/" data-id="cl1ydljxw00007ooe8lxh3iof" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://popeye-ux.github.io/2021/09/18/21-day18-parameter/" data-id="cl1zp4zyz0000skoefmfqcef3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -317,21 +308,16 @@
             "@type": "Person",
             "name": "POPEYE"
         },
-        "headline": "Day1:起手式—變數宣告",
-        "image": "https://popeye-ux.github.iohttps://i.imgur.com/r4GPepv.jpg",
+        "headline": "Day18:期間限定：函式的參數",
+        "image": "https://popeye-ux.github.iohttps://i.imgur.com/f2hdazq.jpg",
         "keywords": "JavaScript, 2021iT邦鐵人賽",
         "genre": "JavaScript",
-        "datePublished": "2021-09-02",
-        "dateCreated": "2021-09-02",
-        "dateModified": "2022-04-14",
-        "url": "https://popeye-ux.github.io/2021/09/02/21-declaration/",
-        "description": "
-剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」
-哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。
-簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。
-先讓我們不專業的方式來理解一下：
-12345678//假設我們建立一個名為郭靖(guoJing)的變數，給他 &#x27;降龍十八掌&#x27;的值var guo",
-        "wordCount": 101
+        "datePublished": "2021-09-18",
+        "dateCreated": "2021-09-18",
+        "dateModified": "2022-04-15",
+        "url": "https://popeye-ux.github.io/2021/09/18/21-day18-parameter/",
+        "description": "函式會將參數傳入函式裡面，讓它們成為函式裡的變數，讓程式碼去做運算。參數只能在函式裡刷存在感（期間限定?），一旦函式執行完畢，就會被消失。(Mission Impossible音樂響起……)",
+        "wordCount": 260
     }
 </script>
 
@@ -396,20 +382,20 @@
         
 <nav id="article-nav">
     
-        <a href="/2021/09/03/21-day3-varLetConst/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2021/09/19/21-day19-BOM/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">下一篇</strong>
         <p class="article-nav-title">
         
-            變數宣告var、let、const的區別
+            Day19:瀏覽器物件模型--BOM
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/2021/09/01/21-foreword/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2021/09/17/21-day17-arrowFunction/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">Day0:為什麼踏入前端這個領域?</p>
+        <p class="article-nav-title">Day17:箭頭函式</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -622,7 +608,7 @@
     var disqus_shortname = 'popeye-ux-1';
     
     
-    var disqus_url = 'https://popeye-ux.github.io/2021/09/02/21-declaration/';
+    var disqus_url = 'https://popeye-ux.github.io/2021/09/18/21-day18-parameter/';
     
     (function() {
     var dsq = document.createElement('script');
