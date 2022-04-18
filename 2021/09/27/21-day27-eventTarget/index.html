@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>Day27:e是咱ㄟ寶貝 | F2E 星球通訊</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="JavaScript, 2021iT邦鐵人賽" />
+    
+    <meta name="description" content="前面提到那個 e ，蘊含著我們與網頁互動豐富的資訊。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day27:e是咱ㄟ寶貝">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/09/27/21-day27-eventTarget/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="前面提到那個 e ，蘊含著我們與網頁互動豐富的資訊。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/phrmWCG.jpg">
+<meta property="article:published_time" content="2021-09-27T09:27:45.000Z">
+<meta property="article:modified_time" content="2022-04-18T09:30:34.054Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript, 2021iT邦鐵人賽">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/phrmWCG.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="F2E 星球通訊" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F757T9GM4W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F757T9GM4W');
+</script>
+<!-- End Google Analytics -->
+
+    
+    
+    
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F757T9GM4W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F757T9GM4W');
+</script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/">JavaScript</a></li></ul>
+                                
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="輸入關鍵字..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '頁面',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <!-- <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/JavaScript/">JavaScript</a>
+    </h1>
+</div>
+ -->
+                        <div class="main-body-content">
+                            <article id="post-21-day27-eventTarget" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Day27:e是咱ㄟ寶貝
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2021/09/27/21-day27-eventTarget/" class="article-date">
+       <time datetime="2021-09-27T09:27:45.000Z" itemprop="datePublished">2021-09-27</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2021/09/27/21-day27-eventTarget/" class="article-date">
+     <time datetime="2022-04-18T09:30:34.054Z" itemprop="dateModified">2022-04-18</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag">JavaScript, 2021iT邦鐵人賽</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+ 
+            
+
+            
+
+            <p><img src="https://i.imgur.com/phrmWCG.jpg"><br>前面提到那個 e ，蘊含著我們與網頁互動豐富的資訊。</p>
+<span id="more"></span>
+<p>例如：</p>
+<ul>
+<li>type ：代表事件的類別。</li>
+<li>target ：為觸發事件的元素。</li>
+<li>screenX &#x2F; screenY：代表事件觸發時，滑鼠座標在螢幕解析度上的相對位置。</li>
+<li>pageX &#x2F; pageY： 表示事件觸發時，滑鼠座標在網頁上的相對位置。</li>
+<li>clientX &#x2F; clientY： 代表事件觸發時，滑鼠座標在瀏覽器視窗內的相對位置。</li>
+</ul>
+<p>我做了一個列表，裡面放了倚天劍、屠龍刀還有碧血劍。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;sky&quot;</span>&gt;</span>倚天劍<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;dragon&quot;</span>&gt;</span>屠龍刀<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;blood&quot;</span>&gt;</span>碧血劍<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>顯示e的資訊<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>target: <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;target&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>tagName: <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;tagName&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>className: <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>textContent: <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;textContent&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>screenX: <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;screenX&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>screenY: <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;screenY&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>pageX: <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;pageX&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>pageY: <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;pageY&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>clientX: <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;clientX&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>clientY: <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;clientY&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然後從列表的 ul 標籤來監聽滑鼠的點擊事件，讓 getInformation 這個函式去捉「事件物件」( event )裡面的資訊。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;box&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> target = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.target&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> tagName = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.tagName&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> className = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.className&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> content = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.textContent&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> screenX = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.screenX&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> screenY = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.screenY&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> pageX = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.pageX&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> pageY = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.pageY&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> clientX = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.clientX&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> clientY = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.clientY&#x27;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getInformation</span> (e) &#123;</span><br><span class="line">    target.<span class="property">textContent</span> = e.<span class="property">target</span>;</span><br><span class="line">    tagName.<span class="property">textContent</span> = e.<span class="property">target</span>.<span class="property">tagName</span>;</span><br><span class="line">    className.<span class="property">textContent</span> = e.<span class="property">target</span>.<span class="property">className</span>;</span><br><span class="line">    content.<span class="property">textContent</span> = e.<span class="property">target</span>.<span class="property">textContent</span>;</span><br><span class="line">    screenX.<span class="property">textContent</span> = e.<span class="property">screenX</span>;</span><br><span class="line">    screenY.<span class="property">textContent</span> = e.<span class="property">screenY</span>;</span><br><span class="line">    pageX.<span class="property">textContent</span> = e.<span class="property">pageX</span>;</span><br><span class="line">    pageY.<span class="property">textContent</span> = e.<span class="property">pageY</span>;</span><br><span class="line">    clientX.<span class="property">textContent</span> = e.<span class="property">clientX</span>;</span><br><span class="line">    clientY.<span class="property">textContent</span> = e.<span class="property">clientY</span>;</span><br><span class="line">&#125;</span><br><span class="line">el.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, getInformation, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://codepen.io/popeye_ux/pen/VwbWrXL">https://codepen.io/popeye_ux&#x2F;pen&#x2F;VwbWrXL</a></p>
+<p>可以到 Codepen 看看我做的範例，應該有進一步的體會。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://popeye-ux.github.io/2021/09/27/21-day27-eventTarget/" data-id="cl24iut410005e4oe2mzl9t8h" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "POPEYE"
+        },
+        "headline": "Day27:e是咱ㄟ寶貝",
+        "image": "https://popeye-ux.github.iohttps://i.imgur.com/phrmWCG.jpg",
+        "keywords": "JavaScript, 2021iT邦鐵人賽",
+        "genre": "JavaScript",
+        "datePublished": "2021-09-27",
+        "dateCreated": "2021-09-27",
+        "dateModified": "2022-04-18",
+        "url": "https://popeye-ux.github.io/2021/09/27/21-day27-eventTarget/",
+        "description": "前面提到那個 e ，蘊含著我們與網頁互動豐富的資訊。",
+        "wordCount": 571
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>追蹤 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2021/09/28/21-day28-stopPropagation/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Day28:e.stopPropagation()停止事件冒泡
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2021/09/26/21-day26-eventObject/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Day26:事件物件—天外飛來一個e</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/30/21-day30-callBack/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/RkJf5NJ.jpg)" alt="Day30:回頭呼喊你的愛情：Callback回呼函式" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/09/30/21-day30-callBack/" class="title">Day30:回頭呼喊你的愛情：Callback回呼函式</a></p>
+                            <p class="item-date"><time datetime="2021-09-30T09:34:09.000Z" itemprop="datePublished">2021-09-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/29/21-day29-this/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/x4KqaH8.png)" alt="Day29:事件監聽的 this :「這個」到底是哪一個?-this" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/09/29/21-day29-this/" class="title">Day29:事件監聽的 this :「這個」到底是哪一個?-this</a></p>
+                            <p class="item-date"><time datetime="2021-09-29T09:31:58.000Z" itemprop="datePublished">2021-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/28/21-day28-stopPropagation/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/COeQO3y.jpg)" alt="Day28:e.stopPropagation()停止事件冒泡" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/09/28/21-day28-stopPropagation/" class="title">Day28:e.stopPropagation()停止事件冒泡</a></p>
+                            <p class="item-date"><time datetime="2021-09-28T09:29:35.000Z" itemprop="datePublished">2021-09-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/27/21-day27-eventTarget/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/phrmWCG.jpg)" alt="Day27:e是咱ㄟ寶貝" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/09/27/21-day27-eventTarget/" class="title">Day27:e是咱ㄟ寶貝</a></p>
+                            <p class="item-date"><time datetime="2021-09-27T09:27:45.000Z" itemprop="datePublished">2021-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/26/21-day26-eventObject/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/O6wgDpz.jpg)" alt="Day26:事件物件—天外飛來一個e" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/09/26/21-day26-eventObject/" class="title">Day26:事件物件—天外飛來一個e</a></p>
+                            <p class="item-date"><time datetime="2021-09-26T09:24:35.000Z" itemprop="datePublished">2021-09-26</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分類</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">30</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">所有文章</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">30</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                <!-- 
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">標籤</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag">JavaScript, 2021iT邦鐵人賽</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-array/" rel="tag">JavaScript, 2021iT邦鐵人賽, array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-%E8%AE%8A%E6%95%B8/" rel="tag">JavaScript, 2021iT邦鐵人賽, 變數</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+ -->
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">標籤雲</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/" style="font-size: 20px;">JavaScript, 2021iT邦鐵人賽</a> <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-array/" style="font-size: 10px;">JavaScript, 2021iT邦鐵人賽, array</a> <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-%E8%AE%8A%E6%95%B8/" style="font-size: 15px;">JavaScript, 2021iT邦鐵人賽, 變數</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <!-- <h3 class="widget-title">連結</h3> -->
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2022 POPEYE</p>
+                
+                <!-- <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p> -->
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'popeye-ux-1';
+    
+    
+    var disqus_url = 'https://popeye-ux.github.io/2021/09/27/21-day27-eventTarget/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>
