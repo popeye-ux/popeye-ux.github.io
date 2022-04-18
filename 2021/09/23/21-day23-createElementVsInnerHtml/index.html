@@ -6,26 +6,26 @@
     
 
     
-    <title>Day12:忙得團團轉的迴圈 | F2E 星球通訊</title>
+    <title>Day23:在網頁中插入HTML標籤的實務做法 | F2E 星球通訊</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="keywords" content="JavaScript, 2021iT邦鐵人賽" />
     
-    <meta name="description" content="迴圈指的是「重複做某件事，次數隨著數值『遞增」或『遞減』，當數值滿足所設的條件，則退出迴圈」。">
+    <meta name="description" content="前一篇介紹了在網頁中利用DOM API改變HTML架構與內容的方法，這篇來談談createElement()與innerHTML這兩種做法的差異。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Day12:忙得團團轉的迴圈">
-<meta property="og:url" content="https://popeye-ux.github.io/2021/09/12/21-day12-loop/index.html">
+<meta property="og:title" content="Day23:在網頁中插入HTML標籤的實務做法">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/09/23/21-day23-createElementVsInnerHtml/index.html">
 <meta property="og:site_name" content="F2E 星球通訊">
-<meta property="og:description" content="迴圈指的是「重複做某件事，次數隨著數值『遞增」或『遞減』，當數值滿足所設的條件，則退出迴圈」。">
+<meta property="og:description" content="前一篇介紹了在網頁中利用DOM API改變HTML架構與內容的方法，這篇來談談createElement()與innerHTML這兩種做法的差異。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.imgur.com/xvPDhIg.jpg">
-<meta property="article:published_time" content="2021-09-12T05:05:07.000Z">
-<meta property="article:modified_time" content="2022-04-14T05:06:07.883Z">
+<meta property="og:image" content="https://i.imgur.com/nBPxTMs.jpg">
+<meta property="article:published_time" content="2021-09-23T01:13:54.000Z">
+<meta property="article:modified_time" content="2022-04-18T01:15:46.155Z">
 <meta property="article:author" content="POPEYE">
 <meta property="article:tag" content="JavaScript, 2021iT邦鐵人賽">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/xvPDhIg.jpg">
+<meta name="twitter:image" content="https://i.imgur.com/nBPxTMs.jpg">
     
 
     
@@ -178,14 +178,14 @@
 </div>
  -->
                         <div class="main-body-content">
-                            <article id="post-21-day12-loop" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-21-day23-createElementVsInnerHtml" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Day12:忙得團團轉的迴圈
+        Day23:在網頁中插入HTML標籤的實務做法
         </h1>
     
 
@@ -196,16 +196,16 @@
                 
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2021/09/12/21-day12-loop/" class="article-date">
-       <time datetime="2021-09-12T05:05:07.000Z" itemprop="datePublished">2021-09-12</time>
+    <a href="/2021/09/23/21-day23-createElementVsInnerHtml/" class="article-date">
+       <time datetime="2021-09-23T01:13:54.000Z" itemprop="datePublished">2021-09-23</time>
     </a>
   </div>
 
 
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
-  <a href="/2021/09/12/21-day12-loop/" class="article-date">
-     <time datetime="2022-04-14T05:06:07.883Z" itemprop="dateModified">2022-04-14</time>
+  <a href="/2021/09/23/21-day23-createElementVsInnerHtml/" class="article-date">
+     <time datetime="2022-04-18T01:15:46.155Z" itemprop="dateModified">2022-04-18</time>
   </a>
 </div>
 
@@ -232,43 +232,43 @@
 
             
 
-            <p><img src="https://i.imgur.com/xvPDhIg.jpg"><br>迴圈指的是「重複做某件事，次數隨著數值『遞增」或『遞減』，當數值滿足所設的條件，則退出迴圈」。</p>
+            <p><img src="https://i.imgur.com/nBPxTMs.jpg"><br>前一篇介紹了在網頁中利用DOM API改變HTML架構與內容的方法，這篇來談談createElement()與innerHTML這兩種做法的差異。</p>
 <span id="more"></span>
-
-<p>所以當我們要「重複做某件事」的時候，第一個進入腦海中的方法應該就是迴圈。例如console.log(1)到(9)、求某數值範圍的平方或是九九乘法表之類的。</p>
-<p>最常見的迴圈有 for 與 while 兩種。</p>
-<h2 id="for迴圈"><a href="#for迴圈" class="headerlink" title="for迴圈"></a>for迴圈</h2><p>for迴圈的語法如下：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; n; i++ )&#123;</span><br><span class="line">	/執行某件事</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>var  i &#x3D; 0; 是在設定初始值，變數i的有效範圍與for迴圈相同。</p>
-<p>i &lt; n; 則是在為for迴圈設定條件，變數i的有效範圍跟for迴圈的有效範圍是相同的，一旦變數i滿足這個條件，迴圈就會結束。如果還為滿足就去執行{}內的程式敘述。</p>
-<p>i++; 則在迴圈跑完一次時遞增，直到迴圈結束。</p>
-<p>讓我們來試試看99乘法表該如何利用迴圈來執行：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++) &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">1</span>; j &lt;= <span class="number">9</span>; j++)&#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>( i * j);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="while迴圈"><a href="#while迴圈" class="headerlink" title="while迴圈"></a>while迴圈</h2><p>while迴圈通常長成這個樣子：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (i &lt; <span class="number">10</span>)&#123;</span><br><span class="line">	/執行某個程式敘述</span><br><span class="line">	i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>var i &#x3D; 0;  設定初始值。</p>
-<p>(i &lt; 10)  這定迴圈執行的條件。</p>
-<p>i++;在{}的結尾處讓變數遞增或遞減，直到變數i滿足所設條件，結束迴圈。</p>
-<p>讓我們試著用while迴圈來印出1~9的平方：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (i &lt;= <span class="number">9</span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(i * i);</span><br><span class="line">	i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>while迴圈最常見的疏忽就是忘了在結尾設定變數遞增(i++)，結果造成條件一直無法滿足，於是無窮迴圈的一直執行下去。</p>
-<p>那何時該用for迴圈？何時該用while迴圈呢？</p>
-<p>在《0陷阱！0誤解！8天重新認識JavaS》一書中有提到：</p>
-<p>「</p>
+<p>要在HTML中插入HTML標籤有兩種做法：</p>
 <ul>
-<li>for迴圈的使用情境，大多是用在迴圈執行次數「明確」的狀態。</li>
-<li>而while迴圈剛好相反，當迴圈執行次數「不確定」的時候更適合。</li>
+<li>createElement()：這種方法安全性高，但是效能較差。</li>
+<li>innerHTML：效能高，必須確認資料來源的資安沒有問題才能使用這種方法，避免有心人是把不好的東西藏在資料中，讓我們經由innerHTML寫入網頁裡。</li>
 </ul>
-<p>」</p>
-<p>讓我們利用for迴圈來選出大樂透的號碼，有1到49個號碼，要選出6個不重複號碼：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lottery = [];</span><br><span class="line"><span class="keyword">var</span> n;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)&#123;</span><br><span class="line">	n = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">49</span>) + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> ( lottery.<span class="title function_">indexOf</span>(n) === -<span class="number">1</span>)&#123;</span><br><span class="line">		lottery.<span class="title function_">push</span>(n);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用createElement-組字串"><a href="#使用createElement-組字串" class="headerlink" title="使用createElement()組字串"></a>使用createElement()組字串</h3><p>假設一個情境，有一天華山論劍大會的主辦人金小庸要擬一份參加者名單列表，他只有拿到一個陣列，要把陣列的資料輸出到網頁上，如果是利用DOM API提供的方法，請問他要怎麼做？</p>
+<p>這是金小庸拿到的陣列：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> heros = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;黃藥師&#x27;</span>,</span><br><span class="line">    <span class="attr">nickname</span>:<span class="string">&#x27;東邪&#x27;</span>    </span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;歐陽鋒&#x27;</span>,</span><br><span class="line">    <span class="attr">nickname</span>:<span class="string">&#x27;西毒&#x27;</span> </span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;段皇爺&#x27;</span>,</span><br><span class="line">    <span class="attr">nickname</span>:<span class="string">&#x27;南帝&#x27;</span> </span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;洪七公&#x27;</span>,</span><br><span class="line">    <span class="attr">nickname</span>:<span class="string">&#x27;北丐&#x27;</span> </span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;王陽明&#x27;</span>,</span><br><span class="line">    <span class="attr">nickname</span>:<span class="string">&#x27;中神通&#x27;</span> </span><br><span class="line">  &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
 
-<p>49個號碼選出6個，執行次數6次，如果使用for迴圈，看起來就一目了然，是適合用for迴圈來執行的情境。</p>
-<p><a target="_blank" rel="noopener" href="https://codepen.io/popeye_ux/pen/XWpqjxP">範例實作</a></p>
+<p>金小庸要把名單輸出到<code>&lt;ul class=&#39;list&#39;&gt;&lt;/ul&gt;</code>中間：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>華山論劍參加名單<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;list&quot;</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果以我們前一篇談到的方法，會用for迴圈的方式去捉資料，然後創造一個 <code>&lt;li&gt;</code> 的元素節點，把資料塞入<code>&lt;li&gt;</code>元素節點，再把他們利用迴圈一個一個appendChild()到 <code>&lt;ul class=&quot;list&quot;&gt; &lt;/ul&gt;</code> 中間。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> inviteList = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.list&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> len = heros.<span class="property">length</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(len);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">  <span class="keyword">var</span> guest = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;li&#x27;</span>);</span><br><span class="line">  guest.<span class="property">textContent</span> = heros[i].<span class="property">nickname</span> + <span class="string">&#x27; : &#x27;</span> + heros[i].<span class="property">name</span>;  </span><br><span class="line">  inviteList.<span class="title function_">appendChild</span>(guest);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上就是利用createElement()創造節點在網頁中插入HTML標籤的方式。</p>
+<h3 id="使用innerHTML來組字串"><a href="#使用innerHTML來組字串" class="headerlink" title="使用innerHTML來組字串"></a>使用innerHTML來組字串</h3><p>而另外一種方法是以迴圈用 innerHTML 組完字串之後，再將它渲染出來。這種方法的優點是效能快，缺點是有資安風險，必須確定拿到的資料沒有問題，才能用innerHTML在網頁中插入標籤。</p>
+<p>一樣的情境，金小庸一樣拿到了一個陣列，跟一個準備要填的空白網頁，這次要用innerHTML來加入邀請名單：</p>
+<p>這是金小庸拿到的陣列：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> heros = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;黃藥師&#x27;</span>,</span><br><span class="line">    <span class="attr">nickname</span>:<span class="string">&#x27;東邪&#x27;</span>    </span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;歐陽鋒&#x27;</span>,</span><br><span class="line">    <span class="attr">nickname</span>:<span class="string">&#x27;西毒&#x27;</span> </span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;段皇爺&#x27;</span>,</span><br><span class="line">    <span class="attr">nickname</span>:<span class="string">&#x27;南帝&#x27;</span> </span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;洪七公&#x27;</span>,</span><br><span class="line">    <span class="attr">nickname</span>:<span class="string">&#x27;北丐&#x27;</span> </span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;王陽明&#x27;</span>,</span><br><span class="line">    <span class="attr">nickname</span>:<span class="string">&#x27;中神通&#x27;</span> </span><br><span class="line">  &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>金小庸要把名單輸出到<code>&lt;ul class=&#39;list&#39;&gt;&lt;/ul&gt;</code>中間：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>華山論劍參加名單<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;list&quot;</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用innrHTML組字串的具體步驟如下：</p>
+<ul>
+<li>抓取要插入內容的父容器節點，將它賦值給inviteList變數。</li>
+<li>宣告一個名為guest的變數，賦予它空字串的值。</li>
+<li>宣告一個名為len的變數，指定給他的值是heros陣列的長度。</li>
+<li>利用迴圈去跑陣列，每跑一次把「’<li>‘ + heros[i].nickname + ‘ : ‘ + heros[i].name」塞到guest這個原本為空字串的變數中，直到條件滿足跳出迴圈。</li>
+<li>然後把塞好塞滿的guest變數，用innerHTML的方法插入名為inviteList變數的目容器節點後面。</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> inviteList = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.list&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> guest = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> len = heros.<span class="property">length</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len ; i++)&#123;</span><br><span class="line">  guest += <span class="string">&#x27;&lt;li&gt;&#x27;</span> + heros[i].<span class="property">nickname</span> + <span class="string">&#x27; : &#x27;</span> + heros[i].<span class="property">name</span>;</span><br><span class="line">&#125;</span><br><span class="line">inviteList.<span class="property">innerHTML</span> = guest;</span><br><span class="line">                      </span><br></pre></td></tr></table></figure>
+
+<p>不論是innerHTML或是createElement()都是組字串的好方法，如果沒有資安疑慮，innerHTML效能高，是首選。如果有資安疑慮，那就以createElement()來處理。</p>
 
         </div>
         <footer class="article-footer">
@@ -276,7 +276,7 @@
 
 
 
-    <a data-url="https://popeye-ux.github.io/2021/09/12/21-day12-loop/" data-id="cl1ymvinx00015soealz71m1x" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://popeye-ux.github.io/2021/09/23/21-day23-createElementVsInnerHtml/" data-id="cl24103rt0006t0oe1so8bqtn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -346,16 +346,16 @@
             "@type": "Person",
             "name": "POPEYE"
         },
-        "headline": "Day12:忙得團團轉的迴圈",
-        "image": "https://popeye-ux.github.iohttps://i.imgur.com/xvPDhIg.jpg",
+        "headline": "Day23:在網頁中插入HTML標籤的實務做法",
+        "image": "https://popeye-ux.github.iohttps://i.imgur.com/nBPxTMs.jpg",
         "keywords": "JavaScript, 2021iT邦鐵人賽",
         "genre": "JavaScript",
-        "datePublished": "2021-09-12",
-        "dateCreated": "2021-09-12",
-        "dateModified": "2022-04-14",
-        "url": "https://popeye-ux.github.io/2021/09/12/21-day12-loop/",
-        "description": "迴圈指的是「重複做某件事，次數隨著數值『遞增」或『遞減』，當數值滿足所設的條件，則退出迴圈」。",
-        "wordCount": 221
+        "datePublished": "2021-09-23",
+        "dateCreated": "2021-09-23",
+        "dateModified": "2022-04-18",
+        "url": "https://popeye-ux.github.io/2021/09/23/21-day23-createElementVsInnerHtml/",
+        "description": "前一篇介紹了在網頁中利用DOM API改變HTML架構與內容的方法，這篇來談談createElement()與innerHTML這兩種做法的差異。",
+        "wordCount": 526
     }
 </script>
 
@@ -420,20 +420,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2021/09/13/21-day13-function/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            Day13:能力封裝–函式
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2021/09/11/21-day11-ifElse/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2021/09/22/21-day22-element/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">Day11:「如果肚子餓了，就吃香蕉」--流程判斷邏輯</p>
+        <p class="article-nav-title">Day22:給我一個節點，我可以把網頁改頭換面</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -646,7 +636,7 @@
     var disqus_shortname = 'popeye-ux-1';
     
     
-    var disqus_url = 'https://popeye-ux.github.io/2021/09/12/21-day12-loop/';
+    var disqus_url = 'https://popeye-ux.github.io/2021/09/23/21-day23-createElementVsInnerHtml/';
     
     (function() {
     var dsq = document.createElement('script');
