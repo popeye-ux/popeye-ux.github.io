@@ -6,26 +6,24 @@
     
 
     
-    <title>Day7:如何檢查型別 | F2E 星球通訊</title>
+    <title>jsLive-varLetConst | F2E 星球通訊</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="JavaScript, 2021iT邦鐵人賽" />
+    <meta name="keywords" content="JavaScript,JS直播班" />
     
-    <meta name="description" content="前面提到「變數本身沒有型別問題，變數帶的值才有型別資訊」，所以要判斷型別，當然是去檢查變數所帶的值。 我們可以這樣來判斷變數的型別：  typeof 資料 typeof(資料)  1234567typeof &amp;#x27;洪七公&amp;#x27;;  &#x2F;&#x2F;&amp;#x27;string&amp;#x27;typeof 7749;     &#x2F;&#x2F;&amp;#x27;number&amp;#x27;typeof NaN;      &#x2F;&#x2F;&amp;">
+    <meta name="description" content="以下為我今年參加iT邦幫忙鐵人賽寫的文章，原文連結： 【Day2】變數宣告var、let、const的區別 但是老師教我用 var 宣告變數，但我也看到有同學用 let 與 const 宣告變數，這是怎麼一回事呢？ 12&#x2F;&#x2F;建立一個變數郭靖(guoJing)var guoJing;  也可以看到這樣： 12345&#x2F;&#x2F;建立一個建立一個名為黃蓉(huangRong)的變數，給她&amp;#x27;打狗棒法&amp;#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Day7:如何檢查型別">
-<meta property="og:url" content="https://popeye-ux.github.io/2021/09/07/21-day7-typeCheck/index.html">
+<meta property="og:title" content="jsLive-varLetConst">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/10/09/jsLive-varLetConst/index.html">
 <meta property="og:site_name" content="F2E 星球通訊">
-<meta property="og:description" content="前面提到「變數本身沒有型別問題，變數帶的值才有型別資訊」，所以要判斷型別，當然是去檢查變數所帶的值。 我們可以這樣來判斷變數的型別：  typeof 資料 typeof(資料)  1234567typeof &amp;#x27;洪七公&amp;#x27;;  &#x2F;&#x2F;&amp;#x27;string&amp;#x27;typeof 7749;     &#x2F;&#x2F;&amp;#x27;number&amp;#x27;typeof NaN;      &#x2F;&#x2F;&amp;">
+<meta property="og:description" content="以下為我今年參加iT邦幫忙鐵人賽寫的文章，原文連結： 【Day2】變數宣告var、let、const的區別 但是老師教我用 var 宣告變數，但我也看到有同學用 let 與 const 宣告變數，這是怎麼一回事呢？ 12&#x2F;&#x2F;建立一個變數郭靖(guoJing)var guoJing;  也可以看到這樣： 12345&#x2F;&#x2F;建立一個建立一個名為黃蓉(huangRong)的變數，給她&amp;#x27;打狗棒法&amp;#">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.imgur.com/dx5XA4P.jpg">
-<meta property="article:published_time" content="2021-09-07T03:47:16.000Z">
-<meta property="article:modified_time" content="2022-04-14T03:50:13.983Z">
+<meta property="article:published_time" content="2021-10-09T15:25:52.000Z">
+<meta property="article:modified_time" content="2022-04-19T15:28:43.105Z">
 <meta property="article:author" content="POPEYE">
-<meta property="article:tag" content="JavaScript, 2021iT邦鐵人賽">
+<meta property="article:tag" content="JavaScript,JS直播班">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/dx5XA4P.jpg">
     
 
     
@@ -178,14 +176,14 @@
 </div>
  -->
                         <div class="main-body-content">
-                            <article id="post-21-day7-typeCheck" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-jsLive-varLetConst" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Day7:如何檢查型別
+        jsLive-varLetConst
         </h1>
     
 
@@ -196,16 +194,16 @@
                 
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2021/09/07/21-day7-typeCheck/" class="article-date">
-       <time datetime="2021-09-07T03:47:16.000Z" itemprop="datePublished">2021-09-07</time>
+    <a href="/2021/10/09/jsLive-varLetConst/" class="article-date">
+       <time datetime="2021-10-09T15:25:52.000Z" itemprop="datePublished">2021-10-09</time>
     </a>
   </div>
 
 
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
-  <a href="/2021/09/07/21-day7-typeCheck/" class="article-date">
-     <time datetime="2022-04-14T03:50:13.983Z" itemprop="dateModified">2022-04-14</time>
+  <a href="/2021/10/09/jsLive-varLetConst/" class="article-date">
+     <time datetime="2022-04-19T15:28:43.105Z" itemprop="dateModified">2022-04-19</time>
   </a>
 </div>
 
@@ -215,7 +213,7 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag">JavaScript, 2021iT邦鐵人賽</a>
+        <a class="tag-link-link" href="/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD/" rel="tag">JavaScript,JS直播班</a>
     </div>
 
                 
@@ -232,32 +230,57 @@
 
             
 
-            <p><img src="https://i.imgur.com/dx5XA4P.jpg"></p>
-<p>前面提到「變數本身沒有型別問題，變數帶的值才有型別資訊」，所以要判斷型別，當然是去檢查變數所帶的值。</p>
-<p>我們可以這樣來判斷變數的型別：</p>
+            <p>以下為我今年參加iT邦幫忙鐵人賽寫的文章，原文連結：</p>
+<p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10259329">【Day2】變數宣告var、let、const的區別</a></p>
+<p>但是老師教我用 var 宣告變數，但我也看到有同學用 let 與 const 宣告變數，這是怎麼一回事呢？</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個變數郭靖(guoJing)</span></span><br><span class="line"><span class="keyword">var</span> guoJing;</span><br></pre></td></tr></table></figure>
+
+<p>也可以看到這樣：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個建立一個名為黃蓉(huangRong)的變數，給她&#x27;打狗棒法&#x27;的值</span></span><br><span class="line"><span class="keyword">let</span> huangRongKungFu = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個洪七公(hongQigong)的常數，給他「北丐」的值</span></span><br><span class="line"><span class="keyword">const</span> hongQigong = <span class="string">&#x27;北丐&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>var 、 let 、 const 這三兄弟到底有甚麼差別呢？</p>
+<p>原來除了用var宣告變數之外，在ES6之後，變數區分為變數與常數，透過 var 與 let 宣告「變數」，透過const宣告「常數」。</p>
+<p>var 和 let 最大的區別在於「作用域」不同，這一點我們先放在心上，之後再深入探討。</p>
+<p><strong>在這裡補上let與var作用域的區別：</strong></p>
 <ul>
-<li>typeof 資料</li>
-<li>typeof(資料)</li>
+<li>var 是以function為作用域。</li>
+<li>let 則是以大括號{}區塊的程式碼為作用的範圍。</li>
 </ul>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="string">&#x27;洪七公&#x27;</span>;  <span class="comment">//&#x27;string&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="number">7749</span>;     <span class="comment">//&#x27;number&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="title class_">NaN</span>;      <span class="comment">//&#x27;number&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span>      <span class="comment">//&#x27;boolean&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> &#123;&#125;;      <span class="comment">//&#x27;object&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> [];      <span class="comment">//&#x27;object&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span>;      <span class="comment">//&#x27;object&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>作用域外層的程式捉不到作用域內的宣告的變數，但是作用域內的程式可以捉到外層的變數。</p>
+<p>先來看看var：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個變數郭靖(guoJing)</span></span><br><span class="line"><span class="keyword">var</span> guoJingKungFu;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(guoJingKungFu);</span><br><span class="line"><span class="comment">//未賦值，所以出現的結果為 undefined</span></span><br><span class="line"></span><br><span class="line">guoJingKungFu = <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;郭靖使出 &#x27;</span> + guoJingKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;郭靖使出 降龍十八掌&quot;</span></span><br><span class="line"></span><br><span class="line">guoJingKungFu = <span class="string">&#x27;空明拳&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;郭靖使出 &#x27;</span> + guoJingKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;郭靖使出 空明拳&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> guoJingKungFu = <span class="string">&#x27;九陰真經&#x27;</span>;</span><br><span class="line"><span class="comment">//再次用var宣告 guoJing = &#x27;九陰真經&#x27;;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;郭靖使出 &#x27;</span> + guoJingKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;郭靖使出 九陰真經&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>用typeof檢查資料型別，回傳的都是<strong>字串</strong>，如果是為宣告的變數則回傳’undefined’。</p>
-<h2 id="如何判斷型別是否為NaN？"><a href="#如何判斷型別是否為NaN？" class="headerlink" title="如何判斷型別是否為NaN？"></a>如何判斷型別是否為NaN？</h2><p>比較特別的是：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="title class_">NaN</span>;      <span class="comment">//&#x27;number&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><strong>使用var的時候，同一個變數名稱可以再重新「宣告」，重新賦值。</strong></p>
+<p>再看看使用 <code>let</code> 的狀況：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個建立一個名為黃蓉(huangRong)的變數，給她&#x27;打狗棒法&#x27;的值</span></span><br><span class="line"><span class="keyword">let</span> huangRongKungFu;</span><br><span class="line">huangRongKungFu = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;黃蓉使出 &#x27;</span> + huangRongKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;黃蓉使出 打狗棒法&quot;</span></span><br><span class="line"></span><br><span class="line">huangRongKungFu = <span class="string">&#x27;落英神劍掌&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;黃蓉使出 &#x27;</span> + huangRongKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;黃蓉使出 落英神劍掌&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> huangRongKungFu = <span class="string">&#x27;蘭花拂穴手&#x27;</span>;</span><br><span class="line"><span class="comment">//Uncaught SyntaxError: Identifier &#x27;huangRong&#x27; has already been declared</span></span><br></pre></td></tr></table></figure>
 
-<p>假設楊康這個小屁孩在應該填寫數字的表單裡面打了一堆亂碼，回傳給JavaScript判斷，parseInt()之後會給我們NaN的結果，此時就不能使用(typeof(xx) ! &#x3D;&#x3D; number)來判斷，因為遇到 typeof NaN的回傳值會是’number’。</p>
-<p>※ parseInt()可以用來將資料轉為整數，由字串最左邊開始轉換，一值轉換到字串結束或遇到非數字字元為止。</p>
-<p>這時要使用 <strong>isNaN()</strong> 來判斷傳回的資料是否為’NaN’，如果不是，傳回的是false，才進行後面的計算。</p>
-<h2 id="如何判斷型別是否為陣列？"><a href="#如何判斷型別是否為陣列？" class="headerlink" title="如何判斷型別是否為陣列？"></a>如何判斷型別是否為陣列？</h2><p>因為使用typeof去檢查陣列，得到的結果會是 ‘object’，所以該如何正確地判斷某個變數為陣列，而非物件？</p>
-<p>這時要使用 isArray() 這個方法。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">array.<span class="title function_">isArray</span>([]);   <span class="comment">//true</span></span><br><span class="line">array.<span class="title function_">isArray</span>([<span class="string">&#x27;東邪&#x27;</span>,<span class="string">&#x27;西毒&#x27;</span>,<span class="string">&#x27;北丐&#x27;</span>,<span class="string">&#x27;南帝&#x27;</span>,<span class="string">&#x27;中神通&#x27;</span>]);   <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">array.<span class="title function_">isArray</span>(&#123;&#125;);   <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p><strong>使用 let 比使用 var 來宣告變數嚴謹，如果宣告時未賦值，並不會以undefined初始化，所以從宣告到初始化這段時間會無法使用，這個時間差稱為「暫時死區」。</strong></p>
+<p><strong>let 能重複賦值，禁止於同個區塊作用域重複宣告</strong>，如果重複宣告會出現：</p>
+<p>「Uncaught SyntaxError: Identifier ‘huangRong’ has already been declared」</p>
+<p>提醒你已經用 let 宣告過這個變數了。</p>
+<p>讓我們來試試 const：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個洪七公(hongQigong)的常數，給他「北丐」的值</span></span><br><span class="line"><span class="keyword">const</span> hongQigong = <span class="string">&#x27;北丐&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;洪七公是 &#x27;</span> + hongQigong);</span><br><span class="line">hongQigong = <span class="string">&#x27;美食家&#x27;</span>;</span><br><span class="line"><span class="comment">//Uncaught TypeError: Assignment to constant variable.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hongQigong = <span class="string">&#x27;美食家&#x27;</span>;</span><br><span class="line"><span class="comment">//Uncaught SyntaxError: Identifier &#x27;hongQigong&#x27; has already been declared</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>const 是用來宣告常數，也就是不會變動的常量，所以禁止於同個區塊作用域重複宣告，也不能重新賦值。而且宣告時一定要給值。</strong></p>
+<p>重複宣告會告訴你：</p>
+<p>「Uncaught SyntaxError: Identifier ‘hongQigong’ has already been declared」</p>
+<p>重複賦值則會提醒你：</p>
+<p>「Uncaught TypeError: Assignment to constant(持續的) variable.」</p>
+<p>因為以上這些區別，使用 var 、 let 、 const 來宣告變數的時機與場景有不同的區別，語意上也有明確區分。而沒有經過 var 、 let 與 const 宣告就直接賦值使用的變數會變成全域變數。</p>
+<p>const 有一個例外，就是在宣告物件時，因為物件是 call by reference ，變數參考的是物件存放的位置，當修改物件屬性的時候，不會改變物件參考的記憶體位置，<strong>所以用 const 宣告物件時，其屬性是可以修改的，但是重新賦值則是禁止的。</strong></p>
+<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://totoroliu.medium.com/javascript-var-let-const-%E5%B7%AE%E7%95%B0-e3d930521230">JavaScript: var, let, const 差異</a></li>
+<li><a target="_blank" rel="noopener" href="https://askie.today/differences-among-var-let-const/">在 JavaScript 中，Var、Let、Const 的差異？</a></li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10199513">搞懂變數作用域(2)- let 與const</a></li>
+</ul>
+
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="https://popeye-ux.github.io/2021/09/07/21-day7-typeCheck/" data-id="cl1ygrqej0000h4oego3d1fcu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://popeye-ux.github.io/2021/10/09/jsLive-varLetConst/" data-id="cl26awue10000vgoe56np6ohh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -327,23 +350,22 @@
             "@type": "Person",
             "name": "POPEYE"
         },
-        "headline": "Day7:如何檢查型別",
-        "image": "https://popeye-ux.github.iohttps://i.imgur.com/dx5XA4P.jpg",
-        "keywords": "JavaScript, 2021iT邦鐵人賽",
+        "headline": "jsLive-varLetConst",
+        "image": "https://popeye-ux.github.io",
+        "keywords": "JavaScript,JS直播班",
         "genre": "JavaScript",
-        "datePublished": "2021-09-07",
-        "dateCreated": "2021-09-07",
-        "dateModified": "2022-04-14",
-        "url": "https://popeye-ux.github.io/2021/09/07/21-day7-typeCheck/",
-        "description": "
-前面提到「變數本身沒有型別問題，變數帶的值才有型別資訊」，所以要判斷型別，當然是去檢查變數所帶的值。
-我們可以這樣來判斷變數的型別：
+        "datePublished": "2021-10-09",
+        "dateCreated": "2021-10-09",
+        "dateModified": "2022-04-19",
+        "url": "https://popeye-ux.github.io/2021/10/09/jsLive-varLetConst/",
+        "description": "以下為我今年參加iT邦幫忙鐵人賽寫的文章，原文連結：
+【Day2】變數宣告var、let、const的區別
+但是老師教我用 var 宣告變數，但我也看到有同學用 let 與 const 宣告變數，這是怎麼一回事呢？
+12//建立一個變數郭靖(guoJing)var guoJing;
 
-typeof 資料
-typeof(資料)
-
-1234567typeof &#x27;洪七公&#x27;;  //&#x27;string&#x27;typeof 7749;     //&#x27;number&#x27;typeof NaN;      //&",
-        "wordCount": 156
+也可以看到這樣：
+12345//建立一個建立一個名為黃蓉(huangRong)的變數，給她&#x27;打狗棒法&#",
+        "wordCount": 342
     }
 </script>
 
@@ -408,20 +430,10 @@ typeof(資料)
         
 <nav id="article-nav">
     
-        <a href="/2021/09/08/21-day8-expression/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            人算不如天算的運算式
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2021/09/06/21-day6-array/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2021/10/05/21-day35-toDoList/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">Day6:長幼有序的好孩子：陣列</p>
+        <p class="article-nav-title">Day35:最終章：Todo List實作</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -634,7 +646,7 @@ typeof(資料)
     var disqus_shortname = 'popeye-ux-1';
     
     
-    var disqus_url = 'https://popeye-ux.github.io/2021/09/07/21-day7-typeCheck/';
+    var disqus_url = 'https://popeye-ux.github.io/2021/10/09/jsLive-varLetConst/';
     
     (function() {
     var dsq = document.createElement('script');
