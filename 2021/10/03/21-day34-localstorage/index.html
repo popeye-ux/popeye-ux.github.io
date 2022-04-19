@@ -6,26 +6,26 @@
     
 
     
-    <title>Day15:變數的地盤—作用域(scoop)與提升(Hoisting) | F2E 星球通訊</title>
+    <title>Day34:好記性的瀏覽器：Localstorage | F2E 星球通訊</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="keywords" content="JavaScript, 2021iT邦鐵人賽" />
     
-    <meta name="description" content="作用域(scoop)簡單來說，就是變數的地盤，在地盤內，變數都有作用，出了地盤，變數就undefined了。">
+    <meta name="description" content="談這個主題之前，我們先來回憶一下日常的場景，你來到桃子購物網站，選了你要的商品往下捲動網頁，結果竟然發現網頁下方秀出你上次來買東西時，看的那幾樣商品，你心中覺得這個網站真貼心，好聰明。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Day15:變數的地盤—作用域(scoop)與提升(Hoisting)">
-<meta property="og:url" content="https://popeye-ux.github.io/2021/09/15/21-day15-scoopHoisting/index.html">
+<meta property="og:title" content="Day34:好記性的瀏覽器：Localstorage">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/10/03/21-day34-localstorage/index.html">
 <meta property="og:site_name" content="F2E 星球通訊">
-<meta property="og:description" content="作用域(scoop)簡單來說，就是變數的地盤，在地盤內，變數都有作用，出了地盤，變數就undefined了。">
+<meta property="og:description" content="談這個主題之前，我們先來回憶一下日常的場景，你來到桃子購物網站，選了你要的商品往下捲動網頁，結果竟然發現網頁下方秀出你上次來買東西時，看的那幾樣商品，你心中覺得這個網站真貼心，好聰明。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.imgur.com/x9amq6E.jpg">
-<meta property="article:published_time" content="2021-09-15T09:17:36.000Z">
-<meta property="article:modified_time" content="2022-04-14T09:35:12.705Z">
+<meta property="og:image" content="https://i.imgur.com/XTZaPTS.jpg">
+<meta property="article:published_time" content="2021-10-03T01:40:56.000Z">
+<meta property="article:modified_time" content="2022-04-19T01:42:26.936Z">
 <meta property="article:author" content="POPEYE">
 <meta property="article:tag" content="JavaScript, 2021iT邦鐵人賽">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/x9amq6E.jpg">
+<meta name="twitter:image" content="https://i.imgur.com/XTZaPTS.jpg">
     
 
     
@@ -178,14 +178,14 @@
 </div>
  -->
                         <div class="main-body-content">
-                            <article id="post-21-day15-scoopHoisting" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-21-day34-localstorage" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Day15:變數的地盤—作用域(scoop)與提升(Hoisting)
+        Day34:好記性的瀏覽器：Localstorage
         </h1>
     
 
@@ -196,16 +196,16 @@
                 
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2021/09/15/21-day15-scoopHoisting/" class="article-date">
-       <time datetime="2021-09-15T09:17:36.000Z" itemprop="datePublished">2021-09-15</time>
+    <a href="/2021/10/03/21-day34-localstorage/" class="article-date">
+       <time datetime="2021-10-03T01:40:56.000Z" itemprop="datePublished">2021-10-03</time>
     </a>
   </div>
 
 
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
-  <a href="/2021/09/15/21-day15-scoopHoisting/" class="article-date">
-     <time datetime="2022-04-14T09:35:12.705Z" itemprop="dateModified">2022-04-14</time>
+  <a href="/2021/10/03/21-day34-localstorage/" class="article-date">
+     <time datetime="2022-04-19T01:42:26.936Z" itemprop="dateModified">2022-04-19</time>
   </a>
 </div>
 
@@ -232,49 +232,41 @@
 
             
 
-            <p><img src="https://i.imgur.com/x9amq6E.jpg"></p>
-<p>作用域(scoop)簡單來說，就是變數的地盤，在地盤內，變數都有作用，出了地盤，變數就undefined了。</p>
+            <p><img src="https://i.imgur.com/XTZaPTS.jpg"><br>談這個主題之前，我們先來回憶一下日常的場景，你來到桃子購物網站，選了你要的商品往下捲動網頁，結果竟然發現網頁下方秀出你上次來買東西時，看的那幾樣商品，你心中覺得這個網站真貼心，好聰明。</p>
 <span id="more"></span>
-
-<p>舉個不倫不類的例子，丐幫的幫主洪七公武功再強也沒有辦法命令桃花島黃老邪的弟子梅超風去烤一隻土窯雞來吃。因為根本就不同門不同派。</p>
-<p>那要怎麼區分變數的範圍呢？</p>
-<p>在ES6之前，切分變數最小的範圍是function為單位，函式裡面的變數只能存活在函式裡面。</p>
-<p>在ES6之後，可以使用let、const來定義變數，這種狀況下切分變數最小範圍則為{}大括號區塊。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> man = <span class="string">&#x27;歐陽克&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> marriage = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> man = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line">	<span class="keyword">return</span> man + <span class="string">&#x27;娶了黃蓉&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">marriage</span>()); <span class="comment">//郭靖娶了黃蓉</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(man);        <span class="comment">//歐陽克</span></span><br></pre></td></tr></table></figure>
-
-<p>好險！歐陽克娶不到黃蓉！</p>
-<p>因為使用var定義變數man，前面提到作用域最小的範圍是function，所以marriage()會去捉「var man &#x3D; ‘郭靖’ 」來用，而不會去抓外層的「 var man &#x3D; ‘歐陽克’」來用。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> man = <span class="string">&#x27;歐陽克&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> marriage = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> man + <span class="string">&#x27;娶了黃蓉&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">marriage</span>()); <span class="comment">//歐陽克娶了黃蓉</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(man);        <span class="comment">//歐陽克</span></span><br></pre></td></tr></table></figure>
-
-<p>糟糕！歐陽克娶了黃蓉…郭靖哭哭！</p>
-<p>但是如果在marriage()裡面找不到「var man &#x3D; ‘郭靖’」，就會往外層去找，此時「var man &#x3D; ‘歐陽克’」就會被捉來用了！郭靖真的會哭！</p>
-<p>在外層console.log(man)一直都是歐陽克是因為，切分變數最小的範圍是function，所以「var man &#x3D; ‘郭靖’ 」的作用域只在marriage()函式裡面，如果marriage()裡面找不到，才會往外層找，一直找到作外層的全域變數，所以console.log(man)才會一直都是’歐陽克’。如果都找不到就會報錯：ReferenceError：man is not defined</p>
-<p>情人眼裡出西施！但重點是你要先進入情人的眼裡（作用域）！不管她的眼界是「全域」還是「區域」。</p>
-<p>所以我們要記得：</p>
+<p>然而，真正貼心、聰明的是你的瀏覽器。這項技術叫做Web Storage，是HTML5之後出來的新技術，網頁可以透過JavaScript把你瀏覽的資料寫入瀏覽器裡儲存，可以儲存的資料容量有5mb大小。</p>
+<p>Web Storage有兩種：</p>
 <ul>
-<li>ES6之前，切分變數最小範圍是function。</li>
-<li>function可以捉外層變數還使用，但是從外層捉不到function內的變數。</li>
+<li>localStorage：如果沒有清除瀏覽器的話，資料將永久存在瀏覽器中，使用者關掉瀏覽器或分頁，資料仍會存在瀏覽器中，跨瀏覽器分頁也可以使用。</li>
+<li>sessionStorage：使用者關掉瀏覽器或分頁，資料就會被清空。</li>
 </ul>
-<h2 id="提升-Hoisting"><a href="#提升-Hoisting" class="headerlink" title="提升(Hoisting)"></a>提升(Hoisting)</h2><p>繼續來看看郭靖有沒有辦法跟黃蓉有情人終成眷屬！</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> man = <span class="string">&#x27;歐陽克&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> marriage = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(man);  <span class="comment">//undefined</span></span><br><span class="line">	<span class="keyword">var</span> man = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line">	<span class="keyword">return</span> man + <span class="string">&#x27;娶了黃蓉&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">marriage</span>()); <span class="comment">//郭靖娶了黃蓉</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(man);        <span class="comment">//歐陽克</span></span><br></pre></td></tr></table></figure>
+<p>如何看到localStorage的資料呢？</p>
+<p>在Chrome瀏覽器按下F12，瀏覽器會分割稱瀏覽畫面跟Dev Tool，在Dev Tool那一邊點開Application分頁，就可以看到localStorage儲存的資料。</p>
+<p><img src="https://i.imgur.com/sT7SlTj.png"></p>
+<p>我們可以觀察到它是以Key - Value pair的方式儲存的，而且是以自存的格式儲存的。</p>
+<p>那要如何存入資料呢？我們可以使用setItem()方法：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(key, value)</span><br><span class="line">sessionStorage.<span class="title function_">setItem</span>(key, value)</span><br></pre></td></tr></table></figure>
 
-<p> 我們在「var man &#x3D; ‘郭靖’」前面加了一個console.log(man)，雖然「var man &#x3D; ‘郭靖’」宣告在後面，但是console.log(man)並沒有去外層抓「var man &#x3D; ‘歐陽克’」來用。</p>
-<p>那是因為console.log(man)和「var man &#x3D; ‘郭靖’」在同一個作用域，只要確認後面 man這個變數有宣告，那就會宣告變數這件事提到上面來，然後先給它一個undefined的值。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> man = <span class="string">&#x27;歐陽克&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> marriage = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(man);  <span class="comment">//Uncaught ReferenceError: Cannot access &#x27;man&#x27; before initialization</span></span><br><span class="line">	<span class="keyword">let</span> man = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line">	<span class="keyword">return</span> man + <span class="string">&#x27;娶了黃蓉&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">marriage</span>()); </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(man);        </span><br></pre></td></tr></table></figure>
+<p>取出資料則是使用getItem()：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(key)</span><br><span class="line">sessionStorage.<span class="title function_">getItem</span>(key)</span><br></pre></td></tr></table></figure>
 
-<p>如果是使用 let來宣告「let man &#x3D; ‘郭靖’」，在還沒宣告前，使用console.log(man)來查詢，就會報錯：Uncaught ReferenceError: Cannot access ‘man’ before initialization。因為let和const不允許在宣告卻沒有初始化的狀況下使用，從宣告到初始化這中間的時間差稱為「暫時死區」(Temporal Dead Zone)(TDZ)。</p>
-<p>所以在這裡提一下重點：</p>
+<p>讓我們來砍看如何實作：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>報名參加華山論劍<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">class</span>=<span class="string">&quot;nameClass&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btnApply&quot;</span> <span class="attr">value</span>=<span class="string">&quot;報名&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btnCheck&quot;</span> <span class="attr">value</span>=<span class="string">&quot;檢查報名狀況&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> apply= <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.btnApply&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> check=<span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.btnCheck&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">applyTalk</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> str= <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.nameClass&#x27;</span>).<span class="property">value</span>;</span><br><span class="line">  <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;applyName&#x27;</span>,str);</span><br><span class="line">&#125;</span><br><span class="line">apply.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,applyTalk);</span><br><span class="line"></span><br><span class="line">check.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> str = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;applyName&#x27;</span>);</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">`<span class="subst">$&#123;str&#125;</span>，你已經報名成功！！！`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/klUshTt.png"></p>
+<p>前面有提到localStorage只接受字串(String)的資料，如果存存的資料不是字串，而是陣列或是物件，就會發生問題。</p>
+<p>如何解決這個問題呢？</p>
 <ul>
-<li>let&#x2F;const 是使用區塊作用域，以一對大括號{}為單位；var 是使用函式(function)作用域</li>
-<li>在 let&#x2F;const 宣告之前就存取對應的變數與常數，會拋出<code>ReferenceError</code>錯誤；但在 var 宣告之前就存取對應的變數，則會得到<code>undefined</code></li>
+<li>再用setItem()儲存資料到localStorage裡面的時候，要先用JSON.stringify()轉為字串。</li>
+<li>而用getItem()從localStorage取出資料時，要用JSON.parse()方法傳換為本來的資料格式。</li>
 </ul>
-<p>綜上所述，最好在作用域(scope)的一開始就宣告好所有的變數再使用，避免發生慘案。</p>
-<h2 id="函式的提升"><a href="#函式的提升" class="headerlink" title="函式的提升"></a>函式的提升</h2><p>前面提到的是用var設參數的提升，還有一種是「函式的提升」。</p>
-<p>而透過「函式宣告」的方式建立的函式，也可以在前面叫用，後面再宣告函式。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">marriage</span>(<span class="string">&#x27;郭靖&#x27;</span>);  <span class="comment">//&quot;郭靖娶了黃蓉&quot;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">marriage</span>(<span class="params">man</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> man + <span class="string">&#x27;娶了黃蓉&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>讓我們來看一下怎麼做：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> island = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">islandName</span>: <span class="string">&#x27;桃花島&#x27;</span>,</span><br><span class="line">        <span class="attr">owner</span>: <span class="string">&#x27;黃藥師&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> islandStr = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(island);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(islandStr);  <span class="comment">//[&#123;&quot;islandName&quot;:&quot;桃花島&quot;,&quot;owner&quot;:&quot;黃藥師&quot;&#125;]</span></span><br><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;islandItem&#x27;</span>,islandStr);</span><br><span class="line"><span class="keyword">var</span> getData = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;islandItem&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> getData);  <span class="comment">//string</span></span><br><span class="line"><span class="keyword">var</span> getDataAry = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(getData);  <span class="comment">//轉換為陣列</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(getDataAry); </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>而「函式表達式」就沒這樣的待遇了，提前叫用只會出現：TypeError。</p>
-<p><strong>變數的提升只有宣告被提升，但是沒有初始化。但是函式的提升則是函式的內容整個被提升。</strong></p>
+<p><img src="https://i.imgur.com/kQPupvC.png"></p>
+<p>這就是localStorage的基本用法。</p>
 
         </div>
         <footer class="article-footer">
@@ -282,7 +274,7 @@
 
 
 
-    <a data-url="https://popeye-ux.github.io/2021/09/15/21-day15-scoopHoisting/" data-id="cl1ysi5ac0003okoe3ksgbks9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://popeye-ux.github.io/2021/10/03/21-day34-localstorage/" data-id="cl25hh6hz0000f4oea10r4dyq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -352,17 +344,16 @@
             "@type": "Person",
             "name": "POPEYE"
         },
-        "headline": "Day15:變數的地盤—作用域(scoop)與提升(Hoisting)",
-        "image": "https://popeye-ux.github.iohttps://i.imgur.com/x9amq6E.jpg",
+        "headline": "Day34:好記性的瀏覽器：Localstorage",
+        "image": "https://popeye-ux.github.iohttps://i.imgur.com/XTZaPTS.jpg",
         "keywords": "JavaScript, 2021iT邦鐵人賽",
         "genre": "JavaScript",
-        "datePublished": "2021-09-15",
-        "dateCreated": "2021-09-15",
-        "dateModified": "2022-04-14",
-        "url": "https://popeye-ux.github.io/2021/09/15/21-day15-scoopHoisting/",
-        "description": "
-作用域(scoop)簡單來說，就是變數的地盤，在地盤內，變數都有作用，出了地盤，變數就undefined了。",
-        "wordCount": 352
+        "datePublished": "2021-10-03",
+        "dateCreated": "2021-10-03",
+        "dateModified": "2022-04-19",
+        "url": "https://popeye-ux.github.io/2021/10/03/21-day34-localstorage/",
+        "description": "談這個主題之前，我們先來回憶一下日常的場景，你來到桃子購物網站，選了你要的商品往下捲動網頁，結果竟然發現網頁下方秀出你上次來買東西時，看的那幾樣商品，你心中覺得這個網站真貼心，好聰明。",
+        "wordCount": 319
     }
 </script>
 
@@ -427,20 +418,20 @@
         
 <nav id="article-nav">
     
-        <a href="/2021/09/16/21-day16-globalAndScope/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2021/10/05/21-day35-toDoList/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">下一篇</strong>
         <p class="article-nav-title">
         
-            Day16:公園跟你家院子—全域變數與區域變數的區別
+            Day35:最終章：Todo List實作
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/2021/09/14/21-day14-return/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2021/10/01/21-day32-clouse/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">Day14:return的妙傳得分</p>
+        <p class="article-nav-title">Day32:暗通款曲的閉包</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -653,7 +644,7 @@
     var disqus_shortname = 'popeye-ux-1';
     
     
-    var disqus_url = 'https://popeye-ux.github.io/2021/09/15/21-day15-scoopHoisting/';
+    var disqus_url = 'https://popeye-ux.github.io/2021/10/03/21-day34-localstorage/';
     
     (function() {
     var dsq = document.createElement('script');
