@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>何謂強制轉型、以及如何作到轉換型別？ | F2E 星球通訊</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="JavaScript, JS直播班" />
+    
+    <meta name="description" content="我們都知道JavaScript的基本型別有以下幾種：  String ：字串，由一連串的字符 (characters) 組成。 Number ：數值，為 floating point number。 Boolean ：true 或 false。 undefined ：表示現在還沒有給值。 null ：不知道之前有沒有值，但是現在沒有值。 Symbol ：ES6 出現的新型別。  JavaScrip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="何謂強制轉型、以及如何作到轉換型別？">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/10/28/typeConversions/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="我們都知道JavaScript的基本型別有以下幾種：  String ：字串，由一連串的字符 (characters) 組成。 Number ：數值，為 floating point number。 Boolean ：true 或 false。 undefined ：表示現在還沒有給值。 null ：不知道之前有沒有值，但是現在沒有值。 Symbol ：ES6 出現的新型別。  JavaScrip">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/EMhtQsq.png">
+<meta property="article:published_time" content="2021-10-28T06:57:20.000Z">
+<meta property="article:modified_time" content="2022-04-27T07:02:02.935Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript, JS直播班">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/EMhtQsq.png">
+    
+
+    
+        <link rel="alternate" href="/" title="F2E 星球通訊" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F757T9GM4W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F757T9GM4W');
+</script>
+<!-- End Google Analytics -->
+
+    
+    
+    
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F757T9GM4W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F757T9GM4W');
+</script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/">JavaScript</a></li></ul>
+                                
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="輸入關鍵字..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '頁面',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <!-- <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/JavaScript/">JavaScript</a>
+    </h1>
+</div>
+ -->
+                        <div class="main-body-content">
+                            <article id="post-typeConversions" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        何謂強制轉型、以及如何作到轉換型別？
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2021/10/28/typeConversions/" class="article-date">
+       <time datetime="2021-10-28T06:57:20.000Z" itemprop="datePublished">2021-10-28</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2021/10/28/typeConversions/" class="article-date">
+     <time datetime="2022-04-27T07:02:02.935Z" itemprop="dateModified">2022-04-27</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD/" rel="tag">JavaScript, JS直播班</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+ 
+            
+
+            
+
+            <p>我們都知道JavaScript的基本型別有以下幾種：</p>
+<ol>
+<li>String ：字串，由一連串的字符 (characters) 組成。</li>
+<li>Number ：數值，為 floating point number。</li>
+<li>Boolean ：true 或 false。</li>
+<li>undefined ：表示現在還沒有給值。</li>
+<li>null ：不知道之前有沒有值，但是現在沒有值。</li>
+<li>Symbol ：ES6 出現的新型別。</li>
+</ol>
+<p>JavaScript 的型別不在於變數本身，而在於變數被賦予的值。</p>
+<p>如果以上那些你都知道，那你該來看看JavaScript變態的部分—「強制轉型」( <strong>coercion</strong> )。</p>
+<p>斯斯有兩種，「強制轉型」也有兩種：</p>
+<ul>
+<li>隱含的強制轉型 — <strong>implicit coercion</strong></li>
+<li>明確的強制傳型（explicit coercion）</li>
+</ul>
+<h2 id="隱含的強制轉型-—-implicit-coercion"><a href="#隱含的強制轉型-—-implicit-coercion" class="headerlink" title="隱含的強制轉型 — implicit coercion"></a>隱含的強制轉型 — <strong>implicit coercion</strong></h2><p>剛剛提到 JavaScript 的型別不在於變數本身，而在於<strong>變數被賦予的值</strong>。</p>
+<p>JavaScript 在運算的時候，如果看到兩個不同型別的值，就會自動判斷，把值轉換為相同型別，再做運算。很親切(變態)吧!!??</p>
+<p>不多說，讓我們看一下例子，比較容易進入狀況：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="string">&quot;1&quot;</span>;      <span class="comment">//字串</span></span><br><span class="line">a = a + <span class="number">2</span>;        <span class="comment">//&#x27;12&#x27;， a為字串&quot;1&quot;，數字2與字串相加，被轉型為字串&quot;2&quot;</span></span><br><span class="line">a = a*<span class="number">2</span>           <span class="comment">//24 ， 在乘法的時候，字串&quot;12&quot;與2相乘，字串被轉型為數值，得出的結果是數值 12</span></span><br><span class="line">a = a + <span class="literal">true</span>      <span class="comment">//25， 布林值遇到數值，被轉為數字1，相加後變成25</span></span><br><span class="line">a = a * <span class="literal">null</span>      <span class="comment">//0 ， null遇到數值被轉為0，數值與0相乘變成0</span></span><br><span class="line">a = a / <span class="literal">undefined</span> <span class="comment">//NaN， undefined無法再被轉型為數字</span></span><br></pre></td></tr></table></figure>
+
+<p>以上這些「我變我變我變變變」的情形就是 JavaScript 變數的「強制轉型」，而且是 JavaScript 親切的、自動的、在背後運作的、<strong>「隱含的強制轉型」（ implicit coercion ）</strong>。一下變字串，一下有變成數字、一下變成布林值…比孫悟空72變還厲害。</p>
+<p>這種「隱含的轉型」（ implicit coercion ）基本上可以轉成三種型別：</p>
+<ul>
+<li>自動轉換為布林值( ToBoolean )</li>
+<li>自動轉換為數值( ToNumber )</li>
+<li>自動轉換為字串( ToString )</li>
+</ul>
+<h3 id="四則運算時的強制轉型"><a href="#四則運算時的強制轉型" class="headerlink" title="四則運算時的強制轉型"></a>四則運算時的強制轉型</h3><p>JavaScript在做四則運算的時候跟小學課本教的一樣，由左而右「先乘除後加減」。</p>
+<p>其中以加法（＋）最需要注意！</p>
+<p>如果是數值的運算，那沒有轉型的問題。「字串」的相加也沒有轉型的問題。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span> + <span class="number">2</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x);  <span class="comment">//3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> y = <span class="string">&#x27;歐陽鋒是&#x27;</span> + <span class="string">&#x27;一隻癩哈蟆&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(y);  <span class="comment">//歐陽鋒是一隻癩哈蟆</span></span><br></pre></td></tr></table></figure>
+
+<p><em>只有在不同型別的狀況下才有轉型的問題：</em></p>
+<ul>
+<li>當加號 + 兩側有一個是字串的情形下，會將「非字串」的那一邊「自動轉型」為字串，再將兩個字串連接在一起。如果另一方為 number 、 boolean 、 object 的情況下， number 、 boolean 、 object 會去叫用它們的** .toString 「原型方法」**，把自己變成字串，再去和另一個字串組合。</li>
+<li>當一邊是數字，一邊是 undefined 的時候， undefined 會被試著轉為數字，變成 NaN ，任何數字與 NaN 相加都是 NaN 。</li>
+<li>當一邊是數字，加號另一邊是 null 的時候， null 會被轉為數字 0 。</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//數字與字串相加</span></span><br><span class="line"><span class="number">77</span> + <span class="string">&#x27;49&#x27;</span>         <span class="comment">//&#x27;7749&#x27;</span></span><br><span class="line"><span class="number">77</span> + <span class="string">&#x27;四十九&#x27;</span>      <span class="comment">//&#x27;77四十九&#x27;</span></span><br><span class="line"><span class="comment">//字串與字串相加</span></span><br><span class="line"><span class="string">&#x27;七七&#x27;</span> + <span class="string">&#x27;四十九&#x27;</span>  <span class="comment">//&#x27;七七四十九&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="number">77</span> + &#123;&#125;           <span class="comment">//&#x27;77[object object]&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//當數字要跟undefined相加的時候，udefined會被嘗試轉為數字，也就是NaN，還記得NaN的型別是number嗎？</span></span><br><span class="line"><span class="number">77</span> + unfined      <span class="comment">//NaN</span></span><br><span class="line"><span class="string">&#x27;七七&#x27;</span> + unfined   <span class="comment">//&#x27;七七undefined&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//當數字要與null相加時，null會被轉成數字 0 ;</span></span><br><span class="line"><span class="number">77</span> + <span class="literal">null</span>          <span class="comment">//77</span></span><br><span class="line"><span class="string">&#x27;七七&#x27;</span> + <span class="literal">null</span>       <span class="comment">//77null</span></span><br></pre></td></tr></table></figure>
+
+<p>而如果是減乘除法（ － ＊ ／ ）的情況，除了數值以外的其他基本型別都會透過 Number() 方法轉為數字。物件則在乘除的時候會透過 Number() 方法，轉為數字，在減法時透過 valueOf() 方法轉為數字。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">49</span> - <span class="string">&#x27;36&#x27;</span>   <span class="comment">//13</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字串會被轉為數字，也就是NaN</span></span><br><span class="line"><span class="number">49</span> - <span class="string">&#x27;abc&#x27;</span> <span class="comment">//NaN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//布林值的true，會被轉行為數字 1</span></span><br><span class="line"><span class="number">49</span> - <span class="literal">true</span>  <span class="comment">//48</span></span><br><span class="line"><span class="comment">//布林值的false，會被轉行為數字 0</span></span><br><span class="line"><span class="number">49</span> - <span class="literal">false</span>  <span class="comment">//49</span></span><br><span class="line"></span><br><span class="line"><span class="number">49</span> - <span class="literal">undefined</span>  <span class="comment">//NaN</span></span><br><span class="line"><span class="comment">//null會轉為數字0</span></span><br><span class="line"><span class="number">49</span> - <span class="literal">null</span>       <span class="comment">//49</span></span><br><span class="line"><span class="number">49</span> - &#123;&#125;   　　　<span class="comment">//NaN</span></span><br><span class="line"><span class="number">49</span> * <span class="string">&#x27;10&#x27;</span>       <span class="comment">//490</span></span><br><span class="line"><span class="number">49</span> *  <span class="string">&#x27;四十九&#x27;</span>   <span class="comment">//NaN</span></span><br><span class="line"><span class="number">49</span> * <span class="literal">true</span>       <span class="comment">// 49</span></span><br><span class="line"><span class="number">49</span> * <span class="literal">false</span>      <span class="comment">//0</span></span><br><span class="line"><span class="number">49</span> * &#123;&#125;         <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+
+<p>下面附上變數在四則運算時的「自動轉型」規則：</p>
+<table>
+<thead>
+<tr>
+<th>四則運算</th>
+<th align="left">數字</th>
+<th align="left">基本型別非數字</th>
+<th align="left">物件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>減法</td>
+<td align="left">正常運算</td>
+<td align="left">Number()方法轉為數字</td>
+<td align="left">透過valueOf()轉為數字</td>
+</tr>
+<tr>
+<td>乘法</td>
+<td align="left">正常運算</td>
+<td align="left">Number()方法轉為數字</td>
+<td align="left">Number()方法轉為數字</td>
+</tr>
+<tr>
+<td>除法</td>
+<td align="left">正常運算</td>
+<td align="left">Number()方法轉為數字</td>
+<td align="left">Number()方法轉為數字</td>
+</tr>
+<tr>
+<td>加法</td>
+<td align="left">正常運算</td>
+<td align="left">如果是number、boolean透過toString()方法轉為字串，null或undefined透過String()轉為字串</td>
+<td align="left">toString()轉為字串</td>
+</tr>
+</tbody></table>
+<h3 id="比較運算子的強制轉型"><a href="#比較運算子的強制轉型" class="headerlink" title="比較運算子的強制轉型"></a>比較運算子的強制轉型</h3><p>比較運算子用來比較兩側的數值，比較之後得到布林值 true 或 false。</p>
+<p>一個等號 &#x3D;，我們知道是「指定、賦值」的意思。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">49</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在JavaScript中， <code>==</code> 是相等的意思，而 <code>===</code> 是全等的意思。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">49</span>;   <span class="comment">//數字</span></span><br><span class="line"><span class="keyword">var</span> y = <span class="string">&#x27;49&#x27;</span>; <span class="comment">//字串</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x == y);</span><br><span class="line"><span class="comment">//true，因為 == 在比較兩側的變數是否相等的時候，會自動幫變數轉型。</span></span><br><span class="line"></span><br><span class="line"><span class="literal">true</span> == <span class="string">&#x27;1&#x27;</span>;   <span class="comment">//true</span></span><br><span class="line"><span class="literal">false</span> == <span class="string">&#x27;0&#x27;</span>;   <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="literal">true</span> === <span class="string">&#x27;1&#x27;</span>;   <span class="comment">//false</span></span><br><span class="line"><span class="literal">false</span> === <span class="string">&#x27;0&#x27;</span>;  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>==</code> 相等的時候，會自動替兩側的變數轉型。</p>
+<p>當使用 <code>===</code> 全等的時候，不會替變數自動轉型，是比較嚴謹的模式，也是比較推薦使用的方法。</p>
+<p>比較特別的是，NaN不等於NaN，不管是 <code>==</code>  還是 <code>===</code>，都是一樣 NaN 不等於 NaN 。</p>
+<p>&#x3D;&#x3D;的自動轉型規則：</p>
+<ul>
+<li>當遇到「字串」與「數字」做比較的時候，字串會透過 Number() 嘗試轉為數字，再進行比較。</li>
+<li>如果比較的一方為布林值，則 true 會轉為 1 ， false 會轉為 0 。</li>
+<li>當<code>==</code> 的一側為物件型別，另一側為基本型別，物件型別會透過 valueOf() ，轉為對應的基本型別進行比較。</li>
+</ul>
+<p>不等於<code>!=</code> 與 <code>!==</code></p>
+<p><code>!=</code> 與「! &#x3D;&#x3D;」兩者都是不等於，但是 <code>!=</code> 會替變數做自動轉型，而 <code>!==</code> 不會替變數自動轉型，推薦使用 <code>!==</code> 。</p>
+<h3 id="大於＞與小於＜的強制轉型"><a href="#大於＞與小於＜的強制轉型" class="headerlink" title="大於＞與小於＜的強制轉型"></a>大於＞與小於＜的強制轉型</h3><p>我有看到一個數字比大小的有趣例子，借來筆記一下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span> &lt; <span class="number">2</span> &lt; <span class="number">3</span>); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span> &lt; <span class="number">2</span> &lt; <span class="number">1</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>天哪！怎麼會是這樣的結果！ 3 &lt; 2 &lt; 1 的布林值竟然是 true ．．．天要塌了！</p>
+<p>其實是因為 ＜ 是由左向右( left to right )去做比較，下面來解釋一下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span> &lt; <span class="number">2</span> &lt; <span class="number">3</span>);</span><br><span class="line"><span class="number">1</span>&lt;<span class="number">2</span> <span class="comment">//true</span></span><br><span class="line"><span class="literal">true</span> &lt; <span class="number">3</span> <span class="comment">//true轉為數字1，1&lt;3，結果為true。</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span> &lt; <span class="number">2</span> &lt; <span class="number">1</span>); </span><br><span class="line"><span class="number">3</span> &lt; <span class="number">2</span> <span class="comment">//false</span></span><br><span class="line"><span class="literal">false</span> &lt; <span class="number">1</span> <span class="comment">// false轉為數字0，0&lt;1，所以結果為true</span></span><br></pre></td></tr></table></figure>
+
+<p>所以才會得出 console.log( 3 &lt; 2 &lt; 1 );會變成 true 的結果。</p>
+<p><img src="https://i.imgur.com/EMhtQsq.png"></p>
+<h3 id="Boolean的強制傳型"><a href="#Boolean的強制傳型" class="headerlink" title="Boolean的強制傳型"></a>Boolean的強制傳型</h3><p>邏輯運算子( Logical Operator )有 <code>AND &amp;&amp;</code> 、 <code>OR ||</code> 、<code>NOT !</code> 三種。運算子兩側的值經過 ToBoolean 轉換後會得到一個布林值，再由邏輯運算子比較後傳回其中一個值。</p>
+<p><code>&amp;&amp;</code> 以及 <code>||</code> 進行判斷時，會對左邊的數值進行檢查，如果原本是布林值，就進行後續判斷。如果不是，則透過 ToBoolean 轉換為 true 或 false 。</p>
+<ul>
+<li>AND &amp;&amp; ：(條件&#x2F;運算式 A ) &amp;&amp; (條件&#x2F;運算式 B )，如果兩側的值都為 true ，得到 true 的結果；如果其中一方為 false ，則得到 false 。<br>如果第一個值轉換為true，則回傳第二個值，否則回傳第一個值。</li>
+<li>OR || ：(條件&#x2F;運算式A) || (條件&#x2F;運算式B)，兩側的值只要有一側為 true ，就得到 true 的結果；如果兩側都為 false ，才得到 false 。<br>如果第一個值轉換為true，則回傳第一個值，否則回傳第二個值。</li>
+<li>NOT ! ： true 的結果透過 ! 轉換會得到 false ，而 false 的結果會變成 true。</li>
+</ul>
+<p>那些經過ToBoolean轉換後會得到true的狀況太多，而會得到false的值只有以下五種：</p>
+<ul>
+<li>undefined</li>
+<li>Null</li>
+<li>+0、-0</li>
+<li>NaN</li>
+<li>空字串””或’’</li>
+</ul>
+<p>其他的值都會轉為true。</p>
+<h2 id="明確的強制傳型（explicit-coercion）"><a href="#明確的強制傳型（explicit-coercion）" class="headerlink" title="明確的強制傳型（explicit coercion）"></a>明確的強制傳型（explicit coercion）</h2><p>也就是透過JavaScript提供的函式來進行變數型別轉換，例如：</p>
+<ul>
+<li>轉換為數值型別： Number() 、 parseInt() 、 parseFloat()</li>
+<li>轉換為字串型別： toString() 、 String()</li>
+<li>轉換為布林型別： Boolean()</li>
+</ul>
+<h3 id="Number-、parseInt-、parseFloat"><a href="#Number-、parseInt-、parseFloat" class="headerlink" title="Number()、parseInt()、parseFloat()"></a>Number()、parseInt()、parseFloat()</h3><p>Number()可以將值「嘗試轉型」為「數值型別」，但要並非每種物件都可以順利轉成 number 型別，如果轉型失敗就會變成 NaN (非數值的數值)！</p>
+<p>parseInt(str [, radix]) 函式能將輸入的字串轉成整數，第二個參數 radix 代表使用哪種進位制轉換。</p>
+<p>它會忽略前後空白，在遇到字元被無法解析時，會忽略那個字元與後面的所有字元，停止解析，並回傳目前為止的結果。</p>
+<p>如果第一個字元就無法被解析，會回傳 NaN。</p>
+<p>parseFloat(str)能將字串轉換為以十進位表示的浮點數。</p>
+<p>來看一下範例：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Number</span>(<span class="string">&#x27;123&#x27;</span>);        <span class="comment">//123</span></span><br><span class="line"><span class="title class_">Number</span>(<span class="string">&#x27;華山論劍&#x27;</span>);   <span class="comment">//NaN</span></span><br><span class="line"><span class="title class_">Number</span>(<span class="string">&#x27;9陰真經&#x27;</span>);    <span class="comment">//NaN</span></span><br><span class="line"><span class="title class_">Number</span>(<span class="literal">null</span>);         <span class="comment">//0</span></span><br><span class="line"><span class="title class_">Number</span>(<span class="literal">true</span>)          <span class="comment">//1</span></span><br><span class="line"><span class="title class_">Number</span>([]);           <span class="comment">//0</span></span><br><span class="line"><span class="title class_">Number</span>([<span class="number">1</span>]);          <span class="comment">//1</span></span><br><span class="line"><span class="title class_">Number</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);      <span class="comment">//NaN</span></span><br><span class="line"><span class="title class_">Number</span>(&#123;&#125;);           <span class="comment">//NaN</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;9陰真經&#x27;</span>);  <span class="comment">//9</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;九陰真經&#x27;</span>); <span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">101010</span>,<span class="number">2</span>);   <span class="comment">//42</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">&#x27;3.1416&#x27;</span>)  <span class="comment">//3.1416</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="toString-、String"><a href="#toString-、String" class="headerlink" title=".toString()、String()"></a>.toString()、String()</h3><p>String() 與 .toString() 都可以將值轉換為字串型別，差別在於 .toString() 在收到 null 、 undefined 和數字時會報錯。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">String</span>(<span class="number">123</span>)          <span class="comment">//&#x27;123&#x27;</span></span><br><span class="line"><span class="title class_">String</span>(<span class="literal">null</span>)         <span class="comment">//&#x27;null&#x27;</span></span><br><span class="line"><span class="title class_">String</span>(<span class="string">&#x27;undefined&#x27;</span>)  <span class="comment">//&#x27;undefined&#x27;</span></span><br><span class="line"><span class="title class_">String</span>(<span class="literal">true</span>)         <span class="comment">//&#x27;true&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="literal">true</span>.<span class="title function_">toString</span>()      <span class="comment">//&#x27;true&#x27;</span></span><br><span class="line"><span class="number">123.</span><span class="title function_">toString</span>()</span><br><span class="line"><span class="comment">//Uncaught SyntaxError: Invalid or unexpected token</span></span><br><span class="line"><span class="literal">null</span>.<span class="title function_">toString</span>()</span><br><span class="line"><span class="comment">//Uncaught TypeError: Cannot read properties of null (reading &#x27;toString&#x27;)</span></span><br><span class="line">    </span><br><span class="line"><span class="literal">undefined</span>.<span class="title function_">toString</span>()</span><br><span class="line"><span class="comment">//Uncaught TypeError: Cannot read properties of undefined (reading &#x27;toString&#x27;)</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<h3 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean()"></a>Boolean()</h3><p>Boolean() 可以用來將其他的資料型態轉型成布林值型態。還記得前面提過幾種會變成 false 的值嗎?</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Boolean</span>(<span class="number">100</span>)       <span class="comment">//true</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="string">&#x27;100&#x27;</span>)     <span class="comment">//true</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="string">&#x27;&#x27;</span>)        <span class="comment">//false</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="literal">false</span>)     <span class="comment">//false</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="literal">undefined</span>) <span class="comment">//false</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="literal">null</span>)      <span class="comment">//false</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="string">&#x27;&quot;&quot;&#x27;</span>)      <span class="comment">//true</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="string">&#x27;false&#x27;</span>)   <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>本來以為這個題目很好寫…..結果寫得一點都不輕鬆，也找不到方法寫得很有趣。幾乎每個知識點都有再深入研究的餘地，就像《浪人劍客》裡面老人對宮本武藏說的：「技是無限的，卻有鑽研的餘地！」</p>
+<p>重點整理一下，如果可以掌握一些概念，之後還可以再仔細琢磨：</p>
+<p>強制轉型分為兩種：</p>
+<ul>
+<li>隱含的強制轉型：就是 JavaScript 在運算的過程中，依照它的規則在背地裡把值的型別轉換成其他類的型別。<ul>
+<li>四則運算中加法如果遇到「字串」的轉型最需要留意，其他的減乘除都會試圖轉換成數字來處理。</li>
+<li>使用「＝＝＝」相等的時候，會自動替兩側的變數轉型。當使用「＝＝＝」全等的時候，不會替變數自動轉型，建議使用「＝＝＝」來進行比較。</li>
+<li>在布林值的轉型部分，請記得： undefined 、 Null 、 +0 、 -0 、 NaN 、空字串都會轉換成 false。</li>
+</ul>
+</li>
+<li>明顯的強制轉型：透過 JavaScript 提供的函式來進行變數型別轉換。<ul>
+<li>轉換為數值型別： Number() 、 parseInt() 、 parseFloat()</li>
+<li>轉換為字串型別： toString() 、 String()</li>
+<li>轉換為布林型別： Boolean()</li>
+</ul>
+</li>
+</ul>
+<p>我是初踏入前端領域的老學徒，如果有寫錯的地方還請大家包涵與指正，謝謝大家！</p>
+<p>參考資料</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://cythilya.github.io/2018/10/15/coercion/">你懂 JavaScript 嗎？#8 強制轉型（Coercion）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://medium.com/stuarthsu/javascript-%E5%85%A8%E6%94%BB%E7%95%A5-%E5%85%8B%E6%9C%8D-js-%E7%9A%84%E5%A5%87%E6%80%AA%E9%83%A8%E5%88%86-cf44d08ffc0">JavaScript 全攻略：克服 JS 的奇怪部分</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.itread01.com/content/1546084624.html">Javascript型別轉換的技巧</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.uj5u.com/qiye/254374.html">JavaScript資料型別轉換</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://jimmywei01.github.io/2019/05/28/JS-%E7%B4%80%E9%8C%842-%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E3%80%81%E8%87%AA%E5%8B%95%E8%BD%89%E5%9E%8B/">https://jimmywei01.github.io/2019/05/28/JS-紀錄2-包裹物件、自動轉型/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://medium.com/unalai/%E8%AA%8D%E8%AD%98-parseint-parsefloat-%E8%88%87-number-%E8%BD%89%E6%8F%9B%E6%88%90%E6%95%B8%E5%AD%97%E7%9A%84%E4%B8%89%E7%A8%AE%E6%96%B9%E6%B3%95-276640aedb4e">認識 parseInt、parseFloat 與 Number 轉換成數字的三種方法</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.miniasp.com/post/2020/02/21/JavaScript-Numbers-Deep-Dive">前端工程研究：關於 JavaScript 中 Number 型別的常見地雷與建議作法</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/254123/">淺談JS中String()與 .toString()的區別</a></p>
+</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://popeye-ux.github.io/2021/10/28/typeConversions/" data-id="cl2h8c0a9000274oe5enz7yxk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "POPEYE"
+        },
+        "headline": "何謂強制轉型、以及如何作到轉換型別？",
+        "image": "https://popeye-ux.github.iohttps://i.imgur.com/EMhtQsq.png",
+        "keywords": "JavaScript, JS直播班",
+        "genre": "JavaScript",
+        "datePublished": "2021-10-28",
+        "dateCreated": "2021-10-28",
+        "dateModified": "2022-04-27",
+        "url": "https://popeye-ux.github.io/2021/10/28/typeConversions/",
+        "description": "我們都知道JavaScript的基本型別有以下幾種：
+
+String ：字串，由一連串的字符 (characters) 組成。
+Number ：數值，為 floating point number。
+Boolean ：true 或 false。
+undefined ：表示現在還沒有給值。
+null ：不知道之前有沒有值，但是現在沒有值。
+Symbol ：ES6 出現的新型別。
+
+JavaScrip",
+        "wordCount": 1356
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>追蹤 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2022/04/27/nullUndefined/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            null 與 undefined 的差別
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2021/10/27/ifElseAndSwitch/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">if else 與 switch 的使用時機</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2022/04/27/nullUndefined/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/WIxDLyl.jpg)" alt="null 與 undefined 的差別" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2022/04/27/nullUndefined/" class="title">null 與 undefined 的差別</a></p>
+                            <p class="item-date"><time datetime="2022-04-27T02:34:52.000Z" itemprop="datePublished">2022-04-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/10/28/typeConversions/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/EMhtQsq.png)" alt="何謂強制轉型、以及如何作到轉換型別？" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/10/28/typeConversions/" class="title">何謂強制轉型、以及如何作到轉換型別？</a></p>
+                            <p class="item-date"><time datetime="2021-10-28T06:57:20.000Z" itemprop="datePublished">2021-10-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/10/27/ifElseAndSwitch/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/Jr0NGg7.jpg)" alt="if else 與 switch 的使用時機" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/10/27/ifElseAndSwitch/" class="title">if else 與 switch 的使用時機</a></p>
+                            <p class="item-date"><time datetime="2021-10-27T06:44:54.000Z" itemprop="datePublished">2021-10-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/10/15/byReferenceByValue/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/k3INsPA.jpg)" alt="by reference (傳參考)、by value(傳值)的差別" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/10/15/byReferenceByValue/" class="title">by reference (傳參考)、by value(傳值)的差別</a></p>
+                            <p class="item-date"><time datetime="2021-10-15T15:35:46.000Z" itemprop="datePublished">2021-10-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/10/09/jsLive-varLetConst/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/10/09/jsLive-varLetConst/" class="title">var、let、const 的差異</a></p>
+                            <p class="item-date"><time datetime="2021-10-09T15:25:52.000Z" itemprop="datePublished">2021-10-09</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分類</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">40</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">所有文章</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">30</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                <!-- 
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">標籤</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag">JavaScript, 2021iT邦鐵人賽</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-array/" rel="tag">JavaScript, 2021iT邦鐵人賽, array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-%E8%AE%8A%E6%95%B8/" rel="tag">JavaScript, 2021iT邦鐵人賽, 變數</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD/" rel="tag">JavaScript, JS直播班</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD/" rel="tag">JavaScript,JS直播班</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+ -->
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">標籤雲</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/" style="font-size: 20px;">JavaScript, 2021iT邦鐵人賽</a> <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-array/" style="font-size: 10px;">JavaScript, 2021iT邦鐵人賽, array</a> <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-%E8%AE%8A%E6%95%B8/" style="font-size: 13.33px;">JavaScript, 2021iT邦鐵人賽, 變數</a> <a href="/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD/" style="font-size: 16.67px;">JavaScript, JS直播班</a> <a href="/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD/" style="font-size: 13.33px;">JavaScript,JS直播班</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <!-- <h3 class="widget-title">連結</h3> -->
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2022 POPEYE</p>
+                
+                <!-- <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p> -->
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'popeye-ux-1';
+    
+    
+    var disqus_url = 'https://popeye-ux.github.io/2021/10/28/typeConversions/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>
