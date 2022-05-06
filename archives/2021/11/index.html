@@ -225,10 +225,6 @@
             
 這是六角學院JS直播班第五周作業的檢討。
 作業有現成的 HTML 與 CSS模板，是一個旅遊促銷套票的網站，可以新增套票會同步渲染到畫面上。
-我的作業CODE PEN
-這也是我第一次抓資料渲染到網頁上，有些笨拙，也有些地方思慮不周，更有些地方根本沒有注意到就犯錯了。
-所以我後來又去看了同學的作業，針對自己沒做好的地方改進，以下就是我的檢討：
-Level 2 把資料渲染到畫面上原本我是用字串累加，
         </p>        
     </div>
 </article>
@@ -276,17 +272,6 @@ Level 2 把資料渲染到畫面上原本我是用字串累加，
         <p class="article-excerpt">
             
 六角學院JS直播班第五周的小組任務，是要撈 《高雄的里長資訊》，我自己做完作業之後，再參考同學寫的code，我認為自己可以再改進優化：
-作業要求的任務如下：
-
-里長男女生人數比例
-前鎮區有幾個里長
-三民區有幾個女性里長
-無黨籍、民主進步黨、中國國民黨各佔幾位？
-所有區里長人數都整理在一個物件裡
-
-我的高雄市里長資訊作業
-資料格式是一個陣列包著物件的JSON檔，物件的屬性為中文命名：
-123456
         </p>        
     </div>
 </article>
@@ -337,12 +322,6 @@ Level 2 把資料渲染到畫面上原本我是用字串累加，
 
         <p class="article-excerpt">
             陣列裡是有順序的集合，每個元素因為有索引。所以可以用迴圈的方法來遍歷陣列裡的元素，來進行有條件的篩選。
-最常用的就是 for 迴圈處理陣列元素的遍歷問題。
-它的撰寫規則如下：
-12for ([initialization]; [condition]; [final-expression])   statement
-
-
-initialization：初始表達式，也就是按下計數器，從條件的初始值開始計
         </p>        
     </div>
 </article>
@@ -389,10 +368,6 @@ initialization：初始表達式，也就是按下計數器，從條件的初始
 
         <p class="article-excerpt">
             陣列可以被視為是一種特別的「物件」，和物件一樣，是零到多個屬性的集合，而且沒限制甚麼東西不能放進去，所以陣列裡面可以是字串、數字等基本型別，也可以是物件、函式，甚至是另一個陣列。
-而陣列與物件的差別在於，陣列是有順序的集合，能夠透過中括號[]加上索引來存取。也因為這種特性，所以陣列有許多的方法可以使用。
-圖片來源：codingyuri
-這次就來談談如何運用陣列的基本方法：
-Array.protot
         </p>        
     </div>
 </article>
@@ -405,6 +380,53 @@ Array.protot
     
     
         <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2021/11/12/hoisting/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/oUu94vQ.png)" alt="何謂 hoisting(向上提升)？以 let、const、var、function 為例" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://popeye-ux.github.io/2021/11/12/hoisting/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+            </div>
+            <div class="date"><time datetime="2021-11-12T07:17:51.000Z" itemprop="datePublished">2021-11-12</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2021/11/12/hoisting/">何謂 hoisting(向上提升)？以 let、const、var、function 為例</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+向上提升( Hoisting )指的是 JavaScript 允許函式與變數在宣告之前，就可以叫用而不會出錯的一種情況。
+        </p>        
+    </div>
+</article>
+    
+
+    
+    
+    
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -444,16 +466,18 @@ Array.protot
         <p class="article-excerpt">
             先來談談何謂物件？
 在JavaScript中，所有基本型別( Primitive )以外的變數值，都是物件( Object )。
-物件是 0 到多組屬性的集合。屬性是一對鍵( Key )與值( Value )的關聯，又稱 Key-Value pair。屬性的值可以是基本型別的字串、數字、布林…也可以是陣列、函式甚至是另一個物件。
-當然物件也可以是瀏覽器或是執行環境是先定義好的，例如全域物件 win
         </p>        
     </div>
 </article>
+    
+        </div>
     
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -492,12 +516,6 @@ Array.protot
 
         <p class="article-excerpt">
             電腦程式是由一堆命令電腦執行的「指示」所構成。就像人類日常溝通的語言，不同的語言有不同的文法結構；在不同的程式語言，指示電腦執行命令的語法也不相同，程式語言的文法稱為 syntax ，一個程式語言要能運作一定要按照規定的 syntax 來寫。
-JavaScript的語法可以分成兩種：
-
-陳述式( Statement )
-表達式( Expression )，也被稱為表示式或運算式。
-
-陳述式MDN 
         </p>        
     </div>
 </article>
@@ -564,26 +582,6 @@ JavaScript的語法可以分成兩種：
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2022/11/12/hoisting/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.imgur.com/oUu94vQ.png)" alt="何謂 hoisting(向上提升)？以 let、const、var、function 為例" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
-                            <p class="item-title"><a href="/2022/11/12/hoisting/" class="title">何謂 hoisting(向上提升)？以 let、const、var、function 為例</a></p>
-                            <p class="item-date"><time datetime="2022-11-12T07:17:51.000Z" itemprop="datePublished">2022-11-12</time></p>
-                        </div>
-                    </li>
                 
                     <li>
                         
@@ -665,6 +663,26 @@ JavaScript的語法可以分成兩種：
                         </div>
                     </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/11/12/hoisting/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/oUu94vQ.png)" alt="何謂 hoisting(向上提升)？以 let、const、var、function 為例" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/11/12/hoisting/" class="title">何謂 hoisting(向上提升)？以 let、const、var、function 為例</a></p>
+                            <p class="item-date"><time datetime="2021-11-12T07:17:51.000Z" itemprop="datePublished">2021-11-12</time></p>
+                        </div>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -684,7 +702,7 @@ JavaScript的語法可以分成兩種：
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">所有文章</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">30</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">30</span></li></ul>
         </div>
     </div>
 

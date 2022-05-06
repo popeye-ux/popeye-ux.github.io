@@ -12,16 +12,16 @@
     
     <meta name="keywords" content="JavaScript,JS直播班" />
     
-    <meta name="description" content="在參加鐵人賽的時候，因為這個題目了解的朦朦朧朧、似懂非懂，所以不敢寫這個題目。直到JS直播班聽了老師的解說，才一秒突破盲腸，恍然大悟。 談這個題目之前，先來做一下六角學院JS直播班第一週的周末作業《記憶體接龍》，以了解變數與記憶體儲存位置的關係，這樣對於by reference (傳參考)、by value(傳值)會有更深入的了解。 第 1 題12345678910&#x2F;&#x2F; 1. console.l">
+    <meta name="description" content="在參加鐵人賽的時候，因為這個題目了解的朦朦朧朧、似懂非懂，所以不敢寫這個題目。直到JS直播班聽了老師的解說，才一秒突破盲腸，恍然大悟。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="by reference (傳參考)、by value(傳值)的差別">
 <meta property="og:url" content="https://popeye-ux.github.io/2021/10/15/byReferenceByValue/index.html">
 <meta property="og:site_name" content="F2E 星球通訊">
-<meta property="og:description" content="在參加鐵人賽的時候，因為這個題目了解的朦朦朧朧、似懂非懂，所以不敢寫這個題目。直到JS直播班聽了老師的解說，才一秒突破盲腸，恍然大悟。 談這個題目之前，先來做一下六角學院JS直播班第一週的周末作業《記憶體接龍》，以了解變數與記憶體儲存位置的關係，這樣對於by reference (傳參考)、by value(傳值)會有更深入的了解。 第 1 題12345678910&#x2F;&#x2F; 1. console.l">
+<meta property="og:description" content="在參加鐵人賽的時候，因為這個題目了解的朦朦朧朧、似懂非懂，所以不敢寫這個題目。直到JS直播班聽了老師的解說，才一秒突破盲腸，恍然大悟。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/k3INsPA.jpg">
 <meta property="article:published_time" content="2021-10-15T15:35:46.000Z">
-<meta property="article:modified_time" content="2022-04-19T15:36:51.491Z">
+<meta property="article:modified_time" content="2022-05-02T07:49:47.048Z">
 <meta property="article:author" content="POPEYE">
 <meta property="article:tag" content="JavaScript,JS直播班">
 <meta name="twitter:card" content="summary">
@@ -205,7 +205,7 @@
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
   <a href="/2021/10/15/byReferenceByValue/" class="article-date">
-     <time datetime="2022-04-19T15:36:51.491Z" itemprop="dateModified">2022-04-19</time>
+     <time datetime="2022-05-02T07:49:47.048Z" itemprop="dateModified">2022-05-02</time>
   </a>
 </div>
 
@@ -234,6 +234,8 @@
 
             <p><img src="https://i.imgur.com/k3INsPA.jpg"></p>
 <p>在參加鐵人賽的時候，因為這個題目了解的朦朦朧朧、似懂非懂，所以不敢寫這個題目。直到JS直播班聽了老師的解說，才一秒突破盲腸，恍然大悟。</p>
+<span id="more"></span>
+
 <p>談這個題目之前，先來做一下六角學院JS直播班第一週的周末作業《記憶體接龍》，以了解變數與記憶體儲存位置的關係，這樣對於by reference (傳參考)、by value(傳值)會有更深入的了解。</p>
 <h2 id="第-1-題"><a href="#第-1-題" class="headerlink" title="第 1 題"></a><strong>第 1 題</strong></h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. console.log 的值為？</span></span><br><span class="line"><span class="comment">// 2.出現幾個變數、型別、記憶體空間?</span></span><br><span class="line"><span class="keyword">let</span> a ;</span><br><span class="line">a = <span class="number">1</span>;</span><br><span class="line">a = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line"></span><br><span class="line"><span class="comment">//答案1：console.log 的值為 hello</span></span><br><span class="line"><span class="comment">//答案2：1個變數a；3個型別(undefined、number、string)；3個記憶體空間</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>記憶體空間畫圖來表示：<br><img src="https://i.imgur.com/HUjYFXP.jpg"></p>
@@ -381,13 +383,11 @@
         "genre": "JavaScript",
         "datePublished": "2021-10-15",
         "dateCreated": "2021-10-15",
-        "dateModified": "2022-04-19",
+        "dateModified": "2022-05-02",
         "url": "https://popeye-ux.github.io/2021/10/15/byReferenceByValue/",
         "description": "
-在參加鐵人賽的時候，因為這個題目了解的朦朦朧朧、似懂非懂，所以不敢寫這個題目。直到JS直播班聽了老師的解說，才一秒突破盲腸，恍然大悟。
-談這個題目之前，先來做一下六角學院JS直播班第一週的周末作業《記憶體接龍》，以了解變數與記憶體儲存位置的關係，這樣對於by reference (傳參考)、by value(傳值)會有更深入的了解。
-第 1 題12345678910// 1. console.l",
-        "wordCount": 670
+在參加鐵人賽的時候，因為這個題目了解的朦朦朧朧、似懂非懂，所以不敢寫這個題目。直到JS直播班聽了老師的解說，才一秒突破盲腸，恍然大悟。",
+        "wordCount": 671
     }
 </script>
 
@@ -487,26 +487,6 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2022/11/12/hoisting/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.imgur.com/oUu94vQ.png)" alt="何謂 hoisting(向上提升)？以 let、const、var、function 為例" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
-                            <p class="item-title"><a href="/2022/11/12/hoisting/" class="title">何謂 hoisting(向上提升)？以 let、const、var、function 為例</a></p>
-                            <p class="item-date"><time datetime="2022-11-12T07:17:51.000Z" itemprop="datePublished">2022-11-12</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2021/11/27/travelticket/" class="thumbnail">
     
     
@@ -584,6 +564,26 @@
                         </div>
                     </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/11/12/hoisting/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/oUu94vQ.png)" alt="何謂 hoisting(向上提升)？以 let、const、var、function 為例" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2021/11/12/hoisting/" class="title">何謂 hoisting(向上提升)？以 let、const、var、function 為例</a></p>
+                            <p class="item-date"><time datetime="2021-11-12T07:17:51.000Z" itemprop="datePublished">2021-11-12</time></p>
+                        </div>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -603,7 +603,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">所有文章</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">30</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">30</span></li></ul>
         </div>
     </div>
 
