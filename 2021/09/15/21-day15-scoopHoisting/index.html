@@ -43,6 +43,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -59,6 +61,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -212,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.2k 字
         
       </span>
     
@@ -223,7 +228,7 @@
         
         
         
-          21 分鐘
+          19 分鐘
         
       </span>
     
@@ -274,11 +279,22 @@
 <p>那要怎麼區分變數的範圍呢？</p>
 <p>在ES6之前，切分變數最小的範圍是function為單位，函式裡面的變數只能存活在函式裡面。</p>
 <p>在ES6之後，可以使用let、const來定義變數，這種狀況下切分變數最小範圍則為{}大括號區塊。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> man = <span class="string">&#x27;歐陽克&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> marriage = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> man = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line">	<span class="keyword">return</span> man + <span class="string">&#x27;娶了黃蓉&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">marriage</span>()); <span class="comment">//郭靖娶了黃蓉</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(man);        <span class="comment">//歐陽克</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> man <span class="token operator">=</span> <span class="token string">'歐陽克'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> <span class="token function-variable function">marriage</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">var</span> man <span class="token operator">=</span> <span class="token string">'郭靖'</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> man <span class="token operator">+</span> <span class="token string">'娶了黃蓉'</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">marriage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//郭靖娶了黃蓉</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>man<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">//歐陽克</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>好險！歐陽克娶不到黃蓉！</p>
 <p>因為使用var定義變數man，前面提到作用域最小的範圍是function，所以marriage()會去捉「var man &#x3D; ‘郭靖’ 」來用，而不會去抓外層的「 var man &#x3D; ‘歐陽克’」來用。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> man = <span class="string">&#x27;歐陽克&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> marriage = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> man + <span class="string">&#x27;娶了黃蓉&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">marriage</span>()); <span class="comment">//歐陽克娶了黃蓉</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(man);        <span class="comment">//歐陽克</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> man <span class="token operator">=</span> <span class="token string">'歐陽克'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> <span class="token function-variable function">marriage</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> man <span class="token operator">+</span> <span class="token string">'娶了黃蓉'</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">marriage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//歐陽克娶了黃蓉</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>man<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">//歐陽克</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>糟糕！歐陽克娶了黃蓉…郭靖哭哭！</p>
 <p>但是如果在marriage()裡面找不到「var man &#x3D; ‘郭靖’」，就會往外層去找，此時「var man &#x3D; ‘歐陽克’」就會被捉來用了！郭靖真的會哭！</p>
@@ -290,11 +306,25 @@
 <li>function可以捉外層變數還使用，但是從外層捉不到function內的變數。</li>
 </ul>
 <h2 id="提升-Hoisting"><a href="#提升-Hoisting" class="headerlink" title="提升(Hoisting)"></a>提升(Hoisting)</h2><p>繼續來看看郭靖有沒有辦法跟黃蓉有情人終成眷屬！</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> man = <span class="string">&#x27;歐陽克&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> marriage = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(man);  <span class="comment">//undefined</span></span><br><span class="line">	<span class="keyword">var</span> man = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line">	<span class="keyword">return</span> man + <span class="string">&#x27;娶了黃蓉&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">marriage</span>()); <span class="comment">//郭靖娶了黃蓉</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(man);        <span class="comment">//歐陽克</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> man <span class="token operator">=</span> <span class="token string">'歐陽克'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> <span class="token function-variable function">marriage</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>man<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//undefined</span>
+	<span class="token keyword">var</span> man <span class="token operator">=</span> <span class="token string">'郭靖'</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> man <span class="token operator">+</span> <span class="token string">'娶了黃蓉'</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">marriage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//郭靖娶了黃蓉</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>man<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">//歐陽克</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p> 我們在「var man &#x3D; ‘郭靖’」前面加了一個console.log(man)，雖然「var man &#x3D; ‘郭靖’」宣告在後面，但是console.log(man)並沒有去外層抓「var man &#x3D; ‘歐陽克’」來用。</p>
 <p>那是因為console.log(man)和「var man &#x3D; ‘郭靖’」在同一個作用域，只要確認後面 man這個變數有宣告，那就會宣告變數這件事提到上面來，然後先給它一個undefined的值。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> man = <span class="string">&#x27;歐陽克&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> marriage = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(man);  <span class="comment">//Uncaught ReferenceError: Cannot access &#x27;man&#x27; before initialization</span></span><br><span class="line">	<span class="keyword">let</span> man = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line">	<span class="keyword">return</span> man + <span class="string">&#x27;娶了黃蓉&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">marriage</span>()); </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(man);        </span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> man <span class="token operator">=</span> <span class="token string">'歐陽克'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> <span class="token function-variable function">marriage</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>man<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//Uncaught ReferenceError: Cannot access 'man' before initialization</span>
+	<span class="token keyword">let</span> man <span class="token operator">=</span> <span class="token string">'郭靖'</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> man <span class="token operator">+</span> <span class="token string">'娶了黃蓉'</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">marriage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>man<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>如果是使用 let來宣告「let man &#x3D; ‘郭靖’」，在還沒宣告前，使用console.log(man)來查詢，就會報錯：Uncaught ReferenceError: Cannot access ‘man’ before initialization。因為let和const不允許在宣告卻沒有初始化的狀況下使用，從宣告到初始化這中間的時間差稱為「暫時死區」(Temporal Dead Zone)(TDZ)。</p>
 <p>所以在這裡提一下重點：</p>
@@ -305,7 +335,10 @@
 <p>綜上所述，最好在作用域(scope)的一開始就宣告好所有的變數再使用，避免發生慘案。</p>
 <h2 id="函式的提升"><a href="#函式的提升" class="headerlink" title="函式的提升"></a>函式的提升</h2><p>前面提到的是用var設參數的提升，還有一種是「函式的提升」。</p>
 <p>而透過「函式宣告」的方式建立的函式，也可以在前面叫用，後面再宣告函式。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">marriage</span>(<span class="string">&#x27;郭靖&#x27;</span>);  <span class="comment">//&quot;郭靖娶了黃蓉&quot;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">marriage</span>(<span class="params">man</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> man + <span class="string">&#x27;娶了黃蓉&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">marriage</span><span class="token punctuation">(</span><span class="token string">'郭靖'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//"郭靖娶了黃蓉"</span>
+<span class="token keyword">function</span> <span class="token function">marriage</span><span class="token punctuation">(</span><span class="token parameter">man</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> man <span class="token operator">+</span> <span class="token string">'娶了黃蓉'</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>而「函式表達式」就沒這樣的待遇了，提前叫用只會出現：TypeError。</p>
 <p><strong>變數的提升只有宣告被提升，但是沒有初始化。但是函式的提升則是函式的內容整個被提升。</strong></p>
@@ -471,6 +504,9 @@
 
 
 
+  
+
+
 
   
 
@@ -625,6 +661,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

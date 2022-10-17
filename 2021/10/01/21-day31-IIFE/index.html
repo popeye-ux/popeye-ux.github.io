@@ -43,6 +43,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -59,6 +61,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -269,31 +274,56 @@
                 <p><img src="https://i.imgur.com/RzLyjIO.jpg" srcset="/img/loading.gif" lazyload><br>IIFE（Immediately Invoked Function Expression），是一種「可以立即執行的函式」。</p>
 <span id="more"></span>
 <p>一般的函式長這樣：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">doSomething</span> (x)&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">doSomething</span>(參數);  <span class="comment">//呼叫doSomething，執行程式區塊</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">doSomething</span> <span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token comment">//do something</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token function">doSomething</span><span class="token punctuation">(</span>參數<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//呼叫doSomething，執行程式區塊</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>而立即執行函式長成這個樣子：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> <span class="title function_">doSomething</span> (x) &#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;)(參數);  <span class="comment">//不用呼叫doSomething函式，X帶入參數，立即在程式區塊中執行</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">doSomething</span> <span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">//do something</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">(</span>參數<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//不用呼叫doSomething函式，X帶入參數，立即在程式區塊中執行</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>立即執行函式，不透過呼叫函式的方式，瀏覽器讀到函式後面附加的小括號( )，就知道要在函式宣告的當下立即執行。</p>
 <p>假設洪七公嘴饞想吃叫化雞，叫黃蓉馬上烤一隻叫化雞來吃：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> <span class="title function_">cooking</span>(<span class="params">food</span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`丫頭去弄個<span class="subst">$&#123;food&#125;</span>來吃吃！！！`</span>);</span><br><span class="line">&#125;)(<span class="string">&#x27;叫化雞&#x27;</span>)  <span class="comment">//丫頭去弄個叫化雞來吃吃！！！</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">cooking</span>(<span class="string">&#x27;東坡肉&#x27;</span>);  <span class="comment">//Uncaught ReferenceError: cooking is not defined</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">cooking</span><span class="token punctuation">(</span><span class="token parameter">food</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">丫頭去弄個</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>food<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">來吃吃！！！</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token string">'叫化雞'</span><span class="token punctuation">)</span>  <span class="token comment">//丫頭去弄個叫化雞來吃吃！！！</span>
+
+<span class="token function">cooking</span><span class="token punctuation">(</span><span class="token string">'東坡肉'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//Uncaught ReferenceError: cooking is not defined</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>如果在立即執行函式的外面再呼叫一次cooking函式，就會出現「Uncaught ReferenceError: cooking is not defined」。</p>
 <p>既然提到了立即執行函式，讓我們利用它來解一下面試中常常會出現的考題：</p>
 <p>「每次間隔一秒，依次印出0、1、2、3、4」</p>
 <p>你會怎麼解呢？直覺應該利用for迴圈 + window.setTimeout()來解題：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)&#123;</span><br><span class="line">	<span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">	&#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	window<span class="token punctuation">.</span><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token number">1000</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>圖</p>
 <p>結果是直接印出五個5，說好的0、1、2、3、4呢？</p>
 <p>還記得前面提過「切分辨數最小範圍是function」，所以for迴圈和window.setTimeout()是個跑各的。</p>
 <p>for迴圈是急驚風，而window.setTimeout()是慢郎中，window.setTimeout()剛剛過了一秒去捉外面的i來console.log()的時候，for迴圈已經跑完五次，i++變成5，不符合i&lt;5的條件跳出迴圈了，所以window.setTimeout()捉迴圈的i，每次都捉到5。</p>
 <p>那要怎麼解決這個問題呢? 我們可以把window.setTimeout()封裝在一個立即執行函式裡面，後面的小括號則帶入迴圈每次跑出來的 i，讓 i 把值帶入 x 裡面丟到 window.setTimeout() 去執行。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)&#123;</span><br><span class="line"></span><br><span class="line">	(<span class="keyword">function</span>(<span class="params">x</span>)&#123;</span><br><span class="line">		<span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">log</span>(x);</span><br><span class="line">		&#125;,x*<span class="number">1000</span>);</span><br><span class="line">	&#125;)(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+	<span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		window<span class="token punctuation">.</span><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>x<span class="token operator">*</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>這樣就會每隔1秒依序印出0、1、2、3、4了。</p>
 <p>當然另外一個更簡單的解法則是把for迴圈的變數宣告「var i &#x3D; 0」直接改成「let i &#x3D; 0」，利用let是以大括號區塊為作用域的概念，讓for迴圈必須與window.setTimeout()一起跑。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)&#123;</span><br><span class="line">	<span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">	&#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	window<span class="token punctuation">.</span><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token number">1000</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>這樣就會間格1秒，依序印出0、1、2、3、4了。</p>
 
@@ -458,6 +488,9 @@
 
 
 
+  
+
+
 
   
 
@@ -612,6 +645,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

@@ -43,6 +43,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -59,6 +61,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -212,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          1.6k 字
         
       </span>
     
@@ -223,7 +228,7 @@
         
         
         
-          15 分鐘
+          14 分鐘
         
       </span>
     
@@ -282,10 +287,24 @@
 <h2 id="字串string"><a href="#字串string" class="headerlink" title="字串string"></a>字串string</h2><p>字串必須用2個單引號’’或是2個雙引號包住，二者不可混用。</p>
 <p>字串內也可以不放任何字元，稱之為空字串。</p>
 <p>字串可以使用+號與其他字串連接。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字串(string)，必須要放在&#x27;&#x27;或是&quot;&quot;之中</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="string">&#x27;降龍十八掌&#x27;</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">//空字串</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//字串連接可以使用+號</span></span><br><span class="line"><span class="keyword">var</span> huangRong = <span class="string">&#x27;黃蓉&#x27;</span>+<span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//兩個單引號包覆單引號，會出錯</span></span><br><span class="line"><span class="keyword">var</span> yangKang = <span class="string">&#x27;He&#x27;</span>s a bad man<span class="string">&#x27;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//改用雙引號包覆單引號，就沒有問題</span></span><br><span class="line"><span class="string">var yangKang = &quot;He&#x27;</span>s a bad man<span class="string">&quot;;</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//字串(string)，必須要放在''或是""之中</span>
+<span class="token keyword">var</span> guoJing <span class="token operator">=</span> <span class="token string">'降龍十八掌'</span><span class="token punctuation">;</span> 
+
+<span class="token comment">//空字串</span>
+<span class="token keyword">var</span> guoJing <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+
+<span class="token comment">//字串連接可以使用+號</span>
+<span class="token keyword">var</span> huangRong <span class="token operator">=</span> <span class="token string">'黃蓉'</span><span class="token operator">+</span><span class="token string">'打狗棒法'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//兩個單引號包覆單引號，會出錯</span>
+<span class="token keyword">var</span> yangKang <span class="token operator">=</span> <span class="token string">'He'</span>s a bad man'<span class="token punctuation">;</span>
+
+<span class="token comment">//改用雙引號包覆單引號，就沒有問題</span>
+<span class="token keyword">var</span> yangKang <span class="token operator">=</span> <span class="token string">"He's a bad man"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h2 id="數字number"><a href="#數字number" class="headerlink" title="數字number"></a>數字number</h2><p>不管是整數還是帶有小數點的浮點數在JavaScript中都屬於數字這個類型。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//數字(number),玉山有3952公尺</span></span><br><span class="line"><span class="keyword">var</span> jadeMountain = <span class="number">3952</span>;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//數字(number),玉山有3952公尺</span>
+<span class="token keyword">var</span> jadeMountain <span class="token operator">=</span> <span class="token number">3952</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <p>但是數字number中有幾個比較特別的類型：</p>
 <ul>
@@ -294,22 +313,47 @@
 <li>NaN  不是個數字，當遇到無法轉換為數字的狀態，或是無意義的運算，例如0&#x2F;0，就會回傳NaN。而且NaN與任何數字做運算，回傳的結果都是NaN。</li>
 </ul>
 <p>我們可以使用isNaN()來檢查一個變數是不是NaN。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//infinity</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>/<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//-infinity</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(-<span class="number">3</span>/<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//NaN</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">0</span>/<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//檢查是否為NaN</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="string">&#x27;降龍十八掌&#x27;</span>) <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//infinity</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//-infinity</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">3</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+<span class="token comment">//NaN</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//檢查是否為NaN</span>
+<span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token string">'降龍十八掌'</span><span class="token punctuation">)</span> <span class="token comment">//NaN</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h2 id="布林值-boolean"><a href="#布林值-boolean" class="headerlink" title="布林值 boolean"></a>布林值 boolean</h2><p>boolean只有二種值：true 和 false。主要用在判斷式，作為程式流程控制之用。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> real = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">var</span> fake = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> more = (<span class="number">100</span> &gt; <span class="number">50</span>);  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> real <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> fake <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> more <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">100</span> <span class="token operator">></span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>任何值都可以轉為布林值，但我們只要記得會轉為false的值就可以了。</p>
 <p>以下幾種會轉為false：<strong>false、0、空字串(“”)、NaN、null以及undefined。</strong></p>
 <p>除了上述幾種，其他的值皆為true。</p>
 <p>試試看用Boolean()函數將值轉換為布林值：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Boolean</span>(<span class="number">1</span>);  <span class="comment">//true</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="number">0</span>);  <span class="comment">//false</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="string">&quot;&quot;</span>);  <span class="comment">//false</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="literal">null</span>);  <span class="comment">//false</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//true</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//false</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//false</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//false</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h2 id="null"><a href="#null" class="headerlink" title="null"></a>null</h2><p>null代表「空值」，所以要<strong>將一個變數的值清除？可以指定那個變數為null。</strong></p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//郭靖本來的內力值為100分</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="number">100</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(guoJing);  <span class="comment">//100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//郭靖中毒後，一點功力都提不起來</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="literal">null</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(guoJing);  <span class="comment">//null</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//郭靖本來的內力值為100分</span>
+<span class="token keyword">var</span> guoJing <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>guoJing<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//100</span>
+
+<span class="token comment">//郭靖中毒後，一點功力都提不起來</span>
+<span class="token keyword">var</span> guoJing <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>guoJing<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//null</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h2 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h2><p>undefined指的是變數未經宣告，且沒有賦值；或者是有宣告變數，但是沒有給定值的狀態。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x); <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> x<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//undefined</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <p>引用許國政先生在《0 陷阱！0 誤解！8 天重新認識JavaScript！》為undefined以及null下的註解：</p>
 <p>『</p>
@@ -481,6 +525,9 @@
 
 
 
+  
+
+
 
   
 
@@ -635,6 +682,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

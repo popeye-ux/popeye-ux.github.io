@@ -16,12 +16,12 @@
   <meta name="author" content="POPEYE">
   <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
   
-    <meta name="description" content="剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」 哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。 簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。 先讓我們不專業的方式來理解一下： 12345678&#x2F;&#x2F;假設我們建立一個名為郭靖(guoJing)的變數，給他 &amp;#x27;降龍十八掌&amp;#x27;的值var guo">
+    <meta name="description" content="剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」 哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。 簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。 先讓我們不專業的方式來理解一下： &#x2F;&#x2F;假設我們建立一個名為郭靖(guoJing)的變數，給他 &#39;降龍十八掌&#39;的值 var guoJing &#x3D; &#39;降龍十八掌&#39;;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Day1:起手式—變數宣告">
 <meta property="og:url" content="https://popeye-ux.github.io/2021/09/02/21-declaration/index.html">
 <meta property="og:site_name" content="F2E 星球通訊">
-<meta property="og:description" content="剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」 哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。 簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。 先讓我們不專業的方式來理解一下： 12345678&#x2F;&#x2F;假設我們建立一個名為郭靖(guoJing)的變數，給他 &amp;#x27;降龍十八掌&amp;#x27;的值var guo">
+<meta property="og:description" content="剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」 哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。 簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。 先讓我們不專業的方式來理解一下： &#x2F;&#x2F;假設我們建立一個名為郭靖(guoJing)的變數，給他 &#39;降龍十八掌&#39;的值 var guoJing &#x3D; &#39;降龍十八掌&#39;;">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/r4GPepv.jpg">
 <meta property="og:image" content="https://i.imgur.com/8iGUT2V.jpg">
@@ -44,6 +44,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -60,6 +62,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -213,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          976 字
         
       </span>
     
@@ -224,7 +229,7 @@
         
         
         
-          10 分鐘
+          9 分鐘
         
       </span>
     
@@ -272,7 +277,14 @@
 <p>哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。</p>
 <p>簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。</p>
 <p>先讓我們不專業的方式來理解一下：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假設我們建立一個名為郭靖(guoJing)的變數，給他 &#x27;降龍十八掌&#x27;的值</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個名為黃蓉(huangRong)的變數，給她&#x27;打狗棒法&#x27;的值</span></span><br><span class="line"><span class="keyword">var</span> huangRong = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個名為歐陽鋒(ouyangFeng)的變數，給他&#x27;蛤蟆功&#x27;的值</span></span><br><span class="line"><span class="keyword">var</span> ouyangFeng = <span class="string">&#x27;蛤蟆功&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//假設我們建立一個名為郭靖(guoJing)的變數，給他 '降龍十八掌'的值</span>
+<span class="token keyword">var</span> guoJing <span class="token operator">=</span> <span class="token string">'降龍十八掌'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//建立一個名為黃蓉(huangRong)的變數，給她'打狗棒法'的值</span>
+<span class="token keyword">var</span> huangRong <span class="token operator">=</span> <span class="token string">'打狗棒法'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//建立一個名為歐陽鋒(ouyangFeng)的變數，給他'蛤蟆功'的值</span>
+<span class="token keyword">var</span> ouyangFeng <span class="token operator">=</span> <span class="token string">'蛤蟆功'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>我們把武功裝在名為郭靖(guoJing)、黃蓉(huangRong)與歐陽鋒(ouyangFeng)的三個變數裡面，就可以讓他們在電腦中華山論劍，用功夫決鬥，你裝什麼功夫在變數裡面，他們就用什麼功夫決鬥。</p>
 <p>建立變數包含2個動作：</p>
@@ -282,10 +294,18 @@
 </ul>
 <p><img src="https://i.imgur.com/8iGUT2V.jpg" srcset="/img/loading.gif" lazyload></p>
 <p>我們可以先宣告變數，同時賦予初始值，也可以之後再給初始值。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//宣告變數郭靖(guoJing)，同時賦予初始值</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//先宣告黃蓉(huangRong)，之後再賦值</span></span><br><span class="line"><span class="keyword">var</span> huangRong;</span><br><span class="line">huangRong = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//宣告變數郭靖(guoJing)，同時賦予初始值</span>
+<span class="token keyword">var</span> guoJing <span class="token operator">=</span> <span class="token string">'降龍十八掌'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//先宣告黃蓉(huangRong)，之後再賦值</span>
+<span class="token keyword">var</span> huangRong<span class="token punctuation">;</span>
+huangRong <span class="token operator">=</span> <span class="token string">'打狗棒法'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>也可以這樣，建立多個變數，之間用逗點 ( , )隔開，之後再給他們值。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">var</span> guoJing, huangRong, ouyangFeng;</span><br><span class="line">guoJing = <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line">huangRong = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line">ouyangFeng = <span class="string">&#x27;蛤蟆功&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> <span class="token keyword">var</span> guoJing<span class="token punctuation">,</span> huangRong<span class="token punctuation">,</span> ouyangFeng<span class="token punctuation">;</span>
+guoJing <span class="token operator">=</span> <span class="token string">'降龍十八掌'</span><span class="token punctuation">;</span>
+huangRong <span class="token operator">=</span> <span class="token string">'打狗棒法'</span><span class="token punctuation">;</span>
+ouyangFeng <span class="token operator">=</span> <span class="token string">'蛤蟆功'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>再來談談變數的規則：</p>
 <ul>
@@ -458,6 +478,9 @@
 
 
 
+  
+
+
 
   
 
@@ -612,6 +635,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

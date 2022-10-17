@@ -16,12 +16,12 @@
   <meta name="author" content="POPEYE">
   <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
   
-    <meta name="description" content="陣列算是一種「特殊物件」，可以在裡面放入0到多個元素，裡面的元素可以是字串、數字等原始型別資料、也可以是另一個陣列或另一個物件。與物件的差別在於，陣列是有順序的集合，每個元素都有其索引值，並且可以用length的屬性來取得陣列的長度。 如何建立陣列?普遍的做法是採用「陣列實字」(Array Literal)的方式： 12345678910&#x2F;&#x2F;建立一個華山論劍(huaShan)的陣列var hua">
+    <meta name="description" content="陣列算是一種「特殊物件」，可以在裡面放入0到多個元素，裡面的元素可以是字串、數字等原始型別資料、也可以是另一個陣列或另一個物件。與物件的差別在於，陣列是有順序的集合，每個元素都有其索引值，並且可以用length的屬性來取得陣列的長度。 如何建立陣列?普遍的做法是採用「陣列實字」(Array Literal)的方式： &#x2F;&#x2F;建立一個華山論劍(huaShan)的陣列 var huaShan &#x3D; [&#39;東">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Day6:長幼有序的好孩子：陣列">
 <meta property="og:url" content="https://popeye-ux.github.io/2021/09/06/21-day6-array/index.html">
 <meta property="og:site_name" content="F2E 星球通訊">
-<meta property="og:description" content="陣列算是一種「特殊物件」，可以在裡面放入0到多個元素，裡面的元素可以是字串、數字等原始型別資料、也可以是另一個陣列或另一個物件。與物件的差別在於，陣列是有順序的集合，每個元素都有其索引值，並且可以用length的屬性來取得陣列的長度。 如何建立陣列?普遍的做法是採用「陣列實字」(Array Literal)的方式： 12345678910&#x2F;&#x2F;建立一個華山論劍(huaShan)的陣列var hua">
+<meta property="og:description" content="陣列算是一種「特殊物件」，可以在裡面放入0到多個元素，裡面的元素可以是字串、數字等原始型別資料、也可以是另一個陣列或另一個物件。與物件的差別在於，陣列是有順序的集合，每個元素都有其索引值，並且可以用length的屬性來取得陣列的長度。 如何建立陣列?普遍的做法是採用「陣列實字」(Array Literal)的方式： &#x2F;&#x2F;建立一個華山論劍(huaShan)的陣列 var huaShan &#x3D; [&#39;東">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/fAnlBhC.jpg">
 <meta property="article:published_time" content="2021-09-06T03:00:21.000Z">
@@ -43,6 +43,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -59,6 +61,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -212,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.4k 字
+          2.5k 字
         
       </span>
     
@@ -223,7 +228,7 @@
         
         
         
-          28 分鐘
+          21 分鐘
         
       </span>
     
@@ -269,21 +274,78 @@
                 <p><img src="https://i.imgur.com/fAnlBhC.jpg" srcset="/img/loading.gif" lazyload></p>
 <p>陣列算是一種「特殊物件」，可以在裡面放入0到多個元素，裡面的元素可以是字串、數字等原始型別資料、也可以是另一個陣列或另一個物件。與物件的差別在於，<strong>陣列是有順序的集合</strong>，每個元素都有其<strong>索引值</strong>，並且可以用<strong>length</strong>的屬性來取得陣列的長度。</p>
 <h2 id="如何建立陣列"><a href="#如何建立陣列" class="headerlink" title="如何建立陣列?"></a>如何建立陣列?</h2><p>普遍的做法是採用「陣列實字」(Array Literal)的方式：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個華山論劍(huaShan)的陣列</span></span><br><span class="line"><span class="keyword">var</span> huaShan = [<span class="string">&#x27;東邪&#x27;</span>,<span class="string">&#x27;西毒&#x27;</span>,<span class="string">&#x27;北丐&#x27;</span>,<span class="string">&#x27;南帝&#x27;</span>,<span class="string">&#x27;中神通&#x27;</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(huaShan.<span class="property">length</span>); </span><br><span class="line"><span class="comment">//5 huaShan這個陣列有5個元素，所以長度為5</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(huaShan[<span class="number">0</span>]);</span><br><span class="line"><span class="comment">//&#x27;東邪&#x27; 陣列的索引值從0開始算，所以第一個元素的索引值為0。</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(huaShan[<span class="number">1</span>]);</span><br><span class="line"><span class="comment">//&#x27;西毒&#x27; 陣列的索引值從0開始算，所以第二個元素的索引值為1。</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//建立一個華山論劍(huaShan)的陣列</span>
+<span class="token keyword">var</span> huaShan <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'東邪'</span><span class="token punctuation">,</span><span class="token string">'西毒'</span><span class="token punctuation">,</span><span class="token string">'北丐'</span><span class="token punctuation">,</span><span class="token string">'南帝'</span><span class="token punctuation">,</span><span class="token string">'中神通'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>huaShan<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment">//5 huaShan這個陣列有5個元素，所以長度為5</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>huaShan<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//'東邪' 陣列的索引值從0開始算，所以第一個元素的索引值為0。</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>huaShan<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//'西毒' 陣列的索引值從0開始算，所以第二個元素的索引值為1。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>這樣也可以建立陣列：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個華山論劍(huaShan)的「空」陣列</span></span><br><span class="line"><span class="keyword">var</span> huaShan = [];</span><br><span class="line">huaShan[<span class="number">0</span>] = <span class="string">&#x27;東邪&#x27;</span>;</span><br><span class="line">huaShan[<span class="number">1</span>] = <span class="string">&#x27;西毒&#x27;</span>;</span><br><span class="line">huaShan[<span class="number">2</span>] = <span class="string">&#x27;北丐&#x27;</span>;</span><br><span class="line">huaShan[<span class="number">3</span>] = <span class="string">&#x27;南帝&#x27;</span>;</span><br><span class="line">huaShan[<span class="number">4</span>] = <span class="string">&#x27;中神通&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(huaShan);</span><br><span class="line"><span class="comment">// [object Array] (5)  [&quot;東邪&quot;,&quot;西毒&quot;,&quot;北丐&quot;,&quot;南帝&quot;,&quot;中神通&quot;]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(huaShan.<span class="property">length</span>);</span><br><span class="line"><span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//建立一個華山論劍(huaShan)的「空」陣列</span>
+<span class="token keyword">var</span> huaShan <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+huaShan<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'東邪'</span><span class="token punctuation">;</span>
+huaShan<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'西毒'</span><span class="token punctuation">;</span>
+huaShan<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'北丐'</span><span class="token punctuation">;</span>
+huaShan<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'南帝'</span><span class="token punctuation">;</span>
+huaShan<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'中神通'</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>huaShan<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// [object Array] (5)  ["東邪","西毒","北丐","南帝","中神通"]</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>huaShan<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 5</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>還有一種方式是透過new關鍵字來建立物件：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個江南七怪(sevenMonster)的陣列</span></span><br><span class="line"><span class="keyword">var</span> sevenMonster = <span class="keyword">new</span> <span class="title class_">Array</span>();</span><br><span class="line">sevenMonster[<span class="number">0</span>] = <span class="string">&#x27;柯鎮惡&#x27;</span>;</span><br><span class="line">sevenMonster[<span class="number">1</span>] = <span class="string">&#x27;朱聰&#x27;</span>;</span><br><span class="line">sevenMonster[<span class="number">2</span>] = <span class="string">&#x27;韓寶駒&#x27;</span>;</span><br><span class="line">sevenMonster[<span class="number">3</span>] = <span class="string">&#x27;南希仁&#x27;</span>;</span><br><span class="line">sevenMonster[<span class="number">4</span>] = <span class="string">&#x27;張阿生&#x27;</span>;</span><br><span class="line">sevenMonster[<span class="number">5</span>] = <span class="string">&#x27;全金發&#x27;</span>;</span><br><span class="line">sevenMonster[<span class="number">6</span>] = <span class="string">&#x27;韓小瑩&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sevenMonster.<span class="property">length</span>);</span><br><span class="line"><span class="comment">// 7 </span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//建立一個江南七怪(sevenMonster)的陣列</span>
+<span class="token keyword">var</span> sevenMonster <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sevenMonster<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'柯鎮惡'</span><span class="token punctuation">;</span>
+sevenMonster<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'朱聰'</span><span class="token punctuation">;</span>
+sevenMonster<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'韓寶駒'</span><span class="token punctuation">;</span>
+sevenMonster<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'南希仁'</span><span class="token punctuation">;</span>
+sevenMonster<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'張阿生'</span><span class="token punctuation">;</span>
+sevenMonster<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'全金發'</span><span class="token punctuation">;</span>
+sevenMonster<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'韓小瑩'</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sevenMonster<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 7 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>陣列並不需要連續指定，沒被指定的其索引值為 undefined。</p>
 <p>就像江南七怪在大漠時，五哥「笑彌陀」張阿生被「銅屍」陳玄風殺死，只剩六怪，但是排序是不變的，不會六弟變五哥，七妹變六妹，五哥空出來的位置就變成’undefined’。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個江南七怪(sevenMonster)的陣列，但是五哥「笑彌陀」張阿生被「銅屍」陳玄風殺死，只剩六怪</span></span><br><span class="line"><span class="keyword">var</span> sevenMonster = <span class="keyword">new</span> <span class="title class_">Array</span>();</span><br><span class="line">sevenMonster[<span class="number">0</span>] = <span class="string">&#x27;柯鎮惡&#x27;</span>;</span><br><span class="line">sevenMonster[<span class="number">1</span>] = <span class="string">&#x27;朱聰&#x27;</span>;</span><br><span class="line">sevenMonster[<span class="number">2</span>] = <span class="string">&#x27;韓寶駒&#x27;</span>;</span><br><span class="line">sevenMonster[<span class="number">3</span>] = <span class="string">&#x27;南希仁&#x27;</span>;</span><br><span class="line"><span class="comment">//但是五哥「笑彌陀」張阿生被「銅屍」陳玄風殺死，sevenMonster[4]，不予指定。</span></span><br><span class="line">sevenMonster[<span class="number">5</span>] = <span class="string">&#x27;全金發&#x27;</span>;</span><br><span class="line">sevenMonster[<span class="number">6</span>] = <span class="string">&#x27;韓小瑩&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sevenMonster.<span class="property">length</span>);</span><br><span class="line"><span class="comment">// 7 </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sevenMonster);</span><br><span class="line"><span class="comment">//[&#x27;柯鎮惡&#x27;,&#x27;朱聰&#x27;,&#x27;韓寶駒&#x27;,&#x27;南希仁&#x27;,&#x27;undefined&#x27;,&#x27;全金發&#x27;,&#x27;韓小瑩&#x27;];</span></span><br><span class="line"><span class="comment">//sevenMonster第五個元素，也就是sevenMonster[4]的元素變成&#x27;undefined&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//建立一個江南七怪(sevenMonster)的陣列，但是五哥「笑彌陀」張阿生被「銅屍」陳玄風殺死，只剩六怪</span>
+<span class="token keyword">var</span> sevenMonster <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sevenMonster<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'柯鎮惡'</span><span class="token punctuation">;</span>
+sevenMonster<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'朱聰'</span><span class="token punctuation">;</span>
+sevenMonster<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'韓寶駒'</span><span class="token punctuation">;</span>
+sevenMonster<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'南希仁'</span><span class="token punctuation">;</span>
+<span class="token comment">//但是五哥「笑彌陀」張阿生被「銅屍」陳玄風殺死，sevenMonster[4]，不予指定。</span>
+sevenMonster<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'全金發'</span><span class="token punctuation">;</span>
+sevenMonster<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'韓小瑩'</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sevenMonster<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 7 </span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sevenMonster<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//['柯鎮惡','朱聰','韓寶駒','南希仁','undefined','全金發','韓小瑩'];</span>
+<span class="token comment">//sevenMonster第五個元素，也就是sevenMonster[4]的元素變成'undefined'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>我們可以利用 .length 的屬性來取得陣列的長度，或利用它來改變陣列的長度。</p>
 <p>如果length設得比原本的陣列長度還要長，多出來的元素將以’undefined’填補。如果length設的比原本陣列長度少，則多出來的元素將被刪除，即使之後length設回原來長度，被刪掉的元素也不會恢復，而會以’undefined’取代。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個江南七怪(sevenMonster)的陣列</span></span><br><span class="line"><span class="keyword">var</span> sevenMonster = [<span class="string">&#x27;柯鎮惡&#x27;</span>,<span class="string">&#x27;朱聰&#x27;</span>,<span class="string">&#x27;韓寶駒&#x27;</span>,<span class="string">&#x27;南希仁&#x27;</span>,<span class="string">&#x27;張阿生&#x27;</span>,<span class="string">&#x27;全金發&#x27;</span>,<span class="string">&#x27;韓小瑩&#x27;</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sevenMonster.<span class="property">length</span>);  <span class="comment">// 7</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//江南七怪後來被陳玄風及楊康分別殺害，只剩柯鎮惡一人。</span></span><br><span class="line">sevenMonster.<span class="property">length</span> = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sevenMonster);  <span class="comment">// [&#x27;柯鎮惡&#x27;];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//人死不能復生，即使再把江南七怪(sevenMonster)的length設為7，後面的六位大俠也都是&#x27;undefined&#x27;</span></span><br><span class="line">sevenMonster.<span class="property">length</span> = <span class="number">7</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sevenMonster);</span><br><span class="line"><span class="comment">//[&#x27;柯鎮惡&#x27;,&#x27;undefined&#x27;,&#x27;undefined&#x27;,&#x27;undefined&#x27;,&#x27;undefined&#x27;,&#x27;undefined&#x27;,&#x27;undefined&#x27;]</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//建立一個江南七怪(sevenMonster)的陣列</span>
+<span class="token keyword">var</span> sevenMonster <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'柯鎮惡'</span><span class="token punctuation">,</span><span class="token string">'朱聰'</span><span class="token punctuation">,</span><span class="token string">'韓寶駒'</span><span class="token punctuation">,</span><span class="token string">'南希仁'</span><span class="token punctuation">,</span><span class="token string">'張阿生'</span><span class="token punctuation">,</span><span class="token string">'全金發'</span><span class="token punctuation">,</span><span class="token string">'韓小瑩'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sevenMonster<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 7</span>
+
+<span class="token comment">//江南七怪後來被陳玄風及楊康分別殺害，只剩柯鎮惡一人。</span>
+sevenMonster<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sevenMonster<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// ['柯鎮惡'];</span>
+
+<span class="token comment">//人死不能復生，即使再把江南七怪(sevenMonster)的length設為7，後面的六位大俠也都是'undefined'</span>
+sevenMonster<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">7</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sevenMonster<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//['柯鎮惡','undefined','undefined','undefined','undefined','undefined','undefined']</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>陣列可以使用的方法列舉如下：</p>
 <ul>
@@ -292,7 +354,22 @@
 <li>shift()：取出陣列的第一個元素</li>
 <li>unshift()：新增元素至陣列開端。</li>
 </ul>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個華山(huaShan)的陣列</span></span><br><span class="line"><span class="keyword">var</span> huaShan = [<span class="string">&#x27;東邪&#x27;</span>,<span class="string">&#x27;西毒&#x27;</span>,<span class="string">&#x27;北丐&#x27;</span>,<span class="string">&#x27;南帝&#x27;</span>,<span class="string">&#x27;中神通&#x27;</span>];</span><br><span class="line">huaShan.<span class="title function_">pop</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(huaShan);</span><br><span class="line"><span class="comment">//[&#x27;東邪&#x27;,&#x27;西毒&#x27;,&#x27;北丐&#x27;,&#x27;南帝&#x27;] huaShan.pop()取出了陣列的最後一個元素</span></span><br><span class="line">huaShan.<span class="title function_">push</span>(<span class="string">&#x27;中頑童&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(huaShan);</span><br><span class="line"><span class="comment">//[&#x27;東邪&#x27;,&#x27;西毒&#x27;,&#x27;北丐&#x27;,&#x27;南帝&#x27;,&#x27;中頑童&#x27;];</span></span><br><span class="line">huaShan.<span class="title function_">shift</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(huaShan);</span><br><span class="line"><span class="comment">//[&#x27;西毒&#x27;,&#x27;北丐&#x27;,&#x27;南帝&#x27;,&#x27;中頑童&#x27;]</span></span><br><span class="line"></span><br><span class="line">huaShan.<span class="title function_">unshift</span>(<span class="string">&#x27;東方不敗&#x27;</span>);</span><br><span class="line"><span class="comment">//[&#x27;東方不敗&#x27;,&#x27;西毒&#x27;,&#x27;北丐&#x27;,&#x27;南帝&#x27;,&#x27;中頑童&#x27;];</span></span><br><span class="line"><span class="comment">//東方不敗跑錯棚了</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//建立一個華山(huaShan)的陣列</span>
+<span class="token keyword">var</span> huaShan <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'東邪'</span><span class="token punctuation">,</span><span class="token string">'西毒'</span><span class="token punctuation">,</span><span class="token string">'北丐'</span><span class="token punctuation">,</span><span class="token string">'南帝'</span><span class="token punctuation">,</span><span class="token string">'中神通'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+huaShan<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>huaShan<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//['東邪','西毒','北丐','南帝'] huaShan.pop()取出了陣列的最後一個元素</span>
+huaShan<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'中頑童'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>huaShan<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//['東邪','西毒','北丐','南帝','中頑童'];</span>
+huaShan<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>huaShan<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//['西毒','北丐','南帝','中頑童']</span>
+
+huaShan<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token string">'東方不敗'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//['東方不敗','西毒','北丐','南帝','中頑童'];</span>
+<span class="token comment">//東方不敗跑錯棚了</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>學會陣列與物件之後，我們就可以開始用JavaScript來處理一些網頁上擷取來的資料，就像學內功要先學打坐練習呼吸一樣。</p>
 
@@ -457,6 +534,9 @@
 
 
 
+  
+
+
 
   
 
@@ -611,6 +691,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

@@ -43,6 +43,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -59,6 +61,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -212,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          808 字
+          768 字
         
       </span>
     
@@ -277,14 +282,21 @@
 <p>而在外層用var宣告的變數則為「全域變數」，即使寫在function裡面，沒用var宣告的變數都是「全域變數」。就如同前面有提到的，function內可以去捉外層的變數來用，而外層無法捉到function內的變數來用，也就是說「全域變數」是大家公用的。而「區域變數」則只能在function內使用。</p>
 <p>舉個簡單的例子，公園裡的盪鞦韆，大家都可以去玩，這就是「全域變數」；但是你家院子裡的盪鞦韆，外面的人沒辦法進來玩，就是「區域變數」。</p>
 <p>而其實「全域變數」指的是「全域物件」的屬性，以瀏覽器來說，「全域物件」就是window物件，window物件的部分在提到BOM的時候會再詳細解釋，我們先知道就好。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> man = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">man</span>);  <span class="comment">//郭靖</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> man <span class="token operator">=</span> <span class="token string">'郭靖'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>man<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//郭靖</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <p>「var man &#x3D; ‘郭靖’」變成window物件的屬性了。</p>
 <p>而使用var宣告的全域變數，無法使用delete關鍵字刪除。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> man = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">man</span>);</span><br><span class="line"><span class="keyword">delete</span> <span class="variable language_">window</span>.<span class="property">man</span> <span class="comment">//false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">man</span>); <span class="comment">// 郭靖</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> man <span class="token operator">=</span> <span class="token string">'郭靖'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>man<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">delete</span> window<span class="token punctuation">.</span>man <span class="token comment">//false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>man<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 郭靖</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>但是透過window宣告的全域變數，卻可以使用delete刪除。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">man</span> = <span class="string">&#x27;郭靖&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">man</span>);</span><br><span class="line"><span class="keyword">delete</span> <span class="variable language_">window</span>.<span class="property">man</span> <span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">man</span>); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">window<span class="token punctuation">.</span>man <span class="token operator">=</span> <span class="token string">'郭靖'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>man<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">delete</span> window<span class="token punctuation">.</span>man <span class="token comment">//true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>man<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>這一點是需要特別注意的。</p>
 
@@ -449,6 +461,9 @@
 
 
 
+  
+
+
 
   
 
@@ -603,6 +618,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

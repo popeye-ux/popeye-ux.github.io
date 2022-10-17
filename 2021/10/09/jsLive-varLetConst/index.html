@@ -41,6 +41,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -57,6 +59,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -210,7 +215,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.1k 字
         
       </span>
     
@@ -221,7 +226,7 @@
         
         
         
-          21 分鐘
+          18 分鐘
         
       </span>
     
@@ -269,10 +274,15 @@
 <p>但是老師教我用 var 宣告變數，但我也看到有同學用 let 與 const 宣告變數，這是怎麼一回事呢？</p>
 <span id="more"></span>
 
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個變數郭靖(guoJing)</span></span><br><span class="line"><span class="keyword">var</span> guoJing;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//建立一個變數郭靖(guoJing)</span>
+<span class="token keyword">var</span> guoJing<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <p>也可以看到這樣：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個建立一個名為黃蓉(huangRong)的變數，給她&#x27;打狗棒法&#x27;的值</span></span><br><span class="line"><span class="keyword">let</span> huangRongKungFu = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個洪七公(hongQigong)的常數，給他「北丐」的值</span></span><br><span class="line"><span class="keyword">const</span> hongQigong = <span class="string">&#x27;北丐&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//建立一個建立一個名為黃蓉(huangRong)的變數，給她'打狗棒法'的值</span>
+<span class="token keyword">let</span> huangRongKungFu <span class="token operator">=</span> <span class="token string">'打狗棒法'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//建立一個洪七公(hongQigong)的常數，給他「北丐」的值</span>
+<span class="token keyword">const</span> hongQigong <span class="token operator">=</span> <span class="token string">'北丐'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>var 、 let 、 const 這三兄弟到底有甚麼差別呢？</p>
 <p>原來除了用var宣告變數之外，在ES6之後，變數區分為變數與常數，透過 var 與 let 宣告「變數」，透過const宣告「常數」。</p>
@@ -284,18 +294,52 @@
 </ul>
 <p>作用域外層的程式捉不到作用域內的宣告的變數，但是作用域內的程式可以捉到外層的變數。</p>
 <p>先來看看var：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個變數郭靖(guoJing)</span></span><br><span class="line"><span class="keyword">var</span> guoJingKungFu;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(guoJingKungFu);</span><br><span class="line"><span class="comment">//未賦值，所以出現的結果為 undefined</span></span><br><span class="line"></span><br><span class="line">guoJingKungFu = <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;郭靖使出 &#x27;</span> + guoJingKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;郭靖使出 降龍十八掌&quot;</span></span><br><span class="line"></span><br><span class="line">guoJingKungFu = <span class="string">&#x27;空明拳&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;郭靖使出 &#x27;</span> + guoJingKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;郭靖使出 空明拳&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> guoJingKungFu = <span class="string">&#x27;九陰真經&#x27;</span>;</span><br><span class="line"><span class="comment">//再次用var宣告 guoJing = &#x27;九陰真經&#x27;;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;郭靖使出 &#x27;</span> + guoJingKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;郭靖使出 九陰真經&quot;</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//建立一個變數郭靖(guoJing)</span>
+<span class="token keyword">var</span> guoJingKungFu<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>guoJingKungFu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//未賦值，所以出現的結果為 undefined</span>
+
+guoJingKungFu <span class="token operator">=</span> <span class="token string">'降龍十八掌'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'郭靖使出 '</span> <span class="token operator">+</span> guoJingKungFu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//結果為"郭靖使出 降龍十八掌"</span>
+
+guoJingKungFu <span class="token operator">=</span> <span class="token string">'空明拳'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'郭靖使出 '</span> <span class="token operator">+</span> guoJingKungFu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//結果為"郭靖使出 空明拳"</span>
+
+<span class="token keyword">var</span> guoJingKungFu <span class="token operator">=</span> <span class="token string">'九陰真經'</span><span class="token punctuation">;</span>
+<span class="token comment">//再次用var宣告 guoJing = '九陰真經';</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'郭靖使出 '</span> <span class="token operator">+</span> guoJingKungFu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//結果為"郭靖使出 九陰真經"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p><strong>使用var的時候，同一個變數名稱可以再重新「宣告」，重新賦值。</strong></p>
 <p>再看看使用 <code>let</code> 的狀況：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個建立一個名為黃蓉(huangRong)的變數，給她&#x27;打狗棒法&#x27;的值</span></span><br><span class="line"><span class="keyword">let</span> huangRongKungFu;</span><br><span class="line">huangRongKungFu = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;黃蓉使出 &#x27;</span> + huangRongKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;黃蓉使出 打狗棒法&quot;</span></span><br><span class="line"></span><br><span class="line">huangRongKungFu = <span class="string">&#x27;落英神劍掌&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;黃蓉使出 &#x27;</span> + huangRongKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;黃蓉使出 落英神劍掌&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> huangRongKungFu = <span class="string">&#x27;蘭花拂穴手&#x27;</span>;</span><br><span class="line"><span class="comment">//Uncaught SyntaxError: Identifier &#x27;huangRong&#x27; has already been declared</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//建立一個建立一個名為黃蓉(huangRong)的變數，給她'打狗棒法'的值</span>
+<span class="token keyword">let</span> huangRongKungFu<span class="token punctuation">;</span>
+huangRongKungFu <span class="token operator">=</span> <span class="token string">'打狗棒法'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'黃蓉使出 '</span> <span class="token operator">+</span> huangRongKungFu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//結果為"黃蓉使出 打狗棒法"</span>
+
+huangRongKungFu <span class="token operator">=</span> <span class="token string">'落英神劍掌'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'黃蓉使出 '</span> <span class="token operator">+</span> huangRongKungFu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//結果為"黃蓉使出 落英神劍掌"</span>
+
+<span class="token keyword">let</span> huangRongKungFu <span class="token operator">=</span> <span class="token string">'蘭花拂穴手'</span><span class="token punctuation">;</span>
+<span class="token comment">//Uncaught SyntaxError: Identifier 'huangRong' has already been declared</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p><strong>使用 let 比使用 var 來宣告變數嚴謹，如果宣告時未賦值，並不會以undefined初始化，所以從宣告到初始化這段時間會無法使用，這個時間差稱為「暫時死區」。</strong></p>
 <p><strong>let 能重複賦值，禁止於同個區塊作用域重複宣告</strong>，如果重複宣告會出現：</p>
 <p>「Uncaught SyntaxError: Identifier ‘huangRong’ has already been declared」</p>
 <p>提醒你已經用 let 宣告過這個變數了。</p>
 <p>讓我們來試試 const：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個洪七公(hongQigong)的常數，給他「北丐」的值</span></span><br><span class="line"><span class="keyword">const</span> hongQigong = <span class="string">&#x27;北丐&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;洪七公是 &#x27;</span> + hongQigong);</span><br><span class="line">hongQigong = <span class="string">&#x27;美食家&#x27;</span>;</span><br><span class="line"><span class="comment">//Uncaught TypeError: Assignment to constant variable.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hongQigong = <span class="string">&#x27;美食家&#x27;</span>;</span><br><span class="line"><span class="comment">//Uncaught SyntaxError: Identifier &#x27;hongQigong&#x27; has already been declared</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//建立一個洪七公(hongQigong)的常數，給他「北丐」的值</span>
+<span class="token keyword">const</span> hongQigong <span class="token operator">=</span> <span class="token string">'北丐'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'洪七公是 '</span> <span class="token operator">+</span> hongQigong<span class="token punctuation">)</span><span class="token punctuation">;</span>
+hongQigong <span class="token operator">=</span> <span class="token string">'美食家'</span><span class="token punctuation">;</span>
+<span class="token comment">//Uncaught TypeError: Assignment to constant variable.</span>
+
+<span class="token keyword">const</span> hongQigong <span class="token operator">=</span> <span class="token string">'美食家'</span><span class="token punctuation">;</span>
+<span class="token comment">//Uncaught SyntaxError: Identifier 'hongQigong' has already been declared</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p><strong>const 是用來宣告常數，也就是不會變動的常量，所以禁止於同個區塊作用域重複宣告，也不能重新賦值。而且宣告時一定要給值。</strong></p>
 <p>重複宣告會告訴你：</p>
@@ -471,6 +515,9 @@
 
 
 
+  
+
+
 
   
 
@@ -625,6 +672,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

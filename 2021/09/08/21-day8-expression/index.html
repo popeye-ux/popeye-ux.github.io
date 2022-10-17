@@ -43,6 +43,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -59,6 +61,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -212,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          587 字
+          522 字
         
       </span>
     
@@ -272,16 +277,21 @@
 <p>例如：1+2&#x3D;3  「+」是運算子，而 1、 2是運算元。</p>
 <p>運算式可以分為以下幾種：指定運算式、算術運算式、字串運算式、布林運算式。</p>
 <h2 id="指定運算式"><a href="#指定運算式" class="headerlink" title="指定運算式"></a>指定運算式</h2><p>利用指定運算子(&#x3D;、+&#x3D;、-&#x3D;、*&#x3D;、&#x2F;&#x3D;、%&#x3D;)，將運算式右邊的值「指定」給左邊。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">x <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 
 <h2 id="算數運算式"><a href="#算數運算式" class="headerlink" title="算數運算式"></a>算數運算式</h2><p>由常數、變數、函數、括號、運算子(+、-、*、&#x2F;)組合而成的運算式。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x + y;</span><br><span class="line">x++;</span><br><span class="line">(x + y) / z;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">x <span class="token operator">+</span> y<span class="token punctuation">;</span>
+x<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>x <span class="token operator">+</span> y<span class="token punctuation">)</span> <span class="token operator">/</span> z<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h2 id="字串運算式"><a href="#字串運算式" class="headerlink" title="字串運算式"></a>字串運算式</h2><p>利用「+」號將兩個字串組成一個新的字串。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name =<span class="string">&#x27;洪七公&#x27;</span> ,carrier = <span class="string">&#x27;丐幫幫主&#x27;</span>, hobby = <span class="string">&#x27;美食家&#x27;</span>;</span><br><span class="line">hongQ = name + <span class="string">&#x27;不只是&#x27;</span> + carrier + <span class="string">&#x27;,還是&#x27;</span> + hobby;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">let</span> name <span class="token operator">=</span><span class="token string">'洪七公'</span> <span class="token punctuation">,</span>carrier <span class="token operator">=</span> <span class="token string">'丐幫幫主'</span><span class="token punctuation">,</span> hobby <span class="token operator">=</span> <span class="token string">'美食家'</span><span class="token punctuation">;</span>
+hongQ <span class="token operator">=</span> name <span class="token operator">+</span> <span class="token string">'不只是'</span> <span class="token operator">+</span> carrier <span class="token operator">+</span> <span class="token string">',還是'</span> <span class="token operator">+</span> hobby<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <h2 id="布林運算式"><a href="#布林運算式" class="headerlink" title="布林運算式"></a>布林運算式</h2><p>布林運算式通常搭配邏輯運算子(&amp;&amp; 、|| 、!)來比較兩個運算式。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">let</span> y = <span class="number">10</span>;</span><br><span class="line">(x &gt; <span class="number">15</span>) &amp;&amp; (y &gt; <span class="number">5</span>);  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> y <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>x <span class="token operator">></span> <span class="token number">15</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>y <span class="token operator">></span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
                 
               </div>
             
@@ -443,6 +453,9 @@
 
 
 
+  
+
+
 
   
 
@@ -597,6 +610,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

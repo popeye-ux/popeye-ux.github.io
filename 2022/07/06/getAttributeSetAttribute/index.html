@@ -16,12 +16,12 @@
   <meta name="author" content="POPEYE">
   <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
   
-    <meta name="description" content="Hi,我是POPEYE，今天要來談談 getAttribute 與 setAttribute 。 getAttribute 與 setAttribute 是兩個我比較容易混淆的 JS 方法，所以我花了一點工夫來研究一下這兩個方法如何使用。 首先要了解這兩種方法是存取與操作 HTML 標籤屬性的方法，都必須要透過選取到某個 HTML DOM 節點來操作，所以寫法上一定是這樣子： 123element">
+    <meta name="description" content="Hi,我是POPEYE，今天要來談談 getAttribute 與 setAttribute 。 getAttribute 與 setAttribute 是兩個我比較容易混淆的 JS 方法，所以我花了一點工夫來研究一下這兩個方法如何使用。 首先要了解這兩種方法是存取與操作 HTML 標籤屬性的方法，都必須要透過選取到某個 HTML DOM 節點來操作，所以寫法上一定是這樣子： element.ge">
 <meta property="og:type" content="article">
 <meta property="og:title" content="getAttributeSetAttribute">
 <meta property="og:url" content="https://popeye-ux.github.io/2022/07/06/getAttributeSetAttribute/index.html">
 <meta property="og:site_name" content="F2E 星球通訊">
-<meta property="og:description" content="Hi,我是POPEYE，今天要來談談 getAttribute 與 setAttribute 。 getAttribute 與 setAttribute 是兩個我比較容易混淆的 JS 方法，所以我花了一點工夫來研究一下這兩個方法如何使用。 首先要了解這兩種方法是存取與操作 HTML 標籤屬性的方法，都必須要透過選取到某個 HTML DOM 節點來操作，所以寫法上一定是這樣子： 123element">
+<meta property="og:description" content="Hi,我是POPEYE，今天要來談談 getAttribute 與 setAttribute 。 getAttribute 與 setAttribute 是兩個我比較容易混淆的 JS 方法，所以我花了一點工夫來研究一下這兩個方法如何使用。 首先要了解這兩種方法是存取與操作 HTML 標籤屬性的方法，都必須要透過選取到某個 HTML DOM 節點來操作，所以寫法上一定是這樣子： element.ge">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/TKSzURm.jpg">
 <meta property="article:published_time" content="2022-07-06T15:27:46.000Z">
@@ -43,6 +43,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -59,6 +61,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -212,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          2.8k 字
         
       </span>
     
@@ -223,7 +228,7 @@
         
         
         
-          26 分鐘
+          24 分鐘
         
       </span>
     
@@ -269,33 +274,98 @@
                 <p><img src="https://i.imgur.com/TKSzURm.jpg" srcset="/img/loading.gif" lazyload><br>Hi,我是POPEYE，今天要來談談 getAttribute 與 setAttribute 。</p>
 <p>getAttribute 與 setAttribute 是兩個我比較容易混淆的 JS 方法，所以我花了一點工夫來研究一下這兩個方法如何使用。</p>
 <p>首先要了解這兩種方法是存取與操作 HTML 標籤屬性的方法，都必須要透過<strong>選取到某個 HTML DOM 節點來操作</strong>，所以寫法上一定是這樣子：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">element.<span class="title function_">getAttribute</span>(<span class="string">&#x27;屬性名稱&#x27;</span>);</span><br><span class="line">element.<span class="title function_">setAttribute</span>(<span class="string">&#x27;屬性名稱&#x27;</span>,<span class="string">&#x27;屬性值&#x27;</span>);</span><br><span class="line"><span class="comment">//屬性名稱為 id 、 class 、 href、 data-** ……等等</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">element<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'屬性名稱'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+element<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'屬性名稱'</span><span class="token punctuation">,</span><span class="token string">'屬性值'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//屬性名稱為 id 、 class 、 href、 data-** ……等等</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 <h2 id="getAttribute"><a href="#getAttribute" class="headerlink" title="getAttribute"></a>getAttribute</h2><p>getAttribute 用來取得 HTML 標籤的屬性值，如果指定的屬性不存在，則會回傳 null 或 “”。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2 class=&quot;title&quot; id=&quot;quiet&quot; data-band=&quot;Mayday&quot; name=&quot;好好&quot;&gt;</span><br><span class="line">    最安靜的時刻，回憶總是最喧囂</span><br><span class="line">&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-htmlmixed" data-language="htmlmixed"><code class="language-htmlmixed">&lt;h2 class&#x3D;&quot;title&quot; id&#x3D;&quot;quiet&quot; data-band&#x3D;&quot;Mayday&quot; name&#x3D;&quot;好好&quot;&gt;
+    最安靜的時刻，回憶總是最喧囂
+&lt;&#x2F;h2&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JavaScript</span></span><br><span class="line"><span class="keyword">const</span> quiet = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.title&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(quiet.<span class="title function_">getAttribute</span>(<span class="string">&#x27;class&#x27;</span>));</span><br><span class="line"><span class="comment">// &quot;title&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(quiet.<span class="title function_">getAttribute</span>(<span class="string">&#x27;id&#x27;</span>));</span><br><span class="line"><span class="comment">//&quot;quiet&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(quiet.<span class="title function_">getAttribute</span>(<span class="string">&#x27;data-band&#x27;</span>));</span><br><span class="line"><span class="comment">//&quot;Mayday&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(quiet.<span class="title function_">getAttribute</span>(<span class="string">&#x27;name&#x27;</span>));</span><br><span class="line"><span class="comment">//&quot;好好&quot;</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//JavaScript</span>
+<span class="token keyword">const</span> quiet <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.title'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>quiet<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'class'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "title"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>quiet<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//"quiet"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>quiet<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'data-band'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//"Mayday"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>quiet<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//"好好"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>所以我們可以把 HTML 節點的屬性值取出，拿來組字串之後，再塞回本來的節點去。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2 class=&quot;title&quot; id=&quot;quiet&quot; data-band=&quot;Mayday&quot; name=&quot;好好&quot;&gt;</span><br><span class="line">    最安靜的時刻，回憶總是最喧囂</span><br><span class="line">&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JavaScript</span></span><br><span class="line"><span class="keyword">const</span> quiet = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.title&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str =<span class="string">`我最喜歡的歌詞是《<span class="subst">$&#123;quiet.getAttribute(<span class="string">&#x27;data-band&#x27;</span>)&#125;</span>》唱的</span></span><br><span class="line"><span class="string">《<span class="subst">$&#123;quiet.getAttribute(<span class="string">&#x27;data-song&#x27;</span>)&#125;</span>》，</span></span><br><span class="line"><span class="string">裡面這一句「<span class="subst">$&#123;quiet.textContent&#125;</span>」`</span>;</span><br><span class="line">quiet.<span class="property">textContent</span> = str;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(quiet.<span class="property">textContent</span>);</span><br><span class="line"><span class="comment">//&quot;我最喜歡的歌詞是《Mayday》唱的《null》，裡面這一句「最安靜的時刻，回憶總是最喧囂」&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-htmlmixed" data-language="htmlmixed"><code class="language-htmlmixed">&lt;h2 class&#x3D;&quot;title&quot; id&#x3D;&quot;quiet&quot; data-band&#x3D;&quot;Mayday&quot; name&#x3D;&quot;好好&quot;&gt;
+    最安靜的時刻，回憶總是最喧囂
+&lt;&#x2F;h2&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//JavaScript</span>
+<span class="token keyword">const</span> quiet <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.title'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> str <span class="token operator">=</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">我最喜歡的歌詞是《</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>quiet<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'data-band'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">》唱的
+《</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>quiet<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'data-song'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">》，
+裡面這一句「</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>quiet<span class="token punctuation">.</span>textContent<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">」</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+quiet<span class="token punctuation">.</span>textContent <span class="token operator">=</span> str<span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>quiet<span class="token punctuation">.</span>textContent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//"我最喜歡的歌詞是《Mayday》唱的《null》，裡面這一句「最安靜的時刻，回憶總是最喧囂」"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>本來 <code>&lt;h2&gt;</code> 標籤中 「最安靜的時刻，回憶總是最喧囂」 ，被改成 「我最喜歡的歌詞是《Mayday》唱的《null》，裡面這一句「最安靜的時刻，回憶總是最喧囂」」囉！！！</p>
 <h2 id="setAttribute"><a href="#setAttribute" class="headerlink" title="setAttribute"></a>setAttribute</h2><p>setAttribute 的功用在於修改 HTML 節的的屬性。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">element.<span class="title function_">setAttribute</span>(<span class="string">&#x27;屬性名稱&#x27;</span>,<span class="string">&#x27;屬性值&#x27;</span>);</span><br><span class="line"><span class="comment">//屬性名稱為 id 、 class 、 href、 data-** ……等等</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">element<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'屬性名稱'</span><span class="token punctuation">,</span><span class="token string">'屬性值'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//屬性名稱為 id 、 class 、 href、 data-** ……等等</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <p>不囉嗦！來看一下範例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;h2 class=&quot;title2&quot; data-song=&quot;好好&quot; data-band=&quot;Mayday&quot;&gt;</span><br><span class="line">    最喧囂的時刻，寂寞包圍著孤島</span><br><span class="line">&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-class">.blue</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-htmlmixed" data-language="htmlmixed"><code class="language-htmlmixed">
+&lt;h2 class&#x3D;&quot;title2&quot; data-song&#x3D;&quot;好好&quot; data-band&#x3D;&quot;Mayday&quot;&gt;
+    最喧囂的時刻，寂寞包圍著孤島
+&lt;&#x2F;h2&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-css" data-language="css"><code class="language-css">
+<span class="token selector">.blue</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JavaScript</span></span><br><span class="line"><span class="keyword">const</span> noise = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.title2&#x27;</span>);</span><br><span class="line"></span><br><span class="line">noise.<span class="title function_">setAttribute</span>(<span class="string">&quot;data-song&quot;</span>,<span class="string">&quot;瘋狂世界&quot;</span>);</span><br><span class="line">noise.<span class="title function_">setAttribute</span>(<span class="string">&#x27;class&#x27;</span>,<span class="string">&#x27;blue&#x27;</span>);</span><br><span class="line"><span class="comment">//字的顏色也變成藍色了</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(noise.<span class="title function_">getAttribute</span>(<span class="string">&#x27;data-song&#x27;</span>));</span><br><span class="line"><span class="comment">//瘋狂世界&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(noise.<span class="title function_">getAttribute</span>(<span class="string">&#x27;class&#x27;</span>));</span><br><span class="line"><span class="comment">//&quot;blue&quot;</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//JavaScript</span>
+<span class="token keyword">const</span> noise <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.title2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+noise<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"data-song"</span><span class="token punctuation">,</span><span class="token string">"瘋狂世界"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+noise<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'class'</span><span class="token punctuation">,</span><span class="token string">'blue'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//字的顏色也變成藍色了</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>noise<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'data-song'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//瘋狂世界"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>noise<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'class'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//"blue"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://codepen.io/popeye_ux/pen/abLmggK">CODEPEN範例</a></li>
 </ul>
 <h2 id="getAttribute-與-setAttribute-的進階使用"><a href="#getAttribute-與-setAttribute-的進階使用" class="headerlink" title="getAttribute 與 setAttribute 的進階使用"></a>getAttribute 與 setAttribute 的進階使用</h2><p>除了用來操作屬性之外，在做事件監聽的時候，也可以利用 getAttribute 來做一些判斷：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class=&quot;item&quot;&gt;</span><br><span class="line">  &lt;li class =&quot;item1&quot;&gt;item1&lt;/li&gt;</span><br><span class="line">  &lt;li class =&quot;item2&quot;&gt;item2&lt;/li&gt;</span><br><span class="line">  &lt;li class =&quot;item3&quot;&gt;item3&lt;/li&gt;</span><br><span class="line">  &lt;li class =&quot;item4&quot;&gt;item4&lt;/li&gt;</span><br><span class="line">  &lt;li class =&quot;item5&quot;&gt;item5&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-htmlmixed" data-language="htmlmixed"><code class="language-htmlmixed">&lt;ul class&#x3D;&quot;item&quot;&gt;
+  &lt;li class &#x3D;&quot;item1&quot;&gt;item1&lt;&#x2F;li&gt;
+  &lt;li class &#x3D;&quot;item2&quot;&gt;item2&lt;&#x2F;li&gt;
+  &lt;li class &#x3D;&quot;item3&quot;&gt;item3&lt;&#x2F;li&gt;
+  &lt;li class &#x3D;&quot;item4&quot;&gt;item4&lt;&#x2F;li&gt;
+  &lt;li class &#x3D;&quot;item5&quot;&gt;item5&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span>&#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item1</span>, <span class="selector-class">.item2</span>, <span class="selector-class">.item3</span>, <span class="selector-class">.item4</span>, <span class="selector-class">.item5</span>&#123;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.blue</span>&#123;</span><br><span class="line">  <span class="attribute">color</span> : blue;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.item</span><span class="token punctuation">&#123;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span> 
+<span class="token punctuation">&#125;</span>
 
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> item = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.item&#x27;</span>);</span><br><span class="line"></span><br><span class="line">item.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span>(e.<span class="property">target</span>.<span class="title function_">getAttribute</span>(<span class="string">&#x27;class&#x27;</span>) === <span class="string">&#x27;item3&#x27;</span>)&#123;</span><br><span class="line">    e.<span class="property">target</span>.<span class="title function_">setAttribute</span>(<span class="string">&#x27;class&#x27;</span>,<span class="string">&#x27;blue&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<span class="token selector">.item1, .item2, .item3, .item4, .item5</span><span class="token punctuation">&#123;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.blue</span><span class="token punctuation">&#123;</span>
+  <span class="token property">color</span> <span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 50px<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">const</span> item <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.item'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+item<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'class'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'item3'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    e<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'class'</span><span class="token punctuation">,</span><span class="token string">'blue'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>在這裡利用 <code>e.target.getAttribute(&#39;class&#39;)</code> 來判斷如果點擊到的 <code>class</code> 屬性如果是 <code>item3</code> ， 則把 e.target 的 class 屬性變成藍色的。</p>
 <p>MDN 有把 getAttribute 與 setAttribute 這兩個節點方法可以操作的 HTML 屬性列出來，有需要時可以參考一下：</p>
@@ -458,6 +528,9 @@
 
 
 
+  
+
+
 
   
 
@@ -612,6 +685,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

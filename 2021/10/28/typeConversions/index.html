@@ -44,6 +44,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -60,6 +62,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -213,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.3k 字
+          5.8k 字
         
       </span>
     
@@ -224,7 +229,7 @@
         
         
         
-          53 分鐘
+          48 分鐘
         
       </span>
     
@@ -287,7 +292,12 @@
 <h2 id="隱含的強制轉型-—-implicit-coercion"><a href="#隱含的強制轉型-—-implicit-coercion" class="headerlink" title="隱含的強制轉型 — implicit coercion"></a>隱含的強制轉型 — <strong>implicit coercion</strong></h2><p>剛剛提到 JavaScript 的型別不在於變數本身，而在於<strong>變數被賦予的值</strong>。</p>
 <p>JavaScript 在運算的時候，如果看到兩個不同型別的值，就會自動判斷，把值轉換為相同型別，再做運算。很親切(變態)吧!!??</p>
 <p>不多說，讓我們看一下例子，比較容易進入狀況：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="string">&quot;1&quot;</span>;      <span class="comment">//字串</span></span><br><span class="line">a = a + <span class="number">2</span>;        <span class="comment">//&#x27;12&#x27;， a為字串&quot;1&quot;，數字2與字串相加，被轉型為字串&quot;2&quot;</span></span><br><span class="line">a = a*<span class="number">2</span>           <span class="comment">//24 ， 在乘法的時候，字串&quot;12&quot;與2相乘，字串被轉型為數值，得出的結果是數值 12</span></span><br><span class="line">a = a + <span class="literal">true</span>      <span class="comment">//25， 布林值遇到數值，被轉為數字1，相加後變成25</span></span><br><span class="line">a = a * <span class="literal">null</span>      <span class="comment">//0 ， null遇到數值被轉為0，數值與0相乘變成0</span></span><br><span class="line">a = a / <span class="literal">undefined</span> <span class="comment">//NaN， undefined無法再被轉型為數字</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token string">"1"</span><span class="token punctuation">;</span>      <span class="token comment">//字串</span>
+a <span class="token operator">=</span> a <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">;</span>        <span class="token comment">//'12'， a為字串"1"，數字2與字串相加，被轉型為字串"2"</span>
+a <span class="token operator">=</span> a<span class="token operator">*</span><span class="token number">2</span>           <span class="token comment">//24 ， 在乘法的時候，字串"12"與2相乘，字串被轉型為數值，得出的結果是數值 12</span>
+a <span class="token operator">=</span> a <span class="token operator">+</span> <span class="token boolean">true</span>      <span class="token comment">//25， 布林值遇到數值，被轉為數字1，相加後變成25</span>
+a <span class="token operator">=</span> a <span class="token operator">*</span> <span class="token keyword">null</span>      <span class="token comment">//0 ， null遇到數值被轉為0，數值與0相乘變成0</span>
+a <span class="token operator">=</span> a <span class="token operator">/</span> <span class="token keyword">undefined</span> <span class="token comment">//NaN， undefined無法再被轉型為數字</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>以上這些「我變我變我變變變」的情形就是 JavaScript 變數的「強制轉型」，而且是 JavaScript 親切的、自動的、在背後運作的、<strong>「隱含的強制轉型」（ implicit coercion ）</strong>。一下變字串，一下有變成數字、一下變成布林值…比孫悟空72變還厲害。</p>
 <p>這種「隱含的轉型」（ implicit coercion ）基本上可以轉成三種型別：</p>
@@ -299,7 +309,11 @@
 <h3 id="四則運算時的強制轉型"><a href="#四則運算時的強制轉型" class="headerlink" title="四則運算時的強制轉型"></a>四則運算時的強制轉型</h3><p>JavaScript在做四則運算的時候跟小學課本教的一樣，由左而右「先乘除後加減」。</p>
 <p>其中以加法（＋）最需要注意！</p>
 <p>如果是數值的運算，那沒有轉型的問題。「字串」的相加也沒有轉型的問題。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span> + <span class="number">2</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x);  <span class="comment">//3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> y = <span class="string">&#x27;歐陽鋒是&#x27;</span> + <span class="string">&#x27;一隻癩哈蟆&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(y);  <span class="comment">//歐陽鋒是一隻癩哈蟆</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//3</span>
+
+<span class="token keyword">var</span> y <span class="token operator">=</span> <span class="token string">'歐陽鋒是'</span> <span class="token operator">+</span> <span class="token string">'一隻癩哈蟆'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//歐陽鋒是一隻癩哈蟆</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p><em>只有在不同型別的狀況下才有轉型的問題：</em></p>
 <ul>
@@ -307,10 +321,42 @@
 <li>當一邊是數字，一邊是 undefined 的時候， undefined 會被試著轉為數字，變成 NaN ，任何數字與 NaN 相加都是 NaN 。</li>
 <li>當一邊是數字，加號另一邊是 null 的時候， null 會被轉為數字 0 。</li>
 </ul>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//數字與字串相加</span></span><br><span class="line"><span class="number">77</span> + <span class="string">&#x27;49&#x27;</span>         <span class="comment">//&#x27;7749&#x27;</span></span><br><span class="line"><span class="number">77</span> + <span class="string">&#x27;四十九&#x27;</span>      <span class="comment">//&#x27;77四十九&#x27;</span></span><br><span class="line"><span class="comment">//字串與字串相加</span></span><br><span class="line"><span class="string">&#x27;七七&#x27;</span> + <span class="string">&#x27;四十九&#x27;</span>  <span class="comment">//&#x27;七七四十九&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="number">77</span> + &#123;&#125;           <span class="comment">//&#x27;77[object object]&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//當數字要跟undefined相加的時候，udefined會被嘗試轉為數字，也就是NaN，還記得NaN的型別是number嗎？</span></span><br><span class="line"><span class="number">77</span> + unfined      <span class="comment">//NaN</span></span><br><span class="line"><span class="string">&#x27;七七&#x27;</span> + unfined   <span class="comment">//&#x27;七七undefined&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//當數字要與null相加時，null會被轉成數字 0 ;</span></span><br><span class="line"><span class="number">77</span> + <span class="literal">null</span>          <span class="comment">//77</span></span><br><span class="line"><span class="string">&#x27;七七&#x27;</span> + <span class="literal">null</span>       <span class="comment">//77null</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//數字與字串相加</span>
+<span class="token number">77</span> <span class="token operator">+</span> <span class="token string">'49'</span>         <span class="token comment">//'7749'</span>
+<span class="token number">77</span> <span class="token operator">+</span> <span class="token string">'四十九'</span>      <span class="token comment">//'77四十九'</span>
+<span class="token comment">//字串與字串相加</span>
+<span class="token string">'七七'</span> <span class="token operator">+</span> <span class="token string">'四十九'</span>  <span class="token comment">//'七七四十九'</span>
+
+<span class="token number">77</span> <span class="token operator">+</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>           <span class="token comment">//'77[object object]'</span>
+
+<span class="token comment">//當數字要跟undefined相加的時候，udefined會被嘗試轉為數字，也就是NaN，還記得NaN的型別是number嗎？</span>
+<span class="token number">77</span> <span class="token operator">+</span> unfined      <span class="token comment">//NaN</span>
+<span class="token string">'七七'</span> <span class="token operator">+</span> unfined   <span class="token comment">//'七七undefined'</span>
+
+<span class="token comment">//當數字要與null相加時，null會被轉成數字 0 ;</span>
+<span class="token number">77</span> <span class="token operator">+</span> <span class="token keyword">null</span>          <span class="token comment">//77</span>
+<span class="token string">'七七'</span> <span class="token operator">+</span> <span class="token keyword">null</span>       <span class="token comment">//77null</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>而如果是減乘除法（ － ＊ ／ ）的情況，除了數值以外的其他基本型別都會透過 Number() 方法轉為數字。物件則在乘除的時候會透過 Number() 方法，轉為數字，在減法時透過 valueOf() 方法轉為數字。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">49</span> - <span class="string">&#x27;36&#x27;</span>   <span class="comment">//13</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字串會被轉為數字，也就是NaN</span></span><br><span class="line"><span class="number">49</span> - <span class="string">&#x27;abc&#x27;</span> <span class="comment">//NaN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//布林值的true，會被轉行為數字 1</span></span><br><span class="line"><span class="number">49</span> - <span class="literal">true</span>  <span class="comment">//48</span></span><br><span class="line"><span class="comment">//布林值的false，會被轉行為數字 0</span></span><br><span class="line"><span class="number">49</span> - <span class="literal">false</span>  <span class="comment">//49</span></span><br><span class="line"></span><br><span class="line"><span class="number">49</span> - <span class="literal">undefined</span>  <span class="comment">//NaN</span></span><br><span class="line"><span class="comment">//null會轉為數字0</span></span><br><span class="line"><span class="number">49</span> - <span class="literal">null</span>       <span class="comment">//49</span></span><br><span class="line"><span class="number">49</span> - &#123;&#125;   　　　<span class="comment">//NaN</span></span><br><span class="line"><span class="number">49</span> * <span class="string">&#x27;10&#x27;</span>       <span class="comment">//490</span></span><br><span class="line"><span class="number">49</span> *  <span class="string">&#x27;四十九&#x27;</span>   <span class="comment">//NaN</span></span><br><span class="line"><span class="number">49</span> * <span class="literal">true</span>       <span class="comment">// 49</span></span><br><span class="line"><span class="number">49</span> * <span class="literal">false</span>      <span class="comment">//0</span></span><br><span class="line"><span class="number">49</span> * &#123;&#125;         <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token number">49</span> <span class="token operator">-</span> <span class="token string">'36'</span>   <span class="token comment">//13</span>
+
+<span class="token comment">//字串會被轉為數字，也就是NaN</span>
+<span class="token number">49</span> <span class="token operator">-</span> <span class="token string">'abc'</span> <span class="token comment">//NaN</span>
+
+<span class="token comment">//布林值的true，會被轉行為數字 1</span>
+<span class="token number">49</span> <span class="token operator">-</span> <span class="token boolean">true</span>  <span class="token comment">//48</span>
+<span class="token comment">//布林值的false，會被轉行為數字 0</span>
+<span class="token number">49</span> <span class="token operator">-</span> <span class="token boolean">false</span>  <span class="token comment">//49</span>
+
+<span class="token number">49</span> <span class="token operator">-</span> <span class="token keyword">undefined</span>  <span class="token comment">//NaN</span>
+<span class="token comment">//null會轉為數字0</span>
+<span class="token number">49</span> <span class="token operator">-</span> <span class="token keyword">null</span>       <span class="token comment">//49</span>
+<span class="token number">49</span> <span class="token operator">-</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>   　　　<span class="token comment">//NaN</span>
+<span class="token number">49</span> <span class="token operator">*</span> <span class="token string">'10'</span>       <span class="token comment">//490</span>
+<span class="token number">49</span> <span class="token operator">*</span>  <span class="token string">'四十九'</span>   <span class="token comment">//NaN</span>
+<span class="token number">49</span> <span class="token operator">*</span> <span class="token boolean">true</span>       <span class="token comment">// 49</span>
+<span class="token number">49</span> <span class="token operator">*</span> <span class="token boolean">false</span>      <span class="token comment">//0</span>
+<span class="token number">49</span> <span class="token operator">*</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>         <span class="token comment">//NaN</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>下面附上變數在四則運算時的「自動轉型」規則：</p>
 <table>
@@ -349,10 +395,20 @@
 </tbody></table>
 <h3 id="比較運算子的強制轉型"><a href="#比較運算子的強制轉型" class="headerlink" title="比較運算子的強制轉型"></a>比較運算子的強制轉型</h3><p>比較運算子用來比較兩側的數值，比較之後得到布林值 true 或 false。</p>
 <p>一個等號 &#x3D;，我們知道是「指定、賦值」的意思。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">49</span>;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">49</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 
 <p>在JavaScript中， <code>==</code> 是相等的意思，而 <code>===</code> 是全等的意思。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">49</span>;   <span class="comment">//數字</span></span><br><span class="line"><span class="keyword">var</span> y = <span class="string">&#x27;49&#x27;</span>; <span class="comment">//字串</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x == y);</span><br><span class="line"><span class="comment">//true，因為 == 在比較兩側的變數是否相等的時候，會自動幫變數轉型。</span></span><br><span class="line"></span><br><span class="line"><span class="literal">true</span> == <span class="string">&#x27;1&#x27;</span>;   <span class="comment">//true</span></span><br><span class="line"><span class="literal">false</span> == <span class="string">&#x27;0&#x27;</span>;   <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="literal">true</span> === <span class="string">&#x27;1&#x27;</span>;   <span class="comment">//false</span></span><br><span class="line"><span class="literal">false</span> === <span class="string">&#x27;0&#x27;</span>;  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">49</span><span class="token punctuation">;</span>   <span class="token comment">//數字</span>
+<span class="token keyword">var</span> y <span class="token operator">=</span> <span class="token string">'49'</span><span class="token punctuation">;</span> <span class="token comment">//字串</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x <span class="token operator">==</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//true，因為 == 在比較兩側的變數是否相等的時候，會自動幫變數轉型。</span>
+
+<span class="token boolean">true</span> <span class="token operator">==</span> <span class="token string">'1'</span><span class="token punctuation">;</span>   <span class="token comment">//true</span>
+<span class="token boolean">false</span> <span class="token operator">==</span> <span class="token string">'0'</span><span class="token punctuation">;</span>   <span class="token comment">//true</span>
+
+<span class="token boolean">true</span> <span class="token operator">===</span> <span class="token string">'1'</span><span class="token punctuation">;</span>   <span class="token comment">//false</span>
+<span class="token boolean">false</span> <span class="token operator">===</span> <span class="token string">'0'</span><span class="token punctuation">;</span>  <span class="token comment">//false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>使用 <code>==</code> 相等的時候，會自動替兩側的變數轉型。</p>
 <p>當使用 <code>===</code> 全等的時候，不會替變數自動轉型，是比較嚴謹的模式，也是比較推薦使用的方法。</p>
@@ -366,11 +422,18 @@
 <p>不等於<code>!=</code> 與 <code>!==</code></p>
 <p><code>!=</code> 與「! &#x3D;&#x3D;」兩者都是不等於，但是 <code>!=</code> 會替變數做自動轉型，而 <code>!==</code> 不會替變數自動轉型，推薦使用 <code>!==</code> 。</p>
 <h3 id="大於＞與小於＜的強制轉型"><a href="#大於＞與小於＜的強制轉型" class="headerlink" title="大於＞與小於＜的強制轉型"></a>大於＞與小於＜的強制轉型</h3><p>我有看到一個數字比大小的有趣例子，借來筆記一下：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span> &lt; <span class="number">2</span> &lt; <span class="number">3</span>); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span> &lt; <span class="number">2</span> &lt; <span class="number">1</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;</span> <span class="token number">2</span> <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">3</span> <span class="token operator">&lt;</span> <span class="token number">2</span> <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <p>天哪！怎麼會是這樣的結果！ 3 &lt; 2 &lt; 1 的布林值竟然是 true ．．．天要塌了！</p>
 <p>其實是因為 ＜ 是由左向右( left to right )去做比較，下面來解釋一下：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span> &lt; <span class="number">2</span> &lt; <span class="number">3</span>);</span><br><span class="line"><span class="number">1</span>&lt;<span class="number">2</span> <span class="comment">//true</span></span><br><span class="line"><span class="literal">true</span> &lt; <span class="number">3</span> <span class="comment">//true轉為數字1，1&lt;3，結果為true。</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span> &lt; <span class="number">2</span> &lt; <span class="number">1</span>); </span><br><span class="line"><span class="number">3</span> &lt; <span class="number">2</span> <span class="comment">//false</span></span><br><span class="line"><span class="literal">false</span> &lt; <span class="number">1</span> <span class="comment">// false轉為數字0，0&lt;1，所以結果為true</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;</span> <span class="token number">2</span> <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token number">1</span><span class="token operator">&lt;</span><span class="token number">2</span> <span class="token comment">//true</span>
+<span class="token boolean">true</span> <span class="token operator">&lt;</span> <span class="token number">3</span> <span class="token comment">//true轉為數字1，1&lt;3，結果為true。</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">3</span> <span class="token operator">&lt;</span> <span class="token number">2</span> <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token number">3</span> <span class="token operator">&lt;</span> <span class="token number">2</span> <span class="token comment">//false</span>
+<span class="token boolean">false</span> <span class="token operator">&lt;</span> <span class="token number">1</span> <span class="token comment">// false轉為數字0，0&lt;1，所以結果為true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>所以才會得出 console.log( 3 &lt; 2 &lt; 1 );會變成 true 的結果。</p>
 <p><img src="https://i.imgur.com/EMhtQsq.png" srcset="/img/loading.gif" lazyload></p>
@@ -402,13 +465,46 @@
 <p>如果第一個字元就無法被解析，會回傳 NaN。</p>
 <p>parseFloat(str)能將字串轉換為以十進位表示的浮點數。</p>
 <p>來看一下範例：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Number</span>(<span class="string">&#x27;123&#x27;</span>);        <span class="comment">//123</span></span><br><span class="line"><span class="title class_">Number</span>(<span class="string">&#x27;華山論劍&#x27;</span>);   <span class="comment">//NaN</span></span><br><span class="line"><span class="title class_">Number</span>(<span class="string">&#x27;9陰真經&#x27;</span>);    <span class="comment">//NaN</span></span><br><span class="line"><span class="title class_">Number</span>(<span class="literal">null</span>);         <span class="comment">//0</span></span><br><span class="line"><span class="title class_">Number</span>(<span class="literal">true</span>)          <span class="comment">//1</span></span><br><span class="line"><span class="title class_">Number</span>([]);           <span class="comment">//0</span></span><br><span class="line"><span class="title class_">Number</span>([<span class="number">1</span>]);          <span class="comment">//1</span></span><br><span class="line"><span class="title class_">Number</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);      <span class="comment">//NaN</span></span><br><span class="line"><span class="title class_">Number</span>(&#123;&#125;);           <span class="comment">//NaN</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;9陰真經&#x27;</span>);  <span class="comment">//9</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;九陰真經&#x27;</span>); <span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">101010</span>,<span class="number">2</span>);   <span class="comment">//42</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">&#x27;3.1416&#x27;</span>)  <span class="comment">//3.1416</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">//123</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">'華山論劍'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//NaN</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">'9陰真經'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">//NaN</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">//0</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>          <span class="token comment">//1</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">//0</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">//1</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">//NaN</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">//NaN</span>
+
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">'9陰真經'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//9</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">'九陰真經'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//NaN</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token number">101010</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//42</span>
+<span class="token function">parseFloat</span><span class="token punctuation">(</span><span class="token string">'3.1416'</span><span class="token punctuation">)</span>  <span class="token comment">//3.1416</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h3 id="toString-、String"><a href="#toString-、String" class="headerlink" title=".toString()、String()"></a>.toString()、String()</h3><p>String() 與 .toString() 都可以將值轉換為字串型別，差別在於 .toString() 在收到 null 、 undefined 和數字時會報錯。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">String</span>(<span class="number">123</span>)          <span class="comment">//&#x27;123&#x27;</span></span><br><span class="line"><span class="title class_">String</span>(<span class="literal">null</span>)         <span class="comment">//&#x27;null&#x27;</span></span><br><span class="line"><span class="title class_">String</span>(<span class="string">&#x27;undefined&#x27;</span>)  <span class="comment">//&#x27;undefined&#x27;</span></span><br><span class="line"><span class="title class_">String</span>(<span class="literal">true</span>)         <span class="comment">//&#x27;true&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="literal">true</span>.<span class="title function_">toString</span>()      <span class="comment">//&#x27;true&#x27;</span></span><br><span class="line"><span class="number">123.</span><span class="title function_">toString</span>()</span><br><span class="line"><span class="comment">//Uncaught SyntaxError: Invalid or unexpected token</span></span><br><span class="line"><span class="literal">null</span>.<span class="title function_">toString</span>()</span><br><span class="line"><span class="comment">//Uncaught TypeError: Cannot read properties of null (reading &#x27;toString&#x27;)</span></span><br><span class="line">    </span><br><span class="line"><span class="literal">undefined</span>.<span class="title function_">toString</span>()</span><br><span class="line"><span class="comment">//Uncaught TypeError: Cannot read properties of undefined (reading &#x27;toString&#x27;)</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">String</span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span>          <span class="token comment">//'123'</span>
+<span class="token function">String</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>         <span class="token comment">//'null'</span>
+<span class="token function">String</span><span class="token punctuation">(</span><span class="token string">'undefined'</span><span class="token punctuation">)</span>  <span class="token comment">//'undefined'</span>
+<span class="token function">String</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>         <span class="token comment">//'true'</span>
+
+<span class="token boolean">true</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>      <span class="token comment">//'true'</span>
+<span class="token number">123.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">//Uncaught SyntaxError: Invalid or unexpected token</span>
+<span class="token keyword">null</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">//Uncaught TypeError: Cannot read properties of null (reading 'toString')</span>
+    
+<span class="token keyword">undefined</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">//Uncaught TypeError: Cannot read properties of undefined (reading 'toString')</span>
+    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h3 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean()"></a>Boolean()</h3><p>Boolean() 可以用來將其他的資料型態轉型成布林值型態。還記得前面提過幾種會變成 false 的值嗎?</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Boolean</span>(<span class="number">100</span>)       <span class="comment">//true</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="string">&#x27;100&#x27;</span>)     <span class="comment">//true</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="string">&#x27;&#x27;</span>)        <span class="comment">//false</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="literal">false</span>)     <span class="comment">//false</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="literal">undefined</span>) <span class="comment">//false</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="literal">null</span>)      <span class="comment">//false</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="string">&#x27;&quot;&quot;&#x27;</span>)      <span class="comment">//true</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="string">&#x27;false&#x27;</span>)   <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>       <span class="token comment">//true</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token string">'100'</span><span class="token punctuation">)</span>     <span class="token comment">//true</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span>        <span class="token comment">//false</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>     <span class="token comment">//false</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token comment">//false</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>      <span class="token comment">//false</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token string">'""'</span><span class="token punctuation">)</span>      <span class="token comment">//true</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token string">'false'</span><span class="token punctuation">)</span>   <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>本來以為這個題目很好寫…..結果寫得一點都不輕鬆，也找不到方法寫得很有趣。幾乎每個知識點都有再深入研究的餘地，就像《浪人劍客》裡面老人對宮本武藏說的：「技是無限的，卻有鑽研的餘地！」</p>
 <p>重點整理一下，如果可以掌握一些概念，之後還可以再仔細琢磨：</p>
@@ -609,6 +705,9 @@
 
 
 
+  
+
+
 
   
 
@@ -763,6 +862,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

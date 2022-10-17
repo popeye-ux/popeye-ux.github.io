@@ -50,6 +50,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -66,6 +68,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -219,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.6k 字
+          4.5k 字
         
       </span>
     
@@ -230,7 +235,7 @@
         
         
         
-          39 分鐘
+          38 分鐘
         
       </span>
     
@@ -278,38 +283,98 @@
 <span id="more"></span>
 
 <p>談這個題目之前，先來做一下六角學院JS直播班第一週的周末作業《記憶體接龍》，以了解變數與記憶體儲存位置的關係，這樣對於by reference (傳參考)、by value(傳值)會有更深入的了解。</p>
-<h2 id="第-1-題"><a href="#第-1-題" class="headerlink" title="第 1 題"></a><strong>第 1 題</strong></h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. console.log 的值為？</span></span><br><span class="line"><span class="comment">// 2.出現幾個變數、型別、記憶體空間?</span></span><br><span class="line"><span class="keyword">let</span> a ;</span><br><span class="line">a = <span class="number">1</span>;</span><br><span class="line">a = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line"></span><br><span class="line"><span class="comment">//答案1：console.log 的值為 hello</span></span><br><span class="line"><span class="comment">//答案2：1個變數a；3個型別(undefined、number、string)；3個記憶體空間</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="第-1-題"><a href="#第-1-題" class="headerlink" title="第 1 題"></a><strong>第 1 題</strong></h2><figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">// 1. console.log 的值為？</span>
+<span class="token comment">// 2.出現幾個變數、型別、記憶體空間?</span>
+<span class="token keyword">let</span> a <span class="token punctuation">;</span>
+a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+a <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+
+<span class="token comment">//答案1：console.log 的值為 hello</span>
+<span class="token comment">//答案2：1個變數a；3個型別(undefined、number、string)；3個記憶體空間</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>記憶體空間畫圖來表示：<br><img src="https://i.imgur.com/HUjYFXP.jpg" srcset="/img/loading.gif" lazyload></p>
 <p>備註： let a ;的值為 “ undefined “ ，也會佔記憶體空間。<br>所以答案2應該是： 1 個變數， 3 個型別， 3 個記憶體空間</p>
 <p>助教的回答：let a因為並沒有宣告a的值，所以a會有一個undefined 的值，並且佔了一個記憶體空間，所以這題答案應該是1個變數， 3 個型別（數字、字串、 undefined ）， 3 個記憶體空間。</p>
-<h2 id="第-2-題"><a href="#第-2-題" class="headerlink" title="第 2 題"></a><strong>第 2 題</strong></h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. console.log 值為？</span></span><br><span class="line"><span class="comment">// 2.出現幾個變數、型別、記憶體空間?</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">3</span> ;</span><br><span class="line">b=<span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> c = <span class="number">4</span>;</span><br><span class="line">b=<span class="number">8</span>;</span><br><span class="line">c=c+b;</span><br><span class="line"><span class="keyword">let</span> d = b+c;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line"></span><br><span class="line"><span class="comment">//答案1：console.log 的值為「Uncaught ReferenceError: e is not defined」</span></span><br><span class="line"><span class="comment">//答案2：3個變數；1個型別(number)；6個記憶體空間</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="第-2-題"><a href="#第-2-題" class="headerlink" title="第 2 題"></a><strong>第 2 題</strong></h2><figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">// 1. console.log 值為？</span>
+<span class="token comment">// 2.出現幾個變數、型別、記憶體空間?</span>
+<span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token number">3</span> <span class="token punctuation">;</span>
+b<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> c <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+b<span class="token operator">=</span><span class="token number">8</span><span class="token punctuation">;</span>
+c<span class="token operator">=</span>c<span class="token operator">+</span>b<span class="token punctuation">;</span>
+<span class="token keyword">let</span> d <span class="token operator">=</span> b<span class="token operator">+</span>c<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+
+<span class="token comment">//答案1：console.log 的值為「Uncaught ReferenceError: e is not defined」</span>
+<span class="token comment">//答案2：3個變數；1個型別(number)；6個記憶體空間</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>記憶體空間畫圖來表示：<br><img src="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/q2-w2.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
-<h2 id="第-3-題"><a href="#第-3-題" class="headerlink" title="第 3 題"></a><strong>第 3 題</strong></h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. console.log 值為？</span></span><br><span class="line"><span class="comment">// 2. 出現幾個變數、型別、記憶體空間?</span></span><br><span class="line"><span class="keyword">let</span> e=<span class="number">0</span>;</span><br><span class="line">e = <span class="number">5</span>;</span><br><span class="line">e = <span class="string">&quot;hello&quot;</span></span><br><span class="line">e = <span class="literal">true</span>;</span><br><span class="line">e = <span class="number">3</span>;</span><br><span class="line">e+=<span class="number">1</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line"></span><br><span class="line"><span class="comment">//答案 1：console.log 的值為 4</span></span><br><span class="line"><span class="comment">//答案 2： 1 個變數； 3 個型別(number、string、boolean)； 7 個記憶體空間</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="第-3-題"><a href="#第-3-題" class="headerlink" title="第 3 題"></a><strong>第 3 題</strong></h2><figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">// 1. console.log 值為？</span>
+<span class="token comment">// 2. 出現幾個變數、型別、記憶體空間?</span>
+<span class="token keyword">let</span> e<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+e <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+e <span class="token operator">=</span> <span class="token string">"hello"</span>
+e <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+e <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+e<span class="token operator">+=</span><span class="token number">1</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+
+<span class="token comment">//答案 1：console.log 的值為 4</span>
+<span class="token comment">//答案 2： 1 個變數； 3 個型別(number、string、boolean)； 7 個記憶體空間</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>記憶體空間畫圖來表示：<br><img src="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/q3-w3%20-1.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
 <p>我們由上面的作業可以發現，不同的變數指向不同的記憶體位置，只要變數重新賦值之後，就會把新的值存到新的記憶體空間之中，舊的值就從記憶體上面清空，而運算過程中的值也會佔到記憶體的空間。</p>
 <p>這就是JS變數與記憶體之間運作的過程。</p>
 <p>還有一個觀念要先記一下， <strong>JS 的變數本身沒有型別，它被賦予的值才有</strong>。</p>
 <p>理解了這些才能進一步來談 by reference (傳參考)、 by value (傳值)的差別。</p>
 <h1 id="by-value-傳值"><a href="#by-value-傳值" class="headerlink" title="by value(傳值)"></a>by value(傳值)</h1><p><em>讓我們繼續來《射鵰英雄歪傳》，郭靖跟黃蓉小倆口結婚後，在大漠開起了寵物店，專門賣汗血寶馬和神雕，因為都是珍稀之物，所以定價都是1000兩黃金。</em></p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 設一個汗血寶馬(horsePrice)的變數，給它1000的值</span></span><br><span class="line"><span class="keyword">let</span> horsePrice = <span class="number">1000</span>;</span><br><span class="line"><span class="comment">//設一個神雕(eaglePrice)的變數，也給它1000的值</span></span><br><span class="line"><span class="keyword">let</span> eaglePrice = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(horsePrice === eaglePrice);</span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">// 設一個汗血寶馬(horsePrice)的變數，給它1000的值</span>
+<span class="token keyword">let</span> horsePrice <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+<span class="token comment">//設一個神雕(eaglePrice)的變數，也給它1000的值</span>
+<span class="token keyword">let</span> eaglePrice <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>horsePrice <span class="token operator">===</span> eaglePrice<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>我們可以觀察到，在基本型別的時候，不同的變數指向不同的記憶體位置，兩個變數賦予的值一樣，也就是記憶體儲存的值一樣，兩個變數就相等。所以我們可以歸納出，<strong>基本型別變數的比較，我們看的是它被賦予的值，值相等，兩個變數就相等。</strong></p>
 <p><em>繼續來《射鵰英雄歪傳》，有一天楊康來寵物店想買一隻汗血馬，問郭靖多少錢？因為楊康之前買過神雕，郭靖隨口就說：「汗血馬跟神雕一樣的價格！」</em></p>
 <p><em>楊康心想：「老子最近沒錢！」就說：「兄弟！這馬也太貴了！」郭靖說：「蓉妹說不二價，兄弟！聽某嘴大富貴！」於是楊康只好忍痛去跟大漠的高利貸歐陽克借錢買了一匹汗血馬。</em></p>
 <p><em>結果過幾天，成吉斯汗打敗大宛國，擄獲許多汗血寶馬，造成大漠上汗血寶馬的價格大跌價，一匹馬變成300兩黃金。</em></p>
 <p>我們就用 JavaScript 來說說這件事：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//設一個神雕(eaglePrice)的變數，也給它1000的值</span></span><br><span class="line"><span class="keyword">let</span> eaglePrice = <span class="number">1000</span>;</span><br><span class="line"><span class="comment">//郭靖跟楊康說：汗血馬和神雕的價格是一樣的</span></span><br><span class="line"><span class="keyword">let</span> horsePrice = eaglePrice;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(eaglePrice); <span class="comment">//1000</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(horsePrice); <span class="comment">//1000</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(eaglePrice === horsePrice); <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//結果成吉思汗擄獲許多汗血馬，造成汗血馬價格大崩壞</span></span><br><span class="line">horsePrice = <span class="number">300</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(eaglePrice); <span class="comment">//1000</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(horsePrice); <span class="comment">//300</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(horsePrice === eaglePrice); <span class="comment">//false</span></span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">
+<span class="token comment">//設一個神雕(eaglePrice)的變數，也給它1000的值</span>
+<span class="token keyword">let</span> eaglePrice <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+<span class="token comment">//郭靖跟楊康說：汗血馬和神雕的價格是一樣的</span>
+<span class="token keyword">let</span> horsePrice <span class="token operator">=</span> eaglePrice<span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>eaglePrice<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//1000</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>horsePrice<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//1000</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>eaglePrice <span class="token operator">===</span> horsePrice<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
+
+<span class="token comment">//結果成吉思汗擄獲許多汗血馬，造成汗血馬價格大崩壞</span>
+horsePrice <span class="token operator">=</span> <span class="token number">300</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>eaglePrice<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//1000</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>horsePrice<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//300</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>horsePrice <span class="token operator">===</span> eaglePrice<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//false</span>
+<span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>楊康哭哭！汗血馬的價格不是跟神雕一樣嗎？</p>
 <p>讓我們用前面畫圖的練習來理解一下JavaScript發生了甚麼事！</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//設一個神雕(eaglePrice)的變數，也給它1000的值</span></span><br><span class="line"><span class="keyword">let</span> eaglePrice = <span class="number">1000</span>;</span><br><span class="line"><span class="comment">//郭靖跟楊康說：汗血馬和神雕的價格是一樣的</span></span><br><span class="line"><span class="keyword">let</span> horsePrice = eaglePrice;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(eaglePrice === horsePrice); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//設一個神雕(eaglePrice)的變數，也給它1000的值</span>
+<span class="token keyword">let</span> eaglePrice <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+<span class="token comment">//郭靖跟楊康說：汗血馬和神雕的價格是一樣的</span>
+<span class="token keyword">let</span> horsePrice <span class="token operator">=</span> eaglePrice<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>eaglePrice <span class="token operator">===</span> horsePrice<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <ul>
 <li>宣告一個eaglePrice變數，給它1000的值</li>
 <li>宣告一個horsePrice變數，給它的值是變數eaglePrice。<br><img src="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/by%20value-1.jpg?raw=true" srcset="/img/loading.gif" lazyload></li>
 </ul>
 <p>這時發生的事情就是，<strong>horsePrice 去拷貝了 eaglePrice 的值 1000 到自己目前占用的記憶體空間</strong>。前面有提到「<strong>基本型別變數的比較，我們看的是它被賦予的值，值相等，兩個變數就相等</strong>」。</p>
 <p>let horsePrice &#x3D; eaglePrice;<br>這時候eaglePrice &#x3D;&#x3D;&#x3D; horsePrice的布林值為true。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//horsePrice重新賦值為300</span></span><br><span class="line">horsePrice = <span class="number">300</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(horsePrice === eaglePrice); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//horsePrice重新賦值為300</span>
+horsePrice <span class="token operator">=</span> <span class="token number">300</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>horsePrice <span class="token operator">===</span> eaglePrice<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>horsePrice重新賦值為300這個行為指的是，horsePrice去佔用了新的記憶體空間儲存了新的值300，這時horsePrice &#x3D;&#x3D;&#x3D; eaglePrice的布林值就是false。</p>
 <p><img src="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/byvalue-2.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
@@ -317,7 +382,20 @@
 <p>所以我們可以說「基本型別」變數之間的比較，看的是它被賦予的值相不相等，這種現象被稱為「by value(傳值)」。</p>
 <h1 id="by-reference-傳參考"><a href="#by-reference-傳參考" class="headerlink" title="by reference (傳參考)"></a>by reference (傳參考)</h1><p>但是在「物件型別」的比較上，是另外一種情形。</p>
 <p><em>繼續來《射鵰英雄歪傳》，郭靖的寵物店因為生意太好，所以開了分店，分店裡面汗血馬的價格跟總店是一樣的。</em></p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//mainStore物件儲存總店汗血馬的價格</span></span><br><span class="line"><span class="keyword">let</span> mainStore = &#123;<span class="attr">horsePrice</span>: <span class="number">1000</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> branchStore = mainStore;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mainStore.<span class="property">horsePrice</span>);  <span class="comment">//1000</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(branchStore.<span class="property">horsePrice</span>);<span class="comment">//1000</span></span><br><span class="line"></span><br><span class="line">branchStore.<span class="property">horsePrice</span> = <span class="number">300</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mainStore.<span class="property">horsePrice</span>);  <span class="comment">//300</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(branchStore.<span class="property">horsePrice</span>);<span class="comment">//300</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mainStore === branchStore); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//mainStore物件儲存總店汗血馬的價格</span>
+<span class="token keyword">let</span> mainStore <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token literal-property property">horsePrice</span><span class="token operator">:</span> <span class="token number">1000</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> branchStore <span class="token operator">=</span> mainStore<span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mainStore<span class="token punctuation">.</span>horsePrice<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//1000</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>branchStore<span class="token punctuation">.</span>horsePrice<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//1000</span>
+
+branchStore<span class="token punctuation">.</span>horsePrice <span class="token operator">=</span> <span class="token number">300</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mainStore<span class="token punctuation">.</span>horsePrice<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//300</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>branchStore<span class="token punctuation">.</span>horsePrice<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//300</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mainStore <span class="token operator">===</span> branchStore<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>我們發現當分店汗血馬的價格branchStore.horsePrice被重新賦值為300時，總店的汗血馬的價格也跟著變為300。</p>
 <p>而console.log(mainStore &#x3D;&#x3D;&#x3D; branchStore)的結果為true，我們可已發現mainStore與branchStore指向的是同一個實體。</p>
@@ -327,7 +405,22 @@
 <p>物件型別是<strong>透過「引用」的方式</strong>在傳遞資料，物件型別的物件的屬性值其實引用的是記憶體儲存資料的參考， 所以我們會說在物件型別的比較是by reference(傳參考)，看這兩個物件是否指向相同的記憶體空間，參考相同的值。</p>
 <p>凡事都有例外，物件的例外讓人特別困惑。</p>
 <p><em>繼續來《射鵰英雄歪傳》，郭靖寵物店生意很好，所以黃蓉也開了一家分店，有一天夫妻倆吵架，黃蓉一氣之下脫離加盟體系，開始削價競爭。</em></p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//husbandStore物件儲存郭靖寵物店汗血馬的價格</span></span><br><span class="line"><span class="keyword">let</span> husbandStore = &#123;<span class="attr">horsePrice</span>: <span class="number">1000</span>&#125;;</span><br><span class="line"><span class="comment">//把husbandStore的值指定給wifeStor</span></span><br><span class="line"><span class="keyword">let</span> wifeStore = husbandStore;</span><br><span class="line"><span class="comment">//wifeStore物件重新賦值</span></span><br><span class="line">wifeStore = &#123;<span class="attr">horsePrice</span>: <span class="number">500</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(husbandStore.<span class="property">horsePrice</span>);  <span class="comment">//1000</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(wifeStore.<span class="property">horsePrice</span>);<span class="comment">//1000</span></span><br><span class="line"></span><br><span class="line">wifeStore.<span class="property">horsePrice</span> = <span class="number">300</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(husbandStore.<span class="property">horsePrice</span>);  <span class="comment">//1000</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(wifeStore.<span class="property">horsePrice</span>);<span class="comment">//300</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(husbandStore === wifeStore); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//husbandStore物件儲存郭靖寵物店汗血馬的價格</span>
+<span class="token keyword">let</span> husbandStore <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token literal-property property">horsePrice</span><span class="token operator">:</span> <span class="token number">1000</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token comment">//把husbandStore的值指定給wifeStor</span>
+<span class="token keyword">let</span> wifeStore <span class="token operator">=</span> husbandStore<span class="token punctuation">;</span>
+<span class="token comment">//wifeStore物件重新賦值</span>
+wifeStore <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token literal-property property">horsePrice</span><span class="token operator">:</span> <span class="token number">500</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>husbandStore<span class="token punctuation">.</span>horsePrice<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//1000</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>wifeStore<span class="token punctuation">.</span>horsePrice<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//1000</span>
+
+wifeStore<span class="token punctuation">.</span>horsePrice <span class="token operator">=</span> <span class="token number">300</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>husbandStore<span class="token punctuation">.</span>horsePrice<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//1000</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>wifeStore<span class="token punctuation">.</span>horsePrice<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//300</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>husbandStore <span class="token operator">===</span> wifeStore<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>在這種情形之下，husbandStore與wifeStore原本是引用相同的參考位置，<strong>但是wifeStore重新賦值之後，則引用新的參考位置</strong>，所以汗血馬價格變動的時候，husbandStore與wifeStore兩者不會連動，因為兩者參考的是不同的物件實體。</p>
 <p>許國政先生認為這種物件型別的比較應該更像是「by sharing」，這有點玄！</p>
 <p>且讓我們引用他在《0 陷阱！0 誤解！8 天重新認識JavaScript！》的一段話作為總結：</p>
@@ -503,6 +596,9 @@
 
 
 
+  
+
+
 
   
 
@@ -657,6 +753,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

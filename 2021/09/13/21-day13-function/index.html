@@ -43,6 +43,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -59,6 +61,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -212,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          1.8k 字
         
       </span>
     
@@ -223,7 +228,7 @@
         
         
         
-          17 分鐘
+          16 分鐘
         
       </span>
     
@@ -269,7 +274,9 @@
                 <p><img src="https://i.imgur.com/z50isJz.jpg" srcset="/img/loading.gif" lazyload><br>函式的作用在於將一段或多段函式包裝在一起，方便反覆使用，一目了然也方便維護。當需要重複執行一次計算或重複做一件事的時候，就會需要用到函式。</p>
 <span id="more"></span>
 <p>像這樣就是一個函式：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">firstFun</span> () &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;桃花島的五行八卦陣&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">firstFun</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'桃花島的五行八卦陣'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>函式執行前要先被定義，但是定義好的函式不會自動執行，要在程式中呼喊愛情，啊！不對！是呼叫函式，函式才會動起來！</p>
 <p>最常見的函式宣告方式有以下三種：</p>
@@ -278,7 +285,9 @@
 <li>函式表達式(Function Expression)</li>
 <li>透過new Function關鍵字建立函式</li>
 </ul>
-<h2 id="函式宣告-Function-Declaration"><a href="#函式宣告-Function-Declaration" class="headerlink" title="函式宣告(Function Declaration)"></a>函式宣告(Function Declaration)</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> 函式名稱 (參數<span class="number">1</span>, 參數<span class="number">2.</span>..)&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="函式宣告-Function-Declaration"><a href="#函式宣告-Function-Declaration" class="headerlink" title="函式宣告(Function Declaration)"></a>函式宣告(Function Declaration)</h2><figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">函式名稱</span> <span class="token punctuation">(</span><span class="token parameter">參數<span class="token number">1</span><span class="token punctuation">,</span> 參數<span class="token number">2.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token comment">//do something</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>用function開頭，後面接著函式名稱。</li>
@@ -286,33 +295,63 @@
 <li>{}大括號中放的是執行的程式內容。</li>
 </ul>
 <p>我們已可以把參數帶入function中使用：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">firstFun</span> (name) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>( name + <span class="string">&#x27;闖入桃花島的五行八卦陣&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">firstFun</span>(<span class="string">&#x27;郭靖&#x27;</span>)  <span class="comment">//郭靖闖入桃花島的五行八卦陣</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">firstFun</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> name <span class="token operator">+</span> <span class="token string">'闖入桃花島的五行八卦陣'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">firstFun</span><span class="token punctuation">(</span><span class="token string">'郭靖'</span><span class="token punctuation">)</span>  <span class="token comment">//郭靖闖入桃花島的五行八卦陣</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h2 id="函式表達式-Function-Expression"><a href="#函式表達式-Function-Expression" class="headerlink" title="函式表達式(Function Expression)"></a>函式表達式(Function Expression)</h2><p>函式表達式長這個樣子：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 變數名稱 = <span class="keyword">function</span> 函式名稱()&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> <span class="token function-variable function">變數名稱</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">函式名稱</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token comment">//do something</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>函式表達式清楚地展示了如何將一個函式儲存在一個變數中，從而透過變數我們可以反覆地叫用函式。函式的名稱只有在「自己函式的區塊內」有效，離開這個函式的範圍，函式的名稱就失去了效用。</p>
 <p>透過「變數名稱()」就可以呼叫函式，所以「函式名稱」不是一定要的，這種沒有名字的函式在JavaScript是允許的，通常被稱為「匿名函式」。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 變數名稱 = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> <span class="token function-variable function">變數名稱</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token comment">//do something</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> firstFun = <span class="keyword">function</span>  (<span class="params">name</span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>( name + <span class="string">&#x27;闖入桃花島的五行八卦陣&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">firstFun</span>(<span class="string">&#x27;郭靖&#x27;</span>)  <span class="comment">//郭靖闖入桃花島的五行八卦陣</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> <span class="token function-variable function">firstFun</span> <span class="token operator">=</span> <span class="token keyword">function</span>  <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> name <span class="token operator">+</span> <span class="token string">'闖入桃花島的五行八卦陣'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">firstFun</span><span class="token punctuation">(</span><span class="token string">'郭靖'</span><span class="token punctuation">)</span>  <span class="token comment">//郭靖闖入桃花島的五行八卦陣</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h2 id="透過new-Function關鍵字建立函式"><a href="#透過new-Function關鍵字建立函式" class="headerlink" title="透過new Function關鍵字建立函式"></a>透過new Function關鍵字建立函式</h2><p>第三種則是透過 new關鍵字 + Function的方式來建立函式物件。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 變數名稱 = <span class="keyword">new</span> <span class="title class_">Fnction</span> (<span class="string">&#x27;參數&#x27;</span>,<span class="string">&#x27;do something&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> 變數名稱 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Fnction</span> <span class="token punctuation">(</span><span class="token string">'參數'</span><span class="token punctuation">,</span><span class="token string">'do something'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 
 <p>因為這種方式，每次執行都要解析字串，效能甚差，實務上很少使用。</p>
 <h2 id="return"><a href="#return" class="headerlink" title="return"></a>return</h2><p>對一個新手而言，剛遇到這個return實在是丈二金剛摸不著腦？return到底是要轉到哪裡去？</p>
 <p>後來搞懂了，原來函式執行後，return會中止程式執行並回傳一個值(value)，如果沒有值可以回傳，則會會傳undefined。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funNoReturn = <span class="keyword">function</span> <span class="title function_">square</span>(<span class="params">num</span>)&#123;</span><br><span class="line">	num * num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">funNoReturn</span>(<span class="number">2</span>);</span><br><span class="line"><span class="comment">//undefined  沒有回傳值，所以undefined</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> <span class="token function-variable function">funNoReturn</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">square</span><span class="token punctuation">(</span><span class="token parameter">num</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	num <span class="token operator">*</span> num<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">funNoReturn</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//undefined  沒有回傳值，所以undefined</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funReturn = <span class="keyword">function</span> <span class="title function_">square</span>(<span class="params">num</span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> num * num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">funReturn</span>(<span class="number">2</span>);</span><br><span class="line"><span class="comment">//4  加上retrurn之後，就有回傳值了</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> <span class="token function-variable function">funReturn</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">square</span><span class="token punctuation">(</span><span class="token parameter">num</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> num <span class="token operator">*</span> num<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">funReturn</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//4  加上retrurn之後，就有回傳值了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>回傳值是函式輸出的值，可以帶入其他的程式碼中繼續運算。函式可以接受多個參數，但是只能回傳一個值，如果沒有告訴函是要回傳什麼，就會回傳undefined。</p>
 <p>也可以把函式呼叫當作值來使用：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funReturn = <span class="keyword">function</span> <span class="title function_">square</span>(<span class="params">num</span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> num * num;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">funReturn</span>(<span class="number">2</span>) + <span class="title function_">funReturn</span>(<span class="number">3</span>);</span><br><span class="line"><span class="comment">//13</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> <span class="token function-variable function">funReturn</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">square</span><span class="token punctuation">(</span><span class="token parameter">num</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> num <span class="token operator">*</span> num<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">funReturn</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">funReturn</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//13</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>我們也可以利用return來結束函示執行，如果函式的任意一個參數無效，就提前跳出函式。無效指的是，參數不符合函式所定義的條件。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fun = <span class="keyword">function</span> (<span class="params">num</span>)&#123;</span><br><span class="line">	<span class="keyword">if</span>(num &gt; <span class="number">5</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> num * num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">fun</span>(<span class="number">6</span>);  <span class="comment">//undefined</span></span><br><span class="line"><span class="title function_">fun</span>(<span class="number">2</span>);  <span class="comment">//&quot;4&quot;</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> <span class="token function-variable function">fun</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">num</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>num <span class="token operator">></span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> num <span class="token operator">*</span> num<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">fun</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//undefined</span>
+<span class="token function">fun</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//"4"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>fun(6)因為num &gt;5，參數符合if條件 ，就執行{}內程式碼，return跳出了函式，回傳undefined。</p>
 <p>fun(2)因為num&lt;5，參數不符合if條件，所以繼續往下執行return num * num，回傳值為4。</p>
@@ -478,6 +517,9 @@
 
 
 
+  
+
+
 
   
 
@@ -632,6 +674,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

@@ -43,6 +43,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -59,6 +61,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -212,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          2.1k 字
         
       </span>
     
@@ -223,7 +228,7 @@
         
         
         
-          20 分鐘
+          18 分鐘
         
       </span>
     
@@ -275,22 +280,73 @@
 <p>唉！我們重新來看一下函式的寫法：</p>
 <p>小龍女在絕情谷底養的玉峰，飛到周伯通住的百花谷，要如何分辨一班的蜜蜂與小龍女養的玉峰呢？當然是看看翅膀上有沒有寫：「我在絕情谷底」，有寫的就是玉蜂。</p>
 <p>這是一般函式的寫法：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bee=<span class="string">&quot;蜜蜂&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">flyOut</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> bee = <span class="string">&quot;玉蜂&quot;</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;bee&#125;</span>翅膀上有寫「我在絕情谷底」`</span>;</span><br><span class="line">&#125; </span><br><span class="line"><span class="title function_">flyOut</span>();</span><br><span class="line"><span class="comment">//&quot;玉蜂翅膀上有寫「我在絕情谷底」&quot;</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> bee<span class="token operator">=</span><span class="token string">"蜜蜂"</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">flyOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token keyword">var</span> bee <span class="token operator">=</span> <span class="token string">"玉蜂"</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>bee<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">翅膀上有寫「我在絕情谷底」</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> 
+<span class="token function">flyOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//"玉蜂翅膀上有寫「我在絕情谷底」"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>如果我們在flyout()再內嵌一個inner函式，這時直接呼叫flyout()，出來的結果會是undefined。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bee=<span class="string">&quot;蜜蜂&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">flyOut</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> bee = <span class="string">&quot;玉蜂&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">inner</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;bee&#125;</span>翅膀上有寫「我在絕情谷底」`</span>;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">flyOut</span>();</span><br><span class="line"><span class="comment">//undefined 沒有回傳值</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> bee<span class="token operator">=</span><span class="token string">"蜜蜂"</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">flyOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token keyword">var</span> bee <span class="token operator">=</span> <span class="token string">"玉蜂"</span><span class="token punctuation">;</span>
+  <span class="token keyword">function</span> <span class="token function">inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>bee<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">翅膀上有寫「我在絕情谷底」</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>  
+<span class="token punctuation">&#125;</span>
+<span class="token function">flyOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//undefined 沒有回傳值</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>但是如果我們再flyout那一層，加上「return inner();」，會回傳「”玉蜂翅膀上有寫「我在絕情谷底」”」。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bee=<span class="string">&quot;蜜蜂&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">flyOut</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> bee = <span class="string">&quot;玉蜂&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">inner</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;bee&#125;</span>翅膀上有寫「我在絕情谷底」`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">inner</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">flyOut</span>();</span><br><span class="line"><span class="comment">//&quot;玉蜂翅膀上有寫「我在絕情谷底」&quot;</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> bee<span class="token operator">=</span><span class="token string">"蜜蜂"</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">flyOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token keyword">var</span> bee <span class="token operator">=</span> <span class="token string">"玉蜂"</span><span class="token punctuation">;</span>
+  <span class="token keyword">function</span> <span class="token function">inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>bee<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">翅膀上有寫「我在絕情谷底」</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">return</span> <span class="token function">inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">flyOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//"玉蜂翅膀上有寫「我在絕情谷底」"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>再來把return inside()的小括號拿掉。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bee=<span class="string">&quot;蜜蜂&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">flyOut</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> bee = <span class="string">&quot;玉蜂&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">inner</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;bee&#125;</span>翅膀上有寫「我在絕情谷底」`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> inner;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">flyOut</span>();</span><br><span class="line"><span class="comment">//ƒ inner()&#123;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;bee&#125;</span>翅膀上有寫「我在絕情谷底」`</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> bee<span class="token operator">=</span><span class="token string">"蜜蜂"</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">flyOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token keyword">var</span> bee <span class="token operator">=</span> <span class="token string">"玉蜂"</span><span class="token punctuation">;</span>
+  <span class="token keyword">function</span> <span class="token function">inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>bee<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">翅膀上有寫「我在絕情谷底」</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">return</span> inner<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">flyOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//ƒ inner()&#123;</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>bee<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">翅膀上有寫「我在絕情谷底」</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>結果回傳的是inside()的程式碼：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ƒ <span class="title function_">inner</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;bee&#125;</span>翅膀上有寫「我在絕情谷底」`</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">
+ƒ <span class="token function">inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>bee<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">翅膀上有寫「我在絕情谷底」</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>再更進一步，在外層用變數outBee來存取flyOut()：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bee=<span class="string">&quot;蜜蜂&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">flyOut</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> bee = <span class="string">&quot;玉蜂&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">inner</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;bee&#125;</span>翅膀上有寫「我在絕情谷底」`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> inner;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> outBee = <span class="title function_">flyOut</span>();</span><br><span class="line"><span class="title function_">flyBee</span>();</span><br><span class="line"><span class="comment">//&quot;玉蜂翅膀上有寫「我在絕情谷底」&quot;</span></span><br><span class="line"><span class="keyword">var</span> honeyBee = <span class="title function_">flyout</span>();</span><br><span class="line"><span class="comment">//&quot;玉蜂翅膀上有寫「我在絕情谷底」&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> bee<span class="token operator">=</span><span class="token string">"蜜蜂"</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">flyOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token keyword">var</span> bee <span class="token operator">=</span> <span class="token string">"玉蜂"</span><span class="token punctuation">;</span>
+  <span class="token keyword">function</span> <span class="token function">inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>bee<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">翅膀上有寫「我在絕情谷底」</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">return</span> inner<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">var</span> outBee <span class="token operator">=</span> <span class="token function">flyOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">flyBee</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//"玉蜂翅膀上有寫「我在絕情谷底」"</span>
+<span class="token keyword">var</span> honeyBee <span class="token operator">=</span> <span class="token function">flyout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//"玉蜂翅膀上有寫「我在絕情谷底」"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>還記得「切分變數最小的範圍是function」這句話嗎？</p>
 <p>inner()被內嵌在flyOut()之內，所以inner()裡的變數能夠存取的範圍就是flyOut()跟全域的範圍，它在flyOut()裡面找到了bee &#x3D; “玉蜂”，就不會再往外層去找。這種訪問機制就是「作用域鍊(Scope chain)」</p>
@@ -466,6 +522,9 @@
 
 
 
+  
+
+
 
   
 
@@ -620,6 +679,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

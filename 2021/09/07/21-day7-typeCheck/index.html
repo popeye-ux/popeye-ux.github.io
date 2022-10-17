@@ -16,12 +16,12 @@
   <meta name="author" content="POPEYE">
   <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
   
-    <meta name="description" content="前面提到「變數本身沒有型別問題，變數帶的值才有型別資訊」，所以要判斷型別，當然是去檢查變數所帶的值。 我們可以這樣來判斷變數的型別：  typeof 資料 typeof(資料)  1234567typeof &amp;#x27;洪七公&amp;#x27;;  &#x2F;&#x2F;&amp;#x27;string&amp;#x27;typeof 7749;     &#x2F;&#x2F;&amp;#x27;number&amp;#x27;typeof NaN;      &#x2F;&#x2F;&amp;">
+    <meta name="description" content="前面提到「變數本身沒有型別問題，變數帶的值才有型別資訊」，所以要判斷型別，當然是去檢查變數所帶的值。 我們可以這樣來判斷變數的型別：  typeof 資料 typeof(資料)  typeof &#39;洪七公&#39;;  &#x2F;&#x2F;&#39;string&#39; typeof 7749;     &#x2F;&#x2F;&#39;number&#39; typeof NaN;      &#x2F;&#x2F;&#39;number&#39; typeof true      &#x2F;&#x2F;&#39;boolean">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Day7:如何檢查型別">
 <meta property="og:url" content="https://popeye-ux.github.io/2021/09/07/21-day7-typeCheck/index.html">
 <meta property="og:site_name" content="F2E 星球通訊">
-<meta property="og:description" content="前面提到「變數本身沒有型別問題，變數帶的值才有型別資訊」，所以要判斷型別，當然是去檢查變數所帶的值。 我們可以這樣來判斷變數的型別：  typeof 資料 typeof(資料)  1234567typeof &amp;#x27;洪七公&amp;#x27;;  &#x2F;&#x2F;&amp;#x27;string&amp;#x27;typeof 7749;     &#x2F;&#x2F;&amp;#x27;number&amp;#x27;typeof NaN;      &#x2F;&#x2F;&amp;">
+<meta property="og:description" content="前面提到「變數本身沒有型別問題，變數帶的值才有型別資訊」，所以要判斷型別，當然是去檢查變數所帶的值。 我們可以這樣來判斷變數的型別：  typeof 資料 typeof(資料)  typeof &#39;洪七公&#39;;  &#x2F;&#x2F;&#39;string&#39; typeof 7749;     &#x2F;&#x2F;&#39;number&#39; typeof NaN;      &#x2F;&#x2F;&#39;number&#39; typeof true      &#x2F;&#x2F;&#39;boolean">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/dx5XA4P.jpg">
 <meta property="article:published_time" content="2021-09-07T03:47:16.000Z">
@@ -43,6 +43,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -59,6 +61,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -212,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          912 字
+          760 字
         
       </span>
     
@@ -223,7 +228,7 @@
         
         
         
-          8 分鐘
+          7 分鐘
         
       </span>
     
@@ -273,18 +278,27 @@
 <li>typeof 資料</li>
 <li>typeof(資料)</li>
 </ul>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="string">&#x27;洪七公&#x27;</span>;  <span class="comment">//&#x27;string&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="number">7749</span>;     <span class="comment">//&#x27;number&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="title class_">NaN</span>;      <span class="comment">//&#x27;number&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span>      <span class="comment">//&#x27;boolean&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> &#123;&#125;;      <span class="comment">//&#x27;object&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> [];      <span class="comment">//&#x27;object&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span>;      <span class="comment">//&#x27;object&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">typeof</span> <span class="token string">'洪七公'</span><span class="token punctuation">;</span>  <span class="token comment">//'string'</span>
+<span class="token keyword">typeof</span> <span class="token number">7749</span><span class="token punctuation">;</span>     <span class="token comment">//'number'</span>
+<span class="token keyword">typeof</span> <span class="token number">NaN</span><span class="token punctuation">;</span>      <span class="token comment">//'number'</span>
+<span class="token keyword">typeof</span> <span class="token boolean">true</span>      <span class="token comment">//'boolean'</span>
+<span class="token keyword">typeof</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>      <span class="token comment">//'object'</span>
+<span class="token keyword">typeof</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>      <span class="token comment">//'object'</span>
+<span class="token keyword">typeof</span> <span class="token keyword">null</span><span class="token punctuation">;</span>      <span class="token comment">//'object'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>用typeof檢查資料型別，回傳的都是<strong>字串</strong>，如果是為宣告的變數則回傳’undefined’。</p>
 <h2 id="如何判斷型別是否為NaN？"><a href="#如何判斷型別是否為NaN？" class="headerlink" title="如何判斷型別是否為NaN？"></a>如何判斷型別是否為NaN？</h2><p>比較特別的是：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="title class_">NaN</span>;      <span class="comment">//&#x27;number&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">typeof</span> <span class="token number">NaN</span><span class="token punctuation">;</span>      <span class="token comment">//'number'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 
 <p>假設楊康這個小屁孩在應該填寫數字的表單裡面打了一堆亂碼，回傳給JavaScript判斷，parseInt()之後會給我們NaN的結果，此時就不能使用(typeof(xx) ! &#x3D;&#x3D; number)來判斷，因為遇到 typeof NaN的回傳值會是’number’。</p>
 <p>※ parseInt()可以用來將資料轉為整數，由字串最左邊開始轉換，一值轉換到字串結束或遇到非數字字元為止。</p>
 <p>這時要使用 <strong>isNaN()</strong> 來判斷傳回的資料是否為’NaN’，如果不是，傳回的是false，才進行後面的計算。</p>
 <h2 id="如何判斷型別是否為陣列？"><a href="#如何判斷型別是否為陣列？" class="headerlink" title="如何判斷型別是否為陣列？"></a>如何判斷型別是否為陣列？</h2><p>因為使用typeof去檢查陣列，得到的結果會是 ‘object’，所以該如何正確地判斷某個變數為陣列，而非物件？</p>
 <p>這時要使用 isArray() 這個方法。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">array.<span class="title function_">isArray</span>([]);   <span class="comment">//true</span></span><br><span class="line">array.<span class="title function_">isArray</span>([<span class="string">&#x27;東邪&#x27;</span>,<span class="string">&#x27;西毒&#x27;</span>,<span class="string">&#x27;北丐&#x27;</span>,<span class="string">&#x27;南帝&#x27;</span>,<span class="string">&#x27;中神通&#x27;</span>]);   <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">array.<span class="title function_">isArray</span>(&#123;&#125;);   <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//true</span>
+array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'東邪'</span><span class="token punctuation">,</span><span class="token string">'西毒'</span><span class="token punctuation">,</span><span class="token string">'北丐'</span><span class="token punctuation">,</span><span class="token string">'南帝'</span><span class="token punctuation">,</span><span class="token string">'中神通'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//true</span>
+
+array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
                 
               </div>
             
@@ -446,6 +460,9 @@
 
 
 
+  
+
+
 
   
 
@@ -600,6 +617,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

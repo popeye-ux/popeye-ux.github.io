@@ -48,6 +48,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -64,6 +66,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -313,7 +318,12 @@
 <p>在這裡也讓我們用console來模擬一下上面那一串對話：</p>
 <p><img src="https://i.imgur.com/7e9P8tF.png" srcset="/img/loading.gif" lazyload></p>
 <p>比較需要注意的是if(…)的(…)，需要布林值 true 、 false 來判斷條件會不會成立，所以(…)裡面會放運算式( Expression )，但 if (…){…} 這段程式碼本身是陳述句，不會回傳任何值，也無法將它賦值給變數。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition)&#123;</span><br><span class="line">   <span class="comment">//statement1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">   statement2</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">if</span> <span class="token punctuation">(</span>condition<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+   <span class="token comment">//statement1</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+   statement2
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>由此可知運算式可能會混在陳述式之中，例如變數宣告本身式陳述式，但是 ＝ 號右側的部分卻屬於運算式。</p>
 <p>要注意的是，我們這一段 if (…) 述句，執行之後雖然在 console 視窗下出現結果，不過那不是回傳一個值(存在記憶體中)，而是執行了 console.log() 印出的指令，印在 console 視窗上，這一個小小的坑在我剛學 JavaScript 時困惑了一陣子。</p>
@@ -496,6 +506,9 @@
 
 
 
+  
+
+
 
   
 
@@ -650,6 +663,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

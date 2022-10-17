@@ -48,6 +48,9 @@
 <link  rel="stylesheet" href="/css/main.css" />
 
 
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+
 
 
 
@@ -406,7 +409,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2021/09/07/21-day7-typeCheck/" target="_self">
         <div>
-          前面提到「變數本身沒有型別問題，變數帶的值才有型別資訊」，所以要判斷型別，當然是去檢查變數所帶的值。 我們可以這樣來判斷變數的型別：  typeof 資料 typeof(資料)  1234567typeof &#x27;洪七公&#x27;;  //&#x27;string&#x27;typeof 7749;     //&#x27;number&#x27;typeof NaN;      //&
+          前面提到「變數本身沒有型別問題，變數帶的值才有型別資訊」，所以要判斷型別，當然是去檢查變數所帶的值。 我們可以這樣來判斷變數的型別：  typeof 資料 typeof(資料)  typeof '洪七公';  //'string' typeof 7749;     //'number' typeof NaN;      //'number' typeof true      //'boolean
         </div>
       </a>
 
@@ -467,7 +470,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2021/09/06/21-day6-array/" target="_self">
         <div>
-          陣列算是一種「特殊物件」，可以在裡面放入0到多個元素，裡面的元素可以是字串、數字等原始型別資料、也可以是另一個陣列或另一個物件。與物件的差別在於，陣列是有順序的集合，每個元素都有其索引值，並且可以用length的屬性來取得陣列的長度。 如何建立陣列?普遍的做法是採用「陣列實字」(Array Literal)的方式： 12345678910//建立一個華山論劍(huaShan)的陣列var hua
+          陣列算是一種「特殊物件」，可以在裡面放入0到多個元素，裡面的元素可以是字串、數字等原始型別資料、也可以是另一個陣列或另一個物件。與物件的差別在於，陣列是有順序的集合，每個元素都有其索引值，並且可以用length的屬性來取得陣列的長度。 如何建立陣列?普遍的做法是採用「陣列實字」(Array Literal)的方式： //建立一個華山論劍(huaShan)的陣列 var huaShan = ['東
         </div>
       </a>
 
@@ -650,7 +653,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2021/09/03/21-day3-varLetConst/" target="_self">
         <div>
-          但是老師教我用var宣告變數，但我也看到有同學用 let 與 const 宣告變數，這是怎麼一回事呢？ 12//建立一個變數郭靖(guoJing)var guoJing;  也可以看到這樣： 12345//建立一個建立一個名為黃蓉(huangRong)的變數，給她&#x27;打狗棒法&#x27;的值let huangRong = &#x27;打狗棒法&#x27;;//建立一個洪七公(hongQi
+          但是老師教我用var宣告變數，但我也看到有同學用 let 與 const 宣告變數，這是怎麼一回事呢？ //建立一個變數郭靖(guoJing) var guoJing;  也可以看到這樣： //建立一個建立一個名為黃蓉(huangRong)的變數，給她'打狗棒法'的值 let huangRong = '打狗棒法';  //建立一個洪七公(hongQigong)的常數，給他「北丐」的值 const
         </div>
       </a>
 
@@ -711,7 +714,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2021/09/02/21-declaration/" target="_self">
         <div>
-          剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」 哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。 簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。 先讓我們不專業的方式來理解一下： 12345678//假設我們建立一個名為郭靖(guoJing)的變數，給他 &#x27;降龍十八掌&#x27;的值var guo
+          剛開始接觸程式語言，總會聽老師說：「我們現在來var一個變數…」 哇！什麼是var？甚麼是變數？當時我滿頭問號！但是隨著練習增加經驗，建立變數會變得像是呼吸一樣理所當然。 簡單來說，變數就是一個容器，裡面裝著你想要電腦幫你運算的資料。 先讓我們不專業的方式來理解一下： //假設我們建立一個名為郭靖(guoJing)的變數，給他 '降龍十八掌'的值 var guoJing = '降龍十八掌';
         </div>
       </a>
 

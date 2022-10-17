@@ -43,6 +43,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -59,6 +61,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -212,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.5k 字
+          3.1k 字
         
       </span>
     
@@ -223,7 +228,7 @@
         
         
         
-          29 分鐘
+          26 分鐘
         
       </span>
     
@@ -275,7 +280,11 @@
 <li>特殊的數字如Infinity、-Infinity以及NaN進行運算時產生的特殊情形。</li>
 </ul>
 <h3 id="加號"><a href="#加號" class="headerlink" title="加號(+)"></a>加號(+)</h3><p>正常情況下，當+加號兩邊都是數字，或者都是字串的情況下：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span> + <span class="number">2</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x);  <span class="comment">//3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> y = <span class="string">&#x27;歐陽鋒是&#x27;</span> + <span class="string">&#x27;一隻癩哈蟆&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(y);  <span class="comment">//歐陽鋒是一隻癩哈蟆</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//3</span>
+
+<span class="token keyword">var</span> y <span class="token operator">=</span> <span class="token string">'歐陽鋒是'</span> <span class="token operator">+</span> <span class="token string">'一隻癩哈蟆'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//歐陽鋒是一隻癩哈蟆</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>在不同型別的狀況下：</p>
 <ul>
@@ -283,25 +292,60 @@
 <li>當一邊是數字，一邊是undefined的時候，undefined會被試著轉為數字，變成NaN，任何數字與NaN相加都是NaN。</li>
 <li>當一邊是數字，加號另一邊是null的時候，null會被轉為數字0。</li>
 </ul>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//數字與字串相加</span></span><br><span class="line"><span class="number">77</span> + <span class="string">&#x27;49&#x27;</span>         <span class="comment">//&#x27;7749&#x27;</span></span><br><span class="line"><span class="number">77</span> + <span class="string">&#x27;四十九&#x27;</span>      <span class="comment">//&#x27;77四十九&#x27;</span></span><br><span class="line"><span class="comment">//字串與字串相加</span></span><br><span class="line"><span class="string">&#x27;七七&#x27;</span> + <span class="string">&#x27;四十九&#x27;</span>  <span class="comment">//&#x27;七七四十九&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="number">77</span> + &#123;&#125;           <span class="comment">//&#x27;77[object object]&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//當數字要跟undefined相加的時候，udefined會被嘗試轉為數字，也就是NaN，還記得NaN的型別是number嗎？</span></span><br><span class="line"><span class="number">77</span> + unfined      <span class="comment">//NaN</span></span><br><span class="line"><span class="string">&#x27;七七&#x27;</span> + unfined   <span class="comment">//&#x27;七七undefined&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//當數字要與null相加時，null會被轉成數字 0 ;</span></span><br><span class="line"><span class="number">77</span> + <span class="literal">null</span>          <span class="comment">//77</span></span><br><span class="line"><span class="string">&#x27;七七&#x27;</span> + <span class="literal">null</span>       <span class="comment">//77null</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token comment">//數字與字串相加</span>
+<span class="token number">77</span> <span class="token operator">+</span> <span class="token string">'49'</span>         <span class="token comment">//'7749'</span>
+<span class="token number">77</span> <span class="token operator">+</span> <span class="token string">'四十九'</span>      <span class="token comment">//'77四十九'</span>
+<span class="token comment">//字串與字串相加</span>
+<span class="token string">'七七'</span> <span class="token operator">+</span> <span class="token string">'四十九'</span>  <span class="token comment">//'七七四十九'</span>
+
+<span class="token number">77</span> <span class="token operator">+</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>           <span class="token comment">//'77[object object]'</span>
+
+<span class="token comment">//當數字要跟undefined相加的時候，udefined會被嘗試轉為數字，也就是NaN，還記得NaN的型別是number嗎？</span>
+<span class="token number">77</span> <span class="token operator">+</span> unfined      <span class="token comment">//NaN</span>
+<span class="token string">'七七'</span> <span class="token operator">+</span> unfined   <span class="token comment">//'七七undefined'</span>
+
+<span class="token comment">//當數字要與null相加時，null會被轉成數字 0 ;</span>
+<span class="token number">77</span> <span class="token operator">+</span> <span class="token keyword">null</span>          <span class="token comment">//77</span>
+<span class="token string">'七七'</span> <span class="token operator">+</span> <span class="token keyword">null</span>       <span class="token comment">//77null</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>還要注意一些特別的數字：Infinity、-Infinity以及NaN。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Infinity</span> + <span class="title class_">Infinity</span>    <span class="comment">//Infinity</span></span><br><span class="line">-<span class="title class_">Infinity</span> + -<span class="title class_">Infinity</span>  <span class="comment">//-Infinity</span></span><br><span class="line"><span class="title class_">Infinity</span> + -<span class="title class_">Infinity</span>   <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token number">Infinity</span> <span class="token operator">+</span> <span class="token number">Infinity</span>    <span class="token comment">//Infinity</span>
+<span class="token operator">-</span><span class="token number">Infinity</span> <span class="token operator">+</span> <span class="token operator">-</span><span class="token number">Infinity</span>  <span class="token comment">//-Infinity</span>
+<span class="token number">Infinity</span> <span class="token operator">+</span> <span class="token operator">-</span><span class="token number">Infinity</span>   <span class="token comment">//NaN</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>NaN與任何數字相加都是NaN</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">77</span> + <span class="title class_">NaN</span>          <span class="comment">//NaN</span></span><br><span class="line"><span class="title class_">Infinity</span> + <span class="title class_">NaN</span>    <span class="comment">//NaN</span></span><br><span class="line">-<span class="title class_">Infinity</span> + <span class="title class_">NaN</span>    <span class="comment">//NaN</span></span><br><span class="line"><span class="string">&#x27;七七&#x27;</span> + <span class="title class_">NaN</span>       <span class="comment">//&#x27;七七NaN&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token number">77</span> <span class="token operator">+</span> <span class="token number">NaN</span>          <span class="token comment">//NaN</span>
+<span class="token number">Infinity</span> <span class="token operator">+</span> <span class="token number">NaN</span>    <span class="token comment">//NaN</span>
+<span class="token operator">-</span><span class="token number">Infinity</span> <span class="token operator">+</span> <span class="token number">NaN</span>    <span class="token comment">//NaN</span>
+<span class="token string">'七七'</span> <span class="token operator">+</span> <span class="token number">NaN</span>       <span class="token comment">//'七七NaN'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h3 id="減號"><a href="#減號" class="headerlink" title="減號(-)"></a>減號(-)</h3><p>如果是一般數字的四則運算，就是我們熟悉的算法。</p>
 <p>如果遇到數字與基本型別相減，則基本型別的值會被轉為數字</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">49</span> - <span class="string">&#x27;36&#x27;</span>   <span class="comment">//13</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字串會被轉為數字，也就是NaN</span></span><br><span class="line"><span class="number">49</span> - <span class="string">&#x27;abc&#x27;</span> <span class="comment">//NaN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//布林值的true，會被轉行為數字 1</span></span><br><span class="line"><span class="number">49</span> - <span class="literal">true</span>  <span class="comment">//48</span></span><br><span class="line"><span class="comment">//布林值的false，會被轉行為數字 0</span></span><br><span class="line"><span class="number">49</span> - <span class="literal">false</span>  <span class="comment">//49</span></span><br><span class="line"></span><br><span class="line"><span class="number">49</span> - <span class="literal">undefined</span>  <span class="comment">//NaN</span></span><br><span class="line"><span class="comment">//null會轉為數字0</span></span><br><span class="line"><span class="number">49</span> - <span class="literal">null</span>       <span class="comment">//49</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token number">49</span> <span class="token operator">-</span> <span class="token string">'36'</span>   <span class="token comment">//13</span>
+
+<span class="token comment">//字串會被轉為數字，也就是NaN</span>
+<span class="token number">49</span> <span class="token operator">-</span> <span class="token string">'abc'</span> <span class="token comment">//NaN</span>
+
+<span class="token comment">//布林值的true，會被轉行為數字 1</span>
+<span class="token number">49</span> <span class="token operator">-</span> <span class="token boolean">true</span>  <span class="token comment">//48</span>
+<span class="token comment">//布林值的false，會被轉行為數字 0</span>
+<span class="token number">49</span> <span class="token operator">-</span> <span class="token boolean">false</span>  <span class="token comment">//49</span>
+
+<span class="token number">49</span> <span class="token operator">-</span> <span class="token keyword">undefined</span>  <span class="token comment">//NaN</span>
+<span class="token comment">//null會轉為數字0</span>
+<span class="token number">49</span> <span class="token operator">-</span> <span class="token keyword">null</span>       <span class="token comment">//49</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>如果減號的一側是物件型別的話，則會透過物件的valueOf()轉為對應的數字，如果得到NaN，那相減的結果就是NaN。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">49</span> - &#123;&#125;   <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token number">49</span> <span class="token operator">-</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>   <span class="token comment">//NaN</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 
 <h3 id="乘號"><a href="#乘號" class="headerlink" title="乘號(*)"></a>乘號(*)</h3><p>如果是一般數字的相乘，那就按照四則運算規則，有左而右計算。</p>
 <p>如果其中一側不是數字，那就按照Number()轉為數字再進行計算，如果無法轉為數字，則為NaN。</p>
 <p>如果其中一個數字為NaN，那計算出來的結果也是NaN。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">49</span> * <span class="string">&#x27;10&#x27;</span>       <span class="comment">//490</span></span><br><span class="line"><span class="number">49</span> *  <span class="string">&#x27;四十九&#x27;</span>   <span class="comment">//NaN</span></span><br><span class="line"><span class="number">49</span> * <span class="literal">true</span>       <span class="comment">// 49</span></span><br><span class="line"><span class="number">49</span> * <span class="literal">false</span>      <span class="comment">//0</span></span><br><span class="line"><span class="number">49</span> * &#123;&#125;         <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token number">49</span> <span class="token operator">*</span> <span class="token string">'10'</span>       <span class="token comment">//490</span>
+<span class="token number">49</span> <span class="token operator">*</span>  <span class="token string">'四十九'</span>   <span class="token comment">//NaN</span>
+<span class="token number">49</span> <span class="token operator">*</span> <span class="token boolean">true</span>       <span class="token comment">// 49</span>
+<span class="token number">49</span> <span class="token operator">*</span> <span class="token boolean">false</span>      <span class="token comment">//0</span>
+<span class="token number">49</span> <span class="token operator">*</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>         <span class="token comment">//NaN</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h3 id="除號-x2F"><a href="#除號-x2F" class="headerlink" title="除號(&#x2F;)"></a>除號(&#x2F;)</h3><p>JS的除法規則與乘法一樣，但是有以下特殊情形：</p>
 <ul>
@@ -346,7 +390,20 @@
 <p><a target="_blank" rel="noopener" href="https://www.notion.so/b271ef772c3a47d09f27992a4283a559">JS四則運算規則表</a></p>
 <h2 id="算數運算子之-一元運算子"><a href="#算數運算子之-一元運算子" class="headerlink" title="算數運算子之  一元運算子"></a>算數運算子之  一元運算子</h2><h3 id="正號-與負號"><a href="#正號-與負號" class="headerlink" title="正號(+)與負號(-)"></a>正號(+)與負號(-)</h3><p>正號(+)與負號(-)用來表示一個數值是正數或是負數。</p>
 <p>如果正號(+)與負號(-)後面跟的不是一個數字，則會透過Number()方法將之轉型為數字，再由前面的正號(+)與負號(-)判斷其數值。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = +<span class="number">49</span>;</span><br><span class="line"><span class="keyword">var</span> b = -<span class="number">49</span>;</span><br><span class="line"><span class="keyword">var</span> c = <span class="string">&#x27;+72&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> d = <span class="string">&#x27;-72&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> e = <span class="string">&#x27;天下無狗&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);    <span class="comment">//49</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b);    <span class="comment">//-49</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(+c);   <span class="comment">//72</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(-c);   <span class="comment">//-72</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(+d);   <span class="comment">//-72</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(-d);   <span class="comment">//72</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(-e)    <span class="comment">//NaN</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token operator">+</span><span class="token number">49</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">49</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> c <span class="token operator">=</span> <span class="token string">'+72'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token string">'-72'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> e <span class="token operator">=</span> <span class="token string">'天下無狗'</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">//49</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">//-49</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">+</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//72</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">-</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//-72</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">+</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//-72</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">-</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//72</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">-</span>e<span class="token punctuation">)</span>    <span class="token comment">//NaN</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>如果是物件型別則使用valueOf()方法求得對應的值，再用正號(+)與負號(-)來判斷其數值，如果求得的值是NaN，那結果就是NaN。</p>
 <h3 id="遞增-與遞減–"><a href="#遞增-與遞減–" class="headerlink" title="遞增++與遞減–"></a>遞增++與遞減–</h3><p>當變數遇上++，表示該變數加1；如果變數遇上 - -，則代表該變數減1。</p>
@@ -356,17 +413,34 @@
 </ul>
 <p>++在前面表示「運算前+1」；++在數字後面表示「運算後+1」。</p>
 <p>—在前面代表「運算前-1」；- -在數字後方表示「運算後-1」。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">49</span>;</span><br><span class="line"><span class="keyword">var</span> y = <span class="number">49</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x++);   <span class="comment">//49</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(++y);   <span class="comment">//50</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x);     <span class="comment">//50</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(y);     <span class="comment">//50</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">49</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> y <span class="token operator">=</span> <span class="token number">49</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//49</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">++</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//50</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">//50</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">//50</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>將+ +放在變數x後面，console.log(x++)會傳回「原始的數值」。將++放在變數x前方，console.log(++x)會回傳「+1」的結果。</p>
 <p>「+1」是在開團購嗎？那我「++」。</p>
 <h3 id="比較運算子"><a href="#比較運算子" class="headerlink" title="比較運算子"></a>比較運算子</h3><p>比較運算子用來比較兩側的數值，比較之後得到布林值 true 或 false。</p>
 <p>一個等號 &#x3D;，我們知道是「指定、賦值」的意思。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">49</span>;</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">49</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 
 
 <p>在JavaScript中，「&#x3D; &#x3D;」是相等的意思，而「&#x3D;&#x3D;&#x3D;」是全等的意思。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">49</span>;   <span class="comment">//數字</span></span><br><span class="line"><span class="keyword">var</span> y = <span class="string">&#x27;49&#x27;</span>; <span class="comment">//字串</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x == y); </span><br><span class="line"><span class="comment">//true，因為 == 在比較兩側的變數是否相等的時候，會自動幫變數轉型。</span></span><br><span class="line"></span><br><span class="line"><span class="literal">true</span> == <span class="string">&#x27;1&#x27;</span>;   <span class="comment">//true</span></span><br><span class="line"><span class="literal">false</span> == <span class="string">&#x27;0&#x27;</span>;   <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="literal">true</span> === <span class="string">&quot;1&quot;</span>;   <span class="comment">//false</span></span><br><span class="line"><span class="literal">false</span> === <span class="string">&quot;0&quot;</span>;  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">49</span><span class="token punctuation">;</span>   <span class="token comment">//數字</span>
+<span class="token keyword">var</span> y <span class="token operator">=</span> <span class="token string">'49'</span><span class="token punctuation">;</span> <span class="token comment">//字串</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x <span class="token operator">==</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment">//true，因為 == 在比較兩側的變數是否相等的時候，會自動幫變數轉型。</span>
+
+<span class="token boolean">true</span> <span class="token operator">==</span> <span class="token string">'1'</span><span class="token punctuation">;</span>   <span class="token comment">//true</span>
+<span class="token boolean">false</span> <span class="token operator">==</span> <span class="token string">'0'</span><span class="token punctuation">;</span>   <span class="token comment">//true</span>
+
+<span class="token boolean">true</span> <span class="token operator">===</span> <span class="token string">"1"</span><span class="token punctuation">;</span>   <span class="token comment">//false</span>
+<span class="token boolean">false</span> <span class="token operator">===</span> <span class="token string">"0"</span><span class="token punctuation">;</span>  <span class="token comment">//false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>使用「&#x3D;&#x3D;」相等的時候，會自動替兩側的變數轉型。</p>
 <p>當使用「&#x3D;&#x3D;&#x3D;」全等的時候，不會替變數自動轉型，是比較嚴謹的模式，也是比較推薦使用的方法。</p>
@@ -541,6 +615,9 @@
 
 
 
+  
+
+
 
   
 
@@ -695,6 +772,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

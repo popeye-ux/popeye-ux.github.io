@@ -43,6 +43,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -59,6 +61,9 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
 
 
 
@@ -212,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          2k 字
         
       </span>
     
@@ -223,7 +228,7 @@
         
         
         
-          19 分鐘
+          17 分鐘
         
       </span>
     
@@ -275,10 +280,33 @@
 <p>「this」是在函式被呼叫的時候被自動生成的內部物件，this不等於function，隨著呼叫函示的物件不同，「this」所指向的值也不同。</p>
 <p>沒有特別指定this的情況下，<strong>this預設綁定(Default Binding)「全域物件」，也就是window</strong>。</p>
 <p>但在ES5的嚴格模式下，禁止this自動指定為全域物件，這點要特別注意。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> seven = <span class="string">&quot;江南七怪&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">seven</span>); <span class="comment">//&quot;江南七怪&quot;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">monster</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">seven</span> + <span class="string">&quot;脾氣古怪&quot;</span>);</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">monster</span>();  <span class="comment">//&quot;江南七怪脾氣古怪&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  seven : <span class="string">&quot;七喜汽水&quot;</span>,</span><br><span class="line">  <span class="attr">func</span>: monster</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">obj.<span class="title function_">func</span>(); <span class="comment">//&quot;七喜汽水脾氣古怪&quot;</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> seven <span class="token operator">=</span> <span class="token string">"江南七怪"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>seven<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//"江南七怪"</span>
+<span class="token keyword">function</span> <span class="token function">monster</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>seven <span class="token operator">+</span> <span class="token string">"脾氣古怪"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+<span class="token punctuation">&#125;</span>
+<span class="token function">monster</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//"江南七怪脾氣古怪"</span>
+
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">seven</span> <span class="token operator">:</span> <span class="token string">"七喜汽水"</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">func</span><span class="token operator">:</span> monster
+<span class="token punctuation">&#125;</span> 
+
+obj<span class="token punctuation">.</span><span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//"七喜汽水脾氣古怪"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>所以在全域環境中直接呼叫monster()函式時，this.seven是指向全域變數的var seven &#x3D; “江南七怪”；當monster()作為obj物件func屬性的方法的時候，this.seven會指向obj物件的seven屬性”七喜汽水”。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> seven = <span class="string">&quot;江南七怪&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> call = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">seven</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> soda = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">let</span> seven = <span class="string">&quot;七喜汽水&quot;</span>;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="title function_">call</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">soda</span>(); <span class="comment">//&quot;江南七怪&quot;</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">var</span> seven <span class="token operator">=</span> <span class="token string">"江南七怪"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> <span class="token function-variable function">call</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>seven<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">var</span> <span class="token function-variable function">soda</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">let</span> seven <span class="token operator">=</span> <span class="token string">"七喜汽水"</span><span class="token punctuation">;</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">soda</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//"江南七怪"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>soda()透過this.call()來叫用call()，這時call()裡面的this.seven是指向全域變數的seven，所以得到的結果是”江南七怪”。</p>
 <h2 id="如何強制指定this"><a href="#如何強制指定this" class="headerlink" title="如何強制指定this"></a>如何強制指定this</h2><p>在JavaScript有三種方式可以強制指定this給function，這種方式也叫「顯式綁定」，分別是：</p>
@@ -288,15 +316,54 @@
 <li>.bind()</li>
 </ul>
 <p>先來說說.call與.apply</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">funcA</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="comment">//做某件大事</span></span><br><span class="line">&#125;</span><br><span class="line">funcA.<span class="title function_">call</span>(context, arg1, arg2...)</span><br><span class="line">funcA.<span class="title function_">apply</span>(context,[arg1,arg2...])</span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">funcA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token comment">//做某件大事</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">funcA</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> arg1<span class="token punctuation">,</span> arg2<span class="token operator">...</span><span class="token punctuation">)</span>
+<span class="token function">funcA</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span><span class="token punctuation">[</span>arg1<span class="token punctuation">,</span>arg2<span class="token operator">...</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>上面的程式碼式使用.call與.apply去呼叫執行funcA，第一個參數context為所帶入的物件，也就是強制用那個物件來當成function執行時的物件。</p>
 <p>.call與.apply作用一樣，差別在.apply第一個參數(帶入的物件)之後的參數以陣列方式傳入，而.call則是使用逗號隔開。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> kuo = &#123;</span><br><span class="line">	<span class="attr">name</span>: <span class="string">&quot;郭靖&quot;</span>,</span><br><span class="line">	<span class="attr">wife</span>: <span class="string">&quot;黃蓉&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> yung = &#123;</span><br><span class="line">	<span class="attr">name</span>: <span class="string">&quot;楊過&quot;</span>,</span><br><span class="line">	<span class="attr">wife</span>: <span class="string">&quot;小龍女&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">funcA</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;<span class="variable language_">this</span>.name&#125;</span>的老婆是<span class="subst">$&#123;<span class="variable language_">this</span>.wife&#125;</span>`</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">funcA.<span class="title function_">call</span>(kuo) <span class="comment">//郭靖的老婆是黃蓉</span></span><br><span class="line">funcA.<span class="title function_">apply</span>(yung) <span class="comment">//楊過的老婆是小龍女</span></span><br><span class="line"></span><br><span class="line">funcA.<span class="title function_">call</span>(<span class="literal">null</span>,<span class="string">&quot;周伯通&quot;</span>,<span class="string">&quot;瑛姑&quot;</span>)<span class="comment">//的老婆是undefined </span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">let</span> kuo <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+	<span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"郭靖"</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">wife</span><span class="token operator">:</span> <span class="token string">"黃蓉"</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> yung <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+	<span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"楊過"</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">wife</span><span class="token operator">:</span> <span class="token string">"小龍女"</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> <span class="token function">funcA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">的老婆是</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>wife<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">funcA</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>kuo<span class="token punctuation">)</span> <span class="token comment">//郭靖的老婆是黃蓉</span>
+<span class="token function">funcA</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>yung<span class="token punctuation">)</span> <span class="token comment">//楊過的老婆是小龍女</span>
+
+<span class="token function">funcA</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token string">"周伯通"</span><span class="token punctuation">,</span><span class="token string">"瑛姑"</span><span class="token punctuation">)</span><span class="token comment">//的老婆是undefined </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>我們可以看見this.name與this.wife綁定到帶入的物件上。而this隨著所帶入的物件不同，指向也會動態地改變。</p>
 <p>而bind的用法如下：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> kuo = &#123;</span><br><span class="line">	<span class="attr">name</span>: <span class="string">&quot;郭靖&quot;</span>,</span><br><span class="line">	<span class="attr">wife</span>: <span class="string">&quot;黃蓉&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> yung = &#123;</span><br><span class="line">	<span class="attr">name</span>: <span class="string">&quot;楊過&quot;</span>,</span><br><span class="line">	<span class="attr">wife</span>: <span class="string">&quot;小龍女&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">funcA</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;<span class="variable language_">this</span>.name&#125;</span>的老婆是<span class="subst">$&#123;<span class="variable language_">this</span>.wife&#125;</span>`</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> kuoWife = funcA.<span class="title function_">bind</span>(kuo);</span><br><span class="line"><span class="title function_">kuoWife</span>()  <span class="comment">//郭靖的老婆是黃蓉</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> yungWife = funcA.<span class="title function_">bind</span>(yung);</span><br><span class="line"><span class="title function_">yungWife</span>() <span class="comment">//楊過的老婆是小龍女</span></span><br></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">let</span> kuo <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+	<span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"郭靖"</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">wife</span><span class="token operator">:</span> <span class="token string">"黃蓉"</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> yung <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+	<span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"楊過"</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">wife</span><span class="token operator">:</span> <span class="token string">"小龍女"</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> <span class="token function">funcA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">的老婆是</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>wife<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> kuoWife <span class="token operator">=</span> <span class="token function">funcA</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>kuo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">kuoWife</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">//郭靖的老婆是黃蓉</span>
+
+<span class="token keyword">let</span> yungWife <span class="token operator">=</span> <span class="token function">funcA</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>yung<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">yungWife</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//楊過的老婆是小龍女</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <p>藉由‵let kuoWife &#x3D; funcA.bind(kuo) ‵也可以把this指向所帶入的物件。</p>
 <p>其實以上的應用，萬變不離其宗，只要記得：<strong>「this代表的是function執行時所屬的物件，而不是function本身」</strong></p>
@@ -462,6 +529,9 @@
 
 
 
+  
+
+
 
   
 
@@ -616,6 +686,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.28.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
