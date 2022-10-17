@@ -1,0 +1,724 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="POPEYE">
+  <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
+  
+    <meta name="description" content="電腦程式是由一堆命令電腦執行的「指示」所構成。就像人類日常溝通的語言，不同的語言有不同的文法結構；在不同的程式語言，指示電腦執行命令的語法也不相同，程式語言的文法稱為 syntax ，一個程式語言要能運作一定要按照規定的 syntax 來寫。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="何謂運算式( Expression )與陳述式( Statement )？">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/11/05/expressionAndStatement/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="電腦程式是由一堆命令電腦執行的「指示」所構成。就像人類日常溝通的語言，不同的語言有不同的文法結構；在不同的程式語言，指示電腦執行命令的語法也不相同，程式語言的文法稱為 syntax ，一個程式語言要能運作一定要按照規定的 syntax 來寫。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/uHRcIGn.jpg">
+<meta property="og:image" content="https://i.imgur.com/1eHJJIy.png">
+<meta property="og:image" content="https://i.imgur.com/M8iU3Vm.png">
+<meta property="og:image" content="https://i.imgur.com/4uzoCDM.png">
+<meta property="og:image" content="https://i.imgur.com/7e9P8tF.png">
+<meta property="og:image" content="https://i.imgur.com/bNE5NxC.png">
+<meta property="article:published_time" content="2021-11-05T07:06:33.000Z">
+<meta property="article:modified_time" content="2022-05-01T16:49:44.000Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript,JS直播班">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/uHRcIGn.jpg">
+  
+  
+  
+  <title>何謂運算式( Expression )與陳述式( Statement )？ - F2E 星球通訊</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"popeye-ux.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="F2E 星球通訊" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>F2E 星球通訊</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首頁
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                歸檔
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分類
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                標籤
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                關於
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="何謂運算式( Expression )與陳述式( Statement )？"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-05 15:06" pubdate>
+          2021年11月5日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">何謂運算式( Expression )與陳述式( Statement )？</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://i.imgur.com/uHRcIGn.jpg" srcset="/img/loading.gif" lazyload><br>電腦程式是由一堆命令電腦執行的「指示」所構成。就像人類日常溝通的語言，不同的語言有不同的文法結構；在不同的程式語言，指示電腦執行命令的語法也不相同，程式語言的文法稱為 syntax ，一個程式語言要能運作一定要按照規定的 syntax 來寫。</p>
+<span id="more"></span>
+
+<p>JavaScript的語法可以分成兩種：</p>
+<ul>
+<li>陳述式( Statement )</li>
+<li>表達式( Expression )，也被稱為表示式或運算式。</li>
+</ul>
+<h2 id="陳述式"><a href="#陳述式" class="headerlink" title="陳述式"></a>陳述式</h2><p>MDN 對於陳述式( Statement )的定義：</p>
+<blockquote>
+<p><strong>陳述式與宣告</strong><br>JavaScript 應用程式由<strong>適當的陳述式</strong>組成。一個單一的陳述式可以跨用好幾行。 多個陳述式也可以藉由分號分隔來寫在同一行。 這不是一個關鍵字，而是一群關鍵字。</p>
+</blockquote>
+<p>這段字每個字都看得懂，但是組在一起卻像是文言文，讓人看好幾次，還是一頭霧水。</p>
+<p>讓我吃掉哆啦A夢的翻譯年糕來解釋一下，陳述式就是由一些程式碼所組成的指示，最重要的是<strong>陳述式執行後，不會回傳結果</strong>。像是變數的宣告．．．</p>
+<p>簡單來說，就是陳述式(Statement)所傳的訊息，都被瀏覽器「已讀不回」。</p>
+<p>陳述式常見的類型： </p>
+<ul>
+<li>宣告(var、let及const)</li>
+<li>流程控制：如if…else….、switch …等等</li>
+<li>迴圈</li>
+<li>函式(function)</li>
+<li>區塊(block)</li>
+<li>其他</li>
+</ul>
+<p>我們繼續用《射鵰英雄歪傳》來模擬陳述式的運作：</p>
+<p>有一天歐陽克想要約黃蓉吃飯，古代可能要飛鴿傳書，現代則只要傳 Line，但是結果都是一樣的，鴿子被射下來烤乳鴿，傳 Line 被蓉妹「已讀不回」。</p>
+<p><img src="https://i.imgur.com/1eHJJIy.png" srcset="/img/loading.gif" lazyload></p>
+<p>讓我們把上面的對話寫成JavaScript的程式碼，在瀏覽器的console視窗測試一下，看看會有甚麼結果：</p>
+<p><img src="https://i.imgur.com/M8iU3Vm.png" srcset="/img/loading.gif" lazyload></p>
+<p>以上的那些程式碼都是陳述式(Statement)，都對瀏覽器做了某些指示，但是執行完畢，沒有回傳任何數值。所以上面那張圖裡面說了一大串，但是圖的最下面只跑出了undefined。</p>
+<p>不過最後的if(…)那邊有貓膩喔？這點我在運算式的部分再深入解釋。</p>
+<h2 id="運算式-Expression"><a href="#運算式-Expression" class="headerlink" title="運算式(Expression)"></a><strong>運算式</strong>(Expression)</h2><p>Expression ，中文有人翻譯成表達式、表示式或運算式，MDN 的定義如下：</p>
+<blockquote>
+<p><strong>運算式</strong><br>運算式是任何一段可以取得一個值的程式碼。<br>任何合乎語法的運算式都能取得一個值，概念上， 有兩種不同型態的運算式: 有副作用的 (例如: 將一個值指定給一個變數) 以及只為了取得值而解析的運算式。</p>
+</blockquote>
+<p>上面那段話最重要的地方就是<strong>「任何一段可以取得一個值的程式碼」，運算式(Expression)執行後一定會回傳一個值</strong>。這也是<strong>運算式</strong>( Expression )與陳述式( Statement )最大的不同。</p>
+<p>在這裡繼續用《射鵰英雄歪傳》來模擬運算式的運作(筆者一定要這樣亂入嗎???)：</p>
+<p>運算式就像是郭靖傳Line約黃蓉吃飯一樣，戀情正火熱燒著，就算是吃滷肉飯，黃蓉也會秒回答應！！不會「已讀不回」！</p>
+<p><img src="https://i.imgur.com/4uzoCDM.png" srcset="/img/loading.gif" lazyload></p>
+<p>在這裡也讓我們用console來模擬一下上面那一串對話：</p>
+<p><img src="https://i.imgur.com/7e9P8tF.png" srcset="/img/loading.gif" lazyload></p>
+<p>比較需要注意的是if(…)的(…)，需要布林值 true 、 false 來判斷條件會不會成立，所以(…)裡面會放運算式( Expression )，但 if (…){…} 這段程式碼本身是陳述句，不會回傳任何值，也無法將它賦值給變數。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition)&#123;</span><br><span class="line">   <span class="comment">//statement1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">   statement2</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>由此可知運算式可能會混在陳述式之中，例如變數宣告本身式陳述式，但是 ＝ 號右側的部分卻屬於運算式。</p>
+<p>要注意的是，我們這一段 if (…) 述句，執行之後雖然在 console 視窗下出現結果，不過那不是回傳一個值(存在記憶體中)，而是執行了 console.log() 印出的指令，印在 console 視窗上，這一個小小的坑在我剛學 JavaScript 時困惑了一陣子。</p>
+<p>而且該放陳述式的地方是不允許放運算式的，例如 if (…) 的 (…) 裡面如果是陳述式，if述句就不知道該怎麼執行了。所以在一個會產生值的地方，是不能放入陳述式( Statement )。</p>
+<p><img src="https://i.imgur.com/bNE5NxC.png" srcset="/img/loading.gif" lazyload></p>
+<p>最後整理一下重點：</p>
+<p>JavaScript 的語法可以分為兩種，分別是陳述式( Statement )與運算式( Expression )，兩者的區分如下：</p>
+<ul>
+<li>陳述式( Statement )會執行一個指令，產生一個動作，但是不會回傳一個「值」。(已讀不回)。</li>
+<li>運算式( Expression )會回傳一個值。</li>
+<li>陳述式( Statement )中可以放入運算式來進行判斷，但是預期要放入運算式( Expression )的地方，也就是預期會產生一個值的地方，不能放入陳述式。</li>
+</ul>
+<p>我是初踏入前端領域的老學徒，如果有寫錯的地方還請大家包涵與指正，謝謝大家！</p>
+<p>參考資料</p>
+<p><a target="_blank" rel="noopener" href="https://andyyou.github.io/2016/03/06/expressions-vs-statements-in-js/">重讀 Axel 的 Javascript 中的 Expression vs Statement 一文</a></p>
+<p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10192146?sc=pt">Day16　函式陳述句與函式表示式</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/js/js_statements.asp">https://www.w3schools.com/js/js_statements.asp</a></p>
+<p><a target="_blank" rel="noopener" href="https://wcc723.github.io/development/2020/09/17/js-expression/">JavaScript 表達式觀念及運用 - JS Expression</a></p>
+<p><a target="_blank" rel="noopener" href="https://medium.com/@yining1204/javascript-%E6%A0%B8%E5%BF%83%E7%AF%87-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-chap-17-%E9%99%B3%E8%BF%B0%E5%BC%8F%E8%88%87%E8%A1%A8%E9%81%94%E5%BC%8F-c51f4b395180">JavaScript 核心篇 學習筆記: Chap.17 — 陳述式與表達式</a></p>
+<p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10218937">JS 原力覺醒 Day07 - 陳述式 表達式</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD/">#JavaScript,JS直播班</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>何謂運算式( Expression )與陳述式( Statement )？</div>
+      <div>https://popeye-ux.github.io/2021/11/05/expressionAndStatement/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>POPEYE</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年11月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/10/objectKeyAndValue/" title="何謂物件取值？在什麼時機上會用到？">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">何謂物件取值？在什麼時機上會用到？</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/28/typeConversions/" title="何謂強制轉型、以及如何作到轉換型別？">
+                        <span class="hidden-mobile">何謂強制轉型、以及如何作到轉換型別？</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://lib.baomitu.com/disqusjs/1.3.0/disqusjs.css');
+          Fluid.utils.createScript('https://lib.baomitu.com/disqusjs/1.3.0/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'popeye-ux-1',
+              apikey: ''
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目錄</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

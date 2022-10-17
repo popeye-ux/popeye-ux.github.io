@@ -1,0 +1,731 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="POPEYE">
+  <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
+  
+    <meta name="description" content="在參加鐵人賽的時候，因為這個題目了解的朦朦朧朧、似懂非懂，所以不敢寫這個題目。直到JS直播班聽了老師的解說，才一秒突破盲腸，恍然大悟。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="by reference (傳參考)、by value(傳值)的差別">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/10/15/byReferenceByValue/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="在參加鐵人賽的時候，因為這個題目了解的朦朦朧朧、似懂非懂，所以不敢寫這個題目。直到JS直播班聽了老師的解說，才一秒突破盲腸，恍然大悟。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/k3INsPA.jpg">
+<meta property="og:image" content="https://i.imgur.com/HUjYFXP.jpg">
+<meta property="og:image" content="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/q2-w2.jpg?raw=true">
+<meta property="og:image" content="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/q3-w3%20-1.jpg?raw=true">
+<meta property="og:image" content="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/by%20value-1.jpg?raw=true">
+<meta property="og:image" content="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/byvalue-2.jpg?raw=true">
+<meta property="og:image" content="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/passByReference.jpg?raw=true">
+<meta property="og:image" content="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/passByReference1.jpg?raw=true">
+<meta property="article:published_time" content="2021-10-15T15:35:46.000Z">
+<meta property="article:modified_time" content="2022-05-01T16:49:46.000Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript,JS直播班">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/k3INsPA.jpg">
+  
+  
+  
+  <title>by reference (傳參考)、by value(傳值)的差別 - F2E 星球通訊</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"popeye-ux.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="F2E 星球通訊" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>F2E 星球通訊</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首頁
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                歸檔
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分類
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                標籤
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                關於
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="by reference (傳參考)、by value(傳值)的差別"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-15 23:35" pubdate>
+          2021年10月15日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          39 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">by reference (傳參考)、by value(傳值)的差別</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://i.imgur.com/k3INsPA.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>在參加鐵人賽的時候，因為這個題目了解的朦朦朧朧、似懂非懂，所以不敢寫這個題目。直到JS直播班聽了老師的解說，才一秒突破盲腸，恍然大悟。</p>
+<span id="more"></span>
+
+<p>談這個題目之前，先來做一下六角學院JS直播班第一週的周末作業《記憶體接龍》，以了解變數與記憶體儲存位置的關係，這樣對於by reference (傳參考)、by value(傳值)會有更深入的了解。</p>
+<h2 id="第-1-題"><a href="#第-1-題" class="headerlink" title="第 1 題"></a><strong>第 1 題</strong></h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. console.log 的值為？</span></span><br><span class="line"><span class="comment">// 2.出現幾個變數、型別、記憶體空間?</span></span><br><span class="line"><span class="keyword">let</span> a ;</span><br><span class="line">a = <span class="number">1</span>;</span><br><span class="line">a = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line"></span><br><span class="line"><span class="comment">//答案1：console.log 的值為 hello</span></span><br><span class="line"><span class="comment">//答案2：1個變數a；3個型別(undefined、number、string)；3個記憶體空間</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>記憶體空間畫圖來表示：<br><img src="https://i.imgur.com/HUjYFXP.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>備註： let a ;的值為 “ undefined “ ，也會佔記憶體空間。<br>所以答案2應該是： 1 個變數， 3 個型別， 3 個記憶體空間</p>
+<p>助教的回答：let a因為並沒有宣告a的值，所以a會有一個undefined 的值，並且佔了一個記憶體空間，所以這題答案應該是1個變數， 3 個型別（數字、字串、 undefined ）， 3 個記憶體空間。</p>
+<h2 id="第-2-題"><a href="#第-2-題" class="headerlink" title="第 2 題"></a><strong>第 2 題</strong></h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. console.log 值為？</span></span><br><span class="line"><span class="comment">// 2.出現幾個變數、型別、記憶體空間?</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">3</span> ;</span><br><span class="line">b=<span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> c = <span class="number">4</span>;</span><br><span class="line">b=<span class="number">8</span>;</span><br><span class="line">c=c+b;</span><br><span class="line"><span class="keyword">let</span> d = b+c;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line"></span><br><span class="line"><span class="comment">//答案1：console.log 的值為「Uncaught ReferenceError: e is not defined」</span></span><br><span class="line"><span class="comment">//答案2：3個變數；1個型別(number)；6個記憶體空間</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>記憶體空間畫圖來表示：<br><img src="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/q2-w2.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
+<h2 id="第-3-題"><a href="#第-3-題" class="headerlink" title="第 3 題"></a><strong>第 3 題</strong></h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. console.log 值為？</span></span><br><span class="line"><span class="comment">// 2. 出現幾個變數、型別、記憶體空間?</span></span><br><span class="line"><span class="keyword">let</span> e=<span class="number">0</span>;</span><br><span class="line">e = <span class="number">5</span>;</span><br><span class="line">e = <span class="string">&quot;hello&quot;</span></span><br><span class="line">e = <span class="literal">true</span>;</span><br><span class="line">e = <span class="number">3</span>;</span><br><span class="line">e+=<span class="number">1</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line"></span><br><span class="line"><span class="comment">//答案 1：console.log 的值為 4</span></span><br><span class="line"><span class="comment">//答案 2： 1 個變數； 3 個型別(number、string、boolean)； 7 個記憶體空間</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>記憶體空間畫圖來表示：<br><img src="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/q3-w3%20-1.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
+<p>我們由上面的作業可以發現，不同的變數指向不同的記憶體位置，只要變數重新賦值之後，就會把新的值存到新的記憶體空間之中，舊的值就從記憶體上面清空，而運算過程中的值也會佔到記憶體的空間。</p>
+<p>這就是JS變數與記憶體之間運作的過程。</p>
+<p>還有一個觀念要先記一下， <strong>JS 的變數本身沒有型別，它被賦予的值才有</strong>。</p>
+<p>理解了這些才能進一步來談 by reference (傳參考)、 by value (傳值)的差別。</p>
+<h1 id="by-value-傳值"><a href="#by-value-傳值" class="headerlink" title="by value(傳值)"></a>by value(傳值)</h1><p><em>讓我們繼續來《射鵰英雄歪傳》，郭靖跟黃蓉小倆口結婚後，在大漠開起了寵物店，專門賣汗血寶馬和神雕，因為都是珍稀之物，所以定價都是1000兩黃金。</em></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 設一個汗血寶馬(horsePrice)的變數，給它1000的值</span></span><br><span class="line"><span class="keyword">let</span> horsePrice = <span class="number">1000</span>;</span><br><span class="line"><span class="comment">//設一個神雕(eaglePrice)的變數，也給它1000的值</span></span><br><span class="line"><span class="keyword">let</span> eaglePrice = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(horsePrice === eaglePrice);</span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>我們可以觀察到，在基本型別的時候，不同的變數指向不同的記憶體位置，兩個變數賦予的值一樣，也就是記憶體儲存的值一樣，兩個變數就相等。所以我們可以歸納出，<strong>基本型別變數的比較，我們看的是它被賦予的值，值相等，兩個變數就相等。</strong></p>
+<p><em>繼續來《射鵰英雄歪傳》，有一天楊康來寵物店想買一隻汗血馬，問郭靖多少錢？因為楊康之前買過神雕，郭靖隨口就說：「汗血馬跟神雕一樣的價格！」</em></p>
+<p><em>楊康心想：「老子最近沒錢！」就說：「兄弟！這馬也太貴了！」郭靖說：「蓉妹說不二價，兄弟！聽某嘴大富貴！」於是楊康只好忍痛去跟大漠的高利貸歐陽克借錢買了一匹汗血馬。</em></p>
+<p><em>結果過幾天，成吉斯汗打敗大宛國，擄獲許多汗血寶馬，造成大漠上汗血寶馬的價格大跌價，一匹馬變成300兩黃金。</em></p>
+<p>我們就用 JavaScript 來說說這件事：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//設一個神雕(eaglePrice)的變數，也給它1000的值</span></span><br><span class="line"><span class="keyword">let</span> eaglePrice = <span class="number">1000</span>;</span><br><span class="line"><span class="comment">//郭靖跟楊康說：汗血馬和神雕的價格是一樣的</span></span><br><span class="line"><span class="keyword">let</span> horsePrice = eaglePrice;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(eaglePrice); <span class="comment">//1000</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(horsePrice); <span class="comment">//1000</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(eaglePrice === horsePrice); <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//結果成吉思汗擄獲許多汗血馬，造成汗血馬價格大崩壞</span></span><br><span class="line">horsePrice = <span class="number">300</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(eaglePrice); <span class="comment">//1000</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(horsePrice); <span class="comment">//300</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(horsePrice === eaglePrice); <span class="comment">//false</span></span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>楊康哭哭！汗血馬的價格不是跟神雕一樣嗎？</p>
+<p>讓我們用前面畫圖的練習來理解一下JavaScript發生了甚麼事！</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//設一個神雕(eaglePrice)的變數，也給它1000的值</span></span><br><span class="line"><span class="keyword">let</span> eaglePrice = <span class="number">1000</span>;</span><br><span class="line"><span class="comment">//郭靖跟楊康說：汗血馬和神雕的價格是一樣的</span></span><br><span class="line"><span class="keyword">let</span> horsePrice = eaglePrice;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(eaglePrice === horsePrice); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>宣告一個eaglePrice變數，給它1000的值</li>
+<li>宣告一個horsePrice變數，給它的值是變數eaglePrice。<br><img src="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/by%20value-1.jpg?raw=true" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<p>這時發生的事情就是，<strong>horsePrice 去拷貝了 eaglePrice 的值 1000 到自己目前占用的記憶體空間</strong>。前面有提到「<strong>基本型別變數的比較，我們看的是它被賦予的值，值相等，兩個變數就相等</strong>」。</p>
+<p>let horsePrice &#x3D; eaglePrice;<br>這時候eaglePrice &#x3D;&#x3D;&#x3D; horsePrice的布林值為true。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//horsePrice重新賦值為300</span></span><br><span class="line">horsePrice = <span class="number">300</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(horsePrice === eaglePrice); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<p>horsePrice重新賦值為300這個行為指的是，horsePrice去佔用了新的記憶體空間儲存了新的值300，這時horsePrice &#x3D;&#x3D;&#x3D; eaglePrice的布林值就是false。</p>
+<p><img src="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/byvalue-2.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
+<p>汗血馬的價格horsePrice與神雕的價格eaglePrice是各自獨立的，當值相等時，兩個變數才相等，汗血馬價格崩盤的時候，神雕的價格依然不受影響。</p>
+<p>所以我們可以說「基本型別」變數之間的比較，看的是它被賦予的值相不相等，這種現象被稱為「by value(傳值)」。</p>
+<h1 id="by-reference-傳參考"><a href="#by-reference-傳參考" class="headerlink" title="by reference (傳參考)"></a>by reference (傳參考)</h1><p>但是在「物件型別」的比較上，是另外一種情形。</p>
+<p><em>繼續來《射鵰英雄歪傳》，郭靖的寵物店因為生意太好，所以開了分店，分店裡面汗血馬的價格跟總店是一樣的。</em></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//mainStore物件儲存總店汗血馬的價格</span></span><br><span class="line"><span class="keyword">let</span> mainStore = &#123;<span class="attr">horsePrice</span>: <span class="number">1000</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> branchStore = mainStore;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mainStore.<span class="property">horsePrice</span>);  <span class="comment">//1000</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(branchStore.<span class="property">horsePrice</span>);<span class="comment">//1000</span></span><br><span class="line"></span><br><span class="line">branchStore.<span class="property">horsePrice</span> = <span class="number">300</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mainStore.<span class="property">horsePrice</span>);  <span class="comment">//300</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(branchStore.<span class="property">horsePrice</span>);<span class="comment">//300</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mainStore === branchStore); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>我們發現當分店汗血馬的價格branchStore.horsePrice被重新賦值為300時，總店的汗血馬的價格也跟著變為300。</p>
+<p>而console.log(mainStore &#x3D;&#x3D;&#x3D; branchStore)的結果為true，我們可已發現mainStore與branchStore指向的是同一個實體。</p>
+<p>我們來看看宣告物件型別變數時，記憶體是如何運作的。</p>
+<p>當我們let mainStore &#x3D; {horsePrice: 1000};其實是把mainStore的參考位置指向記憶體中存放物件的位置。<br><img src="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/passByReference.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
+<p>所以當我們let branchStore &#x3D; mainStore;也是把branchStore變數參考的位置指向mainStore所參考的變數位置，所以當物件horsePrice屬性的值改變的時候，mainStore跟branchStore的值都會跟著變動。<br><img src="https://github.com/popeye-ux/ztock/blob/master/JS-live/w1/passByReference1.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
+<p>物件型別是<strong>透過「引用」的方式</strong>在傳遞資料，物件型別的物件的屬性值其實引用的是記憶體儲存資料的參考， 所以我們會說在物件型別的比較是by reference(傳參考)，看這兩個物件是否指向相同的記憶體空間，參考相同的值。</p>
+<p>凡事都有例外，物件的例外讓人特別困惑。</p>
+<p><em>繼續來《射鵰英雄歪傳》，郭靖寵物店生意很好，所以黃蓉也開了一家分店，有一天夫妻倆吵架，黃蓉一氣之下脫離加盟體系，開始削價競爭。</em></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//husbandStore物件儲存郭靖寵物店汗血馬的價格</span></span><br><span class="line"><span class="keyword">let</span> husbandStore = &#123;<span class="attr">horsePrice</span>: <span class="number">1000</span>&#125;;</span><br><span class="line"><span class="comment">//把husbandStore的值指定給wifeStor</span></span><br><span class="line"><span class="keyword">let</span> wifeStore = husbandStore;</span><br><span class="line"><span class="comment">//wifeStore物件重新賦值</span></span><br><span class="line">wifeStore = &#123;<span class="attr">horsePrice</span>: <span class="number">500</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(husbandStore.<span class="property">horsePrice</span>);  <span class="comment">//1000</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(wifeStore.<span class="property">horsePrice</span>);<span class="comment">//1000</span></span><br><span class="line"></span><br><span class="line">wifeStore.<span class="property">horsePrice</span> = <span class="number">300</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(husbandStore.<span class="property">horsePrice</span>);  <span class="comment">//1000</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(wifeStore.<span class="property">horsePrice</span>);<span class="comment">//300</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(husbandStore === wifeStore); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>在這種情形之下，husbandStore與wifeStore原本是引用相同的參考位置，<strong>但是wifeStore重新賦值之後，則引用新的參考位置</strong>，所以汗血馬價格變動的時候，husbandStore與wifeStore兩者不會連動，因為兩者參考的是不同的物件實體。</p>
+<p>許國政先生認為這種物件型別的比較應該更像是「by sharing」，這有點玄！</p>
+<p>且讓我們引用他在《0 陷阱！0 誤解！8 天重新認識JavaScript！》的一段話作為總結：</p>
+<p>「由於JavaScript的物件類型是可變的(mutable)，當物件更新時，會影響到所有引用這個物件的變數與副本，修改時會變動到原本的參考。但當賦與新值時，卻會產生新的實體參考。」</p>
+<p>參考資料</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://pjchender.blogspot.com/2016/03/javascriptby-referenceby-value.html">談談 JavaScript 中 by reference 和 by value 的重要觀念</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10191057">重新認識 JavaScript: Day 05 JavaScript 是「傳值」或「傳址」？</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/m/articles/10278982?sc=iThomeR">傳值跟傳參考概念</a></p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD/">#JavaScript,JS直播班</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>by reference (傳參考)、by value(傳值)的差別</div>
+      <div>https://popeye-ux.github.io/2021/10/15/byReferenceByValue/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>POPEYE</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年10月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/23/nullUndefined/" title="null 與 undefined 的差別">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">null 與 undefined 的差別</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/09/jsLive-varLetConst/" title="var、let、const 的差異">
+                        <span class="hidden-mobile">var、let、const 的差異</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://lib.baomitu.com/disqusjs/1.3.0/disqusjs.css');
+          Fluid.utils.createScript('https://lib.baomitu.com/disqusjs/1.3.0/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'popeye-ux-1',
+              apikey: ''
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目錄</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

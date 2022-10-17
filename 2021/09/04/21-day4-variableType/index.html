@@ -1,0 +1,709 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="POPEYE">
+  <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
+  
+    <meta name="description" content="俗話說：「人不可貌相，海水不可斗量。」就像我們看到郭靖傻不楞登，怎麼知道他武功高強。楊康外表英俊，能言善道，卻一肚子壞水。 變數也跟人一樣，從外觀無法判斷內涵。變數本身沒有型別，它所裝的「值」才有型別。 變數的型別可以分為基本型別 (Primitives) 與 物件型別(Object) 兩類。 變數的基本型別有以下5種：  字串(string) 數字(number) 布林(boolean) nu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day4:不可貌相的JS變數型別：基本型別">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/09/04/21-day4-variableType/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="俗話說：「人不可貌相，海水不可斗量。」就像我們看到郭靖傻不楞登，怎麼知道他武功高強。楊康外表英俊，能言善道，卻一肚子壞水。 變數也跟人一樣，從外觀無法判斷內涵。變數本身沒有型別，它所裝的「值」才有型別。 變數的型別可以分為基本型別 (Primitives) 與 物件型別(Object) 兩類。 變數的基本型別有以下5種：  字串(string) 數字(number) 布林(boolean) nu">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/F8quCOa.jpg">
+<meta property="article:published_time" content="2021-09-04T02:52:10.000Z">
+<meta property="article:modified_time" content="2022-04-13T11:57:02.000Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript, 2021iT邦鐵人賽, 變數">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/F8quCOa.jpg">
+  
+  
+  
+  <title>Day4:不可貌相的JS變數型別：基本型別 - F2E 星球通訊</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"popeye-ux.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="F2E 星球通訊" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>F2E 星球通訊</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首頁
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                歸檔
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分類
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                標籤
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                關於
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Day4:不可貌相的JS變數型別：基本型別"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-04 10:52" pubdate>
+          2021年9月4日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Day4:不可貌相的JS變數型別：基本型別</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://i.imgur.com/F8quCOa.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>俗話說：「人不可貌相，海水不可斗量。」就像我們看到郭靖傻不楞登，怎麼知道他武功高強。楊康外表英俊，能言善道，卻一肚子壞水。</p>
+<p>變數也跟人一樣，從外觀無法判斷內涵。變數本身沒有型別，它所裝的「值」才有型別。</p>
+<p>變數的型別可以分為<strong>基本型別 (Primitives)</strong> 與 <strong>物件型別(Object)</strong> 兩類。</p>
+<p>變數的基本型別有以下5種：</p>
+<ul>
+<li>字串(string)</li>
+<li>數字(number)</li>
+<li>布林(boolean)</li>
+<li>null</li>
+<li>undefined</li>
+</ul>
+<p>最重要的是，除了以上幾種之外，其他都是「物件」。</p>
+<h2 id="字串string"><a href="#字串string" class="headerlink" title="字串string"></a>字串string</h2><p>字串必須用2個單引號’’或是2個雙引號包住，二者不可混用。</p>
+<p>字串內也可以不放任何字元，稱之為空字串。</p>
+<p>字串可以使用+號與其他字串連接。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字串(string)，必須要放在&#x27;&#x27;或是&quot;&quot;之中</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="string">&#x27;降龍十八掌&#x27;</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">//空字串</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//字串連接可以使用+號</span></span><br><span class="line"><span class="keyword">var</span> huangRong = <span class="string">&#x27;黃蓉&#x27;</span>+<span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//兩個單引號包覆單引號，會出錯</span></span><br><span class="line"><span class="keyword">var</span> yangKang = <span class="string">&#x27;He&#x27;</span>s a bad man<span class="string">&#x27;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//改用雙引號包覆單引號，就沒有問題</span></span><br><span class="line"><span class="string">var yangKang = &quot;He&#x27;</span>s a bad man<span class="string">&quot;;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="數字number"><a href="#數字number" class="headerlink" title="數字number"></a>數字number</h2><p>不管是整數還是帶有小數點的浮點數在JavaScript中都屬於數字這個類型。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//數字(number),玉山有3952公尺</span></span><br><span class="line"><span class="keyword">var</span> jadeMountain = <span class="number">3952</span>;</span><br></pre></td></tr></table></figure>
+
+<p>但是數字number中有幾個比較特別的類型：</p>
+<ul>
+<li>infinity 正的無限大，非0的數字除以0，結果都是infinity，例如 3&#x2F;0會回傳infinity。</li>
+<li>-infinity 負的無限大，負數除以0，結果都是-infinity，例如-3&#x2F;0會回傳-infinity。</li>
+<li>NaN  不是個數字，當遇到無法轉換為數字的狀態，或是無意義的運算，例如0&#x2F;0，就會回傳NaN。而且NaN與任何數字做運算，回傳的結果都是NaN。</li>
+</ul>
+<p>我們可以使用isNaN()來檢查一個變數是不是NaN。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//infinity</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>/<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//-infinity</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(-<span class="number">3</span>/<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//NaN</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">0</span>/<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//檢查是否為NaN</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="string">&#x27;降龍十八掌&#x27;</span>) <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="布林值-boolean"><a href="#布林值-boolean" class="headerlink" title="布林值 boolean"></a>布林值 boolean</h2><p>boolean只有二種值：true 和 false。主要用在判斷式，作為程式流程控制之用。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> real = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">var</span> fake = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> more = (<span class="number">100</span> &gt; <span class="number">50</span>);  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>任何值都可以轉為布林值，但我們只要記得會轉為false的值就可以了。</p>
+<p>以下幾種會轉為false：<strong>false、0、空字串(“”)、NaN、null以及undefined。</strong></p>
+<p>除了上述幾種，其他的值皆為true。</p>
+<p>試試看用Boolean()函數將值轉換為布林值：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Boolean</span>(<span class="number">1</span>);  <span class="comment">//true</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="number">0</span>);  <span class="comment">//false</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="string">&quot;&quot;</span>);  <span class="comment">//false</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="literal">null</span>);  <span class="comment">//false</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="null"><a href="#null" class="headerlink" title="null"></a>null</h2><p>null代表「空值」，所以要<strong>將一個變數的值清除？可以指定那個變數為null。</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//郭靖本來的內力值為100分</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="number">100</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(guoJing);  <span class="comment">//100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//郭靖中毒後，一點功力都提不起來</span></span><br><span class="line"><span class="keyword">var</span> guoJing = <span class="literal">null</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(guoJing);  <span class="comment">//null</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h2><p>undefined指的是變數未經宣告，且沒有賦值；或者是有宣告變數，但是沒有給定值的狀態。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x); <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>引用許國政先生在《0 陷阱！0 誤解！8 天重新認識JavaScript！》為undefined以及null下的註解：</p>
+<p>『</p>
+<ul>
+<li>undefined代表的是「(此變數)還沒有給值，所以不知道是什麼」。</li>
+<li>null代表的是「(此變數可能曾經有值，可能沒有值)現在沒有值」</li>
+</ul>
+<p>』</p>
+<p>以上就是JavaScript的五種基本型別。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-%E8%AE%8A%E6%95%B8/">#JavaScript, 2021iT邦鐵人賽, 變數</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Day4:不可貌相的JS變數型別：基本型別</div>
+      <div>https://popeye-ux.github.io/2021/09/04/21-day4-variableType/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>POPEYE</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年9月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/09/05/21-day5-object/" title="Day5:不可貌相的JS變數型別：如何練成一個物件">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Day5:不可貌相的JS變數型別：如何練成一個物件</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/03/21-day3-varLetConst/" title="變數宣告var、let、const的區別">
+                        <span class="hidden-mobile">變數宣告var、let、const的區別</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://lib.baomitu.com/disqusjs/1.3.0/disqusjs.css');
+          Fluid.utils.createScript('https://lib.baomitu.com/disqusjs/1.3.0/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'popeye-ux-1',
+              apikey: ''
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目錄</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

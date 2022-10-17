@@ -1,0 +1,803 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="POPEYE">
+  <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
+  
+    <meta name="description" content="陣列可以被視為是一種特別的「物件」，和物件一樣，是零到多個屬性的集合，而且沒限制甚麼東西不能放進去，所以陣列裡面可以是字串、數字等基本型別，也可以是物件、函式，甚至是另一個陣列。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="實用陣列操作大全-基礎篇">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/11/16/arrayBasic/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="陣列可以被視為是一種特別的「物件」，和物件一樣，是零到多個屬性的集合，而且沒限制甚麼東西不能放進去，所以陣列裡面可以是字串、數字等基本型別，也可以是物件、函式，甚至是另一個陣列。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/hR5Botp.jpg">
+<meta property="og:image" content="https://i.imgur.com/wKVr3U7.jpg">
+<meta property="og:image" content="https://i.imgur.com/4FVXjkC.png">
+<meta property="article:published_time" content="2021-11-16T07:20:04.000Z">
+<meta property="article:modified_time" content="2022-05-01T16:49:48.000Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript, JS直播班, array">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/hR5Botp.jpg">
+  
+  
+  
+  <title>實用陣列操作大全-基礎篇 - F2E 星球通訊</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"popeye-ux.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="F2E 星球通訊" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>F2E 星球通訊</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首頁
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                歸檔
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分類
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                標籤
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                關於
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="實用陣列操作大全-基礎篇"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-16 15:20" pubdate>
+          2021年11月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          65 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">實用陣列操作大全-基礎篇</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://i.imgur.com/hR5Botp.jpg" srcset="/img/loading.gif" lazyload><br>陣列可以被視為是一種特別的「物件」，和物件一樣，是零到多個屬性的集合，而且沒限制甚麼東西不能放進去，所以陣列裡面可以是字串、數字等基本型別，也可以是物件、函式，甚至是另一個陣列。</p>
+<span id="more"></span>
+
+<p>而陣列與物件的差別在於，陣列是有順序的集合，能夠透過中括號<code>[]</code>加上索引來存取。也因為這種特性，所以陣列有許多的方法可以使用。</p>
+<p><img src="https://i.imgur.com/wKVr3U7.jpg" srcset="/img/loading.gif" lazyload><br>圖片來源：codingyuri</p>
+<p>這次就來談談如何運用陣列的基本方法：</p>
+<h2 id="Array-prototype-push"><a href="#Array-prototype-push" class="headerlink" title="Array.prototype.push()"></a>Array.prototype.push()</h2><blockquote>
+<p>使用 <strong>push()</strong> 方法可以在<strong>陣列尾端</strong>新增一個值。<br><strong>push()</strong> 方法回傳的值為<strong>陣列長度</strong>。</p>
+</blockquote>
+<p>這一天有一塊巨大的隕石往地球飛來，超級英雄們緊急集合，要把隕石推出太陽系，但是隕石太大顆，所以又找了驚奇隊長來幫忙。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;美國隊長&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>]</span><br><span class="line"><span class="keyword">let</span> value = array.<span class="title function_">push</span>(<span class="string">&#x27;驚奇隊長&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); </span><br><span class="line"><span class="comment">//[&#x27;鋼鐵人&#x27;, &#x27;美國隊長&#x27;, &#x27;浩克&#x27;, &#x27;雷神&#x27;, &#x27;驚奇隊長&#x27;]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line"><span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<p>push() 適用的在類似搶頭香的情境中。</p>
+<h2 id="Array-prototype-unshift"><a href="#Array-prototype-unshift" class="headerlink" title="Array.prototype.unshift()"></a>Array.prototype.unshift()</h2><blockquote>
+<p>使用 <strong>unshift()</strong> 可以在把想要新增的元素插入在<strong>陣列第一個元素</strong>的位置，也就是 index 為 0 的位置。<br><strong>unshift()</strong> 回傳的值也是<strong>陣列長度</strong>。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;美國隊長&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>]</span><br><span class="line"><span class="keyword">let</span> value = array.<span class="title function_">unshift</span>(<span class="string">&#x27;黑寡婦&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); </span><br><span class="line"><span class="comment">//[&#x27;黑寡婦&#x27;, &#x27;鋼鐵人&#x27;, &#x27;美國隊長&#x27;, &#x27;浩克&#x27;, &#x27;雷神&#x27;]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array[<span class="number">0</span>]);</span><br><span class="line"><span class="comment">//&#x27;黑寡婦&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line"><span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<p>unshift() 則適用於新聞類的排序，越新的新聞排到越前面。</p>
+<h2 id="Array-prototype-pop"><a href="#Array-prototype-pop" class="headerlink" title="Array.prototype.pop()"></a>Array.prototype.pop()</h2><blockquote>
+<p>如果要把陣列尾端的元素刪除，可以使用 pop() 方法。<br>pop() 方法回傳的值為被刪除的元素。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;美國隊長&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>]</span><br><span class="line"><span class="keyword">let</span> value = array.<span class="title function_">pop</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); </span><br><span class="line"><span class="comment">//[&#x27;鋼鐵人&#x27;, &#x27;美國隊長&#x27;, &#x27;浩克&#x27;, ]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line"><span class="comment">// &#x27;雷神&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>pop 是取自 Popping 這個單字，意思是彈出。不是流行音樂的意思。</p>
+<h2 id="Array-prototype-shift"><a href="#Array-prototype-shift" class="headerlink" title="Array.prototype.shift()"></a>Array.prototype.shift()</h2><blockquote>
+<p>如果要把陣列第一個元素刪除，可以使用 shift() 方法。<br>shift() 方法回傳的值為被刪除的元素。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;美國隊長&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>]</span><br><span class="line"><span class="keyword">let</span> value = array.<span class="title function_">shift</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); </span><br><span class="line"><span class="comment">//[&#x27;美國隊長&#x27;, &#x27;浩克&#x27;, &#x27;雷神&#x27;]</span></span><br><span class="line"><span class="comment">//array[0]的鋼鐵人被刪除了</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line"><span class="comment">// &#x27;鋼鐵人&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Array-prototype-splice"><a href="#Array-prototype-splice" class="headerlink" title="Array.prototype.splice"></a>Array.prototype.splice</h2><blockquote>
+<p>splice()可以刪除指定位置的陣列元素，或新增指定位置的陣列元素。<br>回傳一個<strong>新的陣列</strong>，裡面放著<strong>被刪除的元素</strong>。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.<span class="title function_">splice</span>(startIndex[, deleteCount[, item1[, item2[, ...]]]])</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>startIndex ：要開始修改的索引位置。</li>
+<li>deleteCount ：要刪除的元素數量(從startIndex位置的原四開始算)。</li>
+<li>item1,item2… ：新增的元素，由startIndex開始新增。這個選項可以選擇性使用。</li>
+</ol>
+<p>來個情境題：這一天復仇者聯盟的超級英雄們舉辦派對，結果不小心混入了兩個正義聯盟的英雄，請問要如何把他們找出來，並且叫一台車把他們裝在一起送回家？</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;蜘蛛人&#x27;</span>,<span class="string">&#x27;超人&#x27;</span>,<span class="string">&#x27;蝙蝠俠&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newArray = array.<span class="title function_">splice</span>(<span class="number">2</span>,<span class="number">2</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array);</span><br><span class="line"><span class="comment">//[&#x27;鋼鐵人&#x27;, &#x27;蜘蛛人&#x27;, &#x27;浩克&#x27;, &#x27;雷神&#x27;]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArray);</span><br><span class="line"><span class="comment">//[&#x27;超人&#x27;, &#x27;蝙蝠俠&#x27;]</span></span><br></pre></td></tr></table></figure>
+<p>原本由超人與蝙蝠俠占用的名額由’驚奇隊長’跟’緋紅女巫’來代表。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;蜘蛛人&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newArray = array.<span class="title function_">splice</span>(<span class="number">2</span>,<span class="number">0</span>,<span class="string">&#x27;驚奇隊長&#x27;</span>,<span class="string">&#x27;緋紅女巫&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array);</span><br><span class="line"><span class="comment">//[&#x27;鋼鐵人&#x27;, &#x27;蜘蛛人&#x27;, &#x27;驚奇隊長&#x27;, &#x27;緋紅女巫&#x27;, &#x27;浩克&#x27;, &#x27;雷神&#x27;]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArray);</span><br><span class="line"><span class="comment">//[]回傳空陣列</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Array-prototype-sort"><a href="#Array-prototype-sort" class="headerlink" title="Array.prototype.sort()"></a>Array.prototype.sort()</h2><p>MDN上的解釋：</p>
+<blockquote>
+<p>來看一下MDN上關於sort()的解說：<br>sort() 方法會原地（in place）對一個陣列的所有元素進行排序，並回傳此陣列。排序不一定是穩定的（stable）。預設的排序順序是根據字串的 Unicode 編碼位置（code points）而定。</p>
+</blockquote>
+<p>什麼?根據 Unicode 編碼位置（code points）來決定順序，這是甚麼東西?</p>
+<p>來看看MDN上的範例：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> months = [<span class="string">&#x27;March&#x27;</span>, <span class="string">&#x27;Jan&#x27;</span>, <span class="string">&#x27;Feb&#x27;</span>, <span class="string">&#x27;Dec&#x27;</span>];</span><br><span class="line">months.<span class="title function_">sort</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(months);</span><br><span class="line"><span class="comment">// expected output: Array [&quot;Dec&quot;, &quot;Feb&quot;, &quot;Jan&quot;, &quot;March&quot;]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> array1 = [<span class="number">1</span>, <span class="number">30</span>, <span class="number">4</span>, <span class="number">21</span>, <span class="number">100000</span>];</span><br><span class="line">array1.<span class="title function_">sort</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array1);</span><br><span class="line"><span class="comment">// expected output: Array [1, 100000, 21, 30, 4]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>不是由大到小，也不是由小到大，這實在是讓人一頭霧水呀？？？</p>
+<p>MDN上面sort()方法的撰寫規則如下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">sort</span>([compareFunction])</span><br></pre></td></tr></table></figure>
+<p>也就是說如果你沒用一個判別大小的函式來做判斷，才會使用Unicode 編碼位置（code points）來決定順序。</p>
+<p>如果你真的像要為數字排大小(當比較的是數字的時候)，可以寫一個函式來判別：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">4</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>];</span><br><span class="line">numbers.<span class="title function_">sort</span>(<span class="keyword">function</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (a &gt; b) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> (a &lt; b) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(numbers); <span class="comment">// [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+
+
+<p>上面的判斷式也就是把陣列元素一一拿來當作a與b兩個參數，傳入判斷式做比較：</p>
+<ul>
+<li>如果回傳的值小於 0，則 a 的索引位置比 b 的小，也就是 a 在 b 前面。</li>
+<li>如果回傳的值大於 0，則 b 的索引位置 比 b 的大，也就是 a 在 b 後面。</li>
+<li>如果等於 0，則 a 與 b 的位置不會改變，但會與陣列其他元素繼續比較。</li>
+</ul>
+<p><img src="https://i.imgur.com/4FVXjkC.png" srcset="/img/loading.gif" lazyload></p>
+<p>至於是陣列索引小的當a，還是大的當a，則倚賴個瀏覽器廠商的實作。</p>
+<p>compareFunction要更簡潔一些，可以這樣寫：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">4</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>];</span><br><span class="line">numbers.<span class="title function_">sort</span>(<span class="keyword">function</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> a - b;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(numbers);</span><br><span class="line"></span><br><span class="line"><span class="comment">// [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>MDN也寫了：由於依賴執行環境的實作，所以並不能保證排序的時間及空間複雜度。</p>
+</blockquote>
+<p>也就是，sort() 這個方法，每家瀏覽器背後運作的原理都不相同。</p>
+<p>像是Chrome瀏覽器，一般是使用快速排序法( Quick Sort )，但是在陣列裡面的元素小於10的時候是使用插入排序法( Insertion Sort)，還使用了二分搜尋法 Binary Search 來優化排序。( 詳細說明可以參考： <a target="_blank" rel="noopener" href="https://medium.com/@leokao0726/%E6%B7%BA%E8%AB%87-js-sort-%E5%88%B0%E8%83%8C%E5%BE%8C%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95-1035f5b8cde8">淺談 JS sort() 到背後排序方法</a> )</p>
+<p>我認為 sort() 是可以深入再研究的一個陣列方法，但是身為一個陣列大全，就先點到為止。</p>
+<h2 id="Array-prototype-indexOf"><a href="#Array-prototype-indexOf" class="headerlink" title="Array.prototype.indexOf()"></a>Array.prototype.indexOf()</h2><p>MDN上的解釋：</p>
+<blockquote>
+<p>回傳給定元素於陣列中第一個被找到之索引位置，若不存在於陣列中則回傳 -1。<br>適合用來確認陣列中那個元素是否存在。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array.<span class="title function_">indexOf</span>(searchElement,fromIndex)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>searchElement：要找的元素。</li>
+<li>fromIndex：要從第幾個元素開始找，預設為0。這個參數可以不設。</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;蜘蛛人&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>,<span class="string">&#x27;鋼鐵人&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> value = array.<span class="title function_">indexOf</span>(<span class="string">&#x27;浩克&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">let</span> value1 = array.<span class="title function_">indexOf</span>(<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value1);</span><br><span class="line"><span class="comment">// 4 因為是從 [2] 的浩克開始往後面找。</span></span><br><span class="line"><span class="keyword">let</span> value2 = array.<span class="title function_">indexOf</span>(<span class="string">&#x27;美國隊長&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value2);</span><br><span class="line"><span class="comment">// -1  美國隊長沒有在陣列中</span></span><br></pre></td></tr></table></figure>
+<h2 id="Array-prototype-lastIndexOf"><a href="#Array-prototype-lastIndexOf" class="headerlink" title="Array.prototype.lastIndexOf()"></a>Array.prototype.lastIndexOf()</h2><p>MDN上的解釋：</p>
+<blockquote>
+<p>回傳給定元素於陣列中最後一個被找到之索引，若不存在於陣列中則回傳 -1。<br>搜尋的方向為由陣列尾部向後（即向前）尋找，啟始於 fromIndex。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;蜘蛛人&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>,<span class="string">&#x27;鋼鐵人&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> value = array.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;浩克&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">let</span> value1 = array.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value1);</span><br><span class="line"><span class="comment">// 0 因為是從&#x27;浩克&#x27;往前找，找到的&#x27;鋼鐵人&#x27;是在索引[0] 的位置</span></span><br><span class="line"><span class="keyword">let</span> value2 = array.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;美國隊長&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value2);</span><br><span class="line"><span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
+<h3 id="Array-prototype-prototype-findIndex"><a href="#Array-prototype-prototype-findIndex" class="headerlink" title="Array.prototype.prototype.findIndex()"></a>Array.prototype.prototype.findIndex()</h3><p>MDN上的解釋：</p>
+<blockquote>
+<p>findIndex()方法傳回陣列中滿足測試函式的第一個元素的索引。<br>如果沒找到對應元素就回傳 -1。</p>
+</blockquote>
+<p>findIndex()與indexOf()相似，但是findIndex()可以帶入函式來判斷陣列中是否有滿足函式條件的元素。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;鋼鐵人&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">10</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">5</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;美國隊長&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">8</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;浩克&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"><span class="keyword">let</span> isFirePower = <span class="keyword">function</span>(<span class="params">element</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> element.<span class="property">firePower</span> === <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(avengers.<span class="title function_">findIndex</span>(isFirePower))</span><br><span class="line"><span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Array-prototype-reverse"><a href="#Array-prototype-reverse" class="headerlink" title="Array.prototype.reverse()"></a>Array.prototype.reverse()</h2><p>MDN上的解釋：</p>
+<blockquote>
+<p>反轉（reverses）一個陣列。陣列中的第一個元素變為最後一個，而最後一個元素則變成第一個。<br>回傳的值為反轉的陣列本身。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;蜘蛛人&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newArray = array.<span class="title function_">reverse</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array);</span><br><span class="line"><span class="comment">//[&#x27;雷神&#x27;, &#x27;浩克&#x27;, &#x27;蜘蛛人&#x27;, &#x27;鋼鐵人&#x27;]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArray);</span><br><span class="line"><span class="comment">//[&#x27;雷神&#x27;, &#x27;浩克&#x27;, &#x27;蜘蛛人&#x27;, &#x27;鋼鐵人&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h2 id="Array-join"><a href="#Array-join" class="headerlink" title="Array.join"></a>Array.join</h2><blockquote>
+<p>會將陣列（或一個類陣列（array-like）物件）中所有的元素連接、合併成一個字串，並回傳這個字串。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">join</span>([separator])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>separator：用來隔開每個元素的字串，預設是英文逗號 (,) ，如果separator使用空字串的話，合併之後，元素之間不會有任何區隔。</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;蜘蛛人&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newArray = array.<span class="title function_">join</span>(<span class="string">&#x27;*&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArray);</span><br><span class="line"><span class="comment">//鋼鐵人*蜘蛛人*浩克*雷神</span></span><br></pre></td></tr></table></figure>
+<h2 id="Array-prototype-concat"><a href="#Array-prototype-concat" class="headerlink" title="Array.prototype.concat"></a>Array.prototype.concat</h2><p>MDN上的解釋：</p>
+<blockquote>
+<p>用來合併兩個或多個陣列。<br>不會改變現有的陣列，回傳一個包含呼叫者陣列本身的新陣列。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> new_array = old_array.<span class="title function_">concat</span>(value1[, value2[, ...[, valueN]]])</span><br></pre></td></tr></table></figure>
+
+<p>範例：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> justice = [<span class="string">&#x27;超人&#x27;</span>,<span class="string">&#x27;蝙蝠俠&#x27;</span>,<span class="string">&#x27;神力女超人&#x27;</span>]</span><br><span class="line"><span class="keyword">let</span> avangers = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;蜘蛛人&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> justiceAvangers = justice.<span class="title function_">concat</span>(avangers);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(justiceAvangers);</span><br><span class="line"><span class="comment">//[&#x27;超人&#x27;, &#x27;蝙蝠俠&#x27;, &#x27;神力女超人&#x27;, &#x27;蜘蛛人&#x27;, &#x27;浩克&#x27;, &#x27;雷神&#x27;, &#x27;鋼鐵人&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以陣列合併字串：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> avengers = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;蜘蛛人&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newAvengers = avengers.<span class="title function_">concat</span>(<span class="string">&#x27;黑寡婦&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newAvengers);</span><br><span class="line"><span class="comment">//[&#x27;鋼鐵人&#x27;, &#x27;蜘蛛人&#x27;, &#x27;浩克&#x27;, &#x27;雷神&#x27;, &#x27;黑寡婦&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Array-prototype-slice"><a href="#Array-prototype-slice" class="headerlink" title="Array.prototype.slice"></a>Array.prototype.slice</h2><p>MDN上的解釋：</p>
+<blockquote>
+<p>取出起始索引到結束索引的元素，並回傳由取出元素所組成的新陣列。<br>原有陣列不會被修改</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">slice</span>([begin[, end]])</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;蜘蛛人&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>,<span class="string">&#x27;奇異博士&#x27;</span>,<span class="string">&#x27;黑豹&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newAvengers = avengers.<span class="title function_">slice</span>(<span class="number">2</span>,<span class="number">4</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newAvengers);</span><br><span class="line"><span class="comment">//[&#x27;浩克&#x27;, &#x27;雷神&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Array-prototype-includes"><a href="#Array-prototype-includes" class="headerlink" title="Array.prototype.includes()"></a>Array.prototype.includes()</h2><blockquote>
+<p>includes() 方法會判斷陣列是否包含特定的元素，並以此來回傳 true 或 false。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;蜘蛛人&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>,<span class="string">&#x27;奇異博士&#x27;</span>,<span class="string">&#x27;黑豹&#x27;</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(avengers.<span class="title function_">includes</span>(<span class="string">&#x27;雷神&#x27;</span>)); <span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(avengers.<span class="title function_">includes</span>(<span class="string">&#x27;黑寡婦&#x27;</span>)); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<h3 id="Array-prototype-toString"><a href="#Array-prototype-toString" class="headerlink" title="Array.prototype.toString()"></a>Array.prototype.toString()</h3><p>MDN上的解釋：</p>
+<blockquote>
+<p>toString() 方法將回傳一個可以表達該陣列及其元素的字串。<br>陣列的每個元素將被轉為字串，並以<code>,</code>連接，同時會回傳該字串。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;蜘蛛人&#x27;</span>,<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newAvengers = avengers.<span class="title function_">toString</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newAvengers);</span><br><span class="line"><span class="comment">//&quot;鋼鐵人,蜘蛛人,浩克,雷神&quot;</span></span><br><span class="line"><span class="comment">//每個元素被轉為字串，並以逗號連接。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p>-<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">MDN : Array.prototype.sort</a><br>-<a target="_blank" rel="noopener" href="https://realdennis.medium.com/javascript-%E5%BE%9Earray%E7%9A%84sort%E6%96%B9%E6%B3%95-%E8%81%8A%E5%88%B0%E5%90%84%E5%AE%B6%E7%80%8F%E8%A6%BD%E5%99%A8%E7%9A%84%E5%AF%A6%E4%BD%9C%E7%AE%97%E6%B3%95-c23a335b1b80">從 Array 的 sort 方法，聊到各瀏覽器的實作，沒想到 Chrome 和FireFox 的排序如此不同</a><br>-<a target="_blank" rel="noopener" href="https://medium.com/@leokao0726/%E6%B7%BA%E8%AB%87-js-sort-%E5%88%B0%E8%83%8C%E5%BE%8C%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95-1035f5b8cde8">淺談 JS sort() 到背後排序方法</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD-array/">#JavaScript, JS直播班, array</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>實用陣列操作大全-基礎篇</div>
+      <div>https://popeye-ux.github.io/2021/11/16/arrayBasic/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>POPEYE</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年11月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/20/arrayAdvance/" title="實用陣列操作大全-進階使用方法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">實用陣列操作大全-進階使用方法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/12/hoisting/" title="何謂 hoisting(向上提升)？以 let、const、var、function 為例">
+                        <span class="hidden-mobile">何謂 hoisting(向上提升)？以 let、const、var、function 為例</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://lib.baomitu.com/disqusjs/1.3.0/disqusjs.css');
+          Fluid.utils.createScript('https://lib.baomitu.com/disqusjs/1.3.0/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'popeye-ux-1',
+              apikey: ''
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目錄</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,716 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="POPEYE">
+  <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
+  
+    <meta name="description" content="BOM(Browser Object Model 瀏覽器物件模型)的重點在於瀏覽器的功能，完全由各家瀏覽器廠商自行開發。而DOM(Document Object Model 文件物件模型)則是W3C所制定的共同文件規範，提供跨瀏覽器且標準的文件處理介面。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day20:文件物件模型--DOM">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/09/20/21-day20-DOM/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="BOM(Browser Object Model 瀏覽器物件模型)的重點在於瀏覽器的功能，完全由各家瀏覽器廠商自行開發。而DOM(Document Object Model 文件物件模型)則是W3C所制定的共同文件規範，提供跨瀏覽器且標準的文件處理介面。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/HSWDUMK.jpg">
+<meta property="og:image" content="https://i.imgur.com/KNlcRq5.jpg">
+<meta property="og:image" content="https://i.imgur.com/2SkYtd6.png">
+<meta property="article:published_time" content="2021-09-20T00:31:16.000Z">
+<meta property="article:modified_time" content="2022-04-14T09:32:32.000Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript, 2021iT邦鐵人賽">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/HSWDUMK.jpg">
+  
+  
+  
+  <title>Day20:文件物件模型--DOM - F2E 星球通訊</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"popeye-ux.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="F2E 星球通訊" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>F2E 星球通訊</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首頁
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                歸檔
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分類
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                標籤
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                關於
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Day20:文件物件模型--DOM"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-20 08:31" pubdate>
+          2021年9月20日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          39 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Day20:文件物件模型--DOM</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://i.imgur.com/HSWDUMK.jpg" srcset="/img/loading.gif" lazyload><br>BOM(Browser Object Model 瀏覽器物件模型)的重點在於瀏覽器的功能，完全由各家瀏覽器廠商自行開發。而DOM(Document Object Model 文件物件模型)則是W3C所制定的共同文件規範，提供跨瀏覽器且標準的文件處理介面。</p>
+<span id="more"></span>
+
+<p>DOM(Document Object Model 文件物件模型)，是一個有階層的樹狀結構，一個節點就是一個標籤，根節點下有子節點，子節點下還有子節點，形成上下結構的關係，這樣的樹狀結構，我們稱之為「DOM Tree」。</p>
+<p>《0陷阱！0誤解！8天重新認識JavaScript》一書中有提到：</p>
+<p><strong>「DOM API定義了讓JavaScript可以存取、改變HTML架構、樣式和內容的方法，甚至對節點綁定的事件。」</strong></p>
+<p>當瀏覽器載入一個網頁時，瀏覽器會分析這個網頁的HTML，依照它的HTML結構建立一個DOM Tree。DOM的學習重點就在於掌握節點根結點之間的關係，學會如何控制DOM就可以控制網頁</p>
+<p>做出良好的互動體驗。</p>
+<p>如何透過DOM API取得節點：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根據傳入的id 名稱，找到DOM裡面相同id名稱的節點。</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;idName&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//根據傳入的tag名稱，回傳所有符合條件的NodeList物件。</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getEleMentsByTagName</span>(<span class="string">&#x27;tagName&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//根據傳入的class名稱,回傳所有符合條件的NodeList物件。</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementByClassName</span>(<span class="string">&#x27;className&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//根據所設定的selector條件(class或id都可以)，回傳第一個符合條件的節點。</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;selector&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//根據所給定的selector條件，回傳所有符合條件的 NodeList。</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">querySelectorAll</span>;</span><br></pre></td></tr></table></figure>
+
+<p>假設網頁上有一個h1的標籤節點，裡面沒有任何內容：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;hello&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我們利用document.getElementById(‘hello’)來取得#hello節點，然後修改textContent屬性：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;hello&#x27;</span>).<span class="property">textContent</span> = <span class="string">&#x27;郭靖在華山論劍向大家說 Hello World!&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>這就是取得節點，改變HTML內容的方法。</p>
+<p>你有發現嗎？不管是document.getElementById(‘idName’) 或是document.querySelector(‘selector’)都是由document開頭。讓我們來看看DOM Tree的圖，可以發現document是整個DOM Tree的根結點，所以在存取DOM節點時，都要從document出發。<br><img src="https://i.imgur.com/KNlcRq5.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>我們觀察一下DOM Tree的圖可以發現，節點之間有上下分層的關係，也有同一層節點間相鄰的關係，所以節點與節點之間的關係可以區分為：</p>
+<ul>
+<li>父子關係：document在最上層，其他的節點若有上層的節點，上層的節點稱為「父節點」(Parent Node)，下層的節點稱為「子節點」(Child Node)。就像王陽明的徒弟是「全真七子」，而全真七子之一的丘處機，他的徒弟是尹志平等人。</li>
+<li>兄弟關係：同一層的節點如果它們有同一個「父節點」，那它們之間就是「兄弟關係」，就像王陽明的徒弟「全真七子」，他們之間是師兄弟關係。</li>
+</ul>
+<h2 id="Node-childNodes"><a href="#Node-childNodes" class="headerlink" title="Node.childNodes"></a>Node.childNodes</h2><p>「所有的DOM節點物件都有childNodes屬性，且這種屬性無法修改」，那我們要如何知道一個節點是否有子節點? 這時候可以利用Node.hasChildNodes()來檢查：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;sword&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>1 東邪<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>2 西毒<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>3 南帝<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>4 北丐<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>5 中神通<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var node = document.getElementById(&#x27;sword&#x27;);</span><br><span class="line"></span><br><span class="line">if(node.hasChildNodes())&#123;</span><br><span class="line">  for(var i=0; i &lt;node.childNodes.length; i++)</span><br><span class="line">    console.log(i + node.childNodes[i].nodeName);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>來看一下console出來的結果：</p>
+<p><img src="https://i.imgur.com/2SkYtd6.png" srcset="/img/loading.gif" lazyload></p>
+<p>cosole視窗中列出了查詢的結果，我為查詢的節點加上了編號，除了”LI”之外，還出現了”0#text”之類的字串，這是因為換行符號的空白節點也被查詢了出來。如果不換行的話，”0#text”就不會出現。</p>
+<h2 id="Node-firstChild"><a href="#Node-firstChild" class="headerlink" title="Node.firstChild"></a>Node.firstChild</h2><p>Node.firstChild用來取得Node節點的第一個子節點，如果沒有子節點的話，則回傳null。而子節點包括空白節點，例如HTML Tag之間的換行符號。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;sword&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;fiveHero&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;firstHero&quot;</span>&gt;</span>1 東邪<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>2 西毒<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>3 南帝<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>4 北丐<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>5 中神通<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> node = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;fiveHero&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(node.<span class="property">firstChild</span>.<span class="property">className</span>);   <span class="comment">//firstHero</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Node-lastChild"><a href="#Node-lastChild" class="headerlink" title="Node.lastChild"></a>Node.lastChild</h2><p>Node.lastChild可以取得Node節點的最後一個子節點，如果沒有子節點的話，則一樣是傳回null。而子節點包括空白節點，例如HTML Tag之間的換行符號。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;sword&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;fiveHero&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;firstHero&quot;</span>&gt;</span>1 東邪<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>2 西毒<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>3 南帝<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>4 北丐<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;lastHero&quot;</span>&gt;</span>5 中神通<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> node = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;fiveHero&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(node.<span class="property">lastChild</span>.<span class="property">className</span>);         <span class="comment">//&quot;lastHero&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Node-parentNode"><a href="#Node-parentNode" class="headerlink" title="Node.parentNode"></a>Node.parentNode</h2><p>Node.parentNode可以取得Node節點的父節點。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;sword&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;fiveHero&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;firstHero&quot;</span>&gt;</span>1 東邪<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>2 西毒<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>3 南帝<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>4 北丐<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;lastHero&quot;</span>&gt;</span>5 中神通<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> node = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;fiveHero&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(node.<span class="property">parentNode</span>.<span class="property">tagName</span>);          <span class="comment">//&quot;DIV&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Node-previousSibling"><a href="#Node-previousSibling" class="headerlink" title="Node.previousSibling"></a>Node.previousSibling</h2><p>有同一個父元素，位於同一層的節點稱為「兄弟節點」，而Node.previousSibling可以取得Node節點的前一個兄弟節點。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;sword&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;fiveHero&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;firstHero&quot;</span>&gt;</span>1 東邪<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;secondHero&quot;</span>&gt;</span>2 西毒<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;thirdHero&quot;</span>&gt;</span>3 南帝<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;fifthHero&quot;</span>&gt;</span>4 北丐<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;lastHero&quot;</span>&gt;</span>5 中神通<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> node = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.secondHero&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(node.<span class="property">previousSibling</span>.<span class="property">className</span>);     <span class="comment">//&quot;firstHero&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Node-nextSibling"><a href="#Node-nextSibling" class="headerlink" title="Node.nextSibling"></a>Node.nextSibling</h2><p>Node.nextSibling可以取得Node節點的下一個兄弟節點。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;sword&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;fiveHero&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;firstHero&quot;</span>&gt;</span>1 東邪<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;secondHero&quot;</span>&gt;</span>2 西毒<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;thirdHero&quot;</span>&gt;</span>3 南帝<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;fifthHero&quot;</span>&gt;</span>4 北丐<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;lastHero&quot;</span>&gt;</span>5 中神通<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> node = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.secondHero&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(node.<span class="property">nextSibling</span>.<span class="property">className</span>);       <span class="comment">//&quot;thirdHero&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>由上面幾個操作，可以知道透過節點的抓取，我們可以取得節點的資訊，進而改變網頁的結構、內容以及樣式，懂得控制節點，就可以控制網頁的呈現與使用者互動。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/">#JavaScript, 2021iT邦鐵人賽</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Day20:文件物件模型--DOM</div>
+      <div>https://popeye-ux.github.io/2021/09/20/21-day20-DOM/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>POPEYE</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年9月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/09/21/21-day21-nNodelistAndHTMLcollection/" title="Day21:比較Nodelist與HTML collection的差異">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Day21:比較Nodelist與HTML collection的差異</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/19/21-day19-BOM/" title="Day19:瀏覽器物件模型--BOM">
+                        <span class="hidden-mobile">Day19:瀏覽器物件模型--BOM</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://lib.baomitu.com/disqusjs/1.3.0/disqusjs.css');
+          Fluid.utils.createScript('https://lib.baomitu.com/disqusjs/1.3.0/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'popeye-ux-1',
+              apikey: ''
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目錄</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

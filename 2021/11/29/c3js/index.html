@@ -1,0 +1,690 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="POPEYE">
+  <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
+  
+    <meta name="description" content="這一周六角學院 JS 直播班教的是 C3.js 這個畫圖表的套件。 對於一個畫圖表快二十年的人，看到這個套件感到很親切。不同於手工畫的圖表，C3.js可以透過程式把資料帶入，只要資料更新，圖表也同步更新。 其實我也使用過另外一套圖表套件 Chart.js，那是在前公司結束前，做了一個 COVID-19 的網頁，裡面圖表就是用 Chart.js 做的，那時還不會串 API ，也不會篩選資料，每天都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C3.js基本使用方法">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/11/29/c3js/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="這一周六角學院 JS 直播班教的是 C3.js 這個畫圖表的套件。 對於一個畫圖表快二十年的人，看到這個套件感到很親切。不同於手工畫的圖表，C3.js可以透過程式把資料帶入，只要資料更新，圖表也同步更新。 其實我也使用過另外一套圖表套件 Chart.js，那是在前公司結束前，做了一個 COVID-19 的網頁，裡面圖表就是用 Chart.js 做的，那時還不會串 API ，也不會篩選資料，每天都">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/wprOc5M.jpg">
+<meta property="article:published_time" content="2021-11-29T15:38:31.000Z">
+<meta property="article:modified_time" content="2022-05-23T00:47:22.000Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript, JS直播班, C3.js">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/wprOc5M.jpg">
+  
+  
+  
+  <title>C3.js基本使用方法 - F2E 星球通訊</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"popeye-ux.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="F2E 星球通訊" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>F2E 星球通訊</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首頁
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                歸檔
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分類
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                標籤
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                關於
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C3.js基本使用方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-29 23:38" pubdate>
+          2021年11月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          59 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C3.js基本使用方法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://i.imgur.com/wprOc5M.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>這一周六角學院 JS 直播班教的是 C3.js 這個畫圖表的套件。</p>
+<p>對於一個畫圖表快二十年的人，看到這個套件感到很親切。不同於手工畫的圖表，C3.js可以透過程式把資料帶入，只要資料更新，圖表也同步更新。</p>
+<p>其實我也使用過另外一套圖表套件 Chart.js，那是在前公司結束前，做了一個 COVID-19 的網頁，裡面圖表就是用 Chart.js 做的，那時還不會串 API ，也不會篩選資料，每天都用手動把資料更新，真的很傻B！</p>
+<p>誠如老師講的，不用真的把文件整個看過才會用，基本上只要抓住一些設定的要點，就可以做出還不錯的圖表。以下就整理了一些我試過可行的設定，方便未來要用時，可以快速上手：</p>
+<h2 id="導入方法"><a href="#導入方法" class="headerlink" title="導入方法"></a>導入方法</h2><p>在HTML中插入以下程式碼：</p>
+<ul>
+<li>CSS要放在自己寫的CSS之前。</li>
+<li>透過CDN抓進來使用的 d3.js 與 c3.js 也要放在自己寫的 JS檔之前。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.css&quot;&gt;</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="曲線圖-Line-Chart"><a href="#曲線圖-Line-Chart" class="headerlink" title="曲線圖 Line Chart"></a>曲線圖 Line Chart</h2><p>基本上套件就是一個物件，而所有的圖表的資料與外觀都在 generate 這個屬性的函式參數裡面設定。而  generate 函式的參數也是一個物件。</p>
+<p>可以透過 <code>bindto</code> 這個屬性把圖表綁定到 HTML 的 DOM 元素上。 </p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> chart = c3.<span class="title function_">generate</span>(&#123;</span><br><span class="line">  <span class="attr">bindto</span>: <span class="string">&quot;.chart&quot;</span>,</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="comment">// x 是設定 x 軸刻度的格式與數據</span></span><br><span class="line">    <span class="attr">x</span>: <span class="string">&quot;date&quot;</span>,</span><br><span class="line">    <span class="attr">columns</span>: [</span><br><span class="line">      <span class="comment">//&quot;date&quot; 綁定到 x 屬性的值&quot;date&quot; ，日期是字串格式</span></span><br><span class="line">      [<span class="string">&quot;date&quot;</span>, <span class="string">&quot;2021-11-21&quot;</span>, <span class="string">&quot;2021-11-22&quot;</span>, <span class="string">&quot;2021-11-23&quot;</span>, <span class="string">&quot;2021-11-24&quot;</span>],</span><br><span class="line">      <span class="comment">//資料部分，可以透過 變數 帶入</span></span><br><span class="line">      [<span class="string">&quot;data1&quot;</span>, <span class="number">30</span>, <span class="number">200</span>, <span class="number">100</span>, <span class="number">400</span>],</span><br><span class="line">      [<span class="string">&quot;data2&quot;</span>, <span class="number">50</span>, <span class="number">20</span>, <span class="number">10</span>, <span class="number">40</span>]</span><br><span class="line">    ],</span><br><span class="line">    <span class="comment">// 顯示線圖上面每一點的資料</span></span><br><span class="line">    <span class="comment">// labels: true</span></span><br><span class="line">    <span class="comment">// 每一點的資料顯示 $</span></span><br><span class="line">    <span class="attr">labels</span>: &#123;</span><br><span class="line">      <span class="attr">format</span>: &#123;</span><br><span class="line">        <span class="attr">data1</span>: d3.<span class="title function_">format</span>(<span class="string">&quot;$&quot;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//設定一組色票讓data自己捉 線 的顏色</span></span><br><span class="line">  <span class="attr">color</span>: &#123;</span><br><span class="line">    <span class="attr">pattern</span>: [<span class="string">&quot;#ff9896&quot;</span>, <span class="string">&quot;#9467bd&quot;</span>, <span class="string">&quot;#c5b0d5&quot;</span>, <span class="string">&quot;#8c564b&quot;</span>, <span class="string">&quot;#c49c94&quot;</span>, <span class="string">&quot;#e377c2&quot;</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 設定顯示格線(虛線)</span></span><br><span class="line">  <span class="attr">grid</span>: &#123;</span><br><span class="line">    <span class="attr">x</span>: &#123;</span><br><span class="line">      <span class="attr">show</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">y</span>: &#123;</span><br><span class="line">      <span class="attr">show</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//整體尺寸 不設定的話，圖表可以自適應地伸縮</span></span><br><span class="line">  <span class="attr">size</span>: &#123;</span><br><span class="line">    <span class="attr">width</span>: <span class="number">780</span>,</span><br><span class="line">    <span class="attr">height</span>: <span class="number">400</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//padding 會壓縮線圖的大小</span></span><br><span class="line">  <span class="attr">padding</span>: &#123;</span><br><span class="line">    <span class="attr">top</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="comment">//right設太小，會讓最右側刻度的日期被遮住</span></span><br><span class="line">    <span class="attr">right</span>: <span class="number">100</span>,</span><br><span class="line">    <span class="attr">bottom</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">left</span>: <span class="number">100</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//設定坐標軸格式</span></span><br><span class="line">  <span class="attr">axis</span>: &#123;</span><br><span class="line">    <span class="attr">x</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="string">&quot;timeseries&quot;</span>,</span><br><span class="line">      <span class="comment">//刻度</span></span><br><span class="line">      <span class="attr">tick</span>: &#123;</span><br><span class="line">        <span class="attr">count</span>: <span class="number">4</span>,</span><br><span class="line">        <span class="attr">format</span>: <span class="string">&quot;%Y-%m-%d&quot;</span>,</span><br><span class="line">        <span class="comment">// outer 拿掉圖表最右側多出來的刻度</span></span><br><span class="line">        <span class="attr">outer</span>: <span class="literal">false</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// 設定x軸說明 或是 數據 的單位</span></span><br><span class="line">      <span class="attr">label</span>: &#123;</span><br><span class="line">        <span class="attr">text</span>: <span class="string">&quot;日期&quot;</span>,</span><br><span class="line">        <span class="comment">//label 橫式的位置有以下幾種</span></span><br><span class="line">        <span class="comment">//inner-right [default],inner-center,inner-left,outer-right,outer-center,outer-left</span></span><br><span class="line">        <span class="attr">position</span>: <span class="string">&quot;outer-center&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">y</span>: &#123;</span><br><span class="line">      <span class="attr">show</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">tick</span>: &#123;</span><br><span class="line">        <span class="comment">//label 的位置有以下幾種</span></span><br><span class="line">        <span class="comment">//inner-right [default],inner-center,inner-left,outer-right,outer-center,outer-left</span></span><br><span class="line">        <span class="attr">position</span>: <span class="string">&quot;inner-center&quot;</span>,</span><br><span class="line">        <span class="comment">// Y軸 數字前面加上 $ 字號</span></span><br><span class="line">        <span class="attr">format</span>: d3.<span class="title function_">format</span>(<span class="string">&quot;$,&quot;</span>)</span><br><span class="line">        <span class="comment">//format: function (d) &#123; return &quot;$&quot; + d; &#125;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">label</span>: &#123;</span><br><span class="line">        <span class="attr">text</span>: <span class="string">&quot;價格&quot;</span>,</span><br><span class="line">        <span class="comment">// inner-right : default, inner-center, inner-left, outer-right, outer-center, outer-left</span></span><br><span class="line">        <span class="attr">position</span>: <span class="string">&quot;outer-middle&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//設定圖例</span></span><br><span class="line">  <span class="attr">legend</span>: &#123;</span><br><span class="line">    <span class="attr">show</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">//圖例的位置只有 &#x27;right&#x27; 與 &#x27;bottom&#x27;</span></span><br><span class="line">    <span class="attr">position</span>: <span class="string">&quot;bottom&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//圖表的標題</span></span><br><span class="line">  <span class="attr">title</span>: &#123;</span><br><span class="line">    <span class="attr">text</span>: <span class="string">&quot;好心指數&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>CSS設定的部分：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">// CSS</span><br><span class="line"><span class="selector-class">.c3-title</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">32px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.c3-axis-y</span> text &#123;</span><br><span class="line">  fill: red;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.c3-axis-x</span> text &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">  fill: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.c3-axis-y</span> text &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">10px</span>;</span><br><span class="line">  fill: green;</span><br><span class="line">  <span class="attribute">letter-spacing</span>: <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.c3-axis-y</span> <span class="selector-class">.c3-axis-y-label</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">  fill: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.c3-line</span> &#123;</span><br><span class="line">  stroke-<span class="attribute">width</span>: <span class="number">3px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.c3-circle</span> &#123;</span><br><span class="line">  fill: blue <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/popeye_ux/pen/WNEqNPO">Line Chart 範例</a></p>
+<h2 id="Bar-Chart-長條圖"><a href="#Bar-Chart-長條圖" class="headerlink" title="Bar Chart 長條圖"></a>Bar Chart 長條圖</h2><p>Bar Chart 的設定大同小異，差別在於 axis 可以設定 <code>rotated: false</code> , 坐標軸翻轉，由垂直轉為水平。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> chart = c3.<span class="title function_">generate</span>(&#123;</span><br><span class="line">  <span class="attr">bindto</span>: <span class="string">&quot;.chart&quot;</span>,</span><br><span class="line">  <span class="comment">//是bind，不是bid</span></span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="attr">x</span>: <span class="string">&quot;x&quot;</span>,</span><br><span class="line">    <span class="attr">columns</span>: [</span><br><span class="line">      [</span><br><span class="line">        <span class="string">&quot;x&quot;</span>,</span><br><span class="line">        <span class="string">&quot;2013-01-01&quot;</span>,</span><br><span class="line">        <span class="string">&quot;2013-01-02&quot;</span>,</span><br><span class="line">        <span class="string">&quot;2013-01-03&quot;</span>,</span><br><span class="line">        <span class="string">&quot;2013-01-04&quot;</span>,</span><br><span class="line">        <span class="string">&quot;2013-01-05&quot;</span></span><br><span class="line">      ],</span><br><span class="line">      [<span class="string">&quot;data1&quot;</span>, <span class="number">30</span>, <span class="number">200</span>, <span class="number">100</span>, <span class="number">400</span>, <span class="number">150</span>],</span><br><span class="line">      [<span class="string">&quot;data2&quot;</span>, <span class="number">130</span>, <span class="number">100</span>, <span class="number">140</span>, <span class="number">200</span>, <span class="number">150</span>]</span><br><span class="line">    ],</span><br><span class="line">    <span class="comment">//type 設定圖表類型</span></span><br><span class="line">    <span class="attr">type</span>: <span class="string">&quot;bar&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">bar</span>: &#123;</span><br><span class="line">    <span class="comment">//設定長條圖每一條寬度</span></span><br><span class="line">    <span class="attr">width</span>: &#123;</span><br><span class="line">      <span class="attr">ratio</span>: <span class="number">0.5</span> <span class="comment">// this makes bar width 50% of length between ticks</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// or</span></span><br><span class="line">    <span class="comment">//width: 100 // this makes bar width 100px</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">//設定一組色票讓data自己捉</span></span><br><span class="line">  <span class="attr">color</span>: &#123;</span><br><span class="line">    <span class="attr">pattern</span>: [<span class="string">&quot;#ff9896&quot;</span>, <span class="string">&quot;#9467bd&quot;</span>, <span class="string">&quot;#c5b0d5&quot;</span>, <span class="string">&quot;#8c564b&quot;</span>, <span class="string">&quot;#c49c94&quot;</span>, <span class="string">&quot;#e377c2&quot;</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 設定顯示格線(虛線)</span></span><br><span class="line">  <span class="attr">grid</span>: &#123;</span><br><span class="line">    <span class="attr">x</span>: &#123;</span><br><span class="line">      <span class="attr">show</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">y</span>: &#123;</span><br><span class="line">      <span class="attr">show</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//整體尺寸 不設定的話，圖表可以自適應地伸縮</span></span><br><span class="line">  <span class="attr">size</span>: &#123;</span><br><span class="line">    <span class="attr">width</span>: <span class="number">780</span>,</span><br><span class="line">    <span class="attr">height</span>: <span class="number">400</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">padding</span>: &#123;</span><br><span class="line">    <span class="attr">top</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">right</span>: <span class="number">200</span>,</span><br><span class="line">    <span class="attr">bottom</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">left</span>: <span class="number">100</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">axis</span>: &#123;</span><br><span class="line">    <span class="comment">//rotated 設定坐標軸翻轉</span></span><br><span class="line">    <span class="attr">rotated</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">x</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="string">&quot;category&quot;</span>,</span><br><span class="line">      <span class="comment">// 設定x軸說明 或是 數據 的單位</span></span><br><span class="line">      <span class="attr">label</span>: &#123;</span><br><span class="line">        <span class="attr">text</span>: <span class="string">&quot;日期&quot;</span>,</span><br><span class="line">        <span class="comment">//label 橫式的位置有以下幾種</span></span><br><span class="line">        <span class="comment">//inner-right [default],inner-center,inner-left,outer-right,outer-center,outer-left</span></span><br><span class="line">        <span class="attr">position</span>: <span class="string">&quot;outer-center&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">y</span>: &#123;</span><br><span class="line">      <span class="attr">tick</span>: &#123;</span><br><span class="line">        <span class="attr">position</span>: <span class="string">&quot;inner-center&quot;</span>,</span><br><span class="line">        <span class="comment">// Y軸 數字前面加上 $ 字號</span></span><br><span class="line">        <span class="attr">format</span>: d3.<span class="title function_">format</span>(<span class="string">&quot;$,&quot;</span>)</span><br><span class="line">        <span class="comment">//format: function (d) &#123; return &quot;$&quot; + d; &#125;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">label</span>: &#123;</span><br><span class="line">        <span class="attr">text</span>: <span class="string">&quot;價格&quot;</span>,</span><br><span class="line">        <span class="comment">// inner-right : default, inner-center, inner-left, outer-right, outer-center, outer-left</span></span><br><span class="line">        <span class="attr">position</span>: <span class="string">&quot;outer-middle&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">legend</span>: &#123;</span><br><span class="line">    <span class="attr">show</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">//圖例的位置 &#x27;bottom&#x27;</span></span><br><span class="line">    <span class="attr">position</span>: <span class="string">&quot;bottom&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//圖表的標題</span></span><br><span class="line">  <span class="attr">title</span>: &#123;</span><br><span class="line">    <span class="attr">text</span>: <span class="string">&quot;銷售金額&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/popeye_ux/pen/yLodYmK">Bar Chart 範例</a></p>
+<h3 id="Pie-Chart-餅圖"><a href="#Pie-Chart-餅圖" class="headerlink" title="Pie Chart 餅圖"></a>Pie Chart 餅圖</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> chart = c3.<span class="title function_">generate</span>(&#123;</span><br><span class="line">  <span class="attr">bindto</span>: <span class="string">&quot;.chart&quot;</span>,</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="comment">// iris data from R</span></span><br><span class="line">    <span class="attr">columns</span>: [</span><br><span class="line">      [<span class="string">&quot;iPhone&quot;</span>, <span class="number">30</span>],</span><br><span class="line">      [<span class="string">&quot;其他手機&quot;</span>, <span class="number">120</span>]</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&quot;pie&quot;</span>,</span><br><span class="line">    <span class="attr">labels</span>: <span class="literal">true</span>    </span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//設定一組色票讓data自己捉 線 的顏色</span></span><br><span class="line">  <span class="attr">color</span>: &#123;</span><br><span class="line">    <span class="attr">pattern</span>: [<span class="string">&quot;#ff9896&quot;</span>, <span class="string">&quot;#9467bd&quot;</span>, <span class="string">&quot;#c5b0d5&quot;</span>, <span class="string">&quot;#8c564b&quot;</span>, <span class="string">&quot;#c49c94&quot;</span>, <span class="string">&quot;#e377c2&quot;</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//整體尺寸，本來置中，會往畫面左邊靠</span></span><br><span class="line">  <span class="attr">size</span>: &#123;</span><br><span class="line">    <span class="attr">width</span>: <span class="number">780</span>,</span><br><span class="line">    <span class="attr">height</span>: <span class="number">400</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//padding 會壓縮線圖的大小</span></span><br><span class="line">  <span class="attr">padding</span>: &#123;</span><br><span class="line">    <span class="attr">top</span>: <span class="number">0</span>,    </span><br><span class="line">    <span class="attr">right</span>: <span class="number">100</span>,</span><br><span class="line">    <span class="attr">bottom</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">left</span>: <span class="number">100</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//設定圖例</span></span><br><span class="line">  <span class="attr">legend</span>: &#123;</span><br><span class="line">    <span class="attr">show</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">//圖例的位置只有 &#x27;right&#x27; 與 &#x27;bottom&#x27;</span></span><br><span class="line">    <span class="attr">position</span>: <span class="string">&quot;bottom&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line"> <span class="comment">//pie 及 donut 圖 label 設定的方式和其他圖不一樣，要注意</span></span><br><span class="line">  <span class="attr">pie</span>: &#123;</span><br><span class="line">    <span class="attr">label</span>: &#123;</span><br><span class="line">      <span class="attr">show</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">format</span>: <span class="keyword">function</span> (<span class="params">value, ratio, id</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> d3.<span class="title function_">format</span>(<span class="string">&quot;$&quot;</span>)(value);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//圖表的標題</span></span><br><span class="line">  <span class="attr">title</span>: &#123;</span><br><span class="line">    <span class="attr">text</span>: <span class="string">&quot;銷售金額比例&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/popeye_ux/pen/PoKrVGe">Pie Chart 範例</a></p>
+<h2 id="Donut-Chart-甜甜圈圖"><a href="#Donut-Chart-甜甜圈圖" class="headerlink" title="Donut Chart 甜甜圈圖"></a>Donut Chart 甜甜圈圖</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> chart = c3.<span class="title function_">generate</span>(&#123;</span><br><span class="line">  <span class="attr">bindto</span>: <span class="string">&quot;.chart&quot;</span>,</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="comment">// iris data from R</span></span><br><span class="line">    <span class="attr">columns</span>: [</span><br><span class="line">      [<span class="string">&quot;iPhone&quot;</span>, <span class="number">30</span>],</span><br><span class="line">      [<span class="string">&quot;其他手機&quot;</span>, <span class="number">120</span>]</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&quot;donut&quot;</span>,</span><br><span class="line">    <span class="attr">labels</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//設定一組色票讓data自己捉 線 的顏色</span></span><br><span class="line">  <span class="attr">color</span>: &#123;</span><br><span class="line">    <span class="attr">pattern</span>: [<span class="string">&quot;#ff9896&quot;</span>, <span class="string">&quot;#9467bd&quot;</span>, <span class="string">&quot;#c5b0d5&quot;</span>, <span class="string">&quot;#8c564b&quot;</span>, <span class="string">&quot;#c49c94&quot;</span>, <span class="string">&quot;#e377c2&quot;</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//整體尺寸，本來置中，會往畫面左邊靠</span></span><br><span class="line">  <span class="attr">size</span>: &#123;</span><br><span class="line">    <span class="attr">width</span>: <span class="number">780</span>,</span><br><span class="line">    <span class="attr">height</span>: <span class="number">400</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//padding 會壓縮線圖的大小</span></span><br><span class="line">  <span class="attr">padding</span>: &#123;</span><br><span class="line">    <span class="attr">top</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="comment">//right設太小，會讓最右側刻度的日期被遮住</span></span><br><span class="line">    <span class="attr">right</span>: <span class="number">100</span>,</span><br><span class="line">    <span class="attr">bottom</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">left</span>: <span class="number">100</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//設定圖例</span></span><br><span class="line">  <span class="attr">legend</span>: &#123;</span><br><span class="line">    <span class="attr">show</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">//圖例的位置只有 &#x27;right&#x27; 與 &#x27;bottom&#x27;</span></span><br><span class="line">    <span class="attr">position</span>: <span class="string">&quot;bottom&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//pie 及 donut 圖 label 設定的方式和其他圖不一樣，要注意</span></span><br><span class="line">  <span class="attr">donut</span>: &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&quot;地區&quot;</span>,</span><br><span class="line">    <span class="comment">//控制環的粗細</span></span><br><span class="line">    <span class="attr">width</span>:<span class="number">80</span>,</span><br><span class="line">    <span class="attr">label</span>: &#123;</span><br><span class="line">      <span class="attr">show</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//圖表的外部標題</span></span><br><span class="line">  <span class="attr">title</span>: &#123;</span><br><span class="line">    <span class="attr">text</span>: <span class="string">&quot;銷售金額比例&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/popeye_ux/pen/ExvBMPw">Donut Chart 範例</a></p>
+<p>先整理以上這些基本設定，以後若有新發現在隨時更新！如果有錯誤的地方，也請不吝告訴我。感謝！</p>
+<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://vainolo.com/2019/10/14/learning-c3-js-lesson-3-line-charts/">Learning C3.js – Lesson 3 – Line Charts</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.demo2s.com/javascript/javascript-c3-js-x-axis-label-text-position.html">Javascript C3.js X axis label text position</a></li>
+<li><a target="_blank" rel="noopener" href="https://codepen.io/travisluong/pen/eNeaMe?editors=1010">CodePen Home C3 Line Chart Demo</a></li>
+<li><a target="_blank" rel="noopener" href="https://vainolo.com/2019/10/25/learning-c3-js-lesson-4-bar-charts/">Learning C3.js – Lesson 4 – Bar Charts</a></li>
+<li><a target="_blank" rel="noopener" href="https://hackmd.io/@sylviekuo/B1Jr5wNgD">js學習60天-c3.js筆記</a></li>
+<li><a target="_blank" rel="noopener" href="https://hsuchihting.github.io/javascript/20200715/3292510004/">JS 筆記 - C3.js 基本認識</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD-C3-js/">#JavaScript, JS直播班, C3.js</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C3.js基本使用方法</div>
+      <div>https://popeye-ux.github.io/2021/11/29/c3js/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>POPEYE</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年11月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/06/getAttributeSetAttribute/" title="getAttributeSetAttribute">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">getAttributeSetAttribute</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/28/formValueMistake/" title="表單取值的誤區">
+                        <span class="hidden-mobile">表單取值的誤區</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://lib.baomitu.com/disqusjs/1.3.0/disqusjs.css');
+          Fluid.utils.createScript('https://lib.baomitu.com/disqusjs/1.3.0/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'popeye-ux-1',
+              apikey: ''
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目錄</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

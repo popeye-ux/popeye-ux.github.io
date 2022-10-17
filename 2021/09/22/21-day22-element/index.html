@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="POPEYE">
+  <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
+  
+    <meta name="description" content="「DOM API 定義了 JavaScript 存取、改變 HTML 架構、內容、樣式的方法，甚至對節點綁定的事件。」">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day22:給我一個節點，我可以把網頁改頭換面">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/09/22/21-day22-element/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="「DOM API 定義了 JavaScript 存取、改變 HTML 架構、內容、樣式的方法，甚至對節點綁定的事件。」">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/QSoG1Ty.jpg">
+<meta property="article:published_time" content="2021-09-22T01:09:30.000Z">
+<meta property="article:modified_time" content="2022-04-17T18:38:48.000Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript, 2021iT邦鐵人賽">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/QSoG1Ty.jpg">
+  
+  
+  
+  <title>Day22:給我一個節點，我可以把網頁改頭換面 - F2E 星球通訊</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"popeye-ux.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="F2E 星球通訊" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>F2E 星球通訊</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首頁
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                歸檔
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分類
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                標籤
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                關於
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Day22:給我一個節點，我可以把網頁改頭換面"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-22 09:09" pubdate>
+          2021年9月22日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Day22:給我一個節點，我可以把網頁改頭換面</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://i.imgur.com/QSoG1Ty.jpg" srcset="/img/loading.gif" lazyload><br>「DOM API 定義了 JavaScript 存取、改變 HTML 架構、內容、樣式的方法，甚至對節點綁定的事件。」</p>
+<span id="more"></span>
+<p>前一篇的內容，是關於 JavaScript 如何「存取」 HTML 節點的方法；這一篇來談談 JavaScript 用甚麼方法改變 HTML 架構、內容與樣式。</p>
+<p>JavaScript 改變 HTML 的方法有以下步驟：</p>
+<ul>
+<li>新增元素節點或文字節點</li>
+<li>利用 appendChild()、 insertBefore 或 replaceChild() 等方法將新增的元素節點與文字節點插入指定的位置。</li>
+</ul>
+<h2 id="新增元素節點或文字節點"><a href="#新增元素節點或文字節點" class="headerlink" title="新增元素節點或文字節點"></a>新增元素節點或文字節點</h2><h3 id="document-createElement-tagName"><a href="#document-createElement-tagName" class="headerlink" title="document.createElement(tagName)"></a>document.createElement(tagName)</h3><p>document.createElement(tagName) 可以幫我們建立一個新的元素節點，但是你利用appendChild() 等方法把它加入指定位置之後才會在網頁上顯示出來。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newLi = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;li&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>同時也可針對我們新建立的<code>&lt;li&gt;</code>，指定id及class名稱。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">newLi.<span class="property">id</span> = <span class="string">&quot;goodNewLi&quot;</span>;</span><br><span class="line">newLi.<span class="property">className</span> = <span class="string">&quot;betterNewLi&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="document-createTextNode"><a href="#document-createTextNode" class="headerlink" title="document.createTextNode()"></a>document.createTextNode()</h3><p>我們也可以利用 document.createTextNode() 建立文字節點，在括號中放入想要新增的字串。跟document.createElement(tagName) 一樣，要用 appendChild() 等方法把新增的文字節點插入指定的位置後面，網頁上才會顯現出來。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> txt = <span class="variable language_">document</span>.<span class="title function_">createTextNode</span>(<span class="string">&#x27;string&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="document-write"><a href="#document-write" class="headerlink" title="document.write"></a>document.write</h3><p>document.write() 應該是JavaScript 的新手最熟悉的老朋友了！</p>
+<p>利用它不用甚麼 append 方法，馬上可以將括號中的內容輸出到網頁上，而且括號中不只可以放字串，還可以放HTML標籤。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">write</span>(<span class="string">&#x27;Hollow World！&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="將DOM節點新增到網頁中或是刪改節點"><a href="#將DOM節點新增到網頁中或是刪改節點" class="headerlink" title="將DOM節點新增到網頁中或是刪改節點"></a>將DOM節點新增到網頁中或是刪改節點</h3><h3 id="Node-appendChild-childNode"><a href="#Node-appendChild-childNode" class="headerlink" title="Node.appendChild(childNode)"></a>Node.appendChild(childNode)</h3><p>Node.appendChild(childNode) 可以讓我們將新增的元素節點或文字節點新增到父容器節點的最尾端。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;fiveHero&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;firstHero&quot;</span>&gt;</span>1 東邪<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;secondHero&quot;</span>&gt;</span>2 西毒<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;thirdHero&quot;</span>&gt;</span>3 南帝<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;fourthHero&quot;</span>&gt;</span>4 北丐<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>讓我們看看如何將 <code>&lt;li id=&quot;lastHero&quot;&gt;5 中神通&lt;/li&gt;</code> 加入列表的最末端：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取得父容器節點</span></span><br><span class="line"><span class="keyword">let</span> heros = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;fiveHero&#x27;</span>);</span><br><span class="line"><span class="comment">//新增&lt;li&gt;節點</span></span><br><span class="line"><span class="keyword">let</span> newLi = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;li&#x27;</span>);</span><br><span class="line"><span class="comment">//指定新增節點的id名稱</span></span><br><span class="line">newLi.<span class="property">id</span> = <span class="string">&quot;lastHero&quot;</span>;</span><br><span class="line"><span class="comment">//新增文字節點</span></span><br><span class="line"><span class="keyword">let</span> text = <span class="variable language_">document</span>.<span class="title function_">createTextNode</span>(<span class="string">&#x27;5 中神通&#x27;</span>);</span><br><span class="line"><span class="comment">//將文字節點加入到新增的&lt;li&gt;節點中</span></span><br><span class="line">newLi.<span class="title function_">appendChild</span>(text);</span><br><span class="line"><span class="comment">//將新增的&lt;li&gt;節點加入到父容器節點中</span></span><br><span class="line">heros.<span class="title function_">appendChild</span>(newLi);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Node-insertBefore-newNode-refNode"><a href="#Node-insertBefore-newNode-refNode" class="headerlink" title="Node.insertBefore(newNode,refNode)"></a>Node.insertBefore(newNode,refNode)</h3><p>Node.insertBefore(newNode,refNode) 方法可以將新的節點 (newNode) ，插入到參考節點(refNode) 之前。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;fiveHero&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1 東邪<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2 西毒<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4 北丐<span class="tag">&lt;/<span class="name">li</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>5 中神通<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取得父容器節點</span></span><br><span class="line"><span class="keyword">let</span> heros = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;fiveHero&#x27;</span>);</span><br><span class="line"><span class="comment">//建立新節點&lt;li&gt;</span></span><br><span class="line"><span class="keyword">let</span> newHero = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;li&#x27;</span>);</span><br><span class="line"><span class="comment">//建立新的文字節點</span></span><br><span class="line"><span class="keyword">let</span> thirdHeroTxt=<span class="variable language_">document</span>.<span class="title function_">createTextNode</span>(<span class="string">&#x27;3 南帝&#x27;</span>);</span><br><span class="line"><span class="comment">//將文字節點加入新建立的節點&lt;li&gt;</span></span><br><span class="line">newHero.<span class="title function_">appendChild</span>(thirdHeroTxt);</span><br><span class="line"><span class="comment">//抓取參考的節點&lt;li id=&quot;fourthHero&quot;&gt;4 北丐&lt;/li&gt;</span></span><br><span class="line"><span class="keyword">let</span> refHero = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;li&#x27;</span>)[<span class="number">2</span>];</span><br><span class="line"><span class="comment">//將新的節點&lt;li&gt;插到參考節點前面</span></span><br><span class="line">heros.<span class="title function_">insertBefore</span>(newHero,refHero);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Node-replaceChild-newChildNode-oldChildNode"><a href="#Node-replaceChild-newChildNode-oldChildNode" class="headerlink" title="Node.replaceChild(newChildNode,oldChildNode)"></a>Node.replaceChild(newChildNode,oldChildNode)</h3><p>Node.replaceChild(newChildNode,oldChildNode) 可以將原本的節點及內容更換為新的節點及內容。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;sword&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;fiveHero&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;firstHero&quot;</span>&gt;</span>1 東邪<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;secondHero&quot;</span>&gt;</span>2 西毒<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ids</span>=<span class="string">&quot;thirdHero&quot;</span>&gt;</span>3 南帝<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;fifthHero&quot;</span>&gt;</span>4 北丐<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;lastHero&quot;</span>&gt;</span>5 中神通<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取得父容器節點</span></span><br><span class="line"><span class="keyword">let</span> heros = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;fiveHero&#x27;</span>);</span><br><span class="line"><span class="comment">//建立新節點&lt;li&gt;</span></span><br><span class="line"><span class="keyword">let</span> newHero = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;li&#x27;</span>);</span><br><span class="line"><span class="comment">//建立新的文字節點</span></span><br><span class="line"><span class="keyword">let</span> newHeroTxt=<span class="variable language_">document</span>.<span class="title function_">createTextNode</span>(<span class="string">&#x27;5 中頑童&#x27;</span>);</span><br><span class="line"><span class="comment">//將文字節點加入newHero元素節點</span></span><br><span class="line">newHero.<span class="title function_">appendChild</span>(newHeroTxt);</span><br><span class="line"><span class="comment">//抓取參考的節點&lt;li id=&quot;lastHero&quot;&gt;5 中神通&lt;/li&gt;</span></span><br><span class="line"><span class="keyword">let</span> oldHero = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;lastHero&#x27;</span>);</span><br><span class="line">heros.<span class="title function_">replaceChild</span>(newHero,oldHero);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Node-removeNode-childNode"><a href="#Node-removeNode-childNode" class="headerlink" title="Node.removeNode(childNode)"></a>Node.removeNode(childNode)</h3><p>那要如何刪除元素節點呢?利用 Node.removeNode(childNode) 就可以辦到！但是這個方法只能刪除單一網頁節點。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;fiveHero&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1 東邪<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2 西毒<span class="tag">&lt;/<span class="name">li</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3 南帝<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4 北丐<span class="tag">&lt;/<span class="name">li</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>5 中神通<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取得父容器節點</span></span><br><span class="line"><span class="keyword">let</span> heros = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;fiveHero&#x27;</span>);</span><br><span class="line"><span class="comment">//取得要移除的元素節點</span></span><br><span class="line"><span class="keyword">let</span> removeHero = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;li&#x27;</span>)[<span class="number">1</span>];</span><br><span class="line"><span class="comment">//將heros裡的removeHero移除</span></span><br><span class="line">heros.<span class="title function_">removeChild</span>(removeHero);</span><br></pre></td></tr></table></figure>
+
+<p>以上就是改變HTML架構的方法，新增一個元素節點或文字節點，將其新增、替換原本就有的節點，或是清除本來就有的節點。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/">#JavaScript, 2021iT邦鐵人賽</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Day22:給我一個節點，我可以把網頁改頭換面</div>
+      <div>https://popeye-ux.github.io/2021/09/22/21-day22-element/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>POPEYE</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年9月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/09/23/21-day23-createElementVsInnerHtml/" title="Day23:在網頁中插入HTML標籤的實務做法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Day23:在網頁中插入HTML標籤的實務做法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/21/21-day21-nNodelistAndHTMLcollection/" title="Day21:比較Nodelist與HTML collection的差異">
+                        <span class="hidden-mobile">Day21:比較Nodelist與HTML collection的差異</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://lib.baomitu.com/disqusjs/1.3.0/disqusjs.css');
+          Fluid.utils.createScript('https://lib.baomitu.com/disqusjs/1.3.0/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'popeye-ux-1',
+              apikey: ''
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目錄</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

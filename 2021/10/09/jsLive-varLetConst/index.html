@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="POPEYE">
+  <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
+  
+    <meta name="description" content="以下為我今年參加iT邦幫忙鐵人賽寫的文章，原文連結： 【Day2】變數宣告var、let、const的區別 但是老師教我用 var 宣告變數，但我也看到有同學用 let 與 const 宣告變數，這是怎麼一回事呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="var、let、const 的差異">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/10/09/jsLive-varLetConst/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="以下為我今年參加iT邦幫忙鐵人賽寫的文章，原文連結： 【Day2】變數宣告var、let、const的區別 但是老師教我用 var 宣告變數，但我也看到有同學用 let 與 const 宣告變數，這是怎麼一回事呢？">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-10-09T15:25:52.000Z">
+<meta property="article:modified_time" content="2022-05-01T16:49:42.000Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript,JS直播班">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>var、let、const 的差異 - F2E 星球通訊</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"popeye-ux.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="F2E 星球通訊" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>F2E 星球通訊</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首頁
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                歸檔
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分類
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                標籤
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                關於
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="var、let、const 的差異"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-09 23:25" pubdate>
+          2021年10月9日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">var、let、const 的差異</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>以下為我今年參加iT邦幫忙鐵人賽寫的文章，原文連結：</p>
+<p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10259329">【Day2】變數宣告var、let、const的區別</a></p>
+<p>但是老師教我用 var 宣告變數，但我也看到有同學用 let 與 const 宣告變數，這是怎麼一回事呢？</p>
+<span id="more"></span>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個變數郭靖(guoJing)</span></span><br><span class="line"><span class="keyword">var</span> guoJing;</span><br></pre></td></tr></table></figure>
+
+<p>也可以看到這樣：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個建立一個名為黃蓉(huangRong)的變數，給她&#x27;打狗棒法&#x27;的值</span></span><br><span class="line"><span class="keyword">let</span> huangRongKungFu = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個洪七公(hongQigong)的常數，給他「北丐」的值</span></span><br><span class="line"><span class="keyword">const</span> hongQigong = <span class="string">&#x27;北丐&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>var 、 let 、 const 這三兄弟到底有甚麼差別呢？</p>
+<p>原來除了用var宣告變數之外，在ES6之後，變數區分為變數與常數，透過 var 與 let 宣告「變數」，透過const宣告「常數」。</p>
+<p>var 和 let 最大的區別在於「作用域」不同，這一點我們先放在心上，之後再深入探討。</p>
+<p><strong>在這裡補上let與var作用域的區別：</strong></p>
+<ul>
+<li>var 是以function為作用域。</li>
+<li>let 則是以大括號{}區塊的程式碼為作用的範圍。</li>
+</ul>
+<p>作用域外層的程式捉不到作用域內的宣告的變數，但是作用域內的程式可以捉到外層的變數。</p>
+<p>先來看看var：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個變數郭靖(guoJing)</span></span><br><span class="line"><span class="keyword">var</span> guoJingKungFu;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(guoJingKungFu);</span><br><span class="line"><span class="comment">//未賦值，所以出現的結果為 undefined</span></span><br><span class="line"></span><br><span class="line">guoJingKungFu = <span class="string">&#x27;降龍十八掌&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;郭靖使出 &#x27;</span> + guoJingKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;郭靖使出 降龍十八掌&quot;</span></span><br><span class="line"></span><br><span class="line">guoJingKungFu = <span class="string">&#x27;空明拳&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;郭靖使出 &#x27;</span> + guoJingKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;郭靖使出 空明拳&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> guoJingKungFu = <span class="string">&#x27;九陰真經&#x27;</span>;</span><br><span class="line"><span class="comment">//再次用var宣告 guoJing = &#x27;九陰真經&#x27;;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;郭靖使出 &#x27;</span> + guoJingKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;郭靖使出 九陰真經&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>使用var的時候，同一個變數名稱可以再重新「宣告」，重新賦值。</strong></p>
+<p>再看看使用 <code>let</code> 的狀況：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個建立一個名為黃蓉(huangRong)的變數，給她&#x27;打狗棒法&#x27;的值</span></span><br><span class="line"><span class="keyword">let</span> huangRongKungFu;</span><br><span class="line">huangRongKungFu = <span class="string">&#x27;打狗棒法&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;黃蓉使出 &#x27;</span> + huangRongKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;黃蓉使出 打狗棒法&quot;</span></span><br><span class="line"></span><br><span class="line">huangRongKungFu = <span class="string">&#x27;落英神劍掌&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;黃蓉使出 &#x27;</span> + huangRongKungFu);</span><br><span class="line"><span class="comment">//結果為&quot;黃蓉使出 落英神劍掌&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> huangRongKungFu = <span class="string">&#x27;蘭花拂穴手&#x27;</span>;</span><br><span class="line"><span class="comment">//Uncaught SyntaxError: Identifier &#x27;huangRong&#x27; has already been declared</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>使用 let 比使用 var 來宣告變數嚴謹，如果宣告時未賦值，並不會以undefined初始化，所以從宣告到初始化這段時間會無法使用，這個時間差稱為「暫時死區」。</strong></p>
+<p><strong>let 能重複賦值，禁止於同個區塊作用域重複宣告</strong>，如果重複宣告會出現：</p>
+<p>「Uncaught SyntaxError: Identifier ‘huangRong’ has already been declared」</p>
+<p>提醒你已經用 let 宣告過這個變數了。</p>
+<p>讓我們來試試 const：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個洪七公(hongQigong)的常數，給他「北丐」的值</span></span><br><span class="line"><span class="keyword">const</span> hongQigong = <span class="string">&#x27;北丐&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;洪七公是 &#x27;</span> + hongQigong);</span><br><span class="line">hongQigong = <span class="string">&#x27;美食家&#x27;</span>;</span><br><span class="line"><span class="comment">//Uncaught TypeError: Assignment to constant variable.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hongQigong = <span class="string">&#x27;美食家&#x27;</span>;</span><br><span class="line"><span class="comment">//Uncaught SyntaxError: Identifier &#x27;hongQigong&#x27; has already been declared</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>const 是用來宣告常數，也就是不會變動的常量，所以禁止於同個區塊作用域重複宣告，也不能重新賦值。而且宣告時一定要給值。</strong></p>
+<p>重複宣告會告訴你：</p>
+<p>「Uncaught SyntaxError: Identifier ‘hongQigong’ has already been declared」</p>
+<p>重複賦值則會提醒你：</p>
+<p>「Uncaught TypeError: Assignment to constant(持續的) variable.」</p>
+<p>因為以上這些區別，使用 var 、 let 、 const 來宣告變數的時機與場景有不同的區別，語意上也有明確區分。而沒有經過 var 、 let 與 const 宣告就直接賦值使用的變數會變成全域變數。</p>
+<p>const 有一個例外，就是在宣告物件時，因為物件是 call by reference ，變數參考的是物件存放的位置，當修改物件屬性的時候，不會改變物件參考的記憶體位置，<strong>所以用 const 宣告物件時，其屬性是可以修改的，但是重新賦值則是禁止的。</strong></p>
+<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://totoroliu.medium.com/javascript-var-let-const-%E5%B7%AE%E7%95%B0-e3d930521230">JavaScript: var, let, const 差異</a></li>
+<li><a target="_blank" rel="noopener" href="https://askie.today/differences-among-var-let-const/">在 JavaScript 中，Var、Let、Const 的差異？</a></li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10199513">搞懂變數作用域(2)- let 與const</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD/">#JavaScript,JS直播班</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>var、let、const 的差異</div>
+      <div>https://popeye-ux.github.io/2021/10/09/jsLive-varLetConst/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>POPEYE</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年10月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/15/byReferenceByValue/" title="by reference (傳參考)、by value(傳值)的差別">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">by reference (傳參考)、by value(傳值)的差別</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/05/21-day35-toDoList/" title="Day35:最終章：Todo List實作">
+                        <span class="hidden-mobile">Day35:最終章：Todo List實作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://lib.baomitu.com/disqusjs/1.3.0/disqusjs.css');
+          Fluid.utils.createScript('https://lib.baomitu.com/disqusjs/1.3.0/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'popeye-ux-1',
+              apikey: ''
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目錄</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

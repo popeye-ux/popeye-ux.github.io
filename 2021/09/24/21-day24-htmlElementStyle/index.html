@@ -1,0 +1,720 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="POPEYE">
+  <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
+  
+    <meta name="description" content="「DOM API定義了JavaScript存取、改變HTML架構、內容、樣式的方法，甚至對節點綁定的事件。」">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day21:我變我變我變變變：如何改變HTML元素的樣式">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/09/24/21-day24-htmlElementStyle/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="「DOM API定義了JavaScript存取、改變HTML架構、內容、樣式的方法，甚至對節點綁定的事件。」">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/4J1QEv1.jpg">
+<meta property="article:published_time" content="2021-09-24T09:19:18.000Z">
+<meta property="article:modified_time" content="2022-04-17T18:38:56.000Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript, 2021iT邦鐵人賽">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/4J1QEv1.jpg">
+  
+  
+  
+  <title>Day21:我變我變我變變變：如何改變HTML元素的樣式 - F2E 星球通訊</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"popeye-ux.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="F2E 星球通訊" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>F2E 星球通訊</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首頁
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                歸檔
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分類
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                標籤
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                關於
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Day21:我變我變我變變變：如何改變HTML元素的樣式"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-24 17:19" pubdate>
+          2021年9月24日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Day21:我變我變我變變變：如何改變HTML元素的樣式</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://i.imgur.com/4J1QEv1.jpg" srcset="/img/loading.gif" lazyload><br>「DOM API定義了JavaScript存取、改變HTML架構、內容、樣式的方法，甚至對節點綁定的事件。」</p>
+<span id="more"></span>
+<p>前面幾篇提到了JavaScript改變HTML架構與內容的方法，這一篇我們來談談怎麼改變HTML的樣式。</p>
+<p>再來看一下前面提到的「前端三要素」：</p>
+<ul>
+<li>HTML負責網頁的結構與內容</li>
+<li>CSS負責網頁的外觀與樣式</li>
+<li>JavaScript負責網頁的互動與行為</li>
+</ul>
+<p>樣式是由CSS負責，所以當我們想要改變HTML的樣式，當然就是要用JavaScript來處理CSS這一塊，而這都要先從選取到某個節點開始。</p>
+<ul>
+<li>選取HTML元素，直接修改style屬性</li>
+<li>透過className屬性來修改style樣式。</li>
+<li>用classList屬性，透過刪除或新增class來修改style樣式</li>
+<li>用setAttribute()來更改class屬性</li>
+</ul>
+<h3 id="直接修改HTML元素的style"><a href="#直接修改HTML元素的style" class="headerlink" title="直接修改HTML元素的style"></a>直接修改HTML元素的style</h3><p>使用JavaScript直接修改HTML元素的style，因為這種方式是透過DOM API直接修改元素的行內樣式，樣式的優先權會比其他樣式的寫法高出許多。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//可以在&#x27;string&#x27;中指定許多種樣式，樣式之間用;隔開就</span><br><span class="line">node.style.cssText = &#x27;string&#x27;;</span><br><span class="line"></span><br><span class="line">//也可以把某個樣式，例如字型大小單獨挑出來</span><br><span class="line">node.style.fontSize = &#x27;24px&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>我們試著把黃藥師寫的詩，用JavaScript來改變其樣式：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;style1&quot;</span> <span class="attr">style</span>=<span class="string">&quot;color: red; font-size: 45px; border: 3px solid;width: 400px;&quot;</span>&gt;</span></span><br><span class="line">  桃花影落飛神劍，</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;style2&quot;</span> <span class="attr">style</span>=<span class="string">&quot;color: yellow;font-size: 45px;text-decoration:underline;&quot;</span>&gt;</span></span><br><span class="line">  碧海潮生按玉簫</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>看看下面的JavaScript，cssText將要改的樣式寫在同一行，而且會完全蓋掉本來寫在style1的全部樣式，我在cssText裡面並沒有輸入border的參數，而本來寫在行內樣式的border卻被完全清除了，最後網頁上呈現的結果並沒有border。</p>
+<p>如果用「style.CSS屬性名稱」的方式，就可以針對想要改變的屬性來做處理。唯一要注意的是有些CSS屬性名稱中間有 - 的破折號，如font-size、font-weight… 等等屬性，但是在JavaScript的變數及物件屬性名稱是不允許使用 - 破折號，這時屬性名稱就要改成「駝峰式」寫法，如fontSize。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el1 = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.style1&quot;</span>).<span class="property">style</span>.<span class="property">cssText</span> = <span class="string">&#x27;font-size: 24px; color: green;&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> el2 = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.style2&quot;</span>);</span><br><span class="line">el2.<span class="property">style</span>.<span class="property">fontSize</span> = <span class="string">&quot;16px&quot;</span>;</span><br><span class="line">el2.<span class="property">style</span>.<span class="property">color</span> = <span class="string">&quot;blue&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="透過className屬性來修改style樣式"><a href="#透過className屬性來修改style樣式" class="headerlink" title="透過className屬性來修改style樣式"></a>透過className屬性來修改style樣式</h3><p>透過修改HTML「行內樣式」來調整網頁的外觀，雖然很方便，但是我們說過「CSS負責網頁的外觀與樣式」，如果老是透過「行內樣式」來調整網頁外觀，就做不到HTML、CSS、JavaScript三者「關注點分離」，而且實務上，大多是以HTML連結CSS檔案的方式來設定網頁的外觀與樣式。</p>
+<p>那要如何透過修改HTML標籤的class屬性，來改變元素的樣式呢?</p>
+<p>JavaScript提供了className的屬性來修改HTML元素的class。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node.<span class="property">className</span> = <span class="string">&#x27;元素的class名稱&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>我們一樣用黃藥師的詩來講解，我們給它兩個class屬性，分別為 redfont與bigtitle。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;redfont bigtitle&quot;</span>&gt;</span>桃花影落飛神劍，碧海潮生按玉簫<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>以下為外部CSS檔的內容：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.redfont</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bigtitle</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bluefont</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先選取節點，然後用className的方法，把 <code>&lt;h1&gt;</code> 標籤的本來的 class 取代為 bluefont，我們會發現，除了本來的redfont 之外，連 bigtitle 也被清除掉了。所以如果本來HTML標籤有設定多組 class 屬性，用 className 的方法並不會保留其他沒有被修改的屬性，而是整個 class 被清空，再以className 新增的屬性取代。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.redfont&#x27;</span>);</span><br><span class="line">el.<span class="property">className</span> = <span class="string">&#x27;bluefont&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="用classList屬性，透過刪除或新增class來修改style樣式"><a href="#用classList屬性，透過刪除或新增class來修改style樣式" class="headerlink" title="用classList屬性，透過刪除或新增class來修改style樣式"></a>用classList屬性，透過刪除或新增class來修改style樣式</h3><p>classList 與 className 不同之處在於不能直接修改，而是必須透過 claaList.add() 與 classList.remove() 來增加與刪減 HTML 標籤的 class 屬性，如果你的 HTML 標籤有 red 與 big 兩個 class 樣式，你想把 red 改成 green，必須先 classList.remove(red) ，把 red 這個 class 移除，然後再 classList.add(green) ，把 green 這個 class 加入。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;redfont bigtitle&quot;</span>&gt;</span>桃花影落飛神劍，碧海潮生按玉簫<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>這是CSS檔：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.redfont</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bigtitle</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.greenfont</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而這是JavaScript，用來改變 <code>&lt;h1&gt;</code> 標籤內的class，redfont會被greenfont置換，而bigtitle會保留下來。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.redfont&#x27;</span>);</span><br><span class="line">el.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;redfont&#x27;</span>);</span><br><span class="line">el.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;greenfont&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>還有一個切換 class 的方法，那就是el.classList.toogle(‘class名稱’) ，當所選的元素沒有這個class樣式的時候，就新增這個樣式；如果已經有這個 class 樣式的時候，就會變成刪除它。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.redfont&#x27;</span>);</span><br><span class="line">el.<span class="property">classList</span>.<span class="title function_">toggle</span>(<span class="string">&#x27;redfont&#x27;</span>); <span class="comment">//現在是增加</span></span><br><span class="line">el.<span class="property">classList</span>.<span class="title function_">toggle</span>(<span class="string">&#x27;redfont&#x27;</span>); <span class="comment">//現在是刪除</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="用setAttribute-來更改class屬性"><a href="#用setAttribute-來更改class屬性" class="headerlink" title="用setAttribute()來更改class屬性"></a>用setAttribute()來更改class屬性</h3><p>還有一種方式可以用來更改 HTML 元素的 class 屬性，但是它的使用範圍更廣泛一些：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">element.<span class="title function_">setAttribute</span>(<span class="string">&#x27;屬性名稱&#x27;</span>,<span class="string">&#x27;屬性值&#x27;</span>);</span><br><span class="line"><span class="comment">//屬性名稱可以是 class、 id、 href</span></span><br><span class="line"><span class="comment">//屬性值對應的分別是 class名稱、 id名稱 及 網址 </span></span><br></pre></td></tr></table></figure>
+
+<p>讓我們來看看怎麼做：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;redfont bigtitle&quot;</span>&gt;</span>桃花影落飛神劍，碧海潮生按玉簫<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.redfont</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bigtitle</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bluefont</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> el = document<span class="selector-class">.querySelector</span>(&#x27;<span class="selector-class">.redfont</span>&#x27;);</span><br><span class="line">el<span class="selector-class">.setAttribute</span>(&#x27;class&#x27;,&#x27;bluefont&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>用 setAttribute() 來修改 HTML 元素的 class ，跟className 一樣，也是會先把 class 清空，再用新增的class 設定值取代，所以 bigtitle 這個 class 也會被清除掉。</p>
+<p>以上就是幾種修改HTML元素樣式的方法。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/">#JavaScript, 2021iT邦鐵人賽</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Day21:我變我變我變變變：如何改變HTML元素的樣式</div>
+      <div>https://popeye-ux.github.io/2021/09/24/21-day24-htmlElementStyle/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>POPEYE</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年9月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/09/25/21-day25-addEventListener/" title="Day25:派一個Spy到網頁中竊聽—事件監聽">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Day25:派一個Spy到網頁中竊聽—事件監聽</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/23/21-day23-createElementVsInnerHtml/" title="Day23:在網頁中插入HTML標籤的實務做法">
+                        <span class="hidden-mobile">Day23:在網頁中插入HTML標籤的實務做法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://lib.baomitu.com/disqusjs/1.3.0/disqusjs.css');
+          Fluid.utils.createScript('https://lib.baomitu.com/disqusjs/1.3.0/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'popeye-ux-1',
+              apikey: ''
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目錄</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

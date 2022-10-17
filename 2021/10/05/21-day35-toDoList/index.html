@@ -1,0 +1,713 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="POPEYE">
+  <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
+  
+    <meta name="description" content="前面提到了物件、陣列、DOM元素的選取、事件監聽，以及最後的localStorage。這些足夠我們用JavaScript做一個小小的網頁程式，來驗證一下之前提到的方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day35:最終章：Todo List實作">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/10/05/21-day35-toDoList/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="前面提到了物件、陣列、DOM元素的選取、事件監聽，以及最後的localStorage。這些足夠我們用JavaScript做一個小小的網頁程式，來驗證一下之前提到的方法。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/dRSJcBR.jpg">
+<meta property="og:image" content="https://i.imgur.com/LEoElce.png">
+<meta property="og:image" content="https://i.imgur.com/PyvGzVc.png">
+<meta property="og:image" content="https://i.imgur.com/Uycm0YY.png">
+<meta property="article:published_time" content="2021-10-05T01:43:17.000Z">
+<meta property="article:modified_time" content="2022-04-18T10:44:46.000Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript, 2021iT邦鐵人賽">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/dRSJcBR.jpg">
+  
+  
+  
+  <title>Day35:最終章：Todo List實作 - F2E 星球通訊</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"popeye-ux.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="F2E 星球通訊" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>F2E 星球通訊</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首頁
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                歸檔
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分類
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                標籤
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                關於
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Day35:最終章：Todo List實作"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-05 09:43" pubdate>
+          2021年10月5日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Day35:最終章：Todo List實作</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://i.imgur.com/dRSJcBR.jpg" srcset="/img/loading.gif" lazyload><br>前面提到了物件、陣列、DOM元素的選取、事件監聽，以及最後的localStorage。這些足夠我們用JavaScript做一個小小的網頁程式，來驗證一下之前提到的方法。</p>
+<span id="more"></span>
+<p>這次我們要來做的是Todo List。</p>
+<p>假設金庸先生要邀請武林高手來參加華山論劍，要邀請的人太多了，他記性不好，所以寫了一個小程式來記錄與會者名單。大概是長這個樣子。</p>
+<p><img src="https://i.imgur.com/LEoElce.png" srcset="/img/loading.gif" lazyload></p>
+<p>然後在來拆解畫面上的功能：</p>
+<p><img src="https://i.imgur.com/PyvGzVc.png" srcset="/img/loading.gif" lazyload></p>
+<p>我們可已先把上面的的那張圖區分為三種程式區塊：</p>
+<p><img src="https://i.imgur.com/Uycm0YY.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>事件：<ul>
+<li>加入邀請名單：點擊，使用者輸入的資料加入「邀請名單」的localStorage，並渲染到畫面</li>
+<li>寄出：將資料從「邀請名單」的localStorage中移除，加入已寄出名單的localStorage，並渲染到畫面</li>
+<li>移除：將資料由「已寄出名單」的localStorage中移除，並渲染到畫面</li>
+</ul>
+</li>
+<li>資料：<ul>
+<li>邀請名單的localStorage資料</li>
+<li>寄出名單的localStorage資料</li>
+</ul>
+</li>
+<li>畫面：將localStorage的資料渲染到網頁</li>
+</ul>
+<p>所以我們就可以開始實作了！</p>
+<p>畫面上的HTML碼如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;logo&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://imgur.com/uEvCO7p.png&quot;</span> <span class="attr">width</span>=<span class="string">&quot;150px&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;logotext&quot;</span>&gt;</span>TODO LIST<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;addList&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">size</span>=<span class="string">&quot;30&quot;</span> <span class="attr">class</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;請輸入與會者姓名&quot;</span> <span class="attr">required</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;send&quot;</span>&gt;</span>新增邀請名單<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>計畫邀請<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;noneNum&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>人<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;list&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;finishedItem&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>已邀請<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;doneNum&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>人<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;finishlist&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>進入JavaScript的部分，先把DOM元素選取起來：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//指定DOM</span></span><br><span class="line"><span class="keyword">let</span> send = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.send&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> list = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.list&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> finishList = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;finishlist&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>接下來定義資料的部分：</p>
+<ul>
+<li>計畫邀請的名單，要把它變成陣列物件的格式</li>
+<li>已經寄出邀請函的名單，也要轉成陣列物件的格式</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//資料：設定計畫邀請名單「listData」的localStorage資料，轉為陣列物件</span></span><br><span class="line"><span class="keyword">let</span> data = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;listData&#x27;</span>)) || [];</span><br><span class="line"></span><br><span class="line"><span class="comment">//資料：設定寄出名單「listFinish」的localStorage資料，轉為陣列物件</span></span><br><span class="line"><span class="keyword">let</span> finishData = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;listFinish&#x27;</span>)) || [];</span><br></pre></td></tr></table></figure>
+
+<p>接下來把事件綁訂到前面指定的DOM元素上。然後更新資料，此時尚未輸入資料，localStorage的key應該還沒建立，所以為空陣列。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//事件綁定，監聽與更新</span></span><br><span class="line">send.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, addData);</span><br><span class="line">list.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, toggleDone);</span><br><span class="line">finishList.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, deleDone);</span><br><span class="line"></span><br><span class="line"><span class="comment">//更新畫面上的資料</span></span><br><span class="line"><span class="title function_">updateList</span>(data);</span><br><span class="line"><span class="title function_">updateFinish</span>(finishData);</span><br></pre></td></tr></table></figure>
+
+<p>按下「新增邀請名單後」把資料新增到data中，並叫用updateList這個函式，把資料組字串，渲染到畫面中。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//按下「新增邀請名單後」，把資料新增到data中，並叫用updateList</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">addData</span>(<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> txt = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.text&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (txt.<span class="property">value</span> == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        <span class="title function_">alert</span>(<span class="string">&#x27;必須輸入與會者姓名&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> toInvite =</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">content</span>: txt.<span class="property">value</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    data.<span class="title function_">push</span>(toInvite);    </span><br><span class="line">    <span class="title function_">updateList</span>(data);</span><br><span class="line">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;listData&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data));</span><br><span class="line">    txt.<span class="property">value</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//更新邀請清單</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">updateList</span>(<span class="params">items</span>) &#123;</span><br><span class="line">    str = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">let</span> len = items.<span class="property">length</span>; </span><br><span class="line">		<span class="comment">//for迴圈組字串   </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; len &gt; i; i++) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(items[i])</span><br><span class="line">        str += <span class="string">`&lt;li&gt;&lt;a href=&quot;#&quot; data-index=<span class="subst">$&#123;i&#125;</span>&gt;移到已邀請&lt;/a&gt;&lt;span&gt;<span class="subst">$&#123;items[i].content&#125;</span>&lt;/span&gt;&lt;/li&gt;`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    list.<span class="property">innerHTML</span> = str;</span><br><span class="line">    <span class="keyword">let</span> noneNum = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.noneNum&#x27;</span>);</span><br><span class="line">    noneNum.<span class="property">textContent</span> = len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>按下「移到已邀請」時，執行以下程式區塊：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//將與會者由邀請清單移至邀請函已寄出清單</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">toggleDone</span>(<span class="params">e</span>)&#123;</span><br><span class="line">		<span class="comment">//避免事件冒泡</span></span><br><span class="line">    e.<span class="title function_">preventDefault</span>();</span><br><span class="line">		<span class="comment">//如果點選的不是a標籤，那就不往下執行</span></span><br><span class="line">    <span class="keyword">if</span>(e.<span class="property">target</span>.<span class="property">nodeName</span> !== <span class="string">&#x27;A&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> index = e.<span class="property">target</span>.<span class="property">dataset</span>.<span class="property">index</span>;</span><br><span class="line">		<span class="comment">//把點選的資料推送到finishData中</span></span><br><span class="line">    finishData.<span class="title function_">push</span>(data[index]);</span><br><span class="line">		<span class="comment">//清除計畫邀請data中的資料</span></span><br><span class="line">    data.<span class="title function_">splice</span>(index,<span class="number">1</span>);</span><br><span class="line">		<span class="comment">//更新計畫邀請的名單</span></span><br><span class="line">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;listData&#x27;</span>,<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data));</span><br><span class="line">		<span class="comment">//渲染網頁</span></span><br><span class="line">    <span class="title function_">updateList</span>(data);</span><br><span class="line">		<span class="comment">//更新已寄出邀請函的名單</span></span><br><span class="line">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;listFinish&#x27;</span>,<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(finishData));</span><br><span class="line">		<span class="comment">//渲染網頁</span></span><br><span class="line">    <span class="title function_">updateFinish</span>(finishData);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然後是渲染「已邀請名單」的部分：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//更新已寄邀請函清單</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">updateFinish</span>(<span class="params">finishItems</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> mailStr = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">let</span> len = finishItems.<span class="property">length</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(finishItems);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(len);</span><br><span class="line">		<span class="comment">//for迴圈組字串 </span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;len; i++)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(finishItems[i]);</span><br><span class="line">        mailStr+= <span class="string">`&lt;li&gt;&lt;a href=&quot;#&quot; data-num=<span class="subst">$&#123;i&#125;</span>&gt;移除&lt;/a&gt;&lt;span&gt;<span class="subst">$&#123;finishItems[i].content&#125;</span>&lt;/span&gt;&lt;/li&gt;`</span></span><br><span class="line">    &#125;</span><br><span class="line">    finishList.<span class="property">innerHTML</span> = mailStr;</span><br><span class="line">    <span class="keyword">var</span> doneNum = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.doneNum&#x27;</span>);</span><br><span class="line">    doneNum.<span class="property">textContent</span> = len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果點選「刪除」，執行以下程式：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//刪除已邀請的貴賓</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">deleDone</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    e.<span class="title function_">preventDefault</span>();</span><br><span class="line">    <span class="keyword">if</span>(e.<span class="property">target</span>.<span class="property">nodeName</span> !== <span class="string">&#x27;A&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> num = e.<span class="property">target</span>.<span class="property">num</span>;</span><br><span class="line">		<span class="comment">//清除計畫邀請data中的資料</span></span><br><span class="line">    finishData.<span class="title function_">splice</span>(num,<span class="number">1</span>);</span><br><span class="line">		<span class="comment">//更新已寄出邀請函的名單</span></span><br><span class="line">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;listFinish&#x27;</span>,<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(finishData));</span><br><span class="line">		<span class="comment">//渲染到網頁</span></span><br><span class="line">    <span class="title function_">updateFinish</span>(finishData);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>來看看我的實作吧！</p>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/popeye_ux/pen/KKqbMwq/">https://codepen.io/popeye_ux&#x2F;pen&#x2F;KKqbMwq</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/">#JavaScript, 2021iT邦鐵人賽</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Day35:最終章：Todo List實作</div>
+      <div>https://popeye-ux.github.io/2021/10/05/21-day35-toDoList/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>POPEYE</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年10月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/09/jsLive-varLetConst/" title="var、let、const 的差異">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">var、let、const 的差異</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/03/21-day34-localstorage/" title="Day34:好記性的瀏覽器：Localstorage">
+                        <span class="hidden-mobile">Day34:好記性的瀏覽器：Localstorage</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://lib.baomitu.com/disqusjs/1.3.0/disqusjs.css');
+          Fluid.utils.createScript('https://lib.baomitu.com/disqusjs/1.3.0/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'popeye-ux-1',
+              apikey: ''
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目錄</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

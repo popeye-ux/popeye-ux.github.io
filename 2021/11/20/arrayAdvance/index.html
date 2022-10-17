@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="POPEYE">
+  <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
+  
+    <meta name="description" content="陣列裡是有順序的集合，每個元素因為有索引。所以可以用迴圈的方法來遍歷陣列裡的元素，來進行有條件的篩選。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="實用陣列操作大全-進階使用方法">
+<meta property="og:url" content="https://popeye-ux.github.io/2021/11/20/arrayAdvance/index.html">
+<meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="陣列裡是有順序的集合，每個元素因為有索引。所以可以用迴圈的方法來遍歷陣列裡的元素，來進行有條件的篩選。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/1HmPkkR.jpg">
+<meta property="og:image" content="https://i.imgur.com/buYi4MP.png">
+<meta property="article:published_time" content="2021-11-20T07:22:17.000Z">
+<meta property="article:modified_time" content="2022-05-01T16:49:48.000Z">
+<meta property="article:author" content="POPEYE">
+<meta property="article:tag" content="JavaScript, JS直播班, array">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/1HmPkkR.jpg">
+  
+  
+  
+  <title>實用陣列操作大全-進階使用方法 - F2E 星球通訊</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"popeye-ux.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="F2E 星球通訊" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>F2E 星球通訊</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首頁
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                歸檔
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分類
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                標籤
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                關於
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="實用陣列操作大全-進階使用方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-20 15:22" pubdate>
+          2021年11月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          68 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">實用陣列操作大全-進階使用方法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://i.imgur.com/1HmPkkR.jpg" srcset="/img/loading.gif" lazyload><br>陣列裡是有順序的集合，每個元素因為有索引。所以可以用迴圈的方法來遍歷陣列裡的元素，來進行有條件的篩選。</p>
+<span id="more"></span>
+
+<p>最常用的就是 for 迴圈處理陣列元素的遍歷問題。</p>
+<p>它的撰寫規則如下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ([initialization]; [condition]; [final-expression])</span><br><span class="line">   statement</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>initialization：初始表達式，也就是按下計數器，從條件的初始值開始計算。</li>
+<li>condition：判斷條件成不成立，如果回傳 true ,則迴圈繼續執行；如果為 false 則迴圈終止。</li>
+<li>final-expression：遞增表達式，每次迴圈執行完，判斷條件加 1 ，直到判斷條件不成立。</li>
+</ul>
+<p>假設我們要依序印出 avangers 這個超級英雄的陣列元素，用 for 迴圈可以這樣做：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [<span class="string">&#x27;鋼鐵人&#x27;</span>, <span class="string">&#x27;美國隊長&#x27;</span>, <span class="string">&#x27;浩克&#x27;</span>, <span class="string">&#x27;雷神&#x27;</span>, <span class="string">&#x27;驚奇隊長&#x27;</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; avengers.<span class="property">length</span>; i++)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(i + avengers[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 依序印出：</span></span><br><span class="line"><span class="comment">// 0鋼鐵人</span></span><br><span class="line"><span class="comment">// 1美國隊長</span></span><br><span class="line"><span class="comment">// 2浩克</span></span><br><span class="line"><span class="comment">// 3雷神</span></span><br><span class="line"><span class="comment">// 4驚奇隊長</span></span><br></pre></td></tr></table></figure>
+<p>可以看出 for 迴圈是依照條件，不斷地透過索引去撈出陣列中對應的元素（遍歷整個陣列），然後一次一次印出迴圈中的元素。直到條件不符合，才終止迴圈的執行。</p>
+<p>但是現在操作陣列不用那麼麻煩，ES5之後，新增了許多操作陣列的方法，讓我們一起來看看吧！</p>
+<h2 id="Array-prototype-forEach"><a href="#Array-prototype-forEach" class="headerlink" title="Array.prototype.forEach()"></a>Array.prototype.forEach()</h2><blockquote>
+<p>forEach() 方法會將陣列內的每個元素，皆傳入並執行給定的函式一次。<br>直接修改原本的陣列。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">currentValue[, index[, array]]</span>) &#123;</span><br><span class="line">    <span class="comment">//your iterator</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>function ： 給定的函式，是一個 callBack function，會把陣列中的每個元素當作參數帶入陣列中，每個元素執行一次。</li>
+<li>currentValue ： 這個參數代表陣列中輪到被函式處理的元素。</li>
+<li>index ： 這個參數代表陣列中正在被函式處理的元素的索引值。可省略。</li>
+<li>array ： 代表被執行的陣列。可省略。</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [<span class="string">&#x27;鋼鐵人&#x27;</span>, <span class="string">&#x27;美國隊長&#x27;</span>, <span class="string">&#x27;浩克&#x27;</span>, <span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newArray = avengers.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">item,index,array</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;item&#125;</span> 的索引值是 <span class="subst">$&#123;index&#125;</span>，陣列的內容是 [<span class="subst">$&#123;array&#125;</span>]`</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 鋼鐵人 的索引值是 0，陣列的內容是 [鋼鐵人,美國隊長,浩克,雷神]</span></span><br><span class="line"><span class="comment">// 美國隊長 的索引值是 1，陣列的內容是 [鋼鐵人,美國隊長,浩克,雷神]</span></span><br><span class="line"><span class="comment">// 浩克 的索引值是 2，陣列的內容是 [鋼鐵人,美國隊長,浩克,雷神]</span></span><br><span class="line"><span class="comment">// 雷神 的索引值是 3，陣列的內容是 [鋼鐵人,美國隊長,浩克,雷神]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArray);</span><br><span class="line"><span class="comment">// undefined</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>和 for 迴圈比較起來， forEach 不用設定任何條件，也不用初始化，就可以把每個元素傳入函式中執行。</p>
+<p>要注意的是 forEach 方法不會回傳任何的值，所以 console.log 的值是「 Uncaught ReferenceError: newArray is not defined 」。</p>
+<p>另外，for 迴圈可以使用 break 跳出，但是 forEach()如果使用break會紅字報錯。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [<span class="string">&#x27;鋼鐵人&#x27;</span>, <span class="string">&#x27;美國隊長&#x27;</span>, <span class="string">&#x27;浩克&#x27;</span>, <span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line">avengers.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">item</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (item ===<span class="string">&#x27;美國隊長&#x27;</span> )&#123;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">//Uncaught SyntaxError: Illegal break statement </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>forEach也不會理會使用return的方法中止程式執行，會一路跑完。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [<span class="string">&#x27;鋼鐵人&#x27;</span>, <span class="string">&#x27;美國隊長&#x27;</span>, <span class="string">&#x27;浩克&#x27;</span>, <span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line">avengers.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">item</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (item ===<span class="string">&#x27;美國隊長&#x27;</span> )&#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(avengers)</span><br><span class="line"><span class="comment">//[&quot;鋼鐵人&quot;,&quot;美國隊長&quot;,&quot;浩克&quot;,&quot;雷神&quot;]</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="array-prototype-map"><a href="#array-prototype-map" class="headerlink" title="array.prototype.map"></a>array.prototype.map</h2><blockquote>
+<p>map() 方法會建立一個新的陣列，其內容為原陣列的每一個元素經由回呼函式運算後所回傳的結果之集合。</p>
+</blockquote>
+<p>也就是我們使用 map() 的時候，會透過給定的函式條件處理原來的陣列，再回傳一個新的陣列。</p>
+<p>語法：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> new_array = arr.<span class="title function_">map</span>(<span class="keyword">function</span> <span class="title function_">callback</span>(<span class="params"> currentValue[, index[, array]]</span>) &#123;</span><br><span class="line">    <span class="comment">// return element for new_array</span></span><br><span class="line">&#125;[, thisArg])</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>function ： 給定的函式是一個回呼函式。會把陣列中的每個元素當作參數帶入陣列中，每個元素執行一次。</li>
+<li>index ： 處理中的元素索引。</li>
+<li>array ： 當前函式處理的陣列。</li>
+</ul>
+<p>範例：找出名字的字串長度是2的超級英雄。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [<span class="string">&#x27;鋼鐵人&#x27;</span>, <span class="string">&#x27;美國隊長&#x27;</span>, <span class="string">&#x27;浩克&#x27;</span>, <span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newArray = avengers.<span class="title function_">map</span>(<span class="keyword">function</span>(<span class="params">item</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(item.<span class="property">length</span> === <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArray)</span><br><span class="line"><span class="comment">//[undefined, undefined, &#x27;浩克&#x27;, &#x27;雷神&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p>map() 的特色是：</p>
+<ol>
+<li>適合用來篩選特定資料。</li>
+<li>map() 所帶函式回傳的值，會組成一個新的陣列回傳。</li>
+<li>不會改變原來的陣列。</li>
+<li>回傳的陣列長度會等於原始的陣列長度。</li>
+<li>如果沒有回傳值，則元素的值為undefined。</li>
+</ol>
+<p>上面的範例，如果寫法照搬，只把 map 改成 forEach：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [<span class="string">&#x27;鋼鐵人&#x27;</span>, <span class="string">&#x27;美國隊長&#x27;</span>, <span class="string">&#x27;浩克&#x27;</span>, <span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newArray = avengers.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">item</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(item.<span class="property">length</span> === <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArray)</span><br><span class="line"><span class="comment">//undefined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(avengers)</span><br><span class="line">[<span class="string">&quot;鋼鐵人&quot;</span>,<span class="string">&quot;美國隊長&quot;</span>,<span class="string">&quot;浩克&quot;</span>,<span class="string">&quot;雷神&quot;</span>]</span><br></pre></td></tr></table></figure>
+<p>forEach 方法不會回傳值，所以 newArray 查詢的結果是 undefined。而 avengers 原始陣列也沒有被改變。</p>
+<p>如果要改變原始陣列的話，要這樣子寫：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [<span class="string">&#x27;鋼鐵人&#x27;</span>, <span class="string">&#x27;美國隊長&#x27;</span>, <span class="string">&#x27;浩克&#x27;</span>, <span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newArray = avengers.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">item,index,array</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(item.<span class="property">length</span> === <span class="number">2</span>)&#123;</span><br><span class="line">        array[index] = item;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      array[index] = <span class="string">&quot;undefined&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArray)</span><br><span class="line"><span class="comment">//undefined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(avengers)</span><br><span class="line"><span class="comment">//[&#x27;undefined&#x27;, &#x27;undefined&#x27;, &#x27;浩克&#x27;, &#x27;雷神&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p>因為forEach不會回傳值， let newArray &#x3D; 這一段其實不用寫了，寫出來只是為了方便比較。</p>
+<h2 id="Array-prototype-filter"><a href="#Array-prototype-filter" class="headerlink" title="Array.prototype.filter()"></a>Array.prototype.filter()</h2><blockquote>
+<p>filter() 方法會建立一個經指定之函式運算後，由原陣列中通過該函式檢驗之元素所構成的新陣列。</p>
+</blockquote>
+<p>語法如下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newArray = arr.<span class="title function_">filter</span>(<span class="title function_">callback</span>(element[, index[, array]])[, thisArg])</span><br></pre></td></tr></table></figure>
+<ul>
+<li>element ： 當前處理到的元素。</li>
+<li>index ： 給定函式目前處理的元素索引。可省略。</li>
+<li>array ： 給定函式目前處理的陣列。可省略。</li>
+</ul>
+<p>範例：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [<span class="string">&#x27;鋼鐵人&#x27;</span>, <span class="string">&#x27;美國隊長&#x27;</span>, <span class="string">&#x27;浩克&#x27;</span>, <span class="string">&#x27;雷神&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newArray = avengers.<span class="title function_">filter</span>(<span class="keyword">function</span>(<span class="params">item</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> item.<span class="property">length</span> === <span class="number">2</span> ;</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArray)</span><br><span class="line">[<span class="string">&quot;浩克&quot;</span>,<span class="string">&quot;雷神&quot;</span>]</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(avengers)</span><br><span class="line">[<span class="string">&quot;鋼鐵人&quot;</span>,<span class="string">&quot;美國隊長&quot;</span>,<span class="string">&quot;浩克&quot;</span>,<span class="string">&quot;雷神&quot;</span>]</span><br></pre></td></tr></table></figure>
+<p>可以觀察到 filter 過濾出字串長度為 2 的陣列元素，並回傳一個新的陣列。而原來的陣列沒被改變。</p>
+<p>filter()也可以用來過濾掉陣列中的重複值：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [<span class="string">&#x27;鋼鐵人&#x27;</span>, <span class="string">&#x27;美國隊長&#x27;</span>, <span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;鋼鐵人&#x27;</span>, <span class="string">&#x27;雷神&#x27;</span>,<span class="string">&#x27;美國隊長&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newArray = avengers.<span class="title function_">filter</span>(<span class="keyword">function</span> (<span class="params">item,index,array</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(avengers.<span class="title function_">indexOf</span>(item));</span><br><span class="line">    <span class="comment">//回傳第一個找到的元素索引</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(index);</span><br><span class="line">    <span class="comment">//函式當前處理的元素索引</span></span><br><span class="line">    <span class="keyword">return</span> avengers.<span class="title function_">indexOf</span>(item) === index;</span><br><span class="line">    <span class="comment">//當第一個找到的元素索引等於函式目前處理的元素索引</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArray);</span><br><span class="line"><span class="comment">//[&quot;鋼鐵人&quot;,&quot;美國隊長&quot;,&quot;浩克&quot;,&quot;雷神&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;鋼鐵人&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">10</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">5</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;美國隊長&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">8</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;浩克&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span>  newAvengers= avengers.<span class="title function_">filter</span>(<span class="function"><span class="params">member</span> =&gt;</span> member.<span class="property">firePower</span> &gt;= <span class="number">5</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newAvengers);</span><br></pre></td></tr></table></figure>
+<p>回傳值為一個新的陣列，陣列裡有 2 個物件， firePower 都大於或等於 5 ：<br><img src="https://i.imgur.com/buYi4MP.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="Array-prototype-every"><a href="#Array-prototype-every" class="headerlink" title="Array.prototype.every()"></a>Array.prototype.every()</h2><blockquote>
+<p>every() 方法會測試陣列中的所有元素是否都通過了由給定之函式所實作的測試。<br>回傳值為布林值， true 或 false。</p>
+</blockquote>
+<p>every() 方法可以用來檢測陣列中的元素是否符合特定條件。</p>
+<p>語法：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newArray = arr.<span class="title function_">every</span>(<span class="title function_">callback</span>(currentValue[, index[, array]])[, thisArg])</span><br></pre></td></tr></table></figure>
+<ul>
+<li>currentValue ： 目前正被回呼函式處理的元素。</li>
+<li>index ： 目前被處理元素的陣列索引。可省略。</li>
+<li>array ： 目前被處理的陣列。可省略。<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;鋼鐵人&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">10</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">5</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;美國隊長&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">8</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;浩克&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"><span class="keyword">const</span>  isGoodPower= avengers.<span class="title function_">every</span>(<span class="keyword">function</span>(<span class="params">member</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> member.<span class="property">firePower</span> &gt;= <span class="number">5</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(isGoodPower);</span><br><span class="line"><span class="comment">//false 並不是所有超級英雄的武裝火力都超過 5</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Array-prototype-some"><a href="#Array-prototype-some" class="headerlink" title="Array.prototype.some()"></a>Array.prototype.some()</h2><blockquote>
+<p>some() 方法會透過給定函式、測試陣列中是否至少有一個元素，通過該函式所實作的測試。這方法回傳的是布林值。</p>
+</blockquote>
+<p>也就是陣列中只要有一個元素符合指定函式的條件，就回傳 true ，否則就回傳 false 。</p>
+<p>語法：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newArray = arr.<span class="title function_">some</span>(<span class="title function_">callback</span>(currentValue[, index[, array]])[, thisArg])</span><br></pre></td></tr></table></figure>
+<ul>
+<li>currentValue ： 目前正被回呼函式處理的元素。</li>
+<li>index ： 目前被處理元素的陣列索引。可省略。</li>
+<li>array ： 目前被處理的陣列。可省略。</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;鋼鐵人&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">10</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">5</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;美國隊長&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">8</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;浩克&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"><span class="keyword">const</span>  isGoodPower= avengers.<span class="title function_">some</span>(<span class="keyword">function</span>(<span class="params">member</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> member.<span class="property">firePower</span> &gt;= <span class="number">5</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(isGoodPower);</span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h2 id="Array-prototype-reduce"><a href="#Array-prototype-reduce" class="headerlink" title="Array.prototype.reduce()"></a>Array.prototype.reduce()</h2><p>MDN上寫著：</p>
+<blockquote>
+<p>reduce() 方法將一個累加器及陣列中每項元素（由左至右）傳入回呼函式，將陣列化為單一值。</p>
+</blockquote>
+<p>通常用來做陣列中數字的累加。</p>
+<p>語法為：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">reduce</span>(callback[accumulator, currentValue, currentIndex, array], initialValue)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>accumulator：累加器，個別 currentValue 加總的累計值，如果是第一次呼叫，就看有沒有初始值來決定累加器一開始的值。</li>
+<li>currentValue：陣列的個別元素</li>
+<li>currentIndex：陣列的個別元素索引</li>
+<li>array：回呼函式處理的陣列，可省略。</li>
+<li>initialValue：預設值，可省略。</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;鋼鐵人&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">10</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">5</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;美國隊長&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">8</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;浩克&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"><span class="keyword">let</span> reduceAvenger = avengers.<span class="title function_">reduce</span>(<span class="keyword">function</span>(<span class="params">accumulator, currentValue</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> accumulator + currentValue.<span class="property">firePower</span>;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(reduceAvenger);</span><br><span class="line"><span class="comment">//[object Object]50  !!!!</span></span><br><span class="line"><span class="comment">//因為未提供初始值，預設 陣列 第一個值，作為初始值。</span></span><br><span class="line"><span class="comment">//第一個值為一個 Object，結果造成非預期的錯誤</span></span><br></pre></td></tr></table></figure>
+
+<p>因為未提供初始值，所以出現了錯誤。</p>
+<p>沒有預設值的話，accumulator（累計值）會取陣列的第一個元素當作預設值。所以我們加上預設值，再來一次。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> avengers = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;鋼鐵人&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">10</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">5</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;美國隊長&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">8</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;浩克&#x27;</span>,</span><br><span class="line">        <span class="attr">firePower</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">bodyForce</span>: <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"><span class="keyword">let</span> reduceAvenger = avengers.<span class="title function_">reduce</span>(<span class="keyword">function</span>(<span class="params">accumulator, currentValue</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> accumulator + currentValue.<span class="property">firePower</span>;</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(reduceAvenger);</span><br><span class="line"><span class="comment">//15</span></span><br></pre></td></tr></table></figure>
+<p>reduce()也可以拿來合併陣列：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> avengers = [[<span class="string">&#x27;鋼鐵人&#x27;</span>,<span class="string">&#x27;蜘蛛人&#x27;</span>],[<span class="string">&#x27;浩克&#x27;</span>,<span class="string">&#x27;雷神&#x27;</span>],[<span class="string">&#x27;美國隊長&#x27;</span>,<span class="string">&#x27;黑寡婦&#x27;</span>]]</span><br><span class="line">newAvengers = avengers.<span class="title function_">reduce</span>(<span class="function">(<span class="params">accumulator,currentValue</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> accumulator.<span class="title function_">concat</span>(currentValue)</span><br><span class="line">&#125;,[])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newAvengers)</span><br><span class="line"><span class="comment">//[&#x27;鋼鐵人&#x27;, &#x27;蜘蛛人&#x27;, &#x27;浩克&#x27;, &#x27;雷神&#x27;, &#x27;美國隊長&#x27;, &#x27;黑寡婦&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://wcc723.github.io/development/2020/10/05/js-for-loop-vs-for-each/">for 迴圈與 forEach 有什麼不同</a></li>
+<li><a target="_blank" rel="noopener" href="https://realdennis.medium.com/array-%E5%8E%9F%E5%9E%8B%E7%9A%84-foreach-%E6%9C%89%E5%A4%9A%E5%A5%BD%E7%94%A8-%E5%AD%B8%E6%9C%83%E9%AB%98%E9%9A%8E%E5%87%BD%E6%95%B8%E4%B9%8B%E5%BE%8C%E9%83%BD%E4%B8%8D%E6%83%B3%E5%AF%AB-javascript-%E4%BB%A5%E5%A4%96%E7%9A%84%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80%E4%BA%86-dc4b594a045a">Array 原型的 forEach 有多好用？ 學會高階函數之後都不想寫 JavaScript 以外的程式語言了</a></li>
+<li><a target="_blank" rel="noopener" href="https://dotblogs.com.tw/supershowwei/2020/10/19/094424">在 JavaScript 的 Array.prototype.forEach() 方法實現 continue; 及 break; 的效果</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/lihefei_coder/article/details/76736296">Javascript Array forEach()中无法return和break，代替方法some()与every()</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/jass-note/%E5%89%8D%E7%AB%AF%E7%AD%86%E8%A8%98-%E6%97%85%E9%81%8A%E7%B6%B2%E4%B9%8B%E8%A1%8C%E6%94%BF%E5%8D%80%E9%81%B8%E5%96%AE-%E5%88%86%E9%A0%81%E5%8A%9F%E8%83%BD%E5%AF%A6%E4%BD%9C-2d32f731c3ed">【JS】旅遊網之行政區選單、分頁功能實作</a></li>
+<li><a target="_blank" rel="noopener" href="https://wcc723.github.io/javascript/2017/06/29/es6-native-array/">JavaScript 陣列處理方法 [filter(), find(), forEach(), map(), every(), some(), reduce()]</a></li>
+<li><a target="_blank" rel="noopener" href="https://noob.tw/js-every-some/">JavaScript 陣列中兩個冷門的方法：Every、Some</a></li>
+<li><a target="_blank" rel="noopener" href="https://w3c.hexschool.com/blog/a2cb755f">JavaScript reduce 在做什麼？</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/unalai/%E8%AA%8D%E8%AD%98-javascript-reduce-940806267bfb">認識 JavaScript Reduce</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD-array/">#JavaScript, JS直播班, array</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>實用陣列操作大全-進階使用方法</div>
+      <div>https://popeye-ux.github.io/2021/11/20/arrayAdvance/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>POPEYE</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年11月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/25/villageOpenData/" title="JS直播班 作業檢討--高雄里長OPEN DATA作業">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JS直播班 作業檢討--高雄里長OPEN DATA作業</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/16/arrayBasic/" title="實用陣列操作大全-基礎篇">
+                        <span class="hidden-mobile">實用陣列操作大全-基礎篇</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://lib.baomitu.com/disqusjs/1.3.0/disqusjs.css');
+          Fluid.utils.createScript('https://lib.baomitu.com/disqusjs/1.3.0/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'popeye-ux-1',
+              apikey: ''
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目錄</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>
