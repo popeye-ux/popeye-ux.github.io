@@ -1,3 +1,4 @@
+https://popeye-ux.github.io/2022/10/22/vscodeJSHtmlComplete/
 https://popeye-ux.github.io/2022/10/19/thisInArrowFunction/
 https://popeye-ux.github.io/2022/07/06/getAttributeSetAttribute/
 https://popeye-ux.github.io/2021/11/28/formValueMistake/
@@ -61,4 +62,6 @@ https://popeye-ux.github.io/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD/
 https://popeye-ux.github.io/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD-hoisting/
 https://popeye-ux.github.io/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD-%E7%89%A9%E4%BB%B6/
 https://popeye-ux.github.io/tags/JavaScript-this-%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F/
+https://popeye-ux.github.io/tags/VS-Code-%E6%A8%A3%E6%9D%BF%E8%87%AA%E9%9D%A2%E5%80%BC-HTML%E8%A3%9C%E5%85%A8/
 https://popeye-ux.github.io/categories/JavaScript/
+https://popeye-ux.github.io/categories/VS-Code/
