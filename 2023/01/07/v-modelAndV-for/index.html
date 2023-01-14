@@ -24,7 +24,7 @@
 <meta property="og:description" content="Vue 指令與表單應用Vue3 的指令可以節省許多原生 JS 要寫的 DOM 元素綁定與事件監聽的語法，Vue 指令方便歸方便，但是如果有些地方沒有注意，表單就有渲染不出來的困擾，以下整理一下初入手 Vue 指令與表單應用要注意的事情。 checkbox 的雙向綁定與渲染在使用 Vue 來做表單渲染與表單選項的雙向綁定時，要注意 v-model 的雙向綁定 與 v-for 的表單選項渲染 是兩件不">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-01-07T13:43:05.000Z">
-<meta property="article:modified_time" content="2023-01-07T13:49:17.252Z">
+<meta property="article:modified_time" content="2023-01-14T10:57:36.254Z">
 <meta property="article:author" content="POPEYE">
 <meta property="article:tag" content="Vue, Vue3, JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -226,7 +226,7 @@
         
         
         
-          20 分鐘
+          21 分鐘
         
       </span>
     
@@ -292,8 +292,8 @@ Vue<span class="token punctuation">.</span><span class="token function">createAp
 
 <p>同時使用 v-for 與 v-model 的時候，要注意兩者下的位置，以 checkbox 為例：</p>
 <ul>
-<li><strong>v-for 要下在外層</strong>，不能下在 <input> 標籤裡面，放在 <input> 會沒有作用。</li>
-<li>v-model 則要放在 <input> 上面，value 要用 v-bind 去綁 v-for 的 item。</li>
+<li><strong>v-for 要下在外層</strong>，不能下在 <code>&lt;input&gt;</code> 標籤裡面，放在 <code>&lt;input&gt;</code> 會沒有作用。</li>
+<li>v-model 則要放在 <code>&lt;input&gt;</code>s 上面，value 要用 v-bind 去綁 v-for 的 item。</li>
 </ul>
 <figure><div class="code-wrapper"><pre class="line-numbers language-htmls" data-language="htmls"><code class="language-htmls">&lt;div id&#x3D;&quot;app&quot;&gt;
   &lt;form class&#x3D;&quot;container p-2&quot;&gt;
@@ -441,6 +441,12 @@ Vue<span class="token punctuation">.</span><span class="token function">createAp
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/01/14/vue-computed-1/" title="vue-computed-1">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vue-computed-1</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
