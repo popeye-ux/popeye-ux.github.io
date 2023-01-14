@@ -589,6 +589,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://popeye-ux.github.io/tags/Vue-Computeds/</loc>
+    <lastmod>2023-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
