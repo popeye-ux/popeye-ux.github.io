@@ -24,7 +24,7 @@
 <meta property="og:description" content="甚麼是 Computed在 Vue 中有一個叫 computed 的神奇方法，它可以觀察在data的變數，一旦變數有了改變，就會去取變數來運算，產生一個新的值呈現在畫面上，而這個新的值不會寫回 Option API 的 data 中。 先來個簡單的計算，看看它神奇的地方：Computed 去觀察 num 跟 price 這兩個資料，一但數值有變化，就算一個新的數值到畫面上。HTML 這樣寫： &amp;l">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-01-14T10:59:55.000Z">
-<meta property="article:modified_time" content="2023-01-18T16:09:04.385Z">
+<meta property="article:modified_time" content="2023-01-18T16:16:33.167Z">
 <meta property="article:author" content="POPEYE">
 <meta property="article:tag" content="Vue, Computeds">
 <meta name="twitter:card" content="summary_large_image">
@@ -315,7 +315,7 @@ Vue<span class="token punctuation">.</span><span class="token function">createAp
 <li>沒有被 <code>Computed</code> 監聽的變數不會觸發 computed。 </li>
 <li>computed 是一個物件。</li>
 </ul>
-<h2 id="Computed-和-的比較"><a href="#Computed-和-的比較" class="headerlink" title="Computed 和  的比較"></a>Computed 和  的比較</h2><p>當然也可以在 HTML 中加入 <code>&#123;&#123; 對應的資料名稱 &#125;&#125;</code> ，就可以讓畫面與資料連動，只是如果相同的資料要運用在多個地方就要反覆去寫相同的<code>&#123;&#123;運算式&#125;&#125;</code>。</p>
+<h2 id="Computed-和-利用兩對大括號渲染運算結果-的比較"><a href="#Computed-和-利用兩對大括號渲染運算結果-的比較" class="headerlink" title="Computed 和 利用兩對大括號渲染運算結果 的比較"></a>Computed 和 利用兩對大括號渲染運算結果 的比較</h2><p>當然也可以在 HTML 中加入 <code>&#123;&#123; 對應的資料名稱 &#125;&#125;</code> ，就可以讓畫面與資料連動，只是如果相同的資料要運用在多個地方就要反覆去寫相同的<code>&#123;&#123;運算式&#125;&#125;</code>。</p>
 <p>HTML 這樣寫：</p>
 <figure><div class="code-wrapper"><pre class="line-numbers language-htmlmixed" data-language="htmlmixed"><code class="language-htmlmixed">&lt;div id&#x3D;&quot;app&quot;&gt;
   &lt;h3&gt;計算機&lt;&#x2F;h3&gt; 
