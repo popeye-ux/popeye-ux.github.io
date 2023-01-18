@@ -13,7 +13,7 @@
   <url>
     <loc>https://popeye-ux.github.io/2023/01/14/vue-computed-1/</loc>
     
-    <lastmod>2023-01-14</lastmod>
+    <lastmod>2023-01-18</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -605,6 +605,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://popeye-ux.github.io/tags/CSS-starget/</loc>
+    <lastmod>2023-01-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -623,6 +630,13 @@
   
   <url>
     <loc>https://popeye-ux.github.io/categories/Vue-JavaScript/</loc>
+    <lastmod>2023-01-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://popeye-ux.github.io/categories/CSS/</loc>
     <lastmod>2023-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
