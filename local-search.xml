@@ -4,31 +4,6 @@
   
   
   <entry>
-    <title>target進階：頁籤切換顯示內容</title>
-    <link href="/2023/01/20/cssTargetTab/"/>
-    <url>/2023/01/20/cssTargetTab/</url>
-    
-    <content type="html"><![CDATA[<h1 id="target-進階：頁籤切換顯示內容"><a href="#target-進階：頁籤切換顯示內容" class="headerlink" title="target 進階：頁籤切換顯示內容"></a>target 進階：頁籤切換顯示內容</h1><p>target 是一個虛擬類別選擇器，用途在於讓我們設定目標對象的樣式。</p><p>CSS 的寫法為：</p><figure><div class="code-wrapper"><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">選擇器：target</span><span class="token punctuation">&#123;</span>.....<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>]]></content>
-    
-    
-    <categories>
-      
-      <category>CSS</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>CSS,target</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>用 target 選擇器改變其他 HTML 元素的樣式</title>
     <link href="/2023/01/19/cssTarget-1/"/>
     <url>/2023/01/19/cssTarget-1/</url>
