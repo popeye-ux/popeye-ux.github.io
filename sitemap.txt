@@ -1,3 +1,4 @@
+https://popeye-ux.github.io/2023/01/20/cssTargetTab/
 https://popeye-ux.github.io/2023/01/19/cssTarget-1/
 https://popeye-ux.github.io/2023/01/14/vue-computed-1/
 https://popeye-ux.github.io/2023/01/07/v-modelAndV-for/
@@ -69,6 +70,7 @@ https://popeye-ux.github.io/tags/VS-Code-%E6%A8%A3%E6%9D%BF%E8%87%AA%E9%9D%A2%E5
 https://popeye-ux.github.io/tags/Vue-Vue3-JavaScript/
 https://popeye-ux.github.io/tags/Vue-Computeds/
 https://popeye-ux.github.io/tags/CSS-starget/
+https://popeye-ux.github.io/tags/CSS-target/
 https://popeye-ux.github.io/categories/JavaScript/
 https://popeye-ux.github.io/categories/VS-Code/
 https://popeye-ux.github.io/categories/Vue-JavaScript/
