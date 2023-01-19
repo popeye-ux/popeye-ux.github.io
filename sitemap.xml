@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://popeye-ux.github.io/2023/01/20/cssTargetTab/</loc>
+    <loc>https://popeye-ux.github.io/2023/01/19/cssTarget-1/</loc>
     
     <lastmod>2023-01-19</lastmod>
     
@@ -11,9 +11,9 @@
   </url>
   
   <url>
-    <loc>https://popeye-ux.github.io/2023/01/19/cssTarget-1/</loc>
+    <loc>https://popeye-ux.github.io/2023/01/20/cssTargetTab/</loc>
     
-    <lastmod>2023-01-18</lastmod>
+    <lastmod>2023-01-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -615,7 +615,7 @@
   </url>
   
   <url>
-    <loc>https://popeye-ux.github.io/tags/CSS-starget/</loc>
+    <loc>https://popeye-ux.github.io/tags/CSS-target/</loc>
     <lastmod>2023-01-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
