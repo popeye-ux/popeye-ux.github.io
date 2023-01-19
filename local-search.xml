@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>cssTargetTab1</title>
+    <link href="/2023/01/20/cssTargetTab1/"/>
+    <url>/2023/01/20/cssTargetTab1/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>用 target 選擇器改變其他 HTML 元素的樣式</title>
     <link href="/2023/01/19/cssTarget-1/"/>
     <url>/2023/01/19/cssTarget-1/</url>
@@ -63,7 +76,7 @@
     
     <categories>
       
-      <category>Vue, JavaScript</category>
+      <category>Vue</category>
       
     </categories>
     
