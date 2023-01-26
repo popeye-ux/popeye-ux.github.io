@@ -1,3 +1,4 @@
+https://popeye-ux.github.io/2023/01/27/modal-props-emit/
 https://popeye-ux.github.io/2023/01/21/hoverBasic/
 https://popeye-ux.github.io/2023/01/20/cssTargetTab1/
 https://popeye-ux.github.io/2023/01/07/v-modelAndV-for/
@@ -72,6 +73,7 @@ https://popeye-ux.github.io/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD-%E7%89
 https://popeye-ux.github.io/tags/Vue-Computeds/
 https://popeye-ux.github.io/tags/VS-Code-%E6%A8%A3%E6%9D%BF%E8%87%AA%E9%9D%A2%E5%80%BC-HTML%E8%A3%9C%E5%85%A8/
 https://popeye-ux.github.io/tags/CSS-hover/
+https://popeye-ux.github.io/tags/Vue-modal-props-emit/
 https://popeye-ux.github.io/categories/JavaScript/
 https://popeye-ux.github.io/categories/CSS/
 https://popeye-ux.github.io/categories/Vue/
