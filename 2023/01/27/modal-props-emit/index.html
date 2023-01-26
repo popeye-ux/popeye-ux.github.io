@@ -16,16 +16,16 @@
   <meta name="author" content="POPEYE">
   <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
   
-    <meta name="description" content="在前端工程師的日常中，modal&#x2F; 彈出視窗 是常常會遇到的工作情境。畫面大概就是外部元件有一個按鈕，按下去會有一個對話框（內部元件）彈出來，對話框上有個按鈕，點擊後對話框就會關閉。 如果前端框架是 Vue 的話，一般我們會在外部元件定義一個布林值，預設為 false ，按下外部的按鈕後，布林值會變為 true。  開啟：在內部元件 modal 用 props 接收布林值，綁上 v-if">
+    <meta name="description" content="在前端工程師的日常中，modal&#x2F; 彈出視窗 是常常會遇到的工作情境。畫面大概就是外部元件有一個按鈕，按下去會有一個對話框（內部元件）彈出來，對話框上有個按鈕，點擊後對話框就會關閉。 如果前端框架是 Vue 的話，一般我們會在外部元件定義一個布林值，預設為 false ，按下外部的按鈕後，布林值會變為 true。  開啟：在內部元件 modal 用 props 接收外部元件的布林值，綁上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Composition API 中使用 props 與 emit 操控 modal">
 <meta property="og:url" content="https://popeye-ux.github.io/2023/01/27/modal-props-emit/index.html">
 <meta property="og:site_name" content="F2E 星球通訊">
-<meta property="og:description" content="在前端工程師的日常中，modal&#x2F; 彈出視窗 是常常會遇到的工作情境。畫面大概就是外部元件有一個按鈕，按下去會有一個對話框（內部元件）彈出來，對話框上有個按鈕，點擊後對話框就會關閉。 如果前端框架是 Vue 的話，一般我們會在外部元件定義一個布林值，預設為 false ，按下外部的按鈕後，布林值會變為 true。  開啟：在內部元件 modal 用 props 接收布林值，綁上 v-if">
+<meta property="og:description" content="在前端工程師的日常中，modal&#x2F; 彈出視窗 是常常會遇到的工作情境。畫面大概就是外部元件有一個按鈕，按下去會有一個對話框（內部元件）彈出來，對話框上有個按鈕，點擊後對話框就會關閉。 如果前端框架是 Vue 的話，一般我們會在外部元件定義一個布林值，預設為 false ，按下外部的按鈕後，布林值會變為 true。  開啟：在內部元件 modal 用 props 接收外部元件的布林值，綁上">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/bazrYl9.jpg">
 <meta property="article:published_time" content="2023-01-26T17:14:43.000Z">
-<meta property="article:modified_time" content="2023-01-26T17:16:34.477Z">
+<meta property="article:modified_time" content="2023-01-26T17:20:04.661Z">
 <meta property="article:author" content="POPEYE">
 <meta property="article:tag" content="Vue, modal, props, emit">
 <meta name="twitter:card" content="summary_large_image">
@@ -274,7 +274,7 @@
                 <p>在前端工程師的日常中，modal&#x2F; 彈出視窗 是常常會遇到的工作情境。畫面大概就是外部元件有一個按鈕，按下去會有一個對話框（內部元件）彈出來，對話框上有個按鈕，點擊後對話框就會關閉。</p>
 <p>如果前端框架是 Vue 的話，一般我們會在外部元件定義一個布林值，預設為 <code>false</code> ，按下外部的按鈕後，布林值會變為 <code>true</code>。</p>
 <ul>
-<li><p>開啟：在內部元件 modal 用 props 接收布林值，綁上 <code>v-if= props 接收到的布林值</code>。這樣就可以由外部元件控制內部元件的開啟。</p>
+<li><p>開啟：在內部元件 modal 用 props 接收外部元件的布林值，綁上 <code>v-if= props 接收到的布林值</code>。這樣就可以由外部元件控制內部元件的開啟。</p>
 </li>
 <li><p>關閉：內元件 modal 可以由元件內部的按鈕關閉，按下按鈕後以 emit 傳送一個事件去觸發外部元件反轉布林值，達成元件的關閉。</p>
 </li>
