@@ -1,3 +1,4 @@
+https://popeye-ux.github.io/2023/02/06/piniabeginner/
 https://popeye-ux.github.io/2023/01/29/modal-pinia/
 https://popeye-ux.github.io/2023/01/27/modal-props-emit/
 https://popeye-ux.github.io/2023/01/21/hoverBasic/
@@ -76,6 +77,7 @@ https://popeye-ux.github.io/tags/VS-Code-%E6%A8%A3%E6%9D%BF%E8%87%AA%E9%9D%A2%E5
 https://popeye-ux.github.io/tags/CSS-hover/
 https://popeye-ux.github.io/tags/Vue-modal-props-emit/
 https://popeye-ux.github.io/tags/Vue-modal-pinia/
+https://popeye-ux.github.io/tags/Vue-pinia-compositionAPI-optionAPI/
 https://popeye-ux.github.io/categories/JavaScript/
 https://popeye-ux.github.io/categories/CSS/
 https://popeye-ux.github.io/categories/Vue/
