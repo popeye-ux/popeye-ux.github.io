@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://popeye-ux.github.io/2023/01/07/v-modelAndV-for/</loc>
+    <loc>https://popeye-ux.github.io/2023/02/12/vue-env-gtag/</loc>
     
     <lastmod>2023-02-11</lastmod>
     
@@ -12,6 +12,15 @@
   
   <url>
     <loc>https://popeye-ux.github.io/2023/02/12/vue-router-historymode/</loc>
+    
+    <lastmod>2023-02-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://popeye-ux.github.io/2023/01/07/v-modelAndV-for/</loc>
     
     <lastmod>2023-02-11</lastmod>
     
@@ -696,6 +705,13 @@
   
   <url>
     <loc>https://popeye-ux.github.io/tags/Vue3-JavaScript-createWebHashHistory-createWebHistory/</loc>
+    <lastmod>2023-02-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://popeye-ux.github.io/tags/Vue3-Javascript-env-g-tag/</loc>
     <lastmod>2023-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
