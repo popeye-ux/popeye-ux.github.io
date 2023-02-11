@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Vue router 有沒有 hash 有差別</title>
+    <link href="/2023/02/12/vue-router-historymode/"/>
+    <url>/2023/02/12/vue-router-historymode/</url>
+    
+    <content type="html"><![CDATA[<p>Vue 3 主要有 2 種處理路由的方式，分別是 Hash Mode 以及 HTML5 (History API) Mode 兩種。(其實還有一種 abstract 模式)</p><h2 id="createWebHashHistory-模式"><a href="#createWebHashHistory-模式" class="headerlink" title="createWebHashHistory 模式"></a>createWebHashHistory 模式</h2><p><img src="https://i.imgur.com/7Hp9899.png"><br>網址列多了一個 <code>#</code> 字號。</p><p>Hash 也就是 我們用來設定連結錨點的那個 <code>#</code> 字號。</p><figure><div class="code-wrapper"><pre class="line-numbers language-htmlmixed" data-language="htmlmixed"><code class="language-htmlmixed">&lt;a hhref&#x3D;&quot;https:&#x2F;&#x2F;xxx.com&#x2F;#hashmark&quot;&gt;&lt;&#x2F;a&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure><p>利用改變<code>#</code>後面對應到 HTML 檔案 <code>id</code> 的文字，就可以不用換頁，又可以在瀏覽器中留下「上一頁」與「下一頁」的歷史紀錄，而且切換時不會刷新頁面。</p><p>createWebHashHistory 模式預設的路徑為 location.pathname 或 &#x2F; 根目錄，也可以改變預設路徑，使用 createWebHashHistory(‘&#x2F;folder&#x2F;‘)，就可以對應到 <a href="https://xxxx.com/folder/#">https://xxxx.com/folder/#</a> 。</p><p>Hash 模式完全是前端模式，只在瀏覽器中動作，不牽扯後端，缺點是對 SEO 不利，因為搜尋引擎會自動忽略 URL 有 <code>#</code> 的部分。</p><p>router.js</p><figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> createRouter<span class="token punctuation">,</span> createWebHashHistory <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'vue-router'</span><span class="token keyword">import</span> HomeView <span class="token keyword">from</span> <span class="token string">'../views/HomeView.vue'</span><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token function">createRouter</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>  <span class="token literal-property property">history</span><span class="token operator">:</span> <span class="token function">createWebHashHistory</span><span class="token punctuation">(</span><span class="token keyword">import</span><span class="token punctuation">.</span>meta<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">BASE_URL</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token literal-property property">routes</span><span class="token operator">:</span> <span class="token punctuation">[</span>    <span class="token punctuation">&#123;</span>      <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>      <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'home'</span><span class="token punctuation">,</span>      <span class="token literal-property property">component</span><span class="token operator">:</span> HomeView    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>    <span class="token punctuation">&#123;</span>      <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/about'</span><span class="token punctuation">,</span>      <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'about'</span><span class="token punctuation">,</span>      <span class="token comment">// route level code-splitting</span>      <span class="token comment">// this generates a separate chunk (About.[hash].js) for this route</span>      <span class="token comment">// which is lazy-loaded when the route is visited.</span>      <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'../views/AboutView.vue'</span><span class="token punctuation">)</span>    <span class="token punctuation">&#125;</span>  <span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token keyword">export</span> <span class="token keyword">default</span> router<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure><p>網址有沒有 <code>#</code> 字號的差別就在於，上面第一個網址列是使用 <code>createWebHistory</code> 模式，而下面的網址列的 Router 是使用 <code>createWebHashHistory</code>。</p><h2 id="createWebHistory-模式"><a href="#createWebHistory-模式" class="headerlink" title="createWebHistory 模式"></a>createWebHistory 模式</h2><p><img src="https://i.imgur.com/VmULArB.png"><br>如果是 <code>createWebHistory</code> 就是採用 HTML5 的 History API，可以使用 <code>pushState()</code>、<code>replaceState()</code> 等方法更新 URL，搭配原有的 history.go()、history.back()來指定頁面路徑切換，如，也提供了 state 物件讓開發這可以暫時存取網頁的狀態。</p><figure><div class="code-wrapper"><pre class="line-numbers language-htmlmixed" data-language="htmlmixed"><code class="language-htmlmixed">&lt;a hhref&#x3D;&quot;https:&#x2F;&#x2F;xxx.com&#x2F;path&quot;&gt;&lt;&#x2F;a&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure><p>需要搭配後端路由，如果沒有後端的配置，使用者直接輸入網址，或瀏覽器重整網頁的時候會找不到網頁，跳 404 頁面。</p><p>router.js</p><figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> createRouter<span class="token punctuation">,</span> createWebHistory <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'vue-router'</span><span class="token keyword">import</span> HomeView <span class="token keyword">from</span> <span class="token string">'../views/HomeView.vue'</span><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token function">createRouter</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>  <span class="token literal-property property">history</span><span class="token operator">:</span> <span class="token function">createWebHistory</span><span class="token punctuation">(</span><span class="token keyword">import</span><span class="token punctuation">.</span>meta<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">BASE_URL</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token literal-property property">routes</span><span class="token operator">:</span> <span class="token punctuation">[</span>    <span class="token punctuation">&#123;</span>      <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>      <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'home'</span><span class="token punctuation">,</span>      <span class="token literal-property property">component</span><span class="token operator">:</span> HomeView    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>    <span class="token punctuation">&#123;</span>      <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/about'</span><span class="token punctuation">,</span>      <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'about'</span><span class="token punctuation">,</span>      <span class="token comment">// route level code-splitting</span>      <span class="token comment">// this generates a separate chunk (About.[hash].js) for this route</span>      <span class="token comment">// which is lazy-loaded when the route is visited.</span>      <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'../views/AboutView.vue'</span><span class="token punctuation">)</span>    <span class="token punctuation">&#125;</span>  <span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token keyword">export</span> <span class="token keyword">default</span> router<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Vue3</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Vue3, JavaScript, createWebHashHistory, createWebHistory</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>在 Vue 裡面使用 pinia 管理狀態</title>
     <link href="/2023/02/06/piniabeginner/"/>
     <url>/2023/02/06/piniabeginner/</url>
@@ -13,7 +38,7 @@
     
     <categories>
       
-      <category>Vue</category>
+      <category>Vue3</category>
       
     </categories>
     
@@ -38,7 +63,7 @@
     
     <categories>
       
-      <category>Vue</category>
+      <category>Vue3</category>
       
     </categories>
     
@@ -63,7 +88,7 @@
     
     <categories>
       
-      <category>Vue</category>
+      <category>Vue3</category>
       
     </categories>
     
@@ -188,7 +213,7 @@
     
     <categories>
       
-      <category>Vue</category>
+      <category>Vue3</category>
       
     </categories>
     
