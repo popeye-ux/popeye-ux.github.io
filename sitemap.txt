@@ -1,3 +1,4 @@
+https://popeye-ux.github.io/2023/02/18/vue-vee-validate4/
 https://popeye-ux.github.io/2023/02/12/vue-env-gtag/
 https://popeye-ux.github.io/2023/02/12/vue-router-historymode/
 https://popeye-ux.github.io/2023/01/07/v-modelAndV-for/
@@ -82,6 +83,7 @@ https://popeye-ux.github.io/tags/Vue-modal-pinia/
 https://popeye-ux.github.io/tags/Vue-pinia-compositionAPI-optionAPI/
 https://popeye-ux.github.io/tags/Vue3-JavaScript-createWebHashHistory-createWebHistory/
 https://popeye-ux.github.io/tags/Vue3-Javascript-env-g-tag/
+https://popeye-ux.github.io/tags/Vue3-JavaScript-Vee-Valdate-Validate/
 https://popeye-ux.github.io/categories/JavaScript/
 https://popeye-ux.github.io/categories/CSS/
 https://popeye-ux.github.io/categories/Vue-JavaScript/
