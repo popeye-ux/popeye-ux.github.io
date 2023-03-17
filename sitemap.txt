@@ -1,3 +1,4 @@
+https://popeye-ux.github.io/2023/03/17/dom-to-image/
 https://popeye-ux.github.io/2023/03/09/vue-allchecked/
 https://popeye-ux.github.io/2023/02/28/vue-option-ref-basics/
 https://popeye-ux.github.io/2023/02/28/wall/
@@ -90,8 +91,10 @@ https://popeye-ux.github.io/tags/Vue3-JavaScript-createWebHashHistory-createWebH
 https://popeye-ux.github.io/tags/Vue3-JavaScript-ref-Modal/
 https://popeye-ux.github.io/tags/%E9%9B%9C%E8%A8%98/
 https://popeye-ux.github.io/tags/Vue3-JavaScript-Vee-Valdate-Validate/
+https://popeye-ux.github.io/tags/JavaScript-dom-to-image-plugin/
 https://popeye-ux.github.io/categories/JavaScript/
 https://popeye-ux.github.io/categories/CSS/
 https://popeye-ux.github.io/categories/Vue3/
 https://popeye-ux.github.io/categories/VS-Code/
 https://popeye-ux.github.io/categories/%E9%9B%9C%E8%A8%98/
+https://popeye-ux.github.io/categories/PlugIn/
