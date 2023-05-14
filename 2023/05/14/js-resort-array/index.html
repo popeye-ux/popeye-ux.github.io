@@ -16,20 +16,22 @@
   <meta name="author" content="POPEYE">
   <meta name="keywords" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="js-resort-array">
+    <meta name="description" content="公司要提供客戶美食優惠券，公司資料庫中有客戶偏好的食物類型，我心想這個簡單，不就打個 API 就把資料取回來了嗎，取回的資料結果如下： const arr&#x3D;[   &amp;#123;     name: &quot;小明&quot;,     type: &quot;牛排&quot;,    &amp;#125;,   &amp;#123;     name: &quot;小華&quot;,     type: &quot;壽司&quot;,   &amp;#125;,   &amp;#123;     name">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用給定的順序改變陣列本來的順序">
 <meta property="og:url" content="https://popeye-ux.github.io/2023/05/14/js-resort-array/index.html">
 <meta property="og:site_name" content="F2E 星球通訊">
+<meta property="og:description" content="公司要提供客戶美食優惠券，公司資料庫中有客戶偏好的食物類型，我心想這個簡單，不就打個 API 就把資料取回來了嗎，取回的資料結果如下： const arr&#x3D;[   &amp;#123;     name: &quot;小明&quot;,     type: &quot;牛排&quot;,    &amp;#125;,   &amp;#123;     name: &quot;小華&quot;,     type: &quot;壽司&quot;,   &amp;#125;,   &amp;#123;     name">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-05-14T15:49:05.000Z">
-<meta property="article:modified_time" content="2023-05-14T15:49:05.129Z">
+<meta property="article:modified_time" content="2023-05-14T16:02:27.171Z">
 <meta property="article:author" content="POPEYE">
-<meta property="article:tag" content="前端,網頁,網頁開發,前端開發,JavaScript,Vue,HTML,CSS,SCSS">
+<meta property="article:tag" content="JavaScript,array,sort,indexOf">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>js-resort-array - F2E 星球通訊</title>
+  <title>用給定的順序改變陣列本來的順序 - F2E 星球通訊</title>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F757T9GM4W"></script>
 <script>
@@ -198,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="js-resort-array"></span>
+            <span id="subtitle" data-typed-text="用給定的順序改變陣列本來的順序"></span>
           
         </div>
 
@@ -221,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          727 字
         
       </span>
     
@@ -232,7 +234,7 @@
         
         
         
-          1 分鐘
+          7 分鐘
         
       </span>
     
@@ -270,12 +272,49 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">js-resort-array</h1>
+            <h1 style="display: none">用給定的順序改變陣列本來的順序</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <p>公司要提供客戶美食優惠券，公司資料庫中有客戶偏好的食物類型，我心想這個簡單，不就打個 API 就把資料取回來了嗎，取回的資料結果如下：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">const</span> arr<span class="token operator">=</span><span class="token punctuation">[</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"小明"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"牛排"</span><span class="token punctuation">,</span> 
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"小華"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"壽司"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"小春"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"燒肉"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"小陽"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"義大利麵"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"小陽"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"麥當勞"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<p>但這時候，行銷部門的經理跑來說，這個名單要按照這樣的「”燒肉”,”牛排”,”壽司”,”麥當勞”,”義大利麵”」順序來排列。</p>
+<p>要解決這個問題，我們可以先根據食物順序排定一個陣列：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">const</span> typeOrder <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"燒肉"</span><span class="token punctuation">,</span><span class="token string">"牛排"</span><span class="token punctuation">,</span><span class="token string">"壽司"</span><span class="token punctuation">,</span><span class="token string">"麥當勞"</span><span class="token punctuation">,</span><span class="token string">"義大利麵"</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+
+<p>然後利用 Array.prototype.indexOf() 與  Array.prototype.sort() 來重新排列原始陣列的順序：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">arr<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>typeOrder<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>typeOrder<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>b<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> typeOrder<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token operator">-</span> typeOrder<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>b<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<p>Array.prototype.indexOf()會回傳給定元素於陣列中第一個被找到之索引位置，若不存在於陣列中則回傳 -1。</p>
+<p>Array.prototype.sort() 方法會原地（in place）對一個陣列的所有元素進行排序，並回傳此陣列。</p>
+
                 
               </div>
             
@@ -283,6 +322,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript-array-sort-indexOf/">#JavaScript,array,sort,indexOf</a>
+      
+    </div>
   
 </div>
 
@@ -292,7 +359,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>js-resort-array</div>
+      <div>用給定的順序改變陣列本來的順序</div>
       <div>https://popeye-ux.github.io/2023/05/14/js-resort-array/</div>
     </div>
     <div class="license-meta">
