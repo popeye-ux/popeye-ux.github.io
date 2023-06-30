@@ -1,3 +1,4 @@
+https://popeye-ux.github.io/2023/06/30/vue-component-props/
 https://popeye-ux.github.io/2023/06/17/vue-reviewREF/
 https://popeye-ux.github.io/2023/05/25/js-input-select/
 https://popeye-ux.github.io/2023/05/14/js-resort-array/
@@ -98,6 +99,7 @@ https://popeye-ux.github.io/tags/JavaScript-dom-to-image-plugin/
 https://popeye-ux.github.io/tags/JavaScript-array-sort-indexOf/
 https://popeye-ux.github.io/tags/JavaScript-input-search-selects/
 https://popeye-ux.github.io/tags/Vue3-refs/
+https://popeye-ux.github.io/tags/props-component/
 https://popeye-ux.github.io/categories/JavaScript/
 https://popeye-ux.github.io/categories/CSS/
 https://popeye-ux.github.io/categories/Vue3/
