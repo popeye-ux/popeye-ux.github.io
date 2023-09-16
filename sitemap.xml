@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://popeye-ux.github.io/2023/09/16/js-axios-basic/</loc>
+    
+    <lastmod>2023-09-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://popeye-ux.github.io/2023/09/09/2023layouttohtml/</loc>
     
     <lastmod>2023-09-09</lastmod>
@@ -670,7 +679,7 @@
 
   <url>
     <loc>https://popeye-ux.github.io/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -678,217 +687,224 @@
   
   <url>
     <loc>https://popeye-ux.github.io/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-%E8%AE%8A%E6%95%B8/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/JavaScript-2021iT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-array/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD-array/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD-C3-js/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/CSS-target/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/CSS-hover/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD-hoisting/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/Vue-modal-pinia/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/Vue-modal-props-emit/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/JavaScript-JS%E7%9B%B4%E6%92%AD%E7%8F%AD-%E7%89%A9%E4%BB%B6/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/Vue-pinia-compositionAPI-optionAPI/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/JavaScript-this-%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/Vue-Vue3-JavaScript/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/VS-Code-%E6%A8%A3%E6%9D%BF%E8%87%AA%E9%9D%A2%E5%80%BC-HTML%E8%A3%9C%E5%85%A8/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/Vue3-JavaScript-checkbox-computed-methods/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/Vue-Computeds/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/Vue3-Javascript-env-g-tag/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/Vue3-JavaScript-createWebHashHistory-createWebHistory/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/Vue3-JavaScript-ref-Modal/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/%E9%9B%9C%E8%A8%98/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/Vue3-JavaScript-Vee-Valdate-Validate/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/JavaScript-dom-to-image-plugin/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/JavaScript-array-sort-indexOf/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/JavaScript-input-search-selects/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/Vue3-refs/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/props-component/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/emit-component/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/tags/%E5%85%AD%E8%A7%92%E5%AD%B8%E9%99%A2/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://popeye-ux.github.io/tags/JavaScript-axios-API/</loc>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -897,42 +913,42 @@
   
   <url>
     <loc>https://popeye-ux.github.io/categories/JavaScript/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/categories/CSS/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/categories/Vue3/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/categories/VS-Code/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/categories/%E9%9B%9C%E8%A8%98/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://popeye-ux.github.io/categories/PlugIn/</loc>
-    <lastmod>2023-09-09</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
