@@ -1,3 +1,4 @@
+https://popeye-ux.github.io/2023/11/05/js-axios-header/
 https://popeye-ux.github.io/2023/10/08/js-axios-create/
 https://popeye-ux.github.io/2023/09/16/js-axios-basic/
 https://popeye-ux.github.io/2023/09/09/2023layouttohtml/
@@ -107,6 +108,7 @@ https://popeye-ux.github.io/tags/props-component/
 https://popeye-ux.github.io/tags/emit-component/
 https://popeye-ux.github.io/tags/%E5%85%AD%E8%A7%92%E5%AD%B8%E9%99%A2/
 https://popeye-ux.github.io/tags/JavaScript-axios-API/
+https://popeye-ux.github.io/tags/header-JavaScript-API/
 https://popeye-ux.github.io/categories/JavaScript/
 https://popeye-ux.github.io/categories/CSS/
 https://popeye-ux.github.io/categories/Vue3/
